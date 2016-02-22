@@ -44,7 +44,7 @@ class SystemServiceProvider extends ServiceProvider
         $loader->setPsr4("Mi2\\FHIR\\", __DIR__ . "/../../packages/mi2/FHIR/src");
         App::register( 'Mi2\FHIR\Plugin' );
 
-        $loader->setPsr4("PHPFHIRGenerated\\", __DIR__ . "/../../vendor/dcarbone/php-fhir/output/PHPFHIRGenerated");
+        $loader->setPsr4("PHPFHIRGenerated\\", __DIR__ . "/../../packages/mi2/FHIR/src/PHPFHIRGenerated");
         //$responses = Event::fire('plugins.registered');
 
     }
