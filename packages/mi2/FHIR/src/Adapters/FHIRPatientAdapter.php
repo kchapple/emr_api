@@ -7,6 +7,7 @@ use Mi2\Emr\Contracts\PatientAdapterInterface;
 use Mi2\Emr\Contracts\PatientInterface;
 
 use PHPFHIRGenerated\FHIRDomainResource\FHIRPatient;
+use PHPFHIRGenerated\FHIRElement\FHIRDate;
 use PHPFHIRGenerated\PHPFHIRResponseParser;
 
 class FHIRPatientAdapter implements PatientAdapterInterface
@@ -21,10 +22,15 @@ class FHIRPatientAdapter implements PatientAdapterInterface
     public function toOutput( PatientInterface $patient )
     {
         $fhirPatient = new FHIRPatient();
-        $fhirPatient->setBirthDate( $patient->getDOB() );
 
-        // TODO need a real conversion to real FHIR response format
-        return json_encode( $fhirPatient );
+        $dob = new FHIRDate();
+        $dob->setValue( $patient->getDOB() );
+        $fhirPatient->setBirthDate( $dob );
+
+
+
+        // TODO provide other data to FHIR models
+        return $fhirPatient->jsonSerialize();
     }
 
     /**
