@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -31,7 +31,7 @@ class PHPFHIRAutoloader
     /** @var array */
     private static $_classMap = array (
   'PHPFHIRGenerated\\PHPFHIRParserMap' => 'PHPFHIRParserMap.php',
-  'PHPFHIRGenerated\\PHPFHIRResponseParser' => 'PHPFHIRResponseParser.php',
+  'PHPFHIRGenerated\\JsonSerializable' => 'JsonSerializable.php',
   'PHPFHIRGenerated\\FHIRElement\\FHIRMarkdown' => 'FHIRElement/FHIRMarkdown.php',
   'PHPFHIRGenerated\\FHIRElement\\FHIRInteger' => 'FHIRElement/FHIRInteger.php',
   'PHPFHIRGenerated\\FHIRElement\\FHIRDateTime' => 'FHIRElement/FHIRDateTime.php',
@@ -557,7 +557,6 @@ class PHPFHIRAutoloader
   'PHPFHIRGenerated\\FHIRElement\\FHIRVisionEyes' => 'FHIRElement/FHIRVisionEyes.php',
 );
 
-
     /** @var bool */
     private static $_registered = false;
 
@@ -571,6 +570,7 @@ class PHPFHIRAutoloader
             return self::$_registered;
         return self::$_registered = spl_autoload_register(array(__CLASS__, 'loadClass'), true);
     }
+
     /**
      * @return bool
      */
@@ -579,6 +579,7 @@ class PHPFHIRAutoloader
         self::$_registered = !spl_autoload_unregister(array(__CLASS__, 'loadClass'));
         return !self::$_registered;
     }
+
     /**
      * Please see associated documentation for more information on what this method looks for.
      *
@@ -588,9 +589,7 @@ class PHPFHIRAutoloader
     public static function loadClass($class)
     {
         if (isset(self::$_classMap[$class]))
-        {
             return (bool)require sprintf('%s/%s', self::ROOT_DIR, self::$_classMap[$class]);
-        }
         return null;
     }
 }

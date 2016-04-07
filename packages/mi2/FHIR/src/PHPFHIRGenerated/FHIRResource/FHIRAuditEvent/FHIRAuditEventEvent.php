@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A record of an event made for purposes of maintaining a security log. Typical uses include detection of intrusion attempts and monitoring for inappropriate usage.
  */
-class FHIRAuditEventEvent extends FHIRBackboneElement
+class FHIRAuditEventEvent extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Identifier for a family of the event.  For example, a menu item, program, rule, policy, function code, application name or URL. It identifies the performed function.
@@ -110,6 +111,11 @@ class FHIRAuditEventEvent extends FHIRBackboneElement
     public $purposeOfEvent = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'AuditEvent.Event';
+
+    /**
      * Identifier for a family of the event.  For example, a menu item, program, rule, policy, function code, application name or URL. It identifies the performed function.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCoding
      */
@@ -121,10 +127,12 @@ class FHIRAuditEventEvent extends FHIRBackboneElement
     /**
      * Identifier for a family of the event.  For example, a menu item, program, rule, policy, function code, application name or URL. It identifies the performed function.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -139,10 +147,12 @@ class FHIRAuditEventEvent extends FHIRBackboneElement
     /**
      * Identifier for the category of event.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding[] $subtype
+     * @return $this
      */
     public function addSubtype($subtype)
     {
         $this->subtype[] = $subtype;
+        return $this;
     }
 
     /**
@@ -157,10 +167,12 @@ class FHIRAuditEventEvent extends FHIRBackboneElement
     /**
      * Indicator for type of action performed during the event that generated the audit.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAuditEventAction $action
+     * @return $this
      */
     public function setAction($action)
     {
         $this->action = $action;
+        return $this;
     }
 
     /**
@@ -175,10 +187,12 @@ class FHIRAuditEventEvent extends FHIRBackboneElement
     /**
      * The time when the event occurred on the source.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInstant $dateTime
+     * @return $this
      */
     public function setDateTime($dateTime)
     {
         $this->dateTime = $dateTime;
+        return $this;
     }
 
     /**
@@ -193,10 +207,12 @@ class FHIRAuditEventEvent extends FHIRBackboneElement
     /**
      * Indicates whether the event succeeded or failed.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAuditEventOutcome $outcome
+     * @return $this
      */
     public function setOutcome($outcome)
     {
         $this->outcome = $outcome;
+        return $this;
     }
 
     /**
@@ -211,10 +227,12 @@ class FHIRAuditEventEvent extends FHIRBackboneElement
     /**
      * A free text description of the outcome of the event.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $outcomeDesc
+     * @return $this
      */
     public function setOutcomeDesc($outcomeDesc)
     {
         $this->outcomeDesc = $outcomeDesc;
+        return $this;
     }
 
     /**
@@ -229,10 +247,82 @@ class FHIRAuditEventEvent extends FHIRBackboneElement
     /**
      * The purposeOfUse (reason) that was used during the event being recorded.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding[] $purposeOfEvent
+     * @return $this
      */
     public function addPurposeOfEvent($purposeOfEvent)
     {
         $this->purposeOfEvent[] = $purposeOfEvent;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (0 < count($this->subtype)) {
+            $json['subtype'] = array();
+            foreach($this->subtype as $subtype) {
+                $json['subtype'][] = $subtype->jsonSerialize();
+            }
+        }
+        if (null !== $this->action) $json['action'] = $this->action->jsonSerialize();
+        if (null !== $this->dateTime) $json['dateTime'] = $this->dateTime->jsonSerialize();
+        if (null !== $this->outcome) $json['outcome'] = $this->outcome->jsonSerialize();
+        if (null !== $this->outcomeDesc) $json['outcomeDesc'] = $this->outcomeDesc->jsonSerialize();
+        if (0 < count($this->purposeOfEvent)) {
+            $json['purposeOfEvent'] = array();
+            foreach($this->purposeOfEvent as $purposeOfEvent) {
+                $json['purposeOfEvent'][] = $purposeOfEvent->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<AuditEventEvent xmlns="http://hl7.org/fhir"></AuditEventEvent>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (0 < count($this->subtype)) {
+            foreach($this->subtype as $subtype) {
+                $subtype->xmlSerialize(true, $sxe->addChild('subtype'));
+            }
+        }
+        if (null !== $this->action) $this->action->xmlSerialize(true, $sxe->addChild('action'));
+        if (null !== $this->dateTime) $this->dateTime->xmlSerialize(true, $sxe->addChild('dateTime'));
+        if (null !== $this->outcome) $this->outcome->xmlSerialize(true, $sxe->addChild('outcome'));
+        if (null !== $this->outcomeDesc) $this->outcomeDesc->xmlSerialize(true, $sxe->addChild('outcomeDesc'));
+        if (0 < count($this->purposeOfEvent)) {
+            foreach($this->purposeOfEvent as $purposeOfEvent) {
+                $purposeOfEvent->xmlSerialize(true, $sxe->addChild('purposeOfEvent'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

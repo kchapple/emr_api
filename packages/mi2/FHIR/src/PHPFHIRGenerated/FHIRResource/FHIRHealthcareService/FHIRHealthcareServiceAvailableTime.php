@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * The details of a healthcare service available at a location.
  */
-class FHIRHealthcareServiceAvailableTime extends FHIRBackboneElement
+class FHIRHealthcareServiceAvailableTime extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Indicates which days of the week are available between the start and end Times.
@@ -92,6 +93,11 @@ class FHIRHealthcareServiceAvailableTime extends FHIRBackboneElement
     public $availableEndTime = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'HealthcareService.AvailableTime';
+
+    /**
      * Indicates which days of the week are available between the start and end Times.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRDaysOfWeek[]
      */
@@ -103,10 +109,12 @@ class FHIRHealthcareServiceAvailableTime extends FHIRBackboneElement
     /**
      * Indicates which days of the week are available between the start and end Times.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDaysOfWeek[] $daysOfWeek
+     * @return $this
      */
     public function addDaysOfWeek($daysOfWeek)
     {
         $this->daysOfWeek[] = $daysOfWeek;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRHealthcareServiceAvailableTime extends FHIRBackboneElement
     /**
      * Is this always available? (hence times are irrelevant) e.g. 24 hour service.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $allDay
+     * @return $this
      */
     public function setAllDay($allDay)
     {
         $this->allDay = $allDay;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRHealthcareServiceAvailableTime extends FHIRBackboneElement
     /**
      * The opening time of day. Note: If the AllDay flag is set, then this time is ignored.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRTime $availableStartTime
+     * @return $this
      */
     public function setAvailableStartTime($availableStartTime)
     {
         $this->availableStartTime = $availableStartTime;
+        return $this;
     }
 
     /**
@@ -157,10 +169,67 @@ class FHIRHealthcareServiceAvailableTime extends FHIRBackboneElement
     /**
      * The closing time of day. Note: If the AllDay flag is set, then this time is ignored.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRTime $availableEndTime
+     * @return $this
      */
     public function setAvailableEndTime($availableEndTime)
     {
         $this->availableEndTime = $availableEndTime;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->daysOfWeek)) {
+            $json['daysOfWeek'] = array();
+            foreach($this->daysOfWeek as $daysOfWeek) {
+                $json['daysOfWeek'][] = $daysOfWeek->jsonSerialize();
+            }
+        }
+        if (null !== $this->allDay) $json['allDay'] = $this->allDay->jsonSerialize();
+        if (null !== $this->availableStartTime) $json['availableStartTime'] = $this->availableStartTime->jsonSerialize();
+        if (null !== $this->availableEndTime) $json['availableEndTime'] = $this->availableEndTime->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<HealthcareServiceAvailableTime xmlns="http://hl7.org/fhir"></HealthcareServiceAvailableTime>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->daysOfWeek)) {
+            foreach($this->daysOfWeek as $daysOfWeek) {
+                $daysOfWeek->xmlSerialize(true, $sxe->addChild('daysOfWeek'));
+            }
+        }
+        if (null !== $this->allDay) $this->allDay->xmlSerialize(true, $sxe->addChild('allDay'));
+        if (null !== $this->availableStartTime) $this->availableStartTime->xmlSerialize(true, $sxe->addChild('availableStartTime'));
+        if (null !== $this->availableEndTime) $this->availableEndTime->xmlSerialize(true, $sxe->addChild('availableEndTime'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

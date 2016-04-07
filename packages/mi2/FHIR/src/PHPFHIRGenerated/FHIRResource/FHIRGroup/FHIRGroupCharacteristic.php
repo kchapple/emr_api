@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Represents a defined collection of entities that may be discussed or acted upon collectively but which are not expected to act collectively and are not formally or legally recognized; i.e. a collection of entities that isn't an Organization.
  */
-class FHIRGroupCharacteristic extends FHIRBackboneElement
+class FHIRGroupCharacteristic extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A code that identifies the kind of trait being asserted.
@@ -110,6 +111,11 @@ class FHIRGroupCharacteristic extends FHIRBackboneElement
     public $period = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Group.Characteristic';
+
+    /**
      * A code that identifies the kind of trait being asserted.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -121,10 +127,12 @@ class FHIRGroupCharacteristic extends FHIRBackboneElement
     /**
      * A code that identifies the kind of trait being asserted.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -139,10 +147,12 @@ class FHIRGroupCharacteristic extends FHIRBackboneElement
     /**
      * The value of the trait that holds (or does not hold - see 'exclude') for members of the group. (choose any one of value*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $valueCodeableConcept
+     * @return $this
      */
     public function setValueCodeableConcept($valueCodeableConcept)
     {
         $this->valueCodeableConcept = $valueCodeableConcept;
+        return $this;
     }
 
     /**
@@ -157,10 +167,12 @@ class FHIRGroupCharacteristic extends FHIRBackboneElement
     /**
      * The value of the trait that holds (or does not hold - see 'exclude') for members of the group. (choose any one of value*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $valueBoolean
+     * @return $this
      */
     public function setValueBoolean($valueBoolean)
     {
         $this->valueBoolean = $valueBoolean;
+        return $this;
     }
 
     /**
@@ -175,10 +187,12 @@ class FHIRGroupCharacteristic extends FHIRBackboneElement
     /**
      * The value of the trait that holds (or does not hold - see 'exclude') for members of the group. (choose any one of value*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRQuantity $valueQuantity
+     * @return $this
      */
     public function setValueQuantity($valueQuantity)
     {
         $this->valueQuantity = $valueQuantity;
+        return $this;
     }
 
     /**
@@ -193,10 +207,12 @@ class FHIRGroupCharacteristic extends FHIRBackboneElement
     /**
      * The value of the trait that holds (or does not hold - see 'exclude') for members of the group. (choose any one of value*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRange $valueRange
+     * @return $this
      */
     public function setValueRange($valueRange)
     {
         $this->valueRange = $valueRange;
+        return $this;
     }
 
     /**
@@ -211,10 +227,12 @@ class FHIRGroupCharacteristic extends FHIRBackboneElement
     /**
      * If true, indicates the characteristic is one that is NOT held by members of the group.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $exclude
+     * @return $this
      */
     public function setExclude($exclude)
     {
         $this->exclude = $exclude;
+        return $this;
     }
 
     /**
@@ -229,10 +247,64 @@ class FHIRGroupCharacteristic extends FHIRBackboneElement
     /**
      * The period over which the characteristic is tested; e.g. the patient had an operation during the month of June.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->valueCodeableConcept) $json['valueCodeableConcept'] = $this->valueCodeableConcept->jsonSerialize();
+        if (null !== $this->valueBoolean) $json['valueBoolean'] = $this->valueBoolean->jsonSerialize();
+        if (null !== $this->valueQuantity) $json['valueQuantity'] = $this->valueQuantity->jsonSerialize();
+        if (null !== $this->valueRange) $json['valueRange'] = $this->valueRange->jsonSerialize();
+        if (null !== $this->exclude) $json['exclude'] = $this->exclude->jsonSerialize();
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<GroupCharacteristic xmlns="http://hl7.org/fhir"></GroupCharacteristic>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->valueCodeableConcept) $this->valueCodeableConcept->xmlSerialize(true, $sxe->addChild('valueCodeableConcept'));
+        if (null !== $this->valueBoolean) $this->valueBoolean->xmlSerialize(true, $sxe->addChild('valueBoolean'));
+        if (null !== $this->valueQuantity) $this->valueQuantity->xmlSerialize(true, $sxe->addChild('valueQuantity'));
+        if (null !== $this->valueRange) $this->valueRange->xmlSerialize(true, $sxe->addChild('valueRange'));
+        if (null !== $this->exclude) $this->exclude->xmlSerialize(true, $sxe->addChild('exclude'));
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

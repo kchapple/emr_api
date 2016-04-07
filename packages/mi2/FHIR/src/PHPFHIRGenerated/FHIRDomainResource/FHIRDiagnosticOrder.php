@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A record of a request for a diagnostic investigation service to be performed.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRDiagnosticOrder extends FHIRDomainResource
+class FHIRDiagnosticOrder extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Who or what the investigation is to be performed on. This is usually a human patient, but diagnostic tests can also be requested on animals, groups of humans or animals, devices such as dialysis machines, or even locations (typically for environmental scans).
@@ -141,6 +142,11 @@ class FHIRDiagnosticOrder extends FHIRDomainResource
     public $note = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'DiagnosticOrder';
+
+    /**
      * Who or what the investigation is to be performed on. This is usually a human patient, but diagnostic tests can also be requested on animals, groups of humans or animals, devices such as dialysis machines, or even locations (typically for environmental scans).
      * @return \PHPFHIRGenerated\FHIRElement\FHIRReference
      */
@@ -152,10 +158,12 @@ class FHIRDiagnosticOrder extends FHIRDomainResource
     /**
      * Who or what the investigation is to be performed on. This is usually a human patient, but diagnostic tests can also be requested on animals, groups of humans or animals, devices such as dialysis machines, or even locations (typically for environmental scans).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $subject
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -170,10 +178,12 @@ class FHIRDiagnosticOrder extends FHIRDomainResource
     /**
      * The practitioner that holds legal responsibility for ordering the investigation.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $orderer
+     * @return $this
      */
     public function setOrderer($orderer)
     {
         $this->orderer = $orderer;
+        return $this;
     }
 
     /**
@@ -188,10 +198,12 @@ class FHIRDiagnosticOrder extends FHIRDomainResource
     /**
      * Identifiers assigned to this order instance by the orderer and/or  the receiver and/or order fulfiller.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -206,10 +218,12 @@ class FHIRDiagnosticOrder extends FHIRDomainResource
     /**
      * An encounter that provides additional information about the healthcare context in which this request is made.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $encounter
+     * @return $this
      */
     public function setEncounter($encounter)
     {
         $this->encounter = $encounter;
+        return $this;
     }
 
     /**
@@ -224,10 +238,12 @@ class FHIRDiagnosticOrder extends FHIRDomainResource
     /**
      * An explanation or justification for why this diagnostic investigation is being requested.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $reason
+     * @return $this
      */
     public function addReason($reason)
     {
         $this->reason[] = $reason;
+        return $this;
     }
 
     /**
@@ -242,10 +258,12 @@ class FHIRDiagnosticOrder extends FHIRDomainResource
     /**
      * Additional clinical information about the patient or specimen that may influence test interpretations.  This includes observations explicitly requested by the producer(filler) to provide context or supporting information needed to complete the order.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $supportingInformation
+     * @return $this
      */
     public function addSupportingInformation($supportingInformation)
     {
         $this->supportingInformation[] = $supportingInformation;
+        return $this;
     }
 
     /**
@@ -260,10 +278,12 @@ class FHIRDiagnosticOrder extends FHIRDomainResource
     /**
      * One or more specimens that the diagnostic investigation is about.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $specimen
+     * @return $this
      */
     public function addSpecimen($specimen)
     {
         $this->specimen[] = $specimen;
+        return $this;
     }
 
     /**
@@ -278,10 +298,12 @@ class FHIRDiagnosticOrder extends FHIRDomainResource
     /**
      * The status of the order.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDiagnosticOrderStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -296,10 +318,12 @@ class FHIRDiagnosticOrder extends FHIRDomainResource
     /**
      * The clinical priority associated with this order.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDiagnosticOrderPriority $priority
+     * @return $this
      */
     public function setPriority($priority)
     {
         $this->priority = $priority;
+        return $this;
     }
 
     /**
@@ -314,10 +338,12 @@ class FHIRDiagnosticOrder extends FHIRDomainResource
     /**
      * A summary of the events of interest that have occurred as the request is processed; e.g. when the order was made, various processing steps (specimens received), when it was completed.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRDiagnosticOrder\FHIRDiagnosticOrderEvent[] $event
+     * @return $this
      */
     public function addEvent($event)
     {
         $this->event[] = $event;
+        return $this;
     }
 
     /**
@@ -332,10 +358,12 @@ class FHIRDiagnosticOrder extends FHIRDomainResource
     /**
      * The specific diagnostic investigations that are requested as part of this request. Sometimes, there can only be one item per request, but in most contexts, more than one investigation can be requested.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRDiagnosticOrder\FHIRDiagnosticOrderItem[] $item
+     * @return $this
      */
     public function addItem($item)
     {
         $this->item[] = $item;
+        return $this;
     }
 
     /**
@@ -350,10 +378,138 @@ class FHIRDiagnosticOrder extends FHIRDomainResource
     /**
      * Any other notes associated with this patient, specimen or order (e.g. "patient hates needles").
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAnnotation[] $note
+     * @return $this
      */
     public function addNote($note)
     {
         $this->note[] = $note;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->subject) $json['subject'] = $this->subject->jsonSerialize();
+        if (null !== $this->orderer) $json['orderer'] = $this->orderer->jsonSerialize();
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->encounter) $json['encounter'] = $this->encounter->jsonSerialize();
+        if (0 < count($this->reason)) {
+            $json['reason'] = array();
+            foreach($this->reason as $reason) {
+                $json['reason'][] = $reason->jsonSerialize();
+            }
+        }
+        if (0 < count($this->supportingInformation)) {
+            $json['supportingInformation'] = array();
+            foreach($this->supportingInformation as $supportingInformation) {
+                $json['supportingInformation'][] = $supportingInformation->jsonSerialize();
+            }
+        }
+        if (0 < count($this->specimen)) {
+            $json['specimen'] = array();
+            foreach($this->specimen as $specimen) {
+                $json['specimen'][] = $specimen->jsonSerialize();
+            }
+        }
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->priority) $json['priority'] = $this->priority->jsonSerialize();
+        if (0 < count($this->event)) {
+            $json['event'] = array();
+            foreach($this->event as $event) {
+                $json['event'][] = $event->jsonSerialize();
+            }
+        }
+        if (0 < count($this->item)) {
+            $json['item'] = array();
+            foreach($this->item as $item) {
+                $json['item'][] = $item->jsonSerialize();
+            }
+        }
+        if (0 < count($this->note)) {
+            $json['note'] = array();
+            foreach($this->note as $note) {
+                $json['note'][] = $note->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<DiagnosticOrder xmlns="http://hl7.org/fhir"></DiagnosticOrder>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->subject) $this->subject->xmlSerialize(true, $sxe->addChild('subject'));
+        if (null !== $this->orderer) $this->orderer->xmlSerialize(true, $sxe->addChild('orderer'));
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->encounter) $this->encounter->xmlSerialize(true, $sxe->addChild('encounter'));
+        if (0 < count($this->reason)) {
+            foreach($this->reason as $reason) {
+                $reason->xmlSerialize(true, $sxe->addChild('reason'));
+            }
+        }
+        if (0 < count($this->supportingInformation)) {
+            foreach($this->supportingInformation as $supportingInformation) {
+                $supportingInformation->xmlSerialize(true, $sxe->addChild('supportingInformation'));
+            }
+        }
+        if (0 < count($this->specimen)) {
+            foreach($this->specimen as $specimen) {
+                $specimen->xmlSerialize(true, $sxe->addChild('specimen'));
+            }
+        }
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->priority) $this->priority->xmlSerialize(true, $sxe->addChild('priority'));
+        if (0 < count($this->event)) {
+            foreach($this->event as $event) {
+                $event->xmlSerialize(true, $sxe->addChild('event'));
+            }
+        }
+        if (0 < count($this->item)) {
+            foreach($this->item as $item) {
+                $item->xmlSerialize(true, $sxe->addChild('item'));
+            }
+        }
+        if (0 < count($this->note)) {
+            foreach($this->note as $note) {
+                $note->xmlSerialize(true, $sxe->addChild('note'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

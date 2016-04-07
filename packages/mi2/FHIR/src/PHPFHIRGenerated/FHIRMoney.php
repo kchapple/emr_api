@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,8 +61,9 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRQuantity;
+use PHPFHIRGenerated\JsonSerializable;
 
-class FHIRMoney extends FHIRQuantity
+class FHIRMoney extends FHIRQuantity implements JsonSerializable
 {
     /**
      * Exception as inherited from Element
@@ -106,6 +107,11 @@ class FHIRMoney extends FHIRQuantity
     public $id = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Money';
+
+    /**
      * Exception as inherited from Element
      * @return \PHPFHIRGenerated\FHIRElement\FHIRExtension[]
      */
@@ -117,10 +123,12 @@ class FHIRMoney extends FHIRQuantity
     /**
      * Exception as inherited from Element
      * @param \PHPFHIRGenerated\FHIRElement\FHIRExtension[] $extension
+     * @return $this
      */
     public function addExtension($extension)
     {
         $this->extension[] = $extension;
+        return $this;
     }
 
     /**
@@ -135,10 +143,12 @@ class FHIRMoney extends FHIRQuantity
     /**
      * The value of the measured amount. The value includes an implicit precision in the presentation of the value.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $value
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
     }
 
     /**
@@ -153,10 +163,12 @@ class FHIRMoney extends FHIRQuantity
     /**
      * How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is "<" , then the real value is < stated value.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRQuantityComparator $comparator
+     * @return $this
      */
     public function setComparator($comparator)
     {
         $this->comparator = $comparator;
+        return $this;
     }
 
     /**
@@ -171,10 +183,12 @@ class FHIRMoney extends FHIRQuantity
     /**
      * A human-readable form of the unit.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $unit
+     * @return $this
      */
     public function setUnit($unit)
     {
         $this->unit = $unit;
+        return $this;
     }
 
     /**
@@ -189,10 +203,12 @@ class FHIRMoney extends FHIRQuantity
     /**
      * The identification of the system that provides the coded form of the unit.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $system
+     * @return $this
      */
     public function setSystem($system)
     {
         $this->system = $system;
+        return $this;
     }
 
     /**
@@ -207,10 +223,12 @@ class FHIRMoney extends FHIRQuantity
     /**
      * A computer processable form of the unit in some unit representation system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -223,10 +241,76 @@ class FHIRMoney extends FHIRQuantity
 
     /**
      * @param string $id
+     * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->extension)) {
+            $json['extension'] = array();
+            foreach($this->extension as $extension) {
+                $json['extension'][] = $extension->jsonSerialize();
+            }
+        }
+        if (null !== $this->value) $json['value'] = $this->value->jsonSerialize();
+        if (null !== $this->comparator) $json['comparator'] = $this->comparator->jsonSerialize();
+        if (null !== $this->unit) $json['unit'] = $this->unit->jsonSerialize();
+        if (null !== $this->system) $json['system'] = $this->system->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->id) $json['id'] = $this->id;
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Money xmlns="http://hl7.org/fhir"></Money>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->extension)) {
+            foreach($this->extension as $extension) {
+                $extension->xmlSerialize(true, $sxe->addChild('extension'));
+            }
+        }
+        if (null !== $this->value) $this->value->xmlSerialize(true, $sxe->addChild('value'));
+        if (null !== $this->comparator) $this->comparator->xmlSerialize(true, $sxe->addChild('comparator'));
+        if (null !== $this->unit) $this->unit->xmlSerialize(true, $sxe->addChild('unit'));
+        if (null !== $this->system) $this->system->xmlSerialize(true, $sxe->addChild('system'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->id) {
+            $idElement = $sxe->addChild('id');
+            $idElement->addAttribute('value', (string)$this->id);
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * The findings and interpretation of diagnostic  tests performed on patients, groups of patients, devices, and locations, and/or specimens derived from these. The report includes clinical context such as requesting and provider information, and some mix of atomic results, images, textual and coded interpretations, and formatted representation of diagnostic reports.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRDiagnosticReport extends FHIRDomainResource
+class FHIRDiagnosticReport extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * The local ID assigned to the report by the order filler, usually by the Information System of the diagnostic service provider.
@@ -177,6 +178,11 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     public $presentedForm = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'DiagnosticReport';
+
+    /**
      * The local ID assigned to the report by the order filler, usually by the Information System of the diagnostic service provider.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -188,10 +194,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * The local ID assigned to the report by the order filler, usually by the Information System of the diagnostic service provider.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -206,10 +214,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * The status of the diagnostic report as a whole.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDiagnosticReportStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -224,10 +234,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * A code that classifies the clinical discipline, department or diagnostic service that created the report (e.g. cardiology, biochemistry, hematology, MRI). This is used for searching, sorting and display purposes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $category
+     * @return $this
      */
     public function setCategory($category)
     {
         $this->category = $category;
+        return $this;
     }
 
     /**
@@ -242,10 +254,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * A code or name that describes this diagnostic report.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -260,10 +274,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * The subject of the report. Usually, but not always, this is a patient. However diagnostic services also perform analyses on specimens collected from a variety of other sources.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $subject
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -278,10 +294,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * The link to the health care event (encounter) when the order was made.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $encounter
+     * @return $this
      */
     public function setEncounter($encounter)
     {
         $this->encounter = $encounter;
+        return $this;
     }
 
     /**
@@ -296,10 +314,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * The time or time-period the observed values are related to. When the subject of the report is a patient, this is usually either the time of the procedure or of specimen collection(s), but very often the source of the date/time is not known, only the date/time itself. (choose any one of effective*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $effectiveDateTime
+     * @return $this
      */
     public function setEffectiveDateTime($effectiveDateTime)
     {
         $this->effectiveDateTime = $effectiveDateTime;
+        return $this;
     }
 
     /**
@@ -314,10 +334,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * The time or time-period the observed values are related to. When the subject of the report is a patient, this is usually either the time of the procedure or of specimen collection(s), but very often the source of the date/time is not known, only the date/time itself. (choose any one of effective*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $effectivePeriod
+     * @return $this
      */
     public function setEffectivePeriod($effectivePeriod)
     {
         $this->effectivePeriod = $effectivePeriod;
+        return $this;
     }
 
     /**
@@ -332,10 +354,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * The date and time that this version of the report was released from the source diagnostic service.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInstant $issued
+     * @return $this
      */
     public function setIssued($issued)
     {
         $this->issued = $issued;
+        return $this;
     }
 
     /**
@@ -350,10 +374,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * The diagnostic service that is responsible for issuing the report.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $performer
+     * @return $this
      */
     public function setPerformer($performer)
     {
         $this->performer = $performer;
+        return $this;
     }
 
     /**
@@ -368,10 +394,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * Details concerning a test or procedure requested.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $request
+     * @return $this
      */
     public function addRequest($request)
     {
         $this->request[] = $request;
+        return $this;
     }
 
     /**
@@ -386,10 +414,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * Details about the specimens on which this diagnostic report is based.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $specimen
+     * @return $this
      */
     public function addSpecimen($specimen)
     {
         $this->specimen[] = $specimen;
+        return $this;
     }
 
     /**
@@ -404,10 +434,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * Observations that are part of this diagnostic report. Observations can be simple name/value pairs (e.g. "atomic" results), or they can be grouping observations that include references to other members of the group (e.g. "panels").
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $result
+     * @return $this
      */
     public function addResult($result)
     {
         $this->result[] = $result;
+        return $this;
     }
 
     /**
@@ -422,10 +454,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * One or more links to full details of any imaging performed during the diagnostic investigation. Typically, this is imaging performed by DICOM enabled modalities, but this is not required. A fully enabled PACS viewer can use this information to provide views of the source images.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $imagingStudy
+     * @return $this
      */
     public function addImagingStudy($imagingStudy)
     {
         $this->imagingStudy[] = $imagingStudy;
+        return $this;
     }
 
     /**
@@ -440,10 +474,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * A list of key images associated with this report. The images are generally created during the diagnostic process, and may be directly of the patient, or of treated specimens (i.e. slides of interest).
      * @param \PHPFHIRGenerated\FHIRResource\FHIRDiagnosticReport\FHIRDiagnosticReportImage[] $image
+     * @return $this
      */
     public function addImage($image)
     {
         $this->image[] = $image;
+        return $this;
     }
 
     /**
@@ -458,10 +494,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * Concise and clinically contextualized narrative interpretation of the diagnostic report.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $conclusion
+     * @return $this
      */
     public function setConclusion($conclusion)
     {
         $this->conclusion = $conclusion;
+        return $this;
     }
 
     /**
@@ -476,10 +514,12 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * Codes for the conclusion.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $codedDiagnosis
+     * @return $this
      */
     public function addCodedDiagnosis($codedDiagnosis)
     {
         $this->codedDiagnosis[] = $codedDiagnosis;
+        return $this;
     }
 
     /**
@@ -494,10 +534,159 @@ class FHIRDiagnosticReport extends FHIRDomainResource
     /**
      * Rich text representation of the entire result as issued by the diagnostic service. Multiple formats are allowed but they SHALL be semantically equivalent.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAttachment[] $presentedForm
+     * @return $this
      */
     public function addPresentedForm($presentedForm)
     {
         $this->presentedForm[] = $presentedForm;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->category) $json['category'] = $this->category->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->subject) $json['subject'] = $this->subject->jsonSerialize();
+        if (null !== $this->encounter) $json['encounter'] = $this->encounter->jsonSerialize();
+        if (null !== $this->effectiveDateTime) $json['effectiveDateTime'] = $this->effectiveDateTime->jsonSerialize();
+        if (null !== $this->effectivePeriod) $json['effectivePeriod'] = $this->effectivePeriod->jsonSerialize();
+        if (null !== $this->issued) $json['issued'] = $this->issued->jsonSerialize();
+        if (null !== $this->performer) $json['performer'] = $this->performer->jsonSerialize();
+        if (0 < count($this->request)) {
+            $json['request'] = array();
+            foreach($this->request as $request) {
+                $json['request'][] = $request->jsonSerialize();
+            }
+        }
+        if (0 < count($this->specimen)) {
+            $json['specimen'] = array();
+            foreach($this->specimen as $specimen) {
+                $json['specimen'][] = $specimen->jsonSerialize();
+            }
+        }
+        if (0 < count($this->result)) {
+            $json['result'] = array();
+            foreach($this->result as $result) {
+                $json['result'][] = $result->jsonSerialize();
+            }
+        }
+        if (0 < count($this->imagingStudy)) {
+            $json['imagingStudy'] = array();
+            foreach($this->imagingStudy as $imagingStudy) {
+                $json['imagingStudy'][] = $imagingStudy->jsonSerialize();
+            }
+        }
+        if (0 < count($this->image)) {
+            $json['image'] = array();
+            foreach($this->image as $image) {
+                $json['image'][] = $image->jsonSerialize();
+            }
+        }
+        if (null !== $this->conclusion) $json['conclusion'] = $this->conclusion->jsonSerialize();
+        if (0 < count($this->codedDiagnosis)) {
+            $json['codedDiagnosis'] = array();
+            foreach($this->codedDiagnosis as $codedDiagnosis) {
+                $json['codedDiagnosis'][] = $codedDiagnosis->jsonSerialize();
+            }
+        }
+        if (0 < count($this->presentedForm)) {
+            $json['presentedForm'] = array();
+            foreach($this->presentedForm as $presentedForm) {
+                $json['presentedForm'][] = $presentedForm->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<DiagnosticReport xmlns="http://hl7.org/fhir"></DiagnosticReport>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->category) $this->category->xmlSerialize(true, $sxe->addChild('category'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->subject) $this->subject->xmlSerialize(true, $sxe->addChild('subject'));
+        if (null !== $this->encounter) $this->encounter->xmlSerialize(true, $sxe->addChild('encounter'));
+        if (null !== $this->effectiveDateTime) $this->effectiveDateTime->xmlSerialize(true, $sxe->addChild('effectiveDateTime'));
+        if (null !== $this->effectivePeriod) $this->effectivePeriod->xmlSerialize(true, $sxe->addChild('effectivePeriod'));
+        if (null !== $this->issued) $this->issued->xmlSerialize(true, $sxe->addChild('issued'));
+        if (null !== $this->performer) $this->performer->xmlSerialize(true, $sxe->addChild('performer'));
+        if (0 < count($this->request)) {
+            foreach($this->request as $request) {
+                $request->xmlSerialize(true, $sxe->addChild('request'));
+            }
+        }
+        if (0 < count($this->specimen)) {
+            foreach($this->specimen as $specimen) {
+                $specimen->xmlSerialize(true, $sxe->addChild('specimen'));
+            }
+        }
+        if (0 < count($this->result)) {
+            foreach($this->result as $result) {
+                $result->xmlSerialize(true, $sxe->addChild('result'));
+            }
+        }
+        if (0 < count($this->imagingStudy)) {
+            foreach($this->imagingStudy as $imagingStudy) {
+                $imagingStudy->xmlSerialize(true, $sxe->addChild('imagingStudy'));
+            }
+        }
+        if (0 < count($this->image)) {
+            foreach($this->image as $image) {
+                $image->xmlSerialize(true, $sxe->addChild('image'));
+            }
+        }
+        if (null !== $this->conclusion) $this->conclusion->xmlSerialize(true, $sxe->addChild('conclusion'));
+        if (0 < count($this->codedDiagnosis)) {
+            foreach($this->codedDiagnosis as $codedDiagnosis) {
+                $codedDiagnosis->xmlSerialize(true, $sxe->addChild('codedDiagnosis'));
+            }
+        }
+        if (0 < count($this->presentedForm)) {
+            foreach($this->presentedForm as $presentedForm) {
+                $presentedForm->xmlSerialize(true, $sxe->addChild('presentedForm'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

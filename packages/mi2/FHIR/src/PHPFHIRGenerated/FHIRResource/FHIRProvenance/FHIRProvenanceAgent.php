@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Provenance of a resource is a record that describes entities and processes involved in producing and delivering or otherwise influencing that resource. Provenance provides a critical foundation for assessing authenticity, enabling trust, and allowing reproducibility. Provenance assertions are a form of contextual metadata and can themselves become important records with their own provenance. Provenance statement indicates clinical significance in terms of confidence in authenticity, reliability, and trustworthiness, integrity, and stage in lifecycle (e.g. Document Completion - has the artifact been legally authenticated), all of which may impact security, privacy, and trust policies.
  */
-class FHIRProvenanceAgent extends FHIRBackboneElement
+class FHIRProvenanceAgent extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The function of the agent with respect to the activity.
@@ -92,6 +93,11 @@ class FHIRProvenanceAgent extends FHIRBackboneElement
     public $relatedAgent = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Provenance.Agent';
+
+    /**
      * The function of the agent with respect to the activity.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCoding
      */
@@ -103,10 +109,12 @@ class FHIRProvenanceAgent extends FHIRBackboneElement
     /**
      * The function of the agent with respect to the activity.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $role
+     * @return $this
      */
     public function setRole($role)
     {
         $this->role = $role;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRProvenanceAgent extends FHIRBackboneElement
     /**
      * The individual, device or organization that participated in the event.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $actor
+     * @return $this
      */
     public function setActor($actor)
     {
         $this->actor = $actor;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRProvenanceAgent extends FHIRBackboneElement
     /**
      * The identity of the agent as known by the authorization system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $userId
+     * @return $this
      */
     public function setUserId($userId)
     {
         $this->userId = $userId;
+        return $this;
     }
 
     /**
@@ -157,10 +169,67 @@ class FHIRProvenanceAgent extends FHIRBackboneElement
     /**
      * A relationship between two the agents referenced in this resource. This is defined to allow for explicit description of the delegation between agents.  For example, this human author used this device, or one person acted on another's behest.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRProvenance\FHIRProvenanceRelatedAgent[] $relatedAgent
+     * @return $this
      */
     public function addRelatedAgent($relatedAgent)
     {
         $this->relatedAgent[] = $relatedAgent;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->role) $json['role'] = $this->role->jsonSerialize();
+        if (null !== $this->actor) $json['actor'] = $this->actor->jsonSerialize();
+        if (null !== $this->userId) $json['userId'] = $this->userId->jsonSerialize();
+        if (0 < count($this->relatedAgent)) {
+            $json['relatedAgent'] = array();
+            foreach($this->relatedAgent as $relatedAgent) {
+                $json['relatedAgent'][] = $relatedAgent->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ProvenanceAgent xmlns="http://hl7.org/fhir"></ProvenanceAgent>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->role) $this->role->xmlSerialize(true, $sxe->addChild('role'));
+        if (null !== $this->actor) $this->actor->xmlSerialize(true, $sxe->addChild('actor'));
+        if (null !== $this->userId) $this->userId->xmlSerialize(true, $sxe->addChild('userId'));
+        if (0 < count($this->relatedAgent)) {
+            foreach($this->relatedAgent as $relatedAgent) {
+                $relatedAgent->xmlSerialize(true, $sxe->addChild('relatedAgent'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

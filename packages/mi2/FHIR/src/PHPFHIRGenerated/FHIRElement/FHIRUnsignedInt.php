@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,17 +61,23 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * An integer with a value that is not negative (e.g. >= 0)
  * If the element is present, it must have either a @value, an @id referenced from the Narrative, or extensions
  */
-class FHIRUnsignedInt extends FHIRElement
+class FHIRUnsignedInt extends FHIRElement implements JsonSerializable
 {
     /**
      * @var string
      */
     public $value = null;
+
+    /**
+     * @var string
+     */
+    private $_fhirElementName = 'unsignedInt';
 
     /**
      * @return string
@@ -83,10 +89,49 @@ class FHIRUnsignedInt extends FHIRElement
 
     /**
      * @param string $value
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
+     * @return string|int|float|bool|null
+     */
+    public function jsonSerialize()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<unsignedInt xmlns="http://hl7.org/fhir"></unsignedInt>');
+        $sxe->addAttribute('value', $this->value);
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A value set specifies a set of codes drawn from one or more code systems.
  */
-class FHIRValueSetContains extends FHIRBackboneElement
+class FHIRValueSetContains extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * An absolute URI which is the code system in which the code for this item in the expansion is defined.
@@ -104,6 +105,11 @@ class FHIRValueSetContains extends FHIRBackboneElement
     public $contains = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ValueSet.Contains';
+
+    /**
      * An absolute URI which is the code system in which the code for this item in the expansion is defined.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRUri
      */
@@ -115,10 +121,12 @@ class FHIRValueSetContains extends FHIRBackboneElement
     /**
      * An absolute URI which is the code system in which the code for this item in the expansion is defined.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $system
+     * @return $this
      */
     public function setSystem($system)
     {
         $this->system = $system;
+        return $this;
     }
 
     /**
@@ -133,10 +141,12 @@ class FHIRValueSetContains extends FHIRBackboneElement
     /**
      * If true, this entry is included in the expansion for navigational purposes, and the user cannot select the code directly as a proper value.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $abstract
+     * @return $this
      */
     public function setAbstract($abstract)
     {
         $this->abstract = $abstract;
+        return $this;
     }
 
     /**
@@ -151,10 +161,12 @@ class FHIRValueSetContains extends FHIRBackboneElement
     /**
      * The version of this code system that defined this code and/or display. This should only be used with code systems that do not enforce concept permanence.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $version
+     * @return $this
      */
     public function setVersion($version)
     {
         $this->version = $version;
+        return $this;
     }
 
     /**
@@ -169,10 +181,12 @@ class FHIRValueSetContains extends FHIRBackboneElement
     /**
      * The code for this item in the expansion hierarchy. If this code is missing the entry in the hierarchy is a place holder (abstract) and does not represent a valid code in the value set.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -187,10 +201,12 @@ class FHIRValueSetContains extends FHIRBackboneElement
     /**
      * The recommended display for this item in the expansion.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $display
+     * @return $this
      */
     public function setDisplay($display)
     {
         $this->display = $display;
+        return $this;
     }
 
     /**
@@ -205,10 +221,71 @@ class FHIRValueSetContains extends FHIRBackboneElement
     /**
      * Other codes and entries contained under this entry in the hierarchy.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRValueSet\FHIRValueSetContains[] $contains
+     * @return $this
      */
     public function addContains($contains)
     {
         $this->contains[] = $contains;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->system) $json['system'] = $this->system->jsonSerialize();
+        if (null !== $this->abstract) $json['abstract'] = $this->abstract->jsonSerialize();
+        if (null !== $this->version) $json['version'] = $this->version->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->display) $json['display'] = $this->display->jsonSerialize();
+        if (0 < count($this->contains)) {
+            $json['contains'] = array();
+            foreach($this->contains as $contains) {
+                $json['contains'][] = $contains->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ValueSetContains xmlns="http://hl7.org/fhir"></ValueSetContains>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->system) $this->system->xmlSerialize(true, $sxe->addChild('system'));
+        if (null !== $this->abstract) $this->abstract->xmlSerialize(true, $sxe->addChild('abstract'));
+        if (null !== $this->version) $this->version->xmlSerialize(true, $sxe->addChild('version'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->display) $this->display->xmlSerialize(true, $sxe->addChild('display'));
+        if (0 < count($this->contains)) {
+            foreach($this->contains as $contains) {
+                $contains->xmlSerialize(true, $sxe->addChild('contains'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

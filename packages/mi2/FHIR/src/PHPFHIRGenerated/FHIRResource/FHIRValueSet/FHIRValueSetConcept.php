@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A value set specifies a set of codes drawn from one or more code systems.
  */
-class FHIRValueSetConcept extends FHIRBackboneElement
+class FHIRValueSetConcept extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A code - a text symbol - that uniquely identifies the concept within the code system.
@@ -104,6 +105,11 @@ class FHIRValueSetConcept extends FHIRBackboneElement
     public $concept = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ValueSet.Concept';
+
+    /**
      * A code - a text symbol - that uniquely identifies the concept within the code system.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCode
      */
@@ -115,10 +121,12 @@ class FHIRValueSetConcept extends FHIRBackboneElement
     /**
      * A code - a text symbol - that uniquely identifies the concept within the code system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -133,10 +141,12 @@ class FHIRValueSetConcept extends FHIRBackboneElement
     /**
      * If this code is not for use as a real concept.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $abstract
+     * @return $this
      */
     public function setAbstract($abstract)
     {
         $this->abstract = $abstract;
+        return $this;
     }
 
     /**
@@ -151,10 +161,12 @@ class FHIRValueSetConcept extends FHIRBackboneElement
     /**
      * A human readable string that is the recommended default way to present this concept to a user.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $display
+     * @return $this
      */
     public function setDisplay($display)
     {
         $this->display = $display;
+        return $this;
     }
 
     /**
@@ -169,10 +181,12 @@ class FHIRValueSetConcept extends FHIRBackboneElement
     /**
      * The formal definition of the concept. The value set resource does not make formal definitions required, because of the prevalence of legacy systems. However, they are highly recommended, as without them there is no formal meaning associated with the concept.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $definition
+     * @return $this
      */
     public function setDefinition($definition)
     {
         $this->definition = $definition;
+        return $this;
     }
 
     /**
@@ -187,10 +201,12 @@ class FHIRValueSetConcept extends FHIRBackboneElement
     /**
      * Additional representations for the concept - other languages, aliases, specialized purposes, used for particular purposes, etc.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRValueSet\FHIRValueSetDesignation[] $designation
+     * @return $this
      */
     public function addDesignation($designation)
     {
         $this->designation[] = $designation;
+        return $this;
     }
 
     /**
@@ -205,10 +221,80 @@ class FHIRValueSetConcept extends FHIRBackboneElement
     /**
      * Defines children of a concept to produce a hierarchy of concepts. The nature of the relationships is variable (is-a/contains/categorizes) and can only be determined by examining the definitions of the concepts.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRValueSet\FHIRValueSetConcept[] $concept
+     * @return $this
      */
     public function addConcept($concept)
     {
         $this->concept[] = $concept;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->abstract) $json['abstract'] = $this->abstract->jsonSerialize();
+        if (null !== $this->display) $json['display'] = $this->display->jsonSerialize();
+        if (null !== $this->definition) $json['definition'] = $this->definition->jsonSerialize();
+        if (0 < count($this->designation)) {
+            $json['designation'] = array();
+            foreach($this->designation as $designation) {
+                $json['designation'][] = $designation->jsonSerialize();
+            }
+        }
+        if (0 < count($this->concept)) {
+            $json['concept'] = array();
+            foreach($this->concept as $concept) {
+                $json['concept'][] = $concept->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ValueSetConcept xmlns="http://hl7.org/fhir"></ValueSetConcept>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->abstract) $this->abstract->xmlSerialize(true, $sxe->addChild('abstract'));
+        if (null !== $this->display) $this->display->xmlSerialize(true, $sxe->addChild('display'));
+        if (null !== $this->definition) $this->definition->xmlSerialize(true, $sxe->addChild('definition'));
+        if (0 < count($this->designation)) {
+            foreach($this->designation as $designation) {
+                $designation->xmlSerialize(true, $sxe->addChild('designation'));
+            }
+        }
+        if (0 < count($this->concept)) {
+            foreach($this->concept as $concept) {
+                $concept->xmlSerialize(true, $sxe->addChild('concept'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

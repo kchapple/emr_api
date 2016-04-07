@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A formal agreement between parties regarding the conduct of business, exchange of information or other matters.
  */
-class FHIRContractValuedItem extends FHIRBackboneElement
+class FHIRContractValuedItem extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Specific type of Contract Valued Item that may be priced. (choose any one of entity*, but only one)
@@ -122,6 +123,11 @@ class FHIRContractValuedItem extends FHIRBackboneElement
     public $net = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Contract.ValuedItem';
+
+    /**
      * Specific type of Contract Valued Item that may be priced. (choose any one of entity*, but only one)
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -133,10 +139,12 @@ class FHIRContractValuedItem extends FHIRBackboneElement
     /**
      * Specific type of Contract Valued Item that may be priced. (choose any one of entity*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $entityCodeableConcept
+     * @return $this
      */
     public function setEntityCodeableConcept($entityCodeableConcept)
     {
         $this->entityCodeableConcept = $entityCodeableConcept;
+        return $this;
     }
 
     /**
@@ -151,10 +159,12 @@ class FHIRContractValuedItem extends FHIRBackboneElement
     /**
      * Specific type of Contract Valued Item that may be priced. (choose any one of entity*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $entityReference
+     * @return $this
      */
     public function setEntityReference($entityReference)
     {
         $this->entityReference = $entityReference;
+        return $this;
     }
 
     /**
@@ -169,10 +179,12 @@ class FHIRContractValuedItem extends FHIRBackboneElement
     /**
      * Identifies a Contract Valued Item instance.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $identifier
+     * @return $this
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -187,10 +199,12 @@ class FHIRContractValuedItem extends FHIRBackboneElement
     /**
      * Indicates the time during which this Contract ValuedItem information is effective.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $effectiveTime
+     * @return $this
      */
     public function setEffectiveTime($effectiveTime)
     {
         $this->effectiveTime = $effectiveTime;
+        return $this;
     }
 
     /**
@@ -205,10 +219,12 @@ class FHIRContractValuedItem extends FHIRBackboneElement
     /**
      * Specifies the units by which the Contract Valued Item is measured or counted, and quantifies the countable or measurable Contract Valued Item instances.
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $quantity
+     * @return $this
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+        return $this;
     }
 
     /**
@@ -223,10 +239,12 @@ class FHIRContractValuedItem extends FHIRBackboneElement
     /**
      * A Contract Valued Item unit valuation measure.
      * @param \PHPFHIRGenerated\FHIRMoney $unitPrice
+     * @return $this
      */
     public function setUnitPrice($unitPrice)
     {
         $this->unitPrice = $unitPrice;
+        return $this;
     }
 
     /**
@@ -241,10 +259,12 @@ class FHIRContractValuedItem extends FHIRBackboneElement
     /**
      * A real number that represents a multiplier used in determining the overall value of the Contract Valued Item delivered. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $factor
+     * @return $this
      */
     public function setFactor($factor)
     {
         $this->factor = $factor;
+        return $this;
     }
 
     /**
@@ -259,10 +279,12 @@ class FHIRContractValuedItem extends FHIRBackboneElement
     /**
      * An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the Contract Valued Item delivered. The concept of Points allows for assignment of point values for a Contract Valued Item, such that a monetary amount can be assigned to each point.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $points
+     * @return $this
      */
     public function setPoints($points)
     {
         $this->points = $points;
+        return $this;
     }
 
     /**
@@ -277,10 +299,68 @@ class FHIRContractValuedItem extends FHIRBackboneElement
     /**
      * Expresses the product of the Contract Valued Item unitQuantity and the unitPriceAmt. For example, the formula: unit Quantity * unit Price (Cost per Point) * factor Number  * points = net Amount. Quantity, factor and points are assumed to be 1 if not supplied.
      * @param \PHPFHIRGenerated\FHIRMoney $net
+     * @return $this
      */
     public function setNet($net)
     {
         $this->net = $net;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->entityCodeableConcept) $json['entityCodeableConcept'] = $this->entityCodeableConcept->jsonSerialize();
+        if (null !== $this->entityReference) $json['entityReference'] = $this->entityReference->jsonSerialize();
+        if (null !== $this->identifier) $json['identifier'] = $this->identifier->jsonSerialize();
+        if (null !== $this->effectiveTime) $json['effectiveTime'] = $this->effectiveTime->jsonSerialize();
+        if (null !== $this->quantity) $json['quantity'] = $this->quantity->jsonSerialize();
+        if (null !== $this->unitPrice) $json['unitPrice'] = $this->unitPrice->jsonSerialize();
+        if (null !== $this->factor) $json['factor'] = $this->factor->jsonSerialize();
+        if (null !== $this->points) $json['points'] = $this->points->jsonSerialize();
+        if (null !== $this->net) $json['net'] = $this->net->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ContractValuedItem xmlns="http://hl7.org/fhir"></ContractValuedItem>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->entityCodeableConcept) $this->entityCodeableConcept->xmlSerialize(true, $sxe->addChild('entityCodeableConcept'));
+        if (null !== $this->entityReference) $this->entityReference->xmlSerialize(true, $sxe->addChild('entityReference'));
+        if (null !== $this->identifier) $this->identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+        if (null !== $this->effectiveTime) $this->effectiveTime->xmlSerialize(true, $sxe->addChild('effectiveTime'));
+        if (null !== $this->quantity) $this->quantity->xmlSerialize(true, $sxe->addChild('quantity'));
+        if (null !== $this->unitPrice) $this->unitPrice->xmlSerialize(true, $sxe->addChild('unitPrice'));
+        if (null !== $this->factor) $this->factor->xmlSerialize(true, $sxe->addChild('factor'));
+        if (null !== $this->points) $this->points->xmlSerialize(true, $sxe->addChild('points'));
+        if (null !== $this->net) $this->net->xmlSerialize(true, $sxe->addChild('net'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

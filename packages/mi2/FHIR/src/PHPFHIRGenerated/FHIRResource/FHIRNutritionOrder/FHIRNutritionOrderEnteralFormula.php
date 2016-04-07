@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A request to supply a diet, formula feeding (enteral) or oral nutritional supplement to a patient/resident.
  */
-class FHIRNutritionOrderEnteralFormula extends FHIRBackboneElement
+class FHIRNutritionOrderEnteralFormula extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The type of enteral or infant formula such as an adult standard formula with fiber or a soy-based infant formula.
@@ -122,6 +123,11 @@ class FHIRNutritionOrderEnteralFormula extends FHIRBackboneElement
     public $administrationInstruction = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'NutritionOrder.EnteralFormula';
+
+    /**
      * The type of enteral or infant formula such as an adult standard formula with fiber or a soy-based infant formula.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -133,10 +139,12 @@ class FHIRNutritionOrderEnteralFormula extends FHIRBackboneElement
     /**
      * The type of enteral or infant formula such as an adult standard formula with fiber or a soy-based infant formula.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $baseFormulaType
+     * @return $this
      */
     public function setBaseFormulaType($baseFormulaType)
     {
         $this->baseFormulaType = $baseFormulaType;
+        return $this;
     }
 
     /**
@@ -151,10 +159,12 @@ class FHIRNutritionOrderEnteralFormula extends FHIRBackboneElement
     /**
      * The product or brand name of the enteral or infant formula product such as "ACME Adult Standard Formula".
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $baseFormulaProductName
+     * @return $this
      */
     public function setBaseFormulaProductName($baseFormulaProductName)
     {
         $this->baseFormulaProductName = $baseFormulaProductName;
+        return $this;
     }
 
     /**
@@ -169,10 +179,12 @@ class FHIRNutritionOrderEnteralFormula extends FHIRBackboneElement
     /**
      * Indicates the type of modular component such as protein, carbohydrate, fat or fiber to be provided in addition to or mixed with the base formula.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $additiveType
+     * @return $this
      */
     public function setAdditiveType($additiveType)
     {
         $this->additiveType = $additiveType;
+        return $this;
     }
 
     /**
@@ -187,10 +199,12 @@ class FHIRNutritionOrderEnteralFormula extends FHIRBackboneElement
     /**
      * The product or brand name of the type of modular component to be added to the formula.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $additiveProductName
+     * @return $this
      */
     public function setAdditiveProductName($additiveProductName)
     {
         $this->additiveProductName = $additiveProductName;
+        return $this;
     }
 
     /**
@@ -205,10 +219,12 @@ class FHIRNutritionOrderEnteralFormula extends FHIRBackboneElement
     /**
      * The amount of energy (Calories) that the formula should provide per specified volume, typically per mL or fluid oz.  For example, an infant may require a formula that provides 24 Calories per fluid ounce or an adult may require an enteral formula that provides 1.5 Calorie/mL.
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $caloricDensity
+     * @return $this
      */
     public function setCaloricDensity($caloricDensity)
     {
         $this->caloricDensity = $caloricDensity;
+        return $this;
     }
 
     /**
@@ -223,10 +239,12 @@ class FHIRNutritionOrderEnteralFormula extends FHIRBackboneElement
     /**
      * The route or physiological path of administration into the patient's gastrointestinal  tract for purposes of providing the formula feeding, e.g. nasogastric tube.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $routeofAdministration
+     * @return $this
      */
     public function setRouteofAdministration($routeofAdministration)
     {
         $this->routeofAdministration = $routeofAdministration;
+        return $this;
     }
 
     /**
@@ -241,10 +259,12 @@ class FHIRNutritionOrderEnteralFormula extends FHIRBackboneElement
     /**
      * Formula administration instructions as structured data.  This repeating structure allows for changing the administration rate or volume over time for both bolus and continuous feeding.  An example of this would be an instruction to increase the rate of continuous feeding every 2 hours.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRNutritionOrder\FHIRNutritionOrderAdministration[] $administration
+     * @return $this
      */
     public function addAdministration($administration)
     {
         $this->administration[] = $administration;
+        return $this;
     }
 
     /**
@@ -259,10 +279,12 @@ class FHIRNutritionOrderEnteralFormula extends FHIRBackboneElement
     /**
      * The maximum total quantity of formula that may be administered to a subject over the period of time, e.g. 1440 mL over 24 hours.
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $maxVolumeToDeliver
+     * @return $this
      */
     public function setMaxVolumeToDeliver($maxVolumeToDeliver)
     {
         $this->maxVolumeToDeliver = $maxVolumeToDeliver;
+        return $this;
     }
 
     /**
@@ -277,10 +299,77 @@ class FHIRNutritionOrderEnteralFormula extends FHIRBackboneElement
     /**
      * Free text formula administration, feeding instructions or additional instructions or information.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $administrationInstruction
+     * @return $this
      */
     public function setAdministrationInstruction($administrationInstruction)
     {
         $this->administrationInstruction = $administrationInstruction;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->baseFormulaType) $json['baseFormulaType'] = $this->baseFormulaType->jsonSerialize();
+        if (null !== $this->baseFormulaProductName) $json['baseFormulaProductName'] = $this->baseFormulaProductName->jsonSerialize();
+        if (null !== $this->additiveType) $json['additiveType'] = $this->additiveType->jsonSerialize();
+        if (null !== $this->additiveProductName) $json['additiveProductName'] = $this->additiveProductName->jsonSerialize();
+        if (null !== $this->caloricDensity) $json['caloricDensity'] = $this->caloricDensity->jsonSerialize();
+        if (null !== $this->routeofAdministration) $json['routeofAdministration'] = $this->routeofAdministration->jsonSerialize();
+        if (0 < count($this->administration)) {
+            $json['administration'] = array();
+            foreach($this->administration as $administration) {
+                $json['administration'][] = $administration->jsonSerialize();
+            }
+        }
+        if (null !== $this->maxVolumeToDeliver) $json['maxVolumeToDeliver'] = $this->maxVolumeToDeliver->jsonSerialize();
+        if (null !== $this->administrationInstruction) $json['administrationInstruction'] = $this->administrationInstruction->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<NutritionOrderEnteralFormula xmlns="http://hl7.org/fhir"></NutritionOrderEnteralFormula>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->baseFormulaType) $this->baseFormulaType->xmlSerialize(true, $sxe->addChild('baseFormulaType'));
+        if (null !== $this->baseFormulaProductName) $this->baseFormulaProductName->xmlSerialize(true, $sxe->addChild('baseFormulaProductName'));
+        if (null !== $this->additiveType) $this->additiveType->xmlSerialize(true, $sxe->addChild('additiveType'));
+        if (null !== $this->additiveProductName) $this->additiveProductName->xmlSerialize(true, $sxe->addChild('additiveProductName'));
+        if (null !== $this->caloricDensity) $this->caloricDensity->xmlSerialize(true, $sxe->addChild('caloricDensity'));
+        if (null !== $this->routeofAdministration) $this->routeofAdministration->xmlSerialize(true, $sxe->addChild('routeofAdministration'));
+        if (0 < count($this->administration)) {
+            foreach($this->administration as $administration) {
+                $administration->xmlSerialize(true, $sxe->addChild('administration'));
+            }
+        }
+        if (null !== $this->maxVolumeToDeliver) $this->maxVolumeToDeliver->xmlSerialize(true, $sxe->addChild('maxVolumeToDeliver'));
+        if (null !== $this->administrationInstruction) $this->administrationInstruction->xmlSerialize(true, $sxe->addChild('administrationInstruction'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

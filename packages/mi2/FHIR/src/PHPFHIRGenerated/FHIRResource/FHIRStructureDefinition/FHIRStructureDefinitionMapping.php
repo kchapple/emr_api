@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A definition of a FHIR structure. This resource is used to describe the underlying resources, data types defined in FHIR, and also for describing extensions, and constraints on resources and data types.
  */
-class FHIRStructureDefinitionMapping extends FHIRBackboneElement
+class FHIRStructureDefinitionMapping extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * An Internal id that is used to identify this mapping set when specific mappings are made.
@@ -92,6 +93,11 @@ class FHIRStructureDefinitionMapping extends FHIRBackboneElement
     public $comments = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'StructureDefinition.Mapping';
+
+    /**
      * An Internal id that is used to identify this mapping set when specific mappings are made.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRId
      */
@@ -103,10 +109,12 @@ class FHIRStructureDefinitionMapping extends FHIRBackboneElement
     /**
      * An Internal id that is used to identify this mapping set when specific mappings are made.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRId $identity
+     * @return $this
      */
     public function setIdentity($identity)
     {
         $this->identity = $identity;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRStructureDefinitionMapping extends FHIRBackboneElement
     /**
      * An absolute URI that identifies the specification that this mapping is expressed to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $uri
+     * @return $this
      */
     public function setUri($uri)
     {
         $this->uri = $uri;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRStructureDefinitionMapping extends FHIRBackboneElement
     /**
      * A name for the specification that is being mapped to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -157,10 +169,58 @@ class FHIRStructureDefinitionMapping extends FHIRBackboneElement
     /**
      * Comments about this mapping, including version notes, issues, scope limitations, and other important notes for usage.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $comments
+     * @return $this
      */
     public function setComments($comments)
     {
         $this->comments = $comments;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->identity) $json['identity'] = $this->identity->jsonSerialize();
+        if (null !== $this->uri) $json['uri'] = $this->uri->jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->comments) $json['comments'] = $this->comments->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<StructureDefinitionMapping xmlns="http://hl7.org/fhir"></StructureDefinitionMapping>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->identity) $this->identity->xmlSerialize(true, $sxe->addChild('identity'));
+        if (null !== $this->uri) $this->uri->xmlSerialize(true, $sxe->addChild('uri'));
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->comments) $this->comments->xmlSerialize(true, $sxe->addChild('comments'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

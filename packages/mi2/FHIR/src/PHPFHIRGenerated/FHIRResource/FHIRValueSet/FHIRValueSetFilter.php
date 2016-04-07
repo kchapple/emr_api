@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A value set specifies a set of codes drawn from one or more code systems.
  */
-class FHIRValueSetFilter extends FHIRBackboneElement
+class FHIRValueSetFilter extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A code that identifies a property defined in the code system.
@@ -86,6 +87,11 @@ class FHIRValueSetFilter extends FHIRBackboneElement
     public $value = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ValueSet.Filter';
+
+    /**
      * A code that identifies a property defined in the code system.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCode
      */
@@ -97,10 +103,12 @@ class FHIRValueSetFilter extends FHIRBackboneElement
     /**
      * A code that identifies a property defined in the code system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $property
+     * @return $this
      */
     public function setProperty($property)
     {
         $this->property = $property;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRValueSetFilter extends FHIRBackboneElement
     /**
      * The kind of operation to perform as a part of the filter criteria.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRFilterOperator $op
+     * @return $this
      */
     public function setOp($op)
     {
         $this->op = $op;
+        return $this;
     }
 
     /**
@@ -133,10 +143,56 @@ class FHIRValueSetFilter extends FHIRBackboneElement
     /**
      * The match value may be either a code defined by the system, or a string value, which is a regex match on the literal string of the property value.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $value
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->property) $json['property'] = $this->property->jsonSerialize();
+        if (null !== $this->op) $json['op'] = $this->op->jsonSerialize();
+        if (null !== $this->value) $json['value'] = $this->value->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ValueSetFilter xmlns="http://hl7.org/fhir"></ValueSetFilter>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->property) $this->property->xmlSerialize(true, $sxe->addChild('property'));
+        if (null !== $this->op) $this->op->xmlSerialize(true, $sxe->addChild('op'));
+        if (null !== $this->value) $this->value->xmlSerialize(true, $sxe->addChild('value'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

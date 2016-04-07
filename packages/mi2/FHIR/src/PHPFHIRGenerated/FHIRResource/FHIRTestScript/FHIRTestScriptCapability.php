@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * TestScript is a resource that specifies a suite of tests against a FHIR server implementation to determine compliance against the FHIR specification.
  */
-class FHIRTestScriptCapability extends FHIRBackboneElement
+class FHIRTestScriptCapability extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Whether or not the test execution will require the given capabilities of the server in order for this test script to execute.
@@ -104,6 +105,11 @@ class FHIRTestScriptCapability extends FHIRBackboneElement
     public $conformance = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'TestScript.Capability';
+
+    /**
      * Whether or not the test execution will require the given capabilities of the server in order for this test script to execute.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRBoolean
      */
@@ -115,10 +121,12 @@ class FHIRTestScriptCapability extends FHIRBackboneElement
     /**
      * Whether or not the test execution will require the given capabilities of the server in order for this test script to execute.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $required
+     * @return $this
      */
     public function setRequired($required)
     {
         $this->required = $required;
+        return $this;
     }
 
     /**
@@ -133,10 +141,12 @@ class FHIRTestScriptCapability extends FHIRBackboneElement
     /**
      * Whether or not the test execution will validate the given capabilities of the server in order for this test script to execute.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $validated
+     * @return $this
      */
     public function setValidated($validated)
     {
         $this->validated = $validated;
+        return $this;
     }
 
     /**
@@ -151,10 +161,12 @@ class FHIRTestScriptCapability extends FHIRBackboneElement
     /**
      * Description of the capabilities that this test script is requiring the server to support.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -169,10 +181,12 @@ class FHIRTestScriptCapability extends FHIRBackboneElement
     /**
      * Which server these requirements apply to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInteger $destination
+     * @return $this
      */
     public function setDestination($destination)
     {
         $this->destination = $destination;
+        return $this;
     }
 
     /**
@@ -187,10 +201,12 @@ class FHIRTestScriptCapability extends FHIRBackboneElement
     /**
      * Links to the FHIR specification that describes this interaction and the resources involved in more detail.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri[] $link
+     * @return $this
      */
     public function addLink($link)
     {
         $this->link[] = $link;
+        return $this;
     }
 
     /**
@@ -205,10 +221,71 @@ class FHIRTestScriptCapability extends FHIRBackboneElement
     /**
      * Minimum conformance required of server for test script to execute successfully.   If server does not meet at a minimum the reference conformance definition, then all tests in this script are skipped.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $conformance
+     * @return $this
      */
     public function setConformance($conformance)
     {
         $this->conformance = $conformance;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->required) $json['required'] = $this->required->jsonSerialize();
+        if (null !== $this->validated) $json['validated'] = $this->validated->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->destination) $json['destination'] = $this->destination->jsonSerialize();
+        if (0 < count($this->link)) {
+            $json['link'] = array();
+            foreach($this->link as $link) {
+                $json['link'][] = $link->jsonSerialize();
+            }
+        }
+        if (null !== $this->conformance) $json['conformance'] = $this->conformance->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<TestScriptCapability xmlns="http://hl7.org/fhir"></TestScriptCapability>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->required) $this->required->xmlSerialize(true, $sxe->addChild('required'));
+        if (null !== $this->validated) $this->validated->xmlSerialize(true, $sxe->addChild('validated'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->destination) $this->destination->xmlSerialize(true, $sxe->addChild('destination'));
+        if (0 < count($this->link)) {
+            foreach($this->link as $link) {
+                $link->xmlSerialize(true, $sxe->addChild('link'));
+            }
+        }
+        if (null !== $this->conformance) $this->conformance->xmlSerialize(true, $sxe->addChild('conformance'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

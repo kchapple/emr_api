@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A sample to be used for analysis.
  */
-class FHIRSpecimenContainer extends FHIRBackboneElement
+class FHIRSpecimenContainer extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Id for container. There may be multiple; a manufacturer's bar code, lab assigned identifier, etc. The container ID may differ from the specimen id in some circumstances.
@@ -110,6 +111,11 @@ class FHIRSpecimenContainer extends FHIRBackboneElement
     public $additiveReference = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Specimen.Container';
+
+    /**
      * Id for container. There may be multiple; a manufacturer's bar code, lab assigned identifier, etc. The container ID may differ from the specimen id in some circumstances.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -121,10 +127,12 @@ class FHIRSpecimenContainer extends FHIRBackboneElement
     /**
      * Id for container. There may be multiple; a manufacturer's bar code, lab assigned identifier, etc. The container ID may differ from the specimen id in some circumstances.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -139,10 +147,12 @@ class FHIRSpecimenContainer extends FHIRBackboneElement
     /**
      * Textual description of the container.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -157,10 +167,12 @@ class FHIRSpecimenContainer extends FHIRBackboneElement
     /**
      * The type of container associated with the specimen (e.g. slide, aliquot, etc.).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -175,10 +187,12 @@ class FHIRSpecimenContainer extends FHIRBackboneElement
     /**
      * The capacity (volume or other measure) the container may contain.
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $capacity
+     * @return $this
      */
     public function setCapacity($capacity)
     {
         $this->capacity = $capacity;
+        return $this;
     }
 
     /**
@@ -193,10 +207,12 @@ class FHIRSpecimenContainer extends FHIRBackboneElement
     /**
      * The quantity of specimen in the container; may be volume, dimensions, or other appropriate measurements, depending on the specimen type.
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $specimenQuantity
+     * @return $this
      */
     public function setSpecimenQuantity($specimenQuantity)
     {
         $this->specimenQuantity = $specimenQuantity;
+        return $this;
     }
 
     /**
@@ -211,10 +227,12 @@ class FHIRSpecimenContainer extends FHIRBackboneElement
     /**
      * Introduced substance to preserve, maintain or enhance the specimen. Examples: Formalin, Citrate, EDTA. (choose any one of additive*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $additiveCodeableConcept
+     * @return $this
      */
     public function setAdditiveCodeableConcept($additiveCodeableConcept)
     {
         $this->additiveCodeableConcept = $additiveCodeableConcept;
+        return $this;
     }
 
     /**
@@ -229,10 +247,73 @@ class FHIRSpecimenContainer extends FHIRBackboneElement
     /**
      * Introduced substance to preserve, maintain or enhance the specimen. Examples: Formalin, Citrate, EDTA. (choose any one of additive*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $additiveReference
+     * @return $this
      */
     public function setAdditiveReference($additiveReference)
     {
         $this->additiveReference = $additiveReference;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->capacity) $json['capacity'] = $this->capacity->jsonSerialize();
+        if (null !== $this->specimenQuantity) $json['specimenQuantity'] = $this->specimenQuantity->jsonSerialize();
+        if (null !== $this->additiveCodeableConcept) $json['additiveCodeableConcept'] = $this->additiveCodeableConcept->jsonSerialize();
+        if (null !== $this->additiveReference) $json['additiveReference'] = $this->additiveReference->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<SpecimenContainer xmlns="http://hl7.org/fhir"></SpecimenContainer>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->capacity) $this->capacity->xmlSerialize(true, $sxe->addChild('capacity'));
+        if (null !== $this->specimenQuantity) $this->specimenQuantity->xmlSerialize(true, $sxe->addChild('specimenQuantity'));
+        if (null !== $this->additiveCodeableConcept) $this->additiveCodeableConcept->xmlSerialize(true, $sxe->addChild('additiveCodeableConcept'));
+        if (null !== $this->additiveReference) $this->additiveReference->xmlSerialize(true, $sxe->addChild('additiveReference'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

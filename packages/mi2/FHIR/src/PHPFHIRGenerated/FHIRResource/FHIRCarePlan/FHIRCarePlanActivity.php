@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Describes the intention of how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions.
  */
-class FHIRCarePlanActivity extends FHIRBackboneElement
+class FHIRCarePlanActivity extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Resources that describe follow-on actions resulting from the plan, such as drug prescriptions, encounter records, appointments, etc.
@@ -92,6 +93,11 @@ class FHIRCarePlanActivity extends FHIRBackboneElement
     public $detail = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'CarePlan.Activity';
+
+    /**
      * Resources that describe follow-on actions resulting from the plan, such as drug prescriptions, encounter records, appointments, etc.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRReference[]
      */
@@ -103,10 +109,12 @@ class FHIRCarePlanActivity extends FHIRBackboneElement
     /**
      * Resources that describe follow-on actions resulting from the plan, such as drug prescriptions, encounter records, appointments, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $actionResulting
+     * @return $this
      */
     public function addActionResulting($actionResulting)
     {
         $this->actionResulting[] = $actionResulting;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRCarePlanActivity extends FHIRBackboneElement
     /**
      * Notes about the adherence/status/progress of the activity.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAnnotation[] $progress
+     * @return $this
      */
     public function addProgress($progress)
     {
         $this->progress[] = $progress;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRCarePlanActivity extends FHIRBackboneElement
     /**
      * The details of the proposed activity represented in a specific resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $reference
+     * @return $this
      */
     public function setReference($reference)
     {
         $this->reference = $reference;
+        return $this;
     }
 
     /**
@@ -157,10 +169,76 @@ class FHIRCarePlanActivity extends FHIRBackboneElement
     /**
      * A simple summary of a planned activity suitable for a general care plan system (e.g. form driven) that doesn't know about specific resources such as procedure etc.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRCarePlan\FHIRCarePlanDetail $detail
+     * @return $this
      */
     public function setDetail($detail)
     {
         $this->detail = $detail;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->actionResulting)) {
+            $json['actionResulting'] = array();
+            foreach($this->actionResulting as $actionResulting) {
+                $json['actionResulting'][] = $actionResulting->jsonSerialize();
+            }
+        }
+        if (0 < count($this->progress)) {
+            $json['progress'] = array();
+            foreach($this->progress as $progress) {
+                $json['progress'][] = $progress->jsonSerialize();
+            }
+        }
+        if (null !== $this->reference) $json['reference'] = $this->reference->jsonSerialize();
+        if (null !== $this->detail) $json['detail'] = $this->detail->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<CarePlanActivity xmlns="http://hl7.org/fhir"></CarePlanActivity>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->actionResulting)) {
+            foreach($this->actionResulting as $actionResulting) {
+                $actionResulting->xmlSerialize(true, $sxe->addChild('actionResulting'));
+            }
+        }
+        if (0 < count($this->progress)) {
+            foreach($this->progress as $progress) {
+                $progress->xmlSerialize(true, $sxe->addChild('progress'));
+            }
+        }
+        if (null !== $this->reference) $this->reference->xmlSerialize(true, $sxe->addChild('reference'));
+        if (null !== $this->detail) $this->detail->xmlSerialize(true, $sxe->addChild('detail'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

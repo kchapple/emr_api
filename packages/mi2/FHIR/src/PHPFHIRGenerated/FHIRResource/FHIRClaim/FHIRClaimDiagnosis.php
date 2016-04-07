@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A provider issued list of services and products provided, or to be provided, to a patient which is provided to an insurer for payment recovery.
  */
-class FHIRClaimDiagnosis extends FHIRBackboneElement
+class FHIRClaimDiagnosis extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Sequence of diagnosis which serves to order and provide a link.
@@ -80,6 +81,11 @@ class FHIRClaimDiagnosis extends FHIRBackboneElement
     public $diagnosis = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Claim.Diagnosis';
+
+    /**
      * Sequence of diagnosis which serves to order and provide a link.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt
      */
@@ -91,10 +97,12 @@ class FHIRClaimDiagnosis extends FHIRBackboneElement
     /**
      * Sequence of diagnosis which serves to order and provide a link.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt $sequence
+     * @return $this
      */
     public function setSequence($sequence)
     {
         $this->sequence = $sequence;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRClaimDiagnosis extends FHIRBackboneElement
     /**
      * The diagnosis.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $diagnosis
+     * @return $this
      */
     public function setDiagnosis($diagnosis)
     {
         $this->diagnosis = $diagnosis;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->sequence) $json['sequence'] = $this->sequence->jsonSerialize();
+        if (null !== $this->diagnosis) $json['diagnosis'] = $this->diagnosis->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ClaimDiagnosis xmlns="http://hl7.org/fhir"></ClaimDiagnosis>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->sequence) $this->sequence->xmlSerialize(true, $sxe->addChild('sequence'));
+        if (null !== $this->diagnosis) $this->diagnosis->xmlSerialize(true, $sxe->addChild('diagnosis'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A conformance statement is a set of capabilities of a FHIR Server that may be used as a statement of actual server functionality or a statement of required or desired server implementation.
  */
-class FHIRConformanceCertificate extends FHIRBackboneElement
+class FHIRConformanceCertificate extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Mime type for certificate.
@@ -80,6 +81,11 @@ class FHIRConformanceCertificate extends FHIRBackboneElement
     public $blob = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Conformance.Certificate';
+
+    /**
      * Mime type for certificate.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCode
      */
@@ -91,10 +97,12 @@ class FHIRConformanceCertificate extends FHIRBackboneElement
     /**
      * Mime type for certificate.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRConformanceCertificate extends FHIRBackboneElement
     /**
      * Actual certificate.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBase64Binary $blob
+     * @return $this
      */
     public function setBlob($blob)
     {
         $this->blob = $blob;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->blob) $json['blob'] = $this->blob->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ConformanceCertificate xmlns="http://hl7.org/fhir"></ConformanceCertificate>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->blob) $this->blob->xmlSerialize(true, $sxe->addChild('blob'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

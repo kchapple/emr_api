@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A homogeneous material with a definite composition.
  */
-class FHIRSubstanceInstance extends FHIRBackboneElement
+class FHIRSubstanceInstance extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Identifier associated with the package/container (usually a label affixed directly).
@@ -86,6 +87,11 @@ class FHIRSubstanceInstance extends FHIRBackboneElement
     public $quantity = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Substance.Instance';
+
+    /**
      * Identifier associated with the package/container (usually a label affixed directly).
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier
      */
@@ -97,10 +103,12 @@ class FHIRSubstanceInstance extends FHIRBackboneElement
     /**
      * Identifier associated with the package/container (usually a label affixed directly).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $identifier
+     * @return $this
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRSubstanceInstance extends FHIRBackboneElement
     /**
      * When the substance is no longer valid to use. For some substances, a single arbitrary date is used for expiry.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $expiry
+     * @return $this
      */
     public function setExpiry($expiry)
     {
         $this->expiry = $expiry;
+        return $this;
     }
 
     /**
@@ -133,10 +143,56 @@ class FHIRSubstanceInstance extends FHIRBackboneElement
     /**
      * The amount of the substance.
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $quantity
+     * @return $this
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->identifier) $json['identifier'] = $this->identifier->jsonSerialize();
+        if (null !== $this->expiry) $json['expiry'] = $this->expiry->jsonSerialize();
+        if (null !== $this->quantity) $json['quantity'] = $this->quantity->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<SubstanceInstance xmlns="http://hl7.org/fhir"></SubstanceInstance>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->identifier) $this->identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+        if (null !== $this->expiry) $this->expiry->xmlSerialize(true, $sxe->addChild('expiry'));
+        if (null !== $this->quantity) $this->quantity->xmlSerialize(true, $sxe->addChild('quantity'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

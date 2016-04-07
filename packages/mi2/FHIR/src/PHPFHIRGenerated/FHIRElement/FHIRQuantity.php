@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A measured amount (or an amount that can potentially be measured). Note that measured amounts include amounts that are not precisely quantified, including amounts involving arbitrary units and floating currencies.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRQuantity extends FHIRElement
+class FHIRQuantity extends FHIRElement implements JsonSerializable
 {
     /**
      * The value of the measured amount. The value includes an implicit precision in the presentation of the value.
@@ -99,6 +100,11 @@ class FHIRQuantity extends FHIRElement
     public $code = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Quantity';
+
+    /**
      * The value of the measured amount. The value includes an implicit precision in the presentation of the value.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRDecimal
      */
@@ -110,10 +116,12 @@ class FHIRQuantity extends FHIRElement
     /**
      * The value of the measured amount. The value includes an implicit precision in the presentation of the value.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $value
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
     }
 
     /**
@@ -128,10 +136,12 @@ class FHIRQuantity extends FHIRElement
     /**
      * How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is "<" , then the real value is < stated value.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRQuantityComparator $comparator
+     * @return $this
      */
     public function setComparator($comparator)
     {
         $this->comparator = $comparator;
+        return $this;
     }
 
     /**
@@ -146,10 +156,12 @@ class FHIRQuantity extends FHIRElement
     /**
      * A human-readable form of the unit.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $unit
+     * @return $this
      */
     public function setUnit($unit)
     {
         $this->unit = $unit;
+        return $this;
     }
 
     /**
@@ -164,10 +176,12 @@ class FHIRQuantity extends FHIRElement
     /**
      * The identification of the system that provides the coded form of the unit.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $system
+     * @return $this
      */
     public function setSystem($system)
     {
         $this->system = $system;
+        return $this;
     }
 
     /**
@@ -182,10 +196,60 @@ class FHIRQuantity extends FHIRElement
     /**
      * A computer processable form of the unit in some unit representation system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->value) $json['value'] = $this->value->jsonSerialize();
+        if (null !== $this->comparator) $json['comparator'] = $this->comparator->jsonSerialize();
+        if (null !== $this->unit) $json['unit'] = $this->unit->jsonSerialize();
+        if (null !== $this->system) $json['system'] = $this->system->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Quantity xmlns="http://hl7.org/fhir"></Quantity>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->value) $this->value->xmlSerialize(true, $sxe->addChild('value'));
+        if (null !== $this->comparator) $this->comparator->xmlSerialize(true, $sxe->addChild('comparator'));
+        if (null !== $this->unit) $this->unit->xmlSerialize(true, $sxe->addChild('unit'));
+        if (null !== $this->system) $this->system->xmlSerialize(true, $sxe->addChild('system'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

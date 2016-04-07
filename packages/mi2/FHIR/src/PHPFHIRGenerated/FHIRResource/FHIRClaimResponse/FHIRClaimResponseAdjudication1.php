@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * This resource provides the adjudication details from the processing of a Claim resource.
  */
-class FHIRClaimResponseAdjudication1 extends FHIRBackboneElement
+class FHIRClaimResponseAdjudication1 extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Code indicating: Co-Pay, deductible, eligible, benefit, tax, etc.
@@ -86,6 +87,11 @@ class FHIRClaimResponseAdjudication1 extends FHIRBackboneElement
     public $value = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ClaimResponse.Adjudication1';
+
+    /**
      * Code indicating: Co-Pay, deductible, eligible, benefit, tax, etc.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCoding
      */
@@ -97,10 +103,12 @@ class FHIRClaimResponseAdjudication1 extends FHIRBackboneElement
     /**
      * Code indicating: Co-Pay, deductible, eligible, benefit, tax, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRClaimResponseAdjudication1 extends FHIRBackboneElement
     /**
      * Monetary amount associated with the code.
      * @param \PHPFHIRGenerated\FHIRMoney $amount
+     * @return $this
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
+        return $this;
     }
 
     /**
@@ -133,10 +143,56 @@ class FHIRClaimResponseAdjudication1 extends FHIRBackboneElement
     /**
      * A non-monetary value for example a percentage. Mutually exclusive to the amount element above.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $value
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->amount) $json['amount'] = $this->amount->jsonSerialize();
+        if (null !== $this->value) $json['value'] = $this->value->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ClaimResponseAdjudication1 xmlns="http://hl7.org/fhir"></ClaimResponseAdjudication1>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->amount) $this->amount->xmlSerialize(true, $sxe->addChild('amount'));
+        if (null !== $this->value) $this->value->xmlSerialize(true, $sxe->addChild('value'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

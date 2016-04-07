@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Describes the characteristics, operational status and capabilities of a medical-related component of a medical device.
  */
-class FHIRDeviceComponentProductionSpecification extends FHIRBackboneElement
+class FHIRDeviceComponentProductionSpecification extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Describes the specification type, such as, serial number, part number, hardware revision, software revision, etc.
@@ -86,6 +87,11 @@ class FHIRDeviceComponentProductionSpecification extends FHIRBackboneElement
     public $productionSpec = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'DeviceComponent.ProductionSpecification';
+
+    /**
      * Describes the specification type, such as, serial number, part number, hardware revision, software revision, etc.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -97,10 +103,12 @@ class FHIRDeviceComponentProductionSpecification extends FHIRBackboneElement
     /**
      * Describes the specification type, such as, serial number, part number, hardware revision, software revision, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $specType
+     * @return $this
      */
     public function setSpecType($specType)
     {
         $this->specType = $specType;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRDeviceComponentProductionSpecification extends FHIRBackboneElement
     /**
      * Describes the internal component unique identification. This is a provision for manufacture specific standard components using a private OID. 11073-10101 has a partition for private OID semantic that the manufacture can make use of.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $componentId
+     * @return $this
      */
     public function setComponentId($componentId)
     {
         $this->componentId = $componentId;
+        return $this;
     }
 
     /**
@@ -133,10 +143,56 @@ class FHIRDeviceComponentProductionSpecification extends FHIRBackboneElement
     /**
      * Describes the printable string defining the component.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $productionSpec
+     * @return $this
      */
     public function setProductionSpec($productionSpec)
     {
         $this->productionSpec = $productionSpec;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->specType) $json['specType'] = $this->specType->jsonSerialize();
+        if (null !== $this->componentId) $json['componentId'] = $this->componentId->jsonSerialize();
+        if (null !== $this->productionSpec) $json['productionSpec'] = $this->productionSpec->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<DeviceComponentProductionSpecification xmlns="http://hl7.org/fhir"></DeviceComponentProductionSpecification>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->specType) $this->specType->xmlSerialize(true, $sxe->addChild('specType'));
+        if (null !== $this->componentId) $this->componentId->xmlSerialize(true, $sxe->addChild('componentId'));
+        if (null !== $this->productionSpec) $this->productionSpec->xmlSerialize(true, $sxe->addChild('productionSpec'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

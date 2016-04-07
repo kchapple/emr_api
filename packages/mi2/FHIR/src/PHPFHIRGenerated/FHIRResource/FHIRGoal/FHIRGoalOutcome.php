@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Describes the intended objective(s) for a patient, group or organization care, for example, weight loss, restoring an activity of daily living, obtaining herd immunity via immunization, meeting a process improvement objective, etc.
  */
-class FHIRGoalOutcome extends FHIRBackboneElement
+class FHIRGoalOutcome extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Details of what's changed (or not changed). (choose any one of result*, but only one)
@@ -80,6 +81,11 @@ class FHIRGoalOutcome extends FHIRBackboneElement
     public $resultReference = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Goal.Outcome';
+
+    /**
      * Details of what's changed (or not changed). (choose any one of result*, but only one)
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -91,10 +97,12 @@ class FHIRGoalOutcome extends FHIRBackboneElement
     /**
      * Details of what's changed (or not changed). (choose any one of result*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $resultCodeableConcept
+     * @return $this
      */
     public function setResultCodeableConcept($resultCodeableConcept)
     {
         $this->resultCodeableConcept = $resultCodeableConcept;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRGoalOutcome extends FHIRBackboneElement
     /**
      * Details of what's changed (or not changed). (choose any one of result*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $resultReference
+     * @return $this
      */
     public function setResultReference($resultReference)
     {
         $this->resultReference = $resultReference;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->resultCodeableConcept) $json['resultCodeableConcept'] = $this->resultCodeableConcept->jsonSerialize();
+        if (null !== $this->resultReference) $json['resultReference'] = $this->resultReference->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<GoalOutcome xmlns="http://hl7.org/fhir"></GoalOutcome>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->resultCodeableConcept) $this->resultCodeableConcept->xmlSerialize(true, $sxe->addChild('resultCodeableConcept'));
+        if (null !== $this->resultReference) $this->resultReference->xmlSerialize(true, $sxe->addChild('resultReference'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

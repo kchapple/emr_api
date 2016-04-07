@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Details and position information for a physical place where services are provided  and resources and participants may be stored, found, contained or accommodated.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRLocation extends FHIRDomainResource
+class FHIRLocation extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Unique code or number identifying the location to its users.
@@ -141,6 +142,11 @@ class FHIRLocation extends FHIRDomainResource
     public $partOf = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Location';
+
+    /**
      * Unique code or number identifying the location to its users.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -152,10 +158,12 @@ class FHIRLocation extends FHIRDomainResource
     /**
      * Unique code or number identifying the location to its users.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -170,10 +178,12 @@ class FHIRLocation extends FHIRDomainResource
     /**
      * active | suspended | inactive.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRLocationStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -188,10 +198,12 @@ class FHIRLocation extends FHIRDomainResource
     /**
      * Name of the location as used by humans. Does not need to be unique.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -206,10 +218,12 @@ class FHIRLocation extends FHIRDomainResource
     /**
      * Description of the Location, which helps in finding or referencing the place.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -224,10 +238,12 @@ class FHIRLocation extends FHIRDomainResource
     /**
      * Indicates whether a resource instance represents a specific location or a class of locations.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRLocationMode $mode
+     * @return $this
      */
     public function setMode($mode)
     {
         $this->mode = $mode;
+        return $this;
     }
 
     /**
@@ -242,10 +258,12 @@ class FHIRLocation extends FHIRDomainResource
     /**
      * Indicates the type of function performed at the location.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -260,10 +278,12 @@ class FHIRLocation extends FHIRDomainResource
     /**
      * The contact details of communication devices available at the location. This can include phone numbers, fax numbers, mobile numbers, email addresses and web sites.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRContactPoint[] $telecom
+     * @return $this
      */
     public function addTelecom($telecom)
     {
         $this->telecom[] = $telecom;
+        return $this;
     }
 
     /**
@@ -278,10 +298,12 @@ class FHIRLocation extends FHIRDomainResource
     /**
      * Physical location.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAddress $address
+     * @return $this
      */
     public function setAddress($address)
     {
         $this->address = $address;
+        return $this;
     }
 
     /**
@@ -296,10 +318,12 @@ class FHIRLocation extends FHIRDomainResource
     /**
      * Physical form of the location, e.g. building, room, vehicle, road.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $physicalType
+     * @return $this
      */
     public function setPhysicalType($physicalType)
     {
         $this->physicalType = $physicalType;
+        return $this;
     }
 
     /**
@@ -314,10 +338,12 @@ class FHIRLocation extends FHIRDomainResource
     /**
      * The absolute geographic location of the Location, expressed using the WGS84 datum (This is the same co-ordinate system used in KML).
      * @param \PHPFHIRGenerated\FHIRResource\FHIRLocation\FHIRLocationPosition $position
+     * @return $this
      */
     public function setPosition($position)
     {
         $this->position = $position;
+        return $this;
     }
 
     /**
@@ -332,10 +358,12 @@ class FHIRLocation extends FHIRDomainResource
     /**
      * The organization responsible for the provisioning and upkeep of the location.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $managingOrganization
+     * @return $this
      */
     public function setManagingOrganization($managingOrganization)
     {
         $this->managingOrganization = $managingOrganization;
+        return $this;
     }
 
     /**
@@ -350,10 +378,93 @@ class FHIRLocation extends FHIRDomainResource
     /**
      * Another Location which this Location is physically part of.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $partOf
+     * @return $this
      */
     public function setPartOf($partOf)
     {
         $this->partOf = $partOf;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->mode) $json['mode'] = $this->mode->jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (0 < count($this->telecom)) {
+            $json['telecom'] = array();
+            foreach($this->telecom as $telecom) {
+                $json['telecom'][] = $telecom->jsonSerialize();
+            }
+        }
+        if (null !== $this->address) $json['address'] = $this->address->jsonSerialize();
+        if (null !== $this->physicalType) $json['physicalType'] = $this->physicalType->jsonSerialize();
+        if (null !== $this->position) $json['position'] = $this->position->jsonSerialize();
+        if (null !== $this->managingOrganization) $json['managingOrganization'] = $this->managingOrganization->jsonSerialize();
+        if (null !== $this->partOf) $json['partOf'] = $this->partOf->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Location xmlns="http://hl7.org/fhir"></Location>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->mode) $this->mode->xmlSerialize(true, $sxe->addChild('mode'));
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (0 < count($this->telecom)) {
+            foreach($this->telecom as $telecom) {
+                $telecom->xmlSerialize(true, $sxe->addChild('telecom'));
+            }
+        }
+        if (null !== $this->address) $this->address->xmlSerialize(true, $sxe->addChild('address'));
+        if (null !== $this->physicalType) $this->physicalType->xmlSerialize(true, $sxe->addChild('physicalType'));
+        if (null !== $this->position) $this->position->xmlSerialize(true, $sxe->addChild('position'));
+        if (null !== $this->managingOrganization) $this->managingOrganization->xmlSerialize(true, $sxe->addChild('managingOrganization'));
+        if (null !== $this->partOf) $this->partOf->xmlSerialize(true, $sxe->addChild('partOf'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

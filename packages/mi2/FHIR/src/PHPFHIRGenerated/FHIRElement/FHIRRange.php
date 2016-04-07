@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A set of ordered Quantities defined by a low and high limit.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRRange extends FHIRElement
+class FHIRRange extends FHIRElement implements JsonSerializable
 {
     /**
      * The low limit. The boundary is inclusive.
@@ -81,6 +82,11 @@ class FHIRRange extends FHIRElement
     public $high = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Range';
+
+    /**
      * The low limit. The boundary is inclusive.
      * @return \PHPFHIRGenerated\FHIRSimpleQuantity
      */
@@ -92,10 +98,12 @@ class FHIRRange extends FHIRElement
     /**
      * The low limit. The boundary is inclusive.
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $low
+     * @return $this
      */
     public function setLow($low)
     {
         $this->low = $low;
+        return $this;
     }
 
     /**
@@ -110,10 +118,54 @@ class FHIRRange extends FHIRElement
     /**
      * The high limit. The boundary is inclusive.
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $high
+     * @return $this
      */
     public function setHigh($high)
     {
         $this->high = $high;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->low) $json['low'] = $this->low->jsonSerialize();
+        if (null !== $this->high) $json['high'] = $this->high->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Range xmlns="http://hl7.org/fhir"></Range>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->low) $this->low->xmlSerialize(true, $sxe->addChild('low'));
+        if (null !== $this->high) $this->high->xmlSerialize(true, $sxe->addChild('high'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

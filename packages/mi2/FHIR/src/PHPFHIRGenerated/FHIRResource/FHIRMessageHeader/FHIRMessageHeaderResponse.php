@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * The header for a message exchange that is either requesting or responding to an action.  The reference(s) that are the subject of the action as well as other information related to the action are typically transmitted in a bundle in which the MessageHeader resource instance is the first resource in the bundle.
  */
-class FHIRMessageHeaderResponse extends FHIRBackboneElement
+class FHIRMessageHeaderResponse extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The id of the message that this message is a response to.
@@ -86,6 +87,11 @@ class FHIRMessageHeaderResponse extends FHIRBackboneElement
     public $details = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'MessageHeader.Response';
+
+    /**
      * The id of the message that this message is a response to.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRId
      */
@@ -97,10 +103,12 @@ class FHIRMessageHeaderResponse extends FHIRBackboneElement
     /**
      * The id of the message that this message is a response to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRId $identifier
+     * @return $this
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRMessageHeaderResponse extends FHIRBackboneElement
     /**
      * Code that identifies the type of response to the message - whether it was successful or not, and whether it should be resent or not.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRResponseType $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -133,10 +143,56 @@ class FHIRMessageHeaderResponse extends FHIRBackboneElement
     /**
      * Full details of any issues found in the message.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $details
+     * @return $this
      */
     public function setDetails($details)
     {
         $this->details = $details;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->identifier) $json['identifier'] = $this->identifier->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->details) $json['details'] = $this->details->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<MessageHeaderResponse xmlns="http://hl7.org/fhir"></MessageHeaderResponse>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->identifier) $this->identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->details) $this->details->xmlSerialize(true, $sxe->addChild('details'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

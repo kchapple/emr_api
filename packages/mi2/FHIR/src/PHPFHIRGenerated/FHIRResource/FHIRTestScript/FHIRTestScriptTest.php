@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * TestScript is a resource that specifies a suite of tests against a FHIR server implementation to determine compliance against the FHIR specification.
  */
-class FHIRTestScriptTest extends FHIRBackboneElement
+class FHIRTestScriptTest extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The name of this test used for tracking/logging purposes by test engines.
@@ -92,6 +93,11 @@ class FHIRTestScriptTest extends FHIRBackboneElement
     public $action = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'TestScript.Test';
+
+    /**
      * The name of this test used for tracking/logging purposes by test engines.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -103,10 +109,12 @@ class FHIRTestScriptTest extends FHIRBackboneElement
     /**
      * The name of this test used for tracking/logging purposes by test engines.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRTestScriptTest extends FHIRBackboneElement
     /**
      * A short description of the test used by test engines for tracking and reporting purposes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRTestScriptTest extends FHIRBackboneElement
     /**
      * Capabilities that must exist and are assumed to function correctly on the FHIR server being tested.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRTestScript\FHIRTestScriptMetadata $metadata
+     * @return $this
      */
     public function setMetadata($metadata)
     {
         $this->metadata = $metadata;
+        return $this;
     }
 
     /**
@@ -157,10 +169,67 @@ class FHIRTestScriptTest extends FHIRBackboneElement
     /**
      * Action would contain either an operation or an assertion.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRTestScript\FHIRTestScriptAction1[] $action
+     * @return $this
      */
     public function addAction($action)
     {
         $this->action[] = $action;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->metadata) $json['metadata'] = $this->metadata->jsonSerialize();
+        if (0 < count($this->action)) {
+            $json['action'] = array();
+            foreach($this->action as $action) {
+                $json['action'][] = $action->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<TestScriptTest xmlns="http://hl7.org/fhir"></TestScriptTest>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->metadata) $this->metadata->xmlSerialize(true, $sxe->addChild('metadata'));
+        if (0 < count($this->action)) {
+            foreach($this->action as $action) {
+                $action->xmlSerialize(true, $sxe->addChild('action'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

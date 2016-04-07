@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Provenance of a resource is a record that describes entities and processes involved in producing and delivering or otherwise influencing that resource. Provenance provides a critical foundation for assessing authenticity, enabling trust, and allowing reproducibility. Provenance assertions are a form of contextual metadata and can themselves become important records with their own provenance. Provenance statement indicates clinical significance in terms of confidence in authenticity, reliability, and trustworthiness, integrity, and stage in lifecycle (e.g. Document Completion - has the artifact been legally authenticated), all of which may impact security, privacy, and trust policies.
  */
-class FHIRProvenanceRelatedAgent extends FHIRBackboneElement
+class FHIRProvenanceRelatedAgent extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The type of relationship between agents.
@@ -80,6 +81,11 @@ class FHIRProvenanceRelatedAgent extends FHIRBackboneElement
     public $target = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Provenance.RelatedAgent';
+
+    /**
      * The type of relationship between agents.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -91,10 +97,12 @@ class FHIRProvenanceRelatedAgent extends FHIRBackboneElement
     /**
      * The type of relationship between agents.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRProvenanceRelatedAgent extends FHIRBackboneElement
     /**
      * An internal reference to another agent listed in this provenance by its identifier.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $target
+     * @return $this
      */
     public function setTarget($target)
     {
         $this->target = $target;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->target) $json['target'] = $this->target->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ProvenanceRelatedAgent xmlns="http://hl7.org/fhir"></ProvenanceRelatedAgent>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->target) $this->target->xmlSerialize(true, $sxe->addChild('target'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * This resource provides payment details and claim references supporting a bulk payment.
  */
-class FHIRPaymentReconciliationDetail extends FHIRBackboneElement
+class FHIRPaymentReconciliationDetail extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Code to indicate the nature of the payment, adjustment, funds advance, etc.
@@ -110,6 +111,11 @@ class FHIRPaymentReconciliationDetail extends FHIRBackboneElement
     public $amount = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'PaymentReconciliation.Detail';
+
+    /**
      * Code to indicate the nature of the payment, adjustment, funds advance, etc.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCoding
      */
@@ -121,10 +127,12 @@ class FHIRPaymentReconciliationDetail extends FHIRBackboneElement
     /**
      * Code to indicate the nature of the payment, adjustment, funds advance, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -139,10 +147,12 @@ class FHIRPaymentReconciliationDetail extends FHIRBackboneElement
     /**
      * The claim or financial resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $request
+     * @return $this
      */
     public function setRequest($request)
     {
         $this->request = $request;
+        return $this;
     }
 
     /**
@@ -157,10 +167,12 @@ class FHIRPaymentReconciliationDetail extends FHIRBackboneElement
     /**
      * The claim response resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $responce
+     * @return $this
      */
     public function setResponce($responce)
     {
         $this->responce = $responce;
+        return $this;
     }
 
     /**
@@ -175,10 +187,12 @@ class FHIRPaymentReconciliationDetail extends FHIRBackboneElement
     /**
      * The Organization which submitted the invoice or financial transaction.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $submitter
+     * @return $this
      */
     public function setSubmitter($submitter)
     {
         $this->submitter = $submitter;
+        return $this;
     }
 
     /**
@@ -193,10 +207,12 @@ class FHIRPaymentReconciliationDetail extends FHIRBackboneElement
     /**
      * The organization which is receiving the payment.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $payee
+     * @return $this
      */
     public function setPayee($payee)
     {
         $this->payee = $payee;
+        return $this;
     }
 
     /**
@@ -211,10 +227,12 @@ class FHIRPaymentReconciliationDetail extends FHIRBackboneElement
     /**
      * The date of the invoice or financial resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDate $date
+     * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -229,10 +247,64 @@ class FHIRPaymentReconciliationDetail extends FHIRBackboneElement
     /**
      * Amount paid for this detail.
      * @param \PHPFHIRGenerated\FHIRMoney $amount
+     * @return $this
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->request) $json['request'] = $this->request->jsonSerialize();
+        if (null !== $this->responce) $json['responce'] = $this->responce->jsonSerialize();
+        if (null !== $this->submitter) $json['submitter'] = $this->submitter->jsonSerialize();
+        if (null !== $this->payee) $json['payee'] = $this->payee->jsonSerialize();
+        if (null !== $this->date) $json['date'] = $this->date->jsonSerialize();
+        if (null !== $this->amount) $json['amount'] = $this->amount->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<PaymentReconciliationDetail xmlns="http://hl7.org/fhir"></PaymentReconciliationDetail>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->request) $this->request->xmlSerialize(true, $sxe->addChild('request'));
+        if (null !== $this->responce) $this->responce->xmlSerialize(true, $sxe->addChild('responce'));
+        if (null !== $this->submitter) $this->submitter->xmlSerialize(true, $sxe->addChild('submitter'));
+        if (null !== $this->payee) $this->payee->xmlSerialize(true, $sxe->addChild('payee'));
+        if (null !== $this->date) $this->date->xmlSerialize(true, $sxe->addChild('date'));
+        if (null !== $this->amount) $this->amount->xmlSerialize(true, $sxe->addChild('amount'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the underlying questions.
  */
-class FHIRQuestionnaireResponseGroup extends FHIRBackboneElement
+class FHIRQuestionnaireResponseGroup extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Identifies the group from the Questionnaire that corresponds to this group in the QuestionnaireResponse resource.
@@ -104,6 +105,11 @@ class FHIRQuestionnaireResponseGroup extends FHIRBackboneElement
     public $question = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'QuestionnaireResponse.Group';
+
+    /**
      * Identifies the group from the Questionnaire that corresponds to this group in the QuestionnaireResponse resource.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -115,10 +121,12 @@ class FHIRQuestionnaireResponseGroup extends FHIRBackboneElement
     /**
      * Identifies the group from the Questionnaire that corresponds to this group in the QuestionnaireResponse resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $linkId
+     * @return $this
      */
     public function setLinkId($linkId)
     {
         $this->linkId = $linkId;
+        return $this;
     }
 
     /**
@@ -133,10 +141,12 @@ class FHIRQuestionnaireResponseGroup extends FHIRBackboneElement
     /**
      * Text that is displayed above the contents of the group.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $title
+     * @return $this
      */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -151,10 +161,12 @@ class FHIRQuestionnaireResponseGroup extends FHIRBackboneElement
     /**
      * Additional text for the group, used for display purposes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $text
+     * @return $this
      */
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
     }
 
     /**
@@ -169,10 +181,12 @@ class FHIRQuestionnaireResponseGroup extends FHIRBackboneElement
     /**
      * More specific subject this section's answers are about, details the subject given in QuestionnaireResponse.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $subject
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -187,10 +201,12 @@ class FHIRQuestionnaireResponseGroup extends FHIRBackboneElement
     /**
      * A sub-group within a group. The ordering of groups within this group is relevant.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRQuestionnaireResponse\FHIRQuestionnaireResponseGroup[] $group
+     * @return $this
      */
     public function addGroup($group)
     {
         $this->group[] = $group;
+        return $this;
     }
 
     /**
@@ -205,10 +221,80 @@ class FHIRQuestionnaireResponseGroup extends FHIRBackboneElement
     /**
      * Set of questions within this group. The order of questions within the group is relevant.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRQuestionnaireResponse\FHIRQuestionnaireResponseQuestion[] $question
+     * @return $this
      */
     public function addQuestion($question)
     {
         $this->question[] = $question;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->linkId) $json['linkId'] = $this->linkId->jsonSerialize();
+        if (null !== $this->title) $json['title'] = $this->title->jsonSerialize();
+        if (null !== $this->text) $json['text'] = $this->text->jsonSerialize();
+        if (null !== $this->subject) $json['subject'] = $this->subject->jsonSerialize();
+        if (0 < count($this->group)) {
+            $json['group'] = array();
+            foreach($this->group as $group) {
+                $json['group'][] = $group->jsonSerialize();
+            }
+        }
+        if (0 < count($this->question)) {
+            $json['question'] = array();
+            foreach($this->question as $question) {
+                $json['question'][] = $question->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<QuestionnaireResponseGroup xmlns="http://hl7.org/fhir"></QuestionnaireResponseGroup>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->linkId) $this->linkId->xmlSerialize(true, $sxe->addChild('linkId'));
+        if (null !== $this->title) $this->title->xmlSerialize(true, $sxe->addChild('title'));
+        if (null !== $this->text) $this->text->xmlSerialize(true, $sxe->addChild('text'));
+        if (null !== $this->subject) $this->subject->xmlSerialize(true, $sxe->addChild('subject'));
+        if (0 < count($this->group)) {
+            foreach($this->group as $group) {
+                $group->xmlSerialize(true, $sxe->addChild('group'));
+            }
+        }
+        if (0 < count($this->question)) {
+            foreach($this->question as $question) {
+                $question->xmlSerialize(true, $sxe->addChild('question'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

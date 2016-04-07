@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A reply to an appointment request for a patient and/or practitioner(s), such as a confirmation or rejection.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRAppointmentResponse extends FHIRDomainResource
+class FHIRAppointmentResponse extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * This records identifiers associated with this appointment response concern that are defined by business processes and/ or used to refer to it when a direct URL reference to the resource itself is not appropriate.
@@ -117,6 +118,11 @@ class FHIRAppointmentResponse extends FHIRDomainResource
     public $comment = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'AppointmentResponse';
+
+    /**
      * This records identifiers associated with this appointment response concern that are defined by business processes and/ or used to refer to it when a direct URL reference to the resource itself is not appropriate.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -128,10 +134,12 @@ class FHIRAppointmentResponse extends FHIRDomainResource
     /**
      * This records identifiers associated with this appointment response concern that are defined by business processes and/ or used to refer to it when a direct URL reference to the resource itself is not appropriate.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -146,10 +154,12 @@ class FHIRAppointmentResponse extends FHIRDomainResource
     /**
      * Appointment that this response is replying to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $appointment
+     * @return $this
      */
     public function setAppointment($appointment)
     {
         $this->appointment = $appointment;
+        return $this;
     }
 
     /**
@@ -164,10 +174,12 @@ class FHIRAppointmentResponse extends FHIRDomainResource
     /**
      * Date/Time that the appointment is to take place, or requested new start time.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInstant $start
+     * @return $this
      */
     public function setStart($start)
     {
         $this->start = $start;
+        return $this;
     }
 
     /**
@@ -182,10 +194,12 @@ class FHIRAppointmentResponse extends FHIRDomainResource
     /**
      * This may be either the same as the appointment request to confirm the details of the appointment, or alternately a new time to request a re-negotiation of the end time.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInstant $end
+     * @return $this
      */
     public function setEnd($end)
     {
         $this->end = $end;
+        return $this;
     }
 
     /**
@@ -200,10 +214,12 @@ class FHIRAppointmentResponse extends FHIRDomainResource
     /**
      * Role of participant in the appointment.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $participantType
+     * @return $this
      */
     public function addParticipantType($participantType)
     {
         $this->participantType[] = $participantType;
+        return $this;
     }
 
     /**
@@ -218,10 +234,12 @@ class FHIRAppointmentResponse extends FHIRDomainResource
     /**
      * A Person, Location/HealthcareService or Device that is participating in the appointment.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $actor
+     * @return $this
      */
     public function setActor($actor)
     {
         $this->actor = $actor;
+        return $this;
     }
 
     /**
@@ -236,10 +254,12 @@ class FHIRAppointmentResponse extends FHIRDomainResource
     /**
      * Participation status of the participant. When the status is declined or tentative if the start/end times are different to the appointment, then these times should be interpreted as a requested time change. When the status is accepted, the times can either be the time of the appointment (as a confirmation of the time) or can be empty.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRParticipantStatus $participantStatus
+     * @return $this
      */
     public function setParticipantStatus($participantStatus)
     {
         $this->participantStatus = $participantStatus;
+        return $this;
     }
 
     /**
@@ -254,10 +274,85 @@ class FHIRAppointmentResponse extends FHIRDomainResource
     /**
      * Additional comments about the appointment.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $comment
+     * @return $this
      */
     public function setComment($comment)
     {
         $this->comment = $comment;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->appointment) $json['appointment'] = $this->appointment->jsonSerialize();
+        if (null !== $this->start) $json['start'] = $this->start->jsonSerialize();
+        if (null !== $this->end) $json['end'] = $this->end->jsonSerialize();
+        if (0 < count($this->participantType)) {
+            $json['participantType'] = array();
+            foreach($this->participantType as $participantType) {
+                $json['participantType'][] = $participantType->jsonSerialize();
+            }
+        }
+        if (null !== $this->actor) $json['actor'] = $this->actor->jsonSerialize();
+        if (null !== $this->participantStatus) $json['participantStatus'] = $this->participantStatus->jsonSerialize();
+        if (null !== $this->comment) $json['comment'] = $this->comment->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<AppointmentResponse xmlns="http://hl7.org/fhir"></AppointmentResponse>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->appointment) $this->appointment->xmlSerialize(true, $sxe->addChild('appointment'));
+        if (null !== $this->start) $this->start->xmlSerialize(true, $sxe->addChild('start'));
+        if (null !== $this->end) $this->end->xmlSerialize(true, $sxe->addChild('end'));
+        if (0 < count($this->participantType)) {
+            foreach($this->participantType as $participantType) {
+                $participantType->xmlSerialize(true, $sxe->addChild('participantType'));
+            }
+        }
+        if (null !== $this->actor) $this->actor->xmlSerialize(true, $sxe->addChild('actor'));
+        if (null !== $this->participantStatus) $this->participantStatus->xmlSerialize(true, $sxe->addChild('participantStatus'));
+        if (null !== $this->comment) $this->comment->xmlSerialize(true, $sxe->addChild('comment'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

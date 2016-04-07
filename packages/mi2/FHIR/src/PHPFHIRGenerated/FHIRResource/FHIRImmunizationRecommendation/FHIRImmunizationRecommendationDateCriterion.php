@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A patient's point-in-time immunization and recommendation (i.e. forecasting a patient's immunization eligibility according to a published schedule) with optional supporting justification.
  */
-class FHIRImmunizationRecommendationDateCriterion extends FHIRBackboneElement
+class FHIRImmunizationRecommendationDateCriterion extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Date classification of recommendation.  For example, earliest date to give, latest date to give, etc.
@@ -80,6 +81,11 @@ class FHIRImmunizationRecommendationDateCriterion extends FHIRBackboneElement
     public $value = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ImmunizationRecommendation.DateCriterion';
+
+    /**
      * Date classification of recommendation.  For example, earliest date to give, latest date to give, etc.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -91,10 +97,12 @@ class FHIRImmunizationRecommendationDateCriterion extends FHIRBackboneElement
     /**
      * Date classification of recommendation.  For example, earliest date to give, latest date to give, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRImmunizationRecommendationDateCriterion extends FHIRBackboneElement
     /**
      * The date whose meaning is specified by dateCriterion.code.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $value
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->value) $json['value'] = $this->value->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ImmunizationRecommendationDateCriterion xmlns="http://hl7.org/fhir"></ImmunizationRecommendationDateCriterion>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->value) $this->value->xmlSerialize(true, $sxe->addChild('value'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

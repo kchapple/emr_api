@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Indicates an actual or potential clinical issue with or between one or more active or proposed clinical actions for a patient.  E.g. Drug-drug interaction, Ineffective treatment frequency, Procedure-condition conflict, etc.
  */
-class FHIRContraindicationMitigation extends FHIRBackboneElement
+class FHIRContraindicationMitigation extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Describes the action that was taken or the observation that was made that reduces/eliminates the risk associated with the identified contraindication.
@@ -86,6 +87,11 @@ class FHIRContraindicationMitigation extends FHIRBackboneElement
     public $author = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Contraindication.Mitigation';
+
+    /**
      * Describes the action that was taken or the observation that was made that reduces/eliminates the risk associated with the identified contraindication.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -97,10 +103,12 @@ class FHIRContraindicationMitigation extends FHIRBackboneElement
     /**
      * Describes the action that was taken or the observation that was made that reduces/eliminates the risk associated with the identified contraindication.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $action
+     * @return $this
      */
     public function setAction($action)
     {
         $this->action = $action;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRContraindicationMitigation extends FHIRBackboneElement
     /**
      * Indicates when the mitigating action was documented.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $date
+     * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -133,10 +143,56 @@ class FHIRContraindicationMitigation extends FHIRBackboneElement
     /**
      * Identifies the practitioner who determined the mitigation and takes responsibility for the mitigation step occurring.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $author
+     * @return $this
      */
     public function setAuthor($author)
     {
         $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->action) $json['action'] = $this->action->jsonSerialize();
+        if (null !== $this->date) $json['date'] = $this->date->jsonSerialize();
+        if (null !== $this->author) $json['author'] = $this->author->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ContraindicationMitigation xmlns="http://hl7.org/fhir"></ContraindicationMitigation>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->action) $this->action->xmlSerialize(true, $sxe->addChild('action'));
+        if (null !== $this->date) $this->date->xmlSerialize(true, $sxe->addChild('date'));
+        if (null !== $this->author) $this->author->xmlSerialize(true, $sxe->addChild('author'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

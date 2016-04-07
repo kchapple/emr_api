@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A set of rules or how FHIR is used to solve a particular problem. This resource is used to gather all the parts of an implementation guide into a logical whole, and to publish a computable definition of all the parts.
  */
-class FHIRImplementationGuidePackage extends FHIRBackboneElement
+class FHIRImplementationGuidePackage extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The name for the group, as used in page.package.
@@ -86,6 +87,11 @@ class FHIRImplementationGuidePackage extends FHIRBackboneElement
     public $resource = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ImplementationGuide.Package';
+
+    /**
      * The name for the group, as used in page.package.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -97,10 +103,12 @@ class FHIRImplementationGuidePackage extends FHIRBackboneElement
     /**
      * The name for the group, as used in page.package.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRImplementationGuidePackage extends FHIRBackboneElement
     /**
      * Human readable text describing the package.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -133,10 +143,65 @@ class FHIRImplementationGuidePackage extends FHIRBackboneElement
     /**
      * A resource that is part of the implementation guide. Conformance resources (value set, structure definition, conformance statements etc.) are obvious candidates for inclusion, but any kind of resource can be included as an example resource.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRImplementationGuide\FHIRImplementationGuideResource[] $resource
+     * @return $this
      */
     public function addResource($resource)
     {
         $this->resource[] = $resource;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (0 < count($this->resource)) {
+            $json['resource'] = array();
+            foreach($this->resource as $resource) {
+                $json['resource'][] = $resource->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ImplementationGuidePackage xmlns="http://hl7.org/fhir"></ImplementationGuidePackage>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (0 < count($this->resource)) {
+            foreach($this->resource as $resource) {
+                $resource->xmlSerialize(true, $sxe->addChild('resource'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

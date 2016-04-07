@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * The details of a healthcare service available at a location.
  */
-class FHIRHealthcareServiceNotAvailable extends FHIRBackboneElement
+class FHIRHealthcareServiceNotAvailable extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The reason that can be presented to the user as to why this time is not available.
@@ -80,6 +81,11 @@ class FHIRHealthcareServiceNotAvailable extends FHIRBackboneElement
     public $during = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'HealthcareService.NotAvailable';
+
+    /**
      * The reason that can be presented to the user as to why this time is not available.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -91,10 +97,12 @@ class FHIRHealthcareServiceNotAvailable extends FHIRBackboneElement
     /**
      * The reason that can be presented to the user as to why this time is not available.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRHealthcareServiceNotAvailable extends FHIRBackboneElement
     /**
      * Service is not available (seasonally or for a public holiday) from this date.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $during
+     * @return $this
      */
     public function setDuring($during)
     {
         $this->during = $during;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->during) $json['during'] = $this->during->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<HealthcareServiceNotAvailable xmlns="http://hl7.org/fhir"></HealthcareServiceNotAvailable>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->during) $this->during->xmlSerialize(true, $sxe->addChild('during'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

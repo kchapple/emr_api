@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A structured set of questions intended to guide the collection of answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the underlying questions.
  */
-class FHIRQuestionnaireGroup extends FHIRBackboneElement
+class FHIRQuestionnaireGroup extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * An identifier that is unique within the Questionnaire allowing linkage to the equivalent group in a QuestionnaireResponse resource.
@@ -116,6 +117,11 @@ class FHIRQuestionnaireGroup extends FHIRBackboneElement
     public $question = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Questionnaire.Group';
+
+    /**
      * An identifier that is unique within the Questionnaire allowing linkage to the equivalent group in a QuestionnaireResponse resource.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -127,10 +133,12 @@ class FHIRQuestionnaireGroup extends FHIRBackboneElement
     /**
      * An identifier that is unique within the Questionnaire allowing linkage to the equivalent group in a QuestionnaireResponse resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $linkId
+     * @return $this
      */
     public function setLinkId($linkId)
     {
         $this->linkId = $linkId;
+        return $this;
     }
 
     /**
@@ -145,10 +153,12 @@ class FHIRQuestionnaireGroup extends FHIRBackboneElement
     /**
      * The human-readable name for this section of the questionnaire.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $title
+     * @return $this
      */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -163,10 +173,12 @@ class FHIRQuestionnaireGroup extends FHIRBackboneElement
     /**
      * Identifies a how this group of questions is known in a particular terminology such as LOINC.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding[] $concept
+     * @return $this
      */
     public function addConcept($concept)
     {
         $this->concept[] = $concept;
+        return $this;
     }
 
     /**
@@ -181,10 +193,12 @@ class FHIRQuestionnaireGroup extends FHIRBackboneElement
     /**
      * Additional text for the group, used for display purposes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $text
+     * @return $this
      */
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
     }
 
     /**
@@ -199,10 +213,12 @@ class FHIRQuestionnaireGroup extends FHIRBackboneElement
     /**
      * If true, indicates that the group must be present and have required questions within it answered.  If false, the group may be skipped when answering the questionnaire.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $required
+     * @return $this
      */
     public function setRequired($required)
     {
         $this->required = $required;
+        return $this;
     }
 
     /**
@@ -217,10 +233,12 @@ class FHIRQuestionnaireGroup extends FHIRBackboneElement
     /**
      * Whether the group may occur multiple times in the instance, containing multiple sets of answers.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $repeats
+     * @return $this
      */
     public function setRepeats($repeats)
     {
         $this->repeats = $repeats;
+        return $this;
     }
 
     /**
@@ -235,10 +253,12 @@ class FHIRQuestionnaireGroup extends FHIRBackboneElement
     /**
      * A sub-group within a group. The ordering of groups within this group is relevant.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRQuestionnaire\FHIRQuestionnaireGroup[] $group
+     * @return $this
      */
     public function addGroup($group)
     {
         $this->group[] = $group;
+        return $this;
     }
 
     /**
@@ -253,10 +273,93 @@ class FHIRQuestionnaireGroup extends FHIRBackboneElement
     /**
      * Set of questions within this group. The order of questions within the group is relevant.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRQuestionnaire\FHIRQuestionnaireQuestion[] $question
+     * @return $this
      */
     public function addQuestion($question)
     {
         $this->question[] = $question;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->linkId) $json['linkId'] = $this->linkId->jsonSerialize();
+        if (null !== $this->title) $json['title'] = $this->title->jsonSerialize();
+        if (0 < count($this->concept)) {
+            $json['concept'] = array();
+            foreach($this->concept as $concept) {
+                $json['concept'][] = $concept->jsonSerialize();
+            }
+        }
+        if (null !== $this->text) $json['text'] = $this->text->jsonSerialize();
+        if (null !== $this->required) $json['required'] = $this->required->jsonSerialize();
+        if (null !== $this->repeats) $json['repeats'] = $this->repeats->jsonSerialize();
+        if (0 < count($this->group)) {
+            $json['group'] = array();
+            foreach($this->group as $group) {
+                $json['group'][] = $group->jsonSerialize();
+            }
+        }
+        if (0 < count($this->question)) {
+            $json['question'] = array();
+            foreach($this->question as $question) {
+                $json['question'][] = $question->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<QuestionnaireGroup xmlns="http://hl7.org/fhir"></QuestionnaireGroup>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->linkId) $this->linkId->xmlSerialize(true, $sxe->addChild('linkId'));
+        if (null !== $this->title) $this->title->xmlSerialize(true, $sxe->addChild('title'));
+        if (0 < count($this->concept)) {
+            foreach($this->concept as $concept) {
+                $concept->xmlSerialize(true, $sxe->addChild('concept'));
+            }
+        }
+        if (null !== $this->text) $this->text->xmlSerialize(true, $sxe->addChild('text'));
+        if (null !== $this->required) $this->required->xmlSerialize(true, $sxe->addChild('required'));
+        if (null !== $this->repeats) $this->repeats->xmlSerialize(true, $sxe->addChild('repeats'));
+        if (0 < count($this->group)) {
+            foreach($this->group as $group) {
+                $group->xmlSerialize(true, $sxe->addChild('group'));
+            }
+        }
+        if (0 < count($this->question)) {
+            foreach($this->question as $question) {
+                $question->xmlSerialize(true, $sxe->addChild('question'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

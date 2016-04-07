@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Optional Extensions Element - found in all resources.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRExtension extends FHIRElement
+class FHIRExtension extends FHIRElement implements JsonSerializable
 {
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
@@ -278,6 +279,11 @@ class FHIRExtension extends FHIRElement
     public $url = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Extension';
+
+    /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @return \PHPFHIRGenerated\FHIRElement\FHIRBoolean
      */
@@ -289,10 +295,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $valueBoolean
+     * @return $this
      */
     public function setValueBoolean($valueBoolean)
     {
         $this->valueBoolean = $valueBoolean;
+        return $this;
     }
 
     /**
@@ -307,10 +315,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInteger $valueInteger
+     * @return $this
      */
     public function setValueInteger($valueInteger)
     {
         $this->valueInteger = $valueInteger;
+        return $this;
     }
 
     /**
@@ -325,10 +335,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $valueDecimal
+     * @return $this
      */
     public function setValueDecimal($valueDecimal)
     {
         $this->valueDecimal = $valueDecimal;
+        return $this;
     }
 
     /**
@@ -343,10 +355,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBase64Binary $valueBase64Binary
+     * @return $this
      */
     public function setValueBase64Binary($valueBase64Binary)
     {
         $this->valueBase64Binary = $valueBase64Binary;
+        return $this;
     }
 
     /**
@@ -361,10 +375,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInstant $valueInstant
+     * @return $this
      */
     public function setValueInstant($valueInstant)
     {
         $this->valueInstant = $valueInstant;
+        return $this;
     }
 
     /**
@@ -379,10 +395,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $valueString
+     * @return $this
      */
     public function setValueString($valueString)
     {
         $this->valueString = $valueString;
+        return $this;
     }
 
     /**
@@ -397,10 +415,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $valueUri
+     * @return $this
      */
     public function setValueUri($valueUri)
     {
         $this->valueUri = $valueUri;
+        return $this;
     }
 
     /**
@@ -415,10 +435,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDate $valueDate
+     * @return $this
      */
     public function setValueDate($valueDate)
     {
         $this->valueDate = $valueDate;
+        return $this;
     }
 
     /**
@@ -433,10 +455,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $valueDateTime
+     * @return $this
      */
     public function setValueDateTime($valueDateTime)
     {
         $this->valueDateTime = $valueDateTime;
+        return $this;
     }
 
     /**
@@ -451,10 +475,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRTime $valueTime
+     * @return $this
      */
     public function setValueTime($valueTime)
     {
         $this->valueTime = $valueTime;
+        return $this;
     }
 
     /**
@@ -469,10 +495,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $valueCode
+     * @return $this
      */
     public function setValueCode($valueCode)
     {
         $this->valueCode = $valueCode;
+        return $this;
     }
 
     /**
@@ -487,10 +515,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIROid $valueOid
+     * @return $this
      */
     public function setValueOid($valueOid)
     {
         $this->valueOid = $valueOid;
+        return $this;
     }
 
     /**
@@ -505,10 +535,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUuid $valueUuid
+     * @return $this
      */
     public function setValueUuid($valueUuid)
     {
         $this->valueUuid = $valueUuid;
+        return $this;
     }
 
     /**
@@ -523,10 +555,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRId $valueId
+     * @return $this
      */
     public function setValueId($valueId)
     {
         $this->valueId = $valueId;
+        return $this;
     }
 
     /**
@@ -541,10 +575,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUnsignedInt $valueUnsignedInt
+     * @return $this
      */
     public function setValueUnsignedInt($valueUnsignedInt)
     {
         $this->valueUnsignedInt = $valueUnsignedInt;
+        return $this;
     }
 
     /**
@@ -559,10 +595,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt $valuePositiveInt
+     * @return $this
      */
     public function setValuePositiveInt($valuePositiveInt)
     {
         $this->valuePositiveInt = $valuePositiveInt;
+        return $this;
     }
 
     /**
@@ -577,10 +615,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRMarkdown $valueMarkdown
+     * @return $this
      */
     public function setValueMarkdown($valueMarkdown)
     {
         $this->valueMarkdown = $valueMarkdown;
+        return $this;
     }
 
     /**
@@ -595,10 +635,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAnnotation $valueAnnotation
+     * @return $this
      */
     public function setValueAnnotation($valueAnnotation)
     {
         $this->valueAnnotation = $valueAnnotation;
+        return $this;
     }
 
     /**
@@ -613,10 +655,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAttachment $valueAttachment
+     * @return $this
      */
     public function setValueAttachment($valueAttachment)
     {
         $this->valueAttachment = $valueAttachment;
+        return $this;
     }
 
     /**
@@ -631,10 +675,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $valueIdentifier
+     * @return $this
      */
     public function setValueIdentifier($valueIdentifier)
     {
         $this->valueIdentifier = $valueIdentifier;
+        return $this;
     }
 
     /**
@@ -649,10 +695,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $valueCodeableConcept
+     * @return $this
      */
     public function setValueCodeableConcept($valueCodeableConcept)
     {
         $this->valueCodeableConcept = $valueCodeableConcept;
+        return $this;
     }
 
     /**
@@ -667,10 +715,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $valueCoding
+     * @return $this
      */
     public function setValueCoding($valueCoding)
     {
         $this->valueCoding = $valueCoding;
+        return $this;
     }
 
     /**
@@ -685,10 +735,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRQuantity $valueQuantity
+     * @return $this
      */
     public function setValueQuantity($valueQuantity)
     {
         $this->valueQuantity = $valueQuantity;
+        return $this;
     }
 
     /**
@@ -703,10 +755,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRange $valueRange
+     * @return $this
      */
     public function setValueRange($valueRange)
     {
         $this->valueRange = $valueRange;
+        return $this;
     }
 
     /**
@@ -721,10 +775,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $valuePeriod
+     * @return $this
      */
     public function setValuePeriod($valuePeriod)
     {
         $this->valuePeriod = $valuePeriod;
+        return $this;
     }
 
     /**
@@ -739,10 +795,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRatio $valueRatio
+     * @return $this
      */
     public function setValueRatio($valueRatio)
     {
         $this->valueRatio = $valueRatio;
+        return $this;
     }
 
     /**
@@ -757,10 +815,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $valueReference
+     * @return $this
      */
     public function setValueReference($valueReference)
     {
         $this->valueReference = $valueReference;
+        return $this;
     }
 
     /**
@@ -775,10 +835,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRSampledData $valueSampledData
+     * @return $this
      */
     public function setValueSampledData($valueSampledData)
     {
         $this->valueSampledData = $valueSampledData;
+        return $this;
     }
 
     /**
@@ -793,10 +855,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRSignature $valueSignature
+     * @return $this
      */
     public function setValueSignature($valueSignature)
     {
         $this->valueSignature = $valueSignature;
+        return $this;
     }
 
     /**
@@ -811,10 +875,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRHumanName $valueHumanName
+     * @return $this
      */
     public function setValueHumanName($valueHumanName)
     {
         $this->valueHumanName = $valueHumanName;
+        return $this;
     }
 
     /**
@@ -829,10 +895,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAddress $valueAddress
+     * @return $this
      */
     public function setValueAddress($valueAddress)
     {
         $this->valueAddress = $valueAddress;
+        return $this;
     }
 
     /**
@@ -847,10 +915,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRContactPoint $valueContactPoint
+     * @return $this
      */
     public function setValueContactPoint($valueContactPoint)
     {
         $this->valueContactPoint = $valueContactPoint;
+        return $this;
     }
 
     /**
@@ -865,10 +935,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRTiming $valueTiming
+     * @return $this
      */
     public function setValueTiming($valueTiming)
     {
         $this->valueTiming = $valueTiming;
+        return $this;
     }
 
     /**
@@ -883,10 +955,12 @@ class FHIRExtension extends FHIRElement
     /**
      * Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list). (choose any one of the elements, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRMeta $valueMeta
+     * @return $this
      */
     public function setValueMeta($valueMeta)
     {
         $this->valueMeta = $valueMeta;
+        return $this;
     }
 
     /**
@@ -899,10 +973,123 @@ class FHIRExtension extends FHIRElement
 
     /**
      * @param string $url
+     * @return $this
      */
     public function setUrl($url)
     {
         $this->url = $url;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->valueBoolean) $json['valueBoolean'] = $this->valueBoolean->jsonSerialize();
+        if (null !== $this->valueInteger) $json['valueInteger'] = $this->valueInteger->jsonSerialize();
+        if (null !== $this->valueDecimal) $json['valueDecimal'] = $this->valueDecimal->jsonSerialize();
+        if (null !== $this->valueBase64Binary) $json['valueBase64Binary'] = $this->valueBase64Binary->jsonSerialize();
+        if (null !== $this->valueInstant) $json['valueInstant'] = $this->valueInstant->jsonSerialize();
+        if (null !== $this->valueString) $json['valueString'] = $this->valueString->jsonSerialize();
+        if (null !== $this->valueUri) $json['valueUri'] = $this->valueUri->jsonSerialize();
+        if (null !== $this->valueDate) $json['valueDate'] = $this->valueDate->jsonSerialize();
+        if (null !== $this->valueDateTime) $json['valueDateTime'] = $this->valueDateTime->jsonSerialize();
+        if (null !== $this->valueTime) $json['valueTime'] = $this->valueTime->jsonSerialize();
+        if (null !== $this->valueCode) $json['valueCode'] = $this->valueCode->jsonSerialize();
+        if (null !== $this->valueOid) $json['valueOid'] = $this->valueOid->jsonSerialize();
+        if (null !== $this->valueUuid) $json['valueUuid'] = $this->valueUuid->jsonSerialize();
+        if (null !== $this->valueId) $json['valueId'] = $this->valueId->jsonSerialize();
+        if (null !== $this->valueUnsignedInt) $json['valueUnsignedInt'] = $this->valueUnsignedInt->jsonSerialize();
+        if (null !== $this->valuePositiveInt) $json['valuePositiveInt'] = $this->valuePositiveInt->jsonSerialize();
+        if (null !== $this->valueMarkdown) $json['valueMarkdown'] = $this->valueMarkdown->jsonSerialize();
+        if (null !== $this->valueAnnotation) $json['valueAnnotation'] = $this->valueAnnotation->jsonSerialize();
+        if (null !== $this->valueAttachment) $json['valueAttachment'] = $this->valueAttachment->jsonSerialize();
+        if (null !== $this->valueIdentifier) $json['valueIdentifier'] = $this->valueIdentifier->jsonSerialize();
+        if (null !== $this->valueCodeableConcept) $json['valueCodeableConcept'] = $this->valueCodeableConcept->jsonSerialize();
+        if (null !== $this->valueCoding) $json['valueCoding'] = $this->valueCoding->jsonSerialize();
+        if (null !== $this->valueQuantity) $json['valueQuantity'] = $this->valueQuantity->jsonSerialize();
+        if (null !== $this->valueRange) $json['valueRange'] = $this->valueRange->jsonSerialize();
+        if (null !== $this->valuePeriod) $json['valuePeriod'] = $this->valuePeriod->jsonSerialize();
+        if (null !== $this->valueRatio) $json['valueRatio'] = $this->valueRatio->jsonSerialize();
+        if (null !== $this->valueReference) $json['valueReference'] = $this->valueReference->jsonSerialize();
+        if (null !== $this->valueSampledData) $json['valueSampledData'] = $this->valueSampledData->jsonSerialize();
+        if (null !== $this->valueSignature) $json['valueSignature'] = $this->valueSignature->jsonSerialize();
+        if (null !== $this->valueHumanName) $json['valueHumanName'] = $this->valueHumanName->jsonSerialize();
+        if (null !== $this->valueAddress) $json['valueAddress'] = $this->valueAddress->jsonSerialize();
+        if (null !== $this->valueContactPoint) $json['valueContactPoint'] = $this->valueContactPoint->jsonSerialize();
+        if (null !== $this->valueTiming) $json['valueTiming'] = $this->valueTiming->jsonSerialize();
+        if (null !== $this->valueMeta) $json['valueMeta'] = $this->valueMeta->jsonSerialize();
+        if (null !== $this->url) $json['url'] = $this->url;
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Extension xmlns="http://hl7.org/fhir"></Extension>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->valueBoolean) $this->valueBoolean->xmlSerialize(true, $sxe->addChild('valueBoolean'));
+        if (null !== $this->valueInteger) $this->valueInteger->xmlSerialize(true, $sxe->addChild('valueInteger'));
+        if (null !== $this->valueDecimal) $this->valueDecimal->xmlSerialize(true, $sxe->addChild('valueDecimal'));
+        if (null !== $this->valueBase64Binary) $this->valueBase64Binary->xmlSerialize(true, $sxe->addChild('valueBase64Binary'));
+        if (null !== $this->valueInstant) $this->valueInstant->xmlSerialize(true, $sxe->addChild('valueInstant'));
+        if (null !== $this->valueString) $this->valueString->xmlSerialize(true, $sxe->addChild('valueString'));
+        if (null !== $this->valueUri) $this->valueUri->xmlSerialize(true, $sxe->addChild('valueUri'));
+        if (null !== $this->valueDate) $this->valueDate->xmlSerialize(true, $sxe->addChild('valueDate'));
+        if (null !== $this->valueDateTime) $this->valueDateTime->xmlSerialize(true, $sxe->addChild('valueDateTime'));
+        if (null !== $this->valueTime) $this->valueTime->xmlSerialize(true, $sxe->addChild('valueTime'));
+        if (null !== $this->valueCode) $this->valueCode->xmlSerialize(true, $sxe->addChild('valueCode'));
+        if (null !== $this->valueOid) $this->valueOid->xmlSerialize(true, $sxe->addChild('valueOid'));
+        if (null !== $this->valueUuid) $this->valueUuid->xmlSerialize(true, $sxe->addChild('valueUuid'));
+        if (null !== $this->valueId) $this->valueId->xmlSerialize(true, $sxe->addChild('valueId'));
+        if (null !== $this->valueUnsignedInt) $this->valueUnsignedInt->xmlSerialize(true, $sxe->addChild('valueUnsignedInt'));
+        if (null !== $this->valuePositiveInt) $this->valuePositiveInt->xmlSerialize(true, $sxe->addChild('valuePositiveInt'));
+        if (null !== $this->valueMarkdown) $this->valueMarkdown->xmlSerialize(true, $sxe->addChild('valueMarkdown'));
+        if (null !== $this->valueAnnotation) $this->valueAnnotation->xmlSerialize(true, $sxe->addChild('valueAnnotation'));
+        if (null !== $this->valueAttachment) $this->valueAttachment->xmlSerialize(true, $sxe->addChild('valueAttachment'));
+        if (null !== $this->valueIdentifier) $this->valueIdentifier->xmlSerialize(true, $sxe->addChild('valueIdentifier'));
+        if (null !== $this->valueCodeableConcept) $this->valueCodeableConcept->xmlSerialize(true, $sxe->addChild('valueCodeableConcept'));
+        if (null !== $this->valueCoding) $this->valueCoding->xmlSerialize(true, $sxe->addChild('valueCoding'));
+        if (null !== $this->valueQuantity) $this->valueQuantity->xmlSerialize(true, $sxe->addChild('valueQuantity'));
+        if (null !== $this->valueRange) $this->valueRange->xmlSerialize(true, $sxe->addChild('valueRange'));
+        if (null !== $this->valuePeriod) $this->valuePeriod->xmlSerialize(true, $sxe->addChild('valuePeriod'));
+        if (null !== $this->valueRatio) $this->valueRatio->xmlSerialize(true, $sxe->addChild('valueRatio'));
+        if (null !== $this->valueReference) $this->valueReference->xmlSerialize(true, $sxe->addChild('valueReference'));
+        if (null !== $this->valueSampledData) $this->valueSampledData->xmlSerialize(true, $sxe->addChild('valueSampledData'));
+        if (null !== $this->valueSignature) $this->valueSignature->xmlSerialize(true, $sxe->addChild('valueSignature'));
+        if (null !== $this->valueHumanName) $this->valueHumanName->xmlSerialize(true, $sxe->addChild('valueHumanName'));
+        if (null !== $this->valueAddress) $this->valueAddress->xmlSerialize(true, $sxe->addChild('valueAddress'));
+        if (null !== $this->valueContactPoint) $this->valueContactPoint->xmlSerialize(true, $sxe->addChild('valueContactPoint'));
+        if (null !== $this->valueTiming) $this->valueTiming->xmlSerialize(true, $sxe->addChild('valueTiming'));
+        if (null !== $this->valueMeta) $this->valueMeta->xmlSerialize(true, $sxe->addChild('valueMeta'));
+        if (null !== $this->url) {
+            $urlElement = $sxe->addChild('url');
+            $urlElement->addAttribute('value', (string)$this->url);
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

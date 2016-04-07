@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Demographics and other administrative information about an individual or animal receiving care or other health-related services.
  */
-class FHIRPatientAnimal extends FHIRBackboneElement
+class FHIRPatientAnimal extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Identifies the high level taxonomic categorization of the kind of animal.
@@ -86,6 +87,11 @@ class FHIRPatientAnimal extends FHIRBackboneElement
     public $genderStatus = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Patient.Animal';
+
+    /**
      * Identifies the high level taxonomic categorization of the kind of animal.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -97,10 +103,12 @@ class FHIRPatientAnimal extends FHIRBackboneElement
     /**
      * Identifies the high level taxonomic categorization of the kind of animal.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $species
+     * @return $this
      */
     public function setSpecies($species)
     {
         $this->species = $species;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRPatientAnimal extends FHIRBackboneElement
     /**
      * Identifies the detailed categorization of the kind of animal.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $breed
+     * @return $this
      */
     public function setBreed($breed)
     {
         $this->breed = $breed;
+        return $this;
     }
 
     /**
@@ -133,10 +143,56 @@ class FHIRPatientAnimal extends FHIRBackboneElement
     /**
      * Indicates the current state of the animal's reproductive organs.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $genderStatus
+     * @return $this
      */
     public function setGenderStatus($genderStatus)
     {
         $this->genderStatus = $genderStatus;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->species) $json['species'] = $this->species->jsonSerialize();
+        if (null !== $this->breed) $json['breed'] = $this->breed->jsonSerialize();
+        if (null !== $this->genderStatus) $json['genderStatus'] = $this->genderStatus->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<PatientAnimal xmlns="http://hl7.org/fhir"></PatientAnimal>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->species) $this->species->xmlSerialize(true, $sxe->addChild('species'));
+        if (null !== $this->breed) $this->breed->xmlSerialize(true, $sxe->addChild('breed'));
+        if (null !== $this->genderStatus) $this->genderStatus->xmlSerialize(true, $sxe->addChild('genderStatus'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

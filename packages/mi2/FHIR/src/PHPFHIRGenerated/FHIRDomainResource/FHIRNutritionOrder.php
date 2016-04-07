@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A request to supply a diet, formula feeding (enteral) or oral nutritional supplement to a patient/resident.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRNutritionOrder extends FHIRDomainResource
+class FHIRNutritionOrder extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * The person (patient) who needs the nutrition order for an oral diet, nutritional supplement and/or enteral or formula feeding.
@@ -141,6 +142,11 @@ class FHIRNutritionOrder extends FHIRDomainResource
     public $enteralFormula = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'NutritionOrder';
+
+    /**
      * The person (patient) who needs the nutrition order for an oral diet, nutritional supplement and/or enteral or formula feeding.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRReference
      */
@@ -152,10 +158,12 @@ class FHIRNutritionOrder extends FHIRDomainResource
     /**
      * The person (patient) who needs the nutrition order for an oral diet, nutritional supplement and/or enteral or formula feeding.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $patient
+     * @return $this
      */
     public function setPatient($patient)
     {
         $this->patient = $patient;
+        return $this;
     }
 
     /**
@@ -170,10 +178,12 @@ class FHIRNutritionOrder extends FHIRDomainResource
     /**
      * The practitioner that holds legal responsibility for ordering the diet, nutritional supplement, or formula feedings.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $orderer
+     * @return $this
      */
     public function setOrderer($orderer)
     {
         $this->orderer = $orderer;
+        return $this;
     }
 
     /**
@@ -188,10 +198,12 @@ class FHIRNutritionOrder extends FHIRDomainResource
     /**
      * Identifiers assigned to this order by the order sender or by the order receiver.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -206,10 +218,12 @@ class FHIRNutritionOrder extends FHIRDomainResource
     /**
      * An encounter that provides additional information about the healthcare context in which this request is made.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $encounter
+     * @return $this
      */
     public function setEncounter($encounter)
     {
         $this->encounter = $encounter;
+        return $this;
     }
 
     /**
@@ -224,10 +238,12 @@ class FHIRNutritionOrder extends FHIRDomainResource
     /**
      * The date and time that this nutrition order was requested.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $dateTime
+     * @return $this
      */
     public function setDateTime($dateTime)
     {
         $this->dateTime = $dateTime;
+        return $this;
     }
 
     /**
@@ -242,10 +258,12 @@ class FHIRNutritionOrder extends FHIRDomainResource
     /**
      * The workflow status of the nutrition order/request.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRNutritionOrderStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -260,10 +278,12 @@ class FHIRNutritionOrder extends FHIRDomainResource
     /**
      * A link to a record of allergies or intolerances  which should be included in the nutrition order.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $allergyIntolerance
+     * @return $this
      */
     public function addAllergyIntolerance($allergyIntolerance)
     {
         $this->allergyIntolerance[] = $allergyIntolerance;
+        return $this;
     }
 
     /**
@@ -278,10 +298,12 @@ class FHIRNutritionOrder extends FHIRDomainResource
     /**
      * This modifier is used to convey order-specific modifiers about the type of food that should be given. These can be derived from patient allergies, intolerances, or preferences such as Halal, Vegan or Kosher. This modifier applies to the entire nutrition order inclusive of the oral diet, nutritional supplements and enteral formula feedings.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $foodPreferenceModifier
+     * @return $this
      */
     public function addFoodPreferenceModifier($foodPreferenceModifier)
     {
         $this->foodPreferenceModifier[] = $foodPreferenceModifier;
+        return $this;
     }
 
     /**
@@ -296,10 +318,12 @@ class FHIRNutritionOrder extends FHIRDomainResource
     /**
      * This modifier is used to convey order-specific modifiers about the type of food that should NOT be given. These can be derived from patient allergies, intolerances, or preferences such as No Red Meat, No Soy or No Wheat or  Gluten-Free.  While it should not be necessary to repeat allergy or intolerance information captured in the referenced allergyIntolerance resource in the excludeFoodModifier, this element may be used to convey additional specificity related to foods that should be eliminated from the patient’s diet for any reason.  This modifier applies to the entire nutrition order inclusive of the oral diet, nutritional supplements and enteral formula feedings.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $excludeFoodModifier
+     * @return $this
      */
     public function addExcludeFoodModifier($excludeFoodModifier)
     {
         $this->excludeFoodModifier[] = $excludeFoodModifier;
+        return $this;
     }
 
     /**
@@ -314,10 +338,12 @@ class FHIRNutritionOrder extends FHIRDomainResource
     /**
      * Diet given orally in contrast to enteral (tube) feeding.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRNutritionOrder\FHIRNutritionOrderOralDiet $oralDiet
+     * @return $this
      */
     public function setOralDiet($oralDiet)
     {
         $this->oralDiet = $oralDiet;
+        return $this;
     }
 
     /**
@@ -332,10 +358,12 @@ class FHIRNutritionOrder extends FHIRDomainResource
     /**
      * Oral nutritional products given in order to add further nutritional value to the patient's diet.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRNutritionOrder\FHIRNutritionOrderSupplement[] $supplement
+     * @return $this
      */
     public function addSupplement($supplement)
     {
         $this->supplement[] = $supplement;
+        return $this;
     }
 
     /**
@@ -350,10 +378,120 @@ class FHIRNutritionOrder extends FHIRDomainResource
     /**
      * Feeding provided through the gastrointestinal tract via a tube, catheter, or stoma that delivers nutrition distal to the oral cavity.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRNutritionOrder\FHIRNutritionOrderEnteralFormula $enteralFormula
+     * @return $this
      */
     public function setEnteralFormula($enteralFormula)
     {
         $this->enteralFormula = $enteralFormula;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->patient) $json['patient'] = $this->patient->jsonSerialize();
+        if (null !== $this->orderer) $json['orderer'] = $this->orderer->jsonSerialize();
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->encounter) $json['encounter'] = $this->encounter->jsonSerialize();
+        if (null !== $this->dateTime) $json['dateTime'] = $this->dateTime->jsonSerialize();
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (0 < count($this->allergyIntolerance)) {
+            $json['allergyIntolerance'] = array();
+            foreach($this->allergyIntolerance as $allergyIntolerance) {
+                $json['allergyIntolerance'][] = $allergyIntolerance->jsonSerialize();
+            }
+        }
+        if (0 < count($this->foodPreferenceModifier)) {
+            $json['foodPreferenceModifier'] = array();
+            foreach($this->foodPreferenceModifier as $foodPreferenceModifier) {
+                $json['foodPreferenceModifier'][] = $foodPreferenceModifier->jsonSerialize();
+            }
+        }
+        if (0 < count($this->excludeFoodModifier)) {
+            $json['excludeFoodModifier'] = array();
+            foreach($this->excludeFoodModifier as $excludeFoodModifier) {
+                $json['excludeFoodModifier'][] = $excludeFoodModifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->oralDiet) $json['oralDiet'] = $this->oralDiet->jsonSerialize();
+        if (0 < count($this->supplement)) {
+            $json['supplement'] = array();
+            foreach($this->supplement as $supplement) {
+                $json['supplement'][] = $supplement->jsonSerialize();
+            }
+        }
+        if (null !== $this->enteralFormula) $json['enteralFormula'] = $this->enteralFormula->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<NutritionOrder xmlns="http://hl7.org/fhir"></NutritionOrder>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->patient) $this->patient->xmlSerialize(true, $sxe->addChild('patient'));
+        if (null !== $this->orderer) $this->orderer->xmlSerialize(true, $sxe->addChild('orderer'));
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->encounter) $this->encounter->xmlSerialize(true, $sxe->addChild('encounter'));
+        if (null !== $this->dateTime) $this->dateTime->xmlSerialize(true, $sxe->addChild('dateTime'));
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (0 < count($this->allergyIntolerance)) {
+            foreach($this->allergyIntolerance as $allergyIntolerance) {
+                $allergyIntolerance->xmlSerialize(true, $sxe->addChild('allergyIntolerance'));
+            }
+        }
+        if (0 < count($this->foodPreferenceModifier)) {
+            foreach($this->foodPreferenceModifier as $foodPreferenceModifier) {
+                $foodPreferenceModifier->xmlSerialize(true, $sxe->addChild('foodPreferenceModifier'));
+            }
+        }
+        if (0 < count($this->excludeFoodModifier)) {
+            foreach($this->excludeFoodModifier as $excludeFoodModifier) {
+                $excludeFoodModifier->xmlSerialize(true, $sxe->addChild('excludeFoodModifier'));
+            }
+        }
+        if (null !== $this->oralDiet) $this->oralDiet->xmlSerialize(true, $sxe->addChild('oralDiet'));
+        if (0 < count($this->supplement)) {
+            foreach($this->supplement as $supplement) {
+                $supplement->xmlSerialize(true, $sxe->addChild('supplement'));
+            }
+        }
+        if (null !== $this->enteralFormula) $this->enteralFormula->xmlSerialize(true, $sxe->addChild('enteralFormula'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

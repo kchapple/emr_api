@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A record of an event made for purposes of maintaining a security log. Typical uses include detection of intrusion attempts and monitoring for inappropriate usage.
  */
-class FHIRAuditEventParticipant extends FHIRBackboneElement
+class FHIRAuditEventParticipant extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Specification of the role(s) the user plays when performing the event. Usually the codes used in this element are local codes defined by the role-based access control security system used in the local context.
@@ -134,6 +135,11 @@ class FHIRAuditEventParticipant extends FHIRBackboneElement
     public $purposeOfUse = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'AuditEvent.Participant';
+
+    /**
      * Specification of the role(s) the user plays when performing the event. Usually the codes used in this element are local codes defined by the role-based access control security system used in the local context.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[]
      */
@@ -145,10 +151,12 @@ class FHIRAuditEventParticipant extends FHIRBackboneElement
     /**
      * Specification of the role(s) the user plays when performing the event. Usually the codes used in this element are local codes defined by the role-based access control security system used in the local context.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $role
+     * @return $this
      */
     public function addRole($role)
     {
         $this->role[] = $role;
+        return $this;
     }
 
     /**
@@ -163,10 +171,12 @@ class FHIRAuditEventParticipant extends FHIRBackboneElement
     /**
      * Direct reference to a resource that identifies the participant.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $reference
+     * @return $this
      */
     public function setReference($reference)
     {
         $this->reference = $reference;
+        return $this;
     }
 
     /**
@@ -181,10 +191,12 @@ class FHIRAuditEventParticipant extends FHIRBackboneElement
     /**
      * Unique identifier for the user actively participating in the event.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $userId
+     * @return $this
      */
     public function setUserId($userId)
     {
         $this->userId = $userId;
+        return $this;
     }
 
     /**
@@ -199,10 +211,12 @@ class FHIRAuditEventParticipant extends FHIRBackboneElement
     /**
      * Alternative Participant Identifier. For a human, this should be a user identifier text string from authentication system. This identifier would be one known to a common authentication system (e.g. single sign-on), if available.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $altId
+     * @return $this
      */
     public function setAltId($altId)
     {
         $this->altId = $altId;
+        return $this;
     }
 
     /**
@@ -217,10 +231,12 @@ class FHIRAuditEventParticipant extends FHIRBackboneElement
     /**
      * Human-meaningful name for the user.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -235,10 +251,12 @@ class FHIRAuditEventParticipant extends FHIRBackboneElement
     /**
      * Indicator that the user is or is not the requestor, or initiator, for the event being audited.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $requestor
+     * @return $this
      */
     public function setRequestor($requestor)
     {
         $this->requestor = $requestor;
+        return $this;
     }
 
     /**
@@ -253,10 +271,12 @@ class FHIRAuditEventParticipant extends FHIRBackboneElement
     /**
      * Where the event occurred.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $location
+     * @return $this
      */
     public function setLocation($location)
     {
         $this->location = $location;
+        return $this;
     }
 
     /**
@@ -271,10 +291,12 @@ class FHIRAuditEventParticipant extends FHIRBackboneElement
     /**
      * The policy or plan that authorized the activity being recorded. Typically, a single activity may have multiple applicable policies, such as patient consent, guarantor funding, etc. The policy would also indicate the security token used.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri[] $policy
+     * @return $this
      */
     public function addPolicy($policy)
     {
         $this->policy[] = $policy;
+        return $this;
     }
 
     /**
@@ -289,10 +311,12 @@ class FHIRAuditEventParticipant extends FHIRBackboneElement
     /**
      * Type of media involved. Used when the event is about exporting/importing onto media.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $media
+     * @return $this
      */
     public function setMedia($media)
     {
         $this->media = $media;
+        return $this;
     }
 
     /**
@@ -307,10 +331,12 @@ class FHIRAuditEventParticipant extends FHIRBackboneElement
     /**
      * Logical network location for application activity, if the activity has a network location.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRAuditEvent\FHIRAuditEventNetwork $network
+     * @return $this
      */
     public function setNetwork($network)
     {
         $this->network = $network;
+        return $this;
     }
 
     /**
@@ -325,10 +351,99 @@ class FHIRAuditEventParticipant extends FHIRBackboneElement
     /**
      * The reason (purpose of use), specific to this participant, that was used during the event being recorded.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding[] $purposeOfUse
+     * @return $this
      */
     public function addPurposeOfUse($purposeOfUse)
     {
         $this->purposeOfUse[] = $purposeOfUse;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->role)) {
+            $json['role'] = array();
+            foreach($this->role as $role) {
+                $json['role'][] = $role->jsonSerialize();
+            }
+        }
+        if (null !== $this->reference) $json['reference'] = $this->reference->jsonSerialize();
+        if (null !== $this->userId) $json['userId'] = $this->userId->jsonSerialize();
+        if (null !== $this->altId) $json['altId'] = $this->altId->jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->requestor) $json['requestor'] = $this->requestor->jsonSerialize();
+        if (null !== $this->location) $json['location'] = $this->location->jsonSerialize();
+        if (0 < count($this->policy)) {
+            $json['policy'] = array();
+            foreach($this->policy as $policy) {
+                $json['policy'][] = $policy->jsonSerialize();
+            }
+        }
+        if (null !== $this->media) $json['media'] = $this->media->jsonSerialize();
+        if (null !== $this->network) $json['network'] = $this->network->jsonSerialize();
+        if (0 < count($this->purposeOfUse)) {
+            $json['purposeOfUse'] = array();
+            foreach($this->purposeOfUse as $purposeOfUse) {
+                $json['purposeOfUse'][] = $purposeOfUse->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<AuditEventParticipant xmlns="http://hl7.org/fhir"></AuditEventParticipant>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->role)) {
+            foreach($this->role as $role) {
+                $role->xmlSerialize(true, $sxe->addChild('role'));
+            }
+        }
+        if (null !== $this->reference) $this->reference->xmlSerialize(true, $sxe->addChild('reference'));
+        if (null !== $this->userId) $this->userId->xmlSerialize(true, $sxe->addChild('userId'));
+        if (null !== $this->altId) $this->altId->xmlSerialize(true, $sxe->addChild('altId'));
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->requestor) $this->requestor->xmlSerialize(true, $sxe->addChild('requestor'));
+        if (null !== $this->location) $this->location->xmlSerialize(true, $sxe->addChild('location'));
+        if (0 < count($this->policy)) {
+            foreach($this->policy as $policy) {
+                $policy->xmlSerialize(true, $sxe->addChild('policy'));
+            }
+        }
+        if (null !== $this->media) $this->media->xmlSerialize(true, $sxe->addChild('media'));
+        if (null !== $this->network) $this->network->xmlSerialize(true, $sxe->addChild('network'));
+        if (0 < count($this->purposeOfUse)) {
+            foreach($this->purposeOfUse as $purposeOfUse) {
+                $purposeOfUse->xmlSerialize(true, $sxe->addChild('purposeOfUse'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

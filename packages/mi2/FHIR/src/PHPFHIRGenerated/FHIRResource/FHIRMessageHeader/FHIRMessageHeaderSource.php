@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * The header for a message exchange that is either requesting or responding to an action.  The reference(s) that are the subject of the action as well as other information related to the action are typically transmitted in a bundle in which the MessageHeader resource instance is the first resource in the bundle.
  */
-class FHIRMessageHeaderSource extends FHIRBackboneElement
+class FHIRMessageHeaderSource extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Human-readable name for the source system.
@@ -98,6 +99,11 @@ class FHIRMessageHeaderSource extends FHIRBackboneElement
     public $endpoint = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'MessageHeader.Source';
+
+    /**
      * Human-readable name for the source system.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -109,10 +115,12 @@ class FHIRMessageHeaderSource extends FHIRBackboneElement
     /**
      * Human-readable name for the source system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -127,10 +135,12 @@ class FHIRMessageHeaderSource extends FHIRBackboneElement
     /**
      * May include configuration or other information useful in debugging.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $software
+     * @return $this
      */
     public function setSoftware($software)
     {
         $this->software = $software;
+        return $this;
     }
 
     /**
@@ -145,10 +155,12 @@ class FHIRMessageHeaderSource extends FHIRBackboneElement
     /**
      * Can convey versions of multiple systems in situations where a message passes through multiple hands.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $version
+     * @return $this
      */
     public function setVersion($version)
     {
         $this->version = $version;
+        return $this;
     }
 
     /**
@@ -163,10 +175,12 @@ class FHIRMessageHeaderSource extends FHIRBackboneElement
     /**
      * An e-mail, phone, website or other contact point to use to resolve issues with message communications.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRContactPoint $contact
+     * @return $this
      */
     public function setContact($contact)
     {
         $this->contact = $contact;
+        return $this;
     }
 
     /**
@@ -181,10 +195,60 @@ class FHIRMessageHeaderSource extends FHIRBackboneElement
     /**
      * Identifies the routing target to send acknowledgements to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $endpoint
+     * @return $this
      */
     public function setEndpoint($endpoint)
     {
         $this->endpoint = $endpoint;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->software) $json['software'] = $this->software->jsonSerialize();
+        if (null !== $this->version) $json['version'] = $this->version->jsonSerialize();
+        if (null !== $this->contact) $json['contact'] = $this->contact->jsonSerialize();
+        if (null !== $this->endpoint) $json['endpoint'] = $this->endpoint->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<MessageHeaderSource xmlns="http://hl7.org/fhir"></MessageHeaderSource>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->software) $this->software->xmlSerialize(true, $sxe->addChild('software'));
+        if (null !== $this->version) $this->version->xmlSerialize(true, $sxe->addChild('version'));
+        if (null !== $this->contact) $this->contact->xmlSerialize(true, $sxe->addChild('contact'));
+        if (null !== $this->endpoint) $this->endpoint->xmlSerialize(true, $sxe->addChild('endpoint'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

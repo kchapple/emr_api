@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A record of a clinical assessment performed to determine what problem(s) may affect the patient and before planning the treatments or management strategies that are best to manage a patient's condition. Assessments are often 1:1 with a clinical consultation / encounter,  but this varies greatly depending on the clinical workflow. This resource is called "ClinicalImpression" rather than "ClinicalAssessment" to avoid confusion with the recording of assessment tools such as Apgar score.
  */
-class FHIRClinicalImpressionRuledOut extends FHIRBackboneElement
+class FHIRClinicalImpressionRuledOut extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Specific text of code for diagnosis.
@@ -80,6 +81,11 @@ class FHIRClinicalImpressionRuledOut extends FHIRBackboneElement
     public $reason = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ClinicalImpression.RuledOut';
+
+    /**
      * Specific text of code for diagnosis.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -91,10 +97,12 @@ class FHIRClinicalImpressionRuledOut extends FHIRBackboneElement
     /**
      * Specific text of code for diagnosis.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $item
+     * @return $this
      */
     public function setItem($item)
     {
         $this->item = $item;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRClinicalImpressionRuledOut extends FHIRBackboneElement
     /**
      * Grounds for elimination.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $reason
+     * @return $this
      */
     public function setReason($reason)
     {
         $this->reason = $reason;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->item) $json['item'] = $this->item->jsonSerialize();
+        if (null !== $this->reason) $json['reason'] = $this->reason->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ClinicalImpressionRuledOut xmlns="http://hl7.org/fhir"></ClinicalImpressionRuledOut>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->item) $this->item->xmlSerialize(true, $sxe->addChild('item'));
+        if (null !== $this->reason) $this->reason->xmlSerialize(true, $sxe->addChild('reason'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A supply - a  request for something, and provision of what is supplied.
  */
-class FHIRSupplyDispense extends FHIRBackboneElement
+class FHIRSupplyDispense extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Identifier assigned by the dispensing facility when the item(s) is dispensed.
@@ -128,6 +129,11 @@ class FHIRSupplyDispense extends FHIRBackboneElement
     public $receiver = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Supply.Dispense';
+
+    /**
      * Identifier assigned by the dispensing facility when the item(s) is dispensed.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier
      */
@@ -139,10 +145,12 @@ class FHIRSupplyDispense extends FHIRBackboneElement
     /**
      * Identifier assigned by the dispensing facility when the item(s) is dispensed.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $identifier
+     * @return $this
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -157,10 +165,12 @@ class FHIRSupplyDispense extends FHIRBackboneElement
     /**
      * A code specifying the state of the dispense event.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRSupplyDispenseStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -175,10 +185,12 @@ class FHIRSupplyDispense extends FHIRBackboneElement
     /**
      * Indicates the type of dispensing event that is performed. Examples include: Trial Fill, Completion of Trial, Partial Fill, Emergency Fill, Samples, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -193,10 +205,12 @@ class FHIRSupplyDispense extends FHIRBackboneElement
     /**
      * The amount of supply that has been dispensed. Includes unit of measure.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRQuantity $quantity
+     * @return $this
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+        return $this;
     }
 
     /**
@@ -211,10 +225,12 @@ class FHIRSupplyDispense extends FHIRBackboneElement
     /**
      * Identifies the medication or substance or device being dispensed. This is either a link to a resource representing the details of the item or a simple attribute carrying a code that identifies the item from a known list.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $suppliedItem
+     * @return $this
      */
     public function setSuppliedItem($suppliedItem)
     {
         $this->suppliedItem = $suppliedItem;
+        return $this;
     }
 
     /**
@@ -229,10 +245,12 @@ class FHIRSupplyDispense extends FHIRBackboneElement
     /**
      * The individual responsible for dispensing the medication, supplier or device.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $supplier
+     * @return $this
      */
     public function setSupplier($supplier)
     {
         $this->supplier = $supplier;
+        return $this;
     }
 
     /**
@@ -247,10 +265,12 @@ class FHIRSupplyDispense extends FHIRBackboneElement
     /**
      * The time the dispense event occurred.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $whenPrepared
+     * @return $this
      */
     public function setWhenPrepared($whenPrepared)
     {
         $this->whenPrepared = $whenPrepared;
+        return $this;
     }
 
     /**
@@ -265,10 +285,12 @@ class FHIRSupplyDispense extends FHIRBackboneElement
     /**
      * The time the dispensed item was sent or handed to the patient (or agent).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $whenHandedOver
+     * @return $this
      */
     public function setWhenHandedOver($whenHandedOver)
     {
         $this->whenHandedOver = $whenHandedOver;
+        return $this;
     }
 
     /**
@@ -283,10 +305,12 @@ class FHIRSupplyDispense extends FHIRBackboneElement
     /**
      * Identification of the facility/location where the Supply was shipped to, as part of the dispense event.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $destination
+     * @return $this
      */
     public function setDestination($destination)
     {
         $this->destination = $destination;
+        return $this;
     }
 
     /**
@@ -301,10 +325,79 @@ class FHIRSupplyDispense extends FHIRBackboneElement
     /**
      * Identifies the person who picked up the Supply.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $receiver
+     * @return $this
      */
     public function addReceiver($receiver)
     {
         $this->receiver[] = $receiver;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->identifier) $json['identifier'] = $this->identifier->jsonSerialize();
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->quantity) $json['quantity'] = $this->quantity->jsonSerialize();
+        if (null !== $this->suppliedItem) $json['suppliedItem'] = $this->suppliedItem->jsonSerialize();
+        if (null !== $this->supplier) $json['supplier'] = $this->supplier->jsonSerialize();
+        if (null !== $this->whenPrepared) $json['whenPrepared'] = $this->whenPrepared->jsonSerialize();
+        if (null !== $this->whenHandedOver) $json['whenHandedOver'] = $this->whenHandedOver->jsonSerialize();
+        if (null !== $this->destination) $json['destination'] = $this->destination->jsonSerialize();
+        if (0 < count($this->receiver)) {
+            $json['receiver'] = array();
+            foreach($this->receiver as $receiver) {
+                $json['receiver'][] = $receiver->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<SupplyDispense xmlns="http://hl7.org/fhir"></SupplyDispense>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->identifier) $this->identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->quantity) $this->quantity->xmlSerialize(true, $sxe->addChild('quantity'));
+        if (null !== $this->suppliedItem) $this->suppliedItem->xmlSerialize(true, $sxe->addChild('suppliedItem'));
+        if (null !== $this->supplier) $this->supplier->xmlSerialize(true, $sxe->addChild('supplier'));
+        if (null !== $this->whenPrepared) $this->whenPrepared->xmlSerialize(true, $sxe->addChild('whenPrepared'));
+        if (null !== $this->whenHandedOver) $this->whenHandedOver->xmlSerialize(true, $sxe->addChild('whenHandedOver'));
+        if (null !== $this->destination) $this->destination->xmlSerialize(true, $sxe->addChild('destination'));
+        if (0 < count($this->receiver)) {
+            foreach($this->receiver as $receiver) {
+                $receiver->xmlSerialize(true, $sxe->addChild('receiver'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

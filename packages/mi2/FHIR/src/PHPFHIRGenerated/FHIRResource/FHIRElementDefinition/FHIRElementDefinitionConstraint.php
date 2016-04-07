@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Captures constraints on each element within the resource, profile, or extension.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRElementDefinitionConstraint extends FHIRElement
+class FHIRElementDefinitionConstraint extends FHIRElement implements JsonSerializable
 {
     /**
      * Allows identification of which elements have their cardinalities impacted by the constraint.  Will not be referenced for constraints that do not affect cardinality.
@@ -99,6 +100,11 @@ class FHIRElementDefinitionConstraint extends FHIRElement
     public $xpath = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ElementDefinition.Constraint';
+
+    /**
      * Allows identification of which elements have their cardinalities impacted by the constraint.  Will not be referenced for constraints that do not affect cardinality.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRId
      */
@@ -110,10 +116,12 @@ class FHIRElementDefinitionConstraint extends FHIRElement
     /**
      * Allows identification of which elements have their cardinalities impacted by the constraint.  Will not be referenced for constraints that do not affect cardinality.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRId $key
+     * @return $this
      */
     public function setKey($key)
     {
         $this->key = $key;
+        return $this;
     }
 
     /**
@@ -128,10 +136,12 @@ class FHIRElementDefinitionConstraint extends FHIRElement
     /**
      * Description of why this constraint is necessary or appropriate.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $requirements
+     * @return $this
      */
     public function setRequirements($requirements)
     {
         $this->requirements = $requirements;
+        return $this;
     }
 
     /**
@@ -146,10 +156,12 @@ class FHIRElementDefinitionConstraint extends FHIRElement
     /**
      * Identifies the impact constraint violation has on the conformance of the instance.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRConstraintSeverity $severity
+     * @return $this
      */
     public function setSeverity($severity)
     {
         $this->severity = $severity;
+        return $this;
     }
 
     /**
@@ -164,10 +176,12 @@ class FHIRElementDefinitionConstraint extends FHIRElement
     /**
      * Text that can be used to describe the constraint in messages identifying that the constraint has been violated.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $human
+     * @return $this
      */
     public function setHuman($human)
     {
         $this->human = $human;
+        return $this;
     }
 
     /**
@@ -182,10 +196,60 @@ class FHIRElementDefinitionConstraint extends FHIRElement
     /**
      * An XPath expression of constraint that can be executed to see if this constraint is met.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $xpath
+     * @return $this
      */
     public function setXpath($xpath)
     {
         $this->xpath = $xpath;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->key) $json['key'] = $this->key->jsonSerialize();
+        if (null !== $this->requirements) $json['requirements'] = $this->requirements->jsonSerialize();
+        if (null !== $this->severity) $json['severity'] = $this->severity->jsonSerialize();
+        if (null !== $this->human) $json['human'] = $this->human->jsonSerialize();
+        if (null !== $this->xpath) $json['xpath'] = $this->xpath->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ElementDefinitionConstraint xmlns="http://hl7.org/fhir"></ElementDefinitionConstraint>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->key) $this->key->xmlSerialize(true, $sxe->addChild('key'));
+        if (null !== $this->requirements) $this->requirements->xmlSerialize(true, $sxe->addChild('requirements'));
+        if (null !== $this->severity) $this->severity->xmlSerialize(true, $sxe->addChild('severity'));
+        if (null !== $this->human) $this->human->xmlSerialize(true, $sxe->addChild('human'));
+        if (null !== $this->xpath) $this->xpath->xmlSerialize(true, $sxe->addChild('xpath'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

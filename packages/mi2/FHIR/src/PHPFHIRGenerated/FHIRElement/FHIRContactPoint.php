@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Details for all kinds of technology mediated contact points for a person or organization, including telephone, email, etc.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRContactPoint extends FHIRElement
+class FHIRContactPoint extends FHIRElement implements JsonSerializable
 {
     /**
      * Telecommunications form for contact point - what communications system is required to make use of the contact.
@@ -99,6 +100,11 @@ class FHIRContactPoint extends FHIRElement
     public $period = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ContactPoint';
+
+    /**
      * Telecommunications form for contact point - what communications system is required to make use of the contact.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRContactPointSystem
      */
@@ -110,10 +116,12 @@ class FHIRContactPoint extends FHIRElement
     /**
      * Telecommunications form for contact point - what communications system is required to make use of the contact.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRContactPointSystem $system
+     * @return $this
      */
     public function setSystem($system)
     {
         $this->system = $system;
+        return $this;
     }
 
     /**
@@ -128,10 +136,12 @@ class FHIRContactPoint extends FHIRElement
     /**
      * The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $value
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
     }
 
     /**
@@ -146,10 +156,12 @@ class FHIRContactPoint extends FHIRElement
     /**
      * Identifies the purpose for the contact point.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRContactPointUse $use
+     * @return $this
      */
     public function setUse($use)
     {
         $this->use = $use;
+        return $this;
     }
 
     /**
@@ -164,10 +176,12 @@ class FHIRContactPoint extends FHIRElement
     /**
      * Specifies a preferred order in which to use a set of contacts. Contacts are ranked with lower values coming before higher values.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt $rank
+     * @return $this
      */
     public function setRank($rank)
     {
         $this->rank = $rank;
+        return $this;
     }
 
     /**
@@ -182,10 +196,60 @@ class FHIRContactPoint extends FHIRElement
     /**
      * Time period when the contact point was/is in use.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->system) $json['system'] = $this->system->jsonSerialize();
+        if (null !== $this->value) $json['value'] = $this->value->jsonSerialize();
+        if (null !== $this->use) $json['use'] = $this->use->jsonSerialize();
+        if (null !== $this->rank) $json['rank'] = $this->rank->jsonSerialize();
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ContactPoint xmlns="http://hl7.org/fhir"></ContactPoint>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->system) $this->system->xmlSerialize(true, $sxe->addChild('system'));
+        if (null !== $this->value) $this->value->xmlSerialize(true, $sxe->addChild('value'));
+        if (null !== $this->use) $this->use->xmlSerialize(true, $sxe->addChild('use'));
+        if (null !== $this->rank) $this->rank->xmlSerialize(true, $sxe->addChild('rank'));
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

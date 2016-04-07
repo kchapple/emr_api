@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A manifest of a set of DICOM Service-Object Pair Instances (SOP Instances).  The referenced SOP Instances (images or other content) are for a single patient, and may be from one or more studies. The referenced SOP Instances have been selected for a purpose, such as quality assurance, conference, or consult. Reflecting that range of purposes, typical ImagingObjectSelection resources may include all SOP Instances in a study (perhaps for sharing through a Health Information Exchange); key images from multiple studies (for reference by a referring or treating physician); a multi-frame ultrasound instance ("cine" video clip) and a set of measurements taken from that instance (for inclusion in a teaching file); and so on.
  */
-class FHIRImagingObjectSelectionFrames extends FHIRBackboneElement
+class FHIRImagingObjectSelectionFrames extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The frame numbers in the frame set.
@@ -80,6 +81,11 @@ class FHIRImagingObjectSelectionFrames extends FHIRBackboneElement
     public $url = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ImagingObjectSelection.Frames';
+
+    /**
      * The frame numbers in the frame set.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRUnsignedInt[]
      */
@@ -91,10 +97,12 @@ class FHIRImagingObjectSelectionFrames extends FHIRBackboneElement
     /**
      * The frame numbers in the frame set.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUnsignedInt[] $frameNumbers
+     * @return $this
      */
     public function addFrameNumbers($frameNumbers)
     {
         $this->frameNumbers[] = $frameNumbers;
+        return $this;
     }
 
     /**
@@ -109,10 +117,63 @@ class FHIRImagingObjectSelectionFrames extends FHIRBackboneElement
     /**
      * WADO-RS URL to retrieve the DICOM frames.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $url
+     * @return $this
      */
     public function setUrl($url)
     {
         $this->url = $url;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->frameNumbers)) {
+            $json['frameNumbers'] = array();
+            foreach($this->frameNumbers as $frameNumbers) {
+                $json['frameNumbers'][] = $frameNumbers->jsonSerialize();
+            }
+        }
+        if (null !== $this->url) $json['url'] = $this->url->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ImagingObjectSelectionFrames xmlns="http://hl7.org/fhir"></ImagingObjectSelectionFrames>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->frameNumbers)) {
+            foreach($this->frameNumbers as $frameNumbers) {
+                $frameNumbers->xmlSerialize(true, $sxe->addChild('frameNumbers'));
+            }
+        }
+        if (null !== $this->url) $this->url->xmlSerialize(true, $sxe->addChild('url'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

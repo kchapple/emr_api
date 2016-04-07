@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A structured set of questions intended to guide the collection of answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the underlying questions.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRQuestionnaire extends FHIRDomainResource
+class FHIRQuestionnaire extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * This records identifiers associated with this question set that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).
@@ -117,6 +118,11 @@ class FHIRQuestionnaire extends FHIRDomainResource
     public $group = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Questionnaire';
+
+    /**
      * This records identifiers associated with this question set that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -128,10 +134,12 @@ class FHIRQuestionnaire extends FHIRDomainResource
     /**
      * This records identifiers associated with this question set that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -146,10 +154,12 @@ class FHIRQuestionnaire extends FHIRDomainResource
     /**
      * The version number assigned by the publisher for business reasons.  It may remain the same when the resource is updated.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $version
+     * @return $this
      */
     public function setVersion($version)
     {
         $this->version = $version;
+        return $this;
     }
 
     /**
@@ -164,10 +174,12 @@ class FHIRQuestionnaire extends FHIRDomainResource
     /**
      * The lifecycle status of the questionnaire as a whole.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRQuestionnaireStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -182,10 +194,12 @@ class FHIRQuestionnaire extends FHIRDomainResource
     /**
      * The date that this questionnaire was last changed.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $date
+     * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -200,10 +214,12 @@ class FHIRQuestionnaire extends FHIRDomainResource
     /**
      * Organization or person responsible for developing and maintaining the questionnaire.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $publisher
+     * @return $this
      */
     public function setPublisher($publisher)
     {
         $this->publisher = $publisher;
+        return $this;
     }
 
     /**
@@ -218,10 +234,12 @@ class FHIRQuestionnaire extends FHIRDomainResource
     /**
      * Contact details to assist a user in finding and communicating with the publisher.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRContactPoint[] $telecom
+     * @return $this
      */
     public function addTelecom($telecom)
     {
         $this->telecom[] = $telecom;
+        return $this;
     }
 
     /**
@@ -236,10 +254,12 @@ class FHIRQuestionnaire extends FHIRDomainResource
     /**
      * Identifies the types of subjects that can be the subject of the questionnaire.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode[] $subjectType
+     * @return $this
      */
     public function addSubjectType($subjectType)
     {
         $this->subjectType[] = $subjectType;
+        return $this;
     }
 
     /**
@@ -254,10 +274,94 @@ class FHIRQuestionnaire extends FHIRDomainResource
     /**
      * A collection of related questions (or further groupings of questions).
      * @param \PHPFHIRGenerated\FHIRResource\FHIRQuestionnaire\FHIRQuestionnaireGroup $group
+     * @return $this
      */
     public function setGroup($group)
     {
         $this->group = $group;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->version) $json['version'] = $this->version->jsonSerialize();
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->date) $json['date'] = $this->date->jsonSerialize();
+        if (null !== $this->publisher) $json['publisher'] = $this->publisher->jsonSerialize();
+        if (0 < count($this->telecom)) {
+            $json['telecom'] = array();
+            foreach($this->telecom as $telecom) {
+                $json['telecom'][] = $telecom->jsonSerialize();
+            }
+        }
+        if (0 < count($this->subjectType)) {
+            $json['subjectType'] = array();
+            foreach($this->subjectType as $subjectType) {
+                $json['subjectType'][] = $subjectType->jsonSerialize();
+            }
+        }
+        if (null !== $this->group) $json['group'] = $this->group->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Questionnaire xmlns="http://hl7.org/fhir"></Questionnaire>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->version) $this->version->xmlSerialize(true, $sxe->addChild('version'));
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->date) $this->date->xmlSerialize(true, $sxe->addChild('date'));
+        if (null !== $this->publisher) $this->publisher->xmlSerialize(true, $sxe->addChild('publisher'));
+        if (0 < count($this->telecom)) {
+            foreach($this->telecom as $telecom) {
+                $telecom->xmlSerialize(true, $sxe->addChild('telecom'));
+            }
+        }
+        if (0 < count($this->subjectType)) {
+            foreach($this->subjectType as $subjectType) {
+                $subjectType->xmlSerialize(true, $sxe->addChild('subjectType'));
+            }
+        }
+        if (null !== $this->group) $this->group->xmlSerialize(true, $sxe->addChild('group'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

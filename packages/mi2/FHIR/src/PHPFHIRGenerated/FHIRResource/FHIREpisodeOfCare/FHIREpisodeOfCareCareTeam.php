@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * An association between a patient and an organization / healthcare provider(s) during which time encounters may occur. The managing organization assumes a level of responsibility for the patient during this time.
  */
-class FHIREpisodeOfCareCareTeam extends FHIRBackboneElement
+class FHIREpisodeOfCareCareTeam extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The role this team member is taking within this episode of care.
@@ -86,6 +87,11 @@ class FHIREpisodeOfCareCareTeam extends FHIRBackboneElement
     public $member = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'EpisodeOfCare.CareTeam';
+
+    /**
      * The role this team member is taking within this episode of care.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[]
      */
@@ -97,10 +103,12 @@ class FHIREpisodeOfCareCareTeam extends FHIRBackboneElement
     /**
      * The role this team member is taking within this episode of care.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $role
+     * @return $this
      */
     public function addRole($role)
     {
         $this->role[] = $role;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIREpisodeOfCareCareTeam extends FHIRBackboneElement
     /**
      * The period of time this practitioner is performing some role within the episode of care.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
     }
 
     /**
@@ -133,10 +143,65 @@ class FHIREpisodeOfCareCareTeam extends FHIRBackboneElement
     /**
      * The practitioner (or Organization) within the team.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $member
+     * @return $this
      */
     public function setMember($member)
     {
         $this->member = $member;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->role)) {
+            $json['role'] = array();
+            foreach($this->role as $role) {
+                $json['role'][] = $role->jsonSerialize();
+            }
+        }
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        if (null !== $this->member) $json['member'] = $this->member->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<EpisodeOfCareCareTeam xmlns="http://hl7.org/fhir"></EpisodeOfCareCareTeam>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->role)) {
+            foreach($this->role as $role) {
+                $role->xmlSerialize(true, $sxe->addChild('role'));
+            }
+        }
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if (null !== $this->member) $this->member->xmlSerialize(true, $sxe->addChild('member'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

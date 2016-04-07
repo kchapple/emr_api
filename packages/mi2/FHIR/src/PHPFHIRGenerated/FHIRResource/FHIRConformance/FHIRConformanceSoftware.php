@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A conformance statement is a set of capabilities of a FHIR Server that may be used as a statement of actual server functionality or a statement of required or desired server implementation.
  */
-class FHIRConformanceSoftware extends FHIRBackboneElement
+class FHIRConformanceSoftware extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Name software is known by.
@@ -86,6 +87,11 @@ class FHIRConformanceSoftware extends FHIRBackboneElement
     public $releaseDate = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Conformance.Software';
+
+    /**
      * Name software is known by.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -97,10 +103,12 @@ class FHIRConformanceSoftware extends FHIRBackboneElement
     /**
      * Name software is known by.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRConformanceSoftware extends FHIRBackboneElement
     /**
      * The version identifier for the software covered by this statement.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $version
+     * @return $this
      */
     public function setVersion($version)
     {
         $this->version = $version;
+        return $this;
     }
 
     /**
@@ -133,10 +143,56 @@ class FHIRConformanceSoftware extends FHIRBackboneElement
     /**
      * Date this version of the software released.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $releaseDate
+     * @return $this
      */
     public function setReleaseDate($releaseDate)
     {
         $this->releaseDate = $releaseDate;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->version) $json['version'] = $this->version->jsonSerialize();
+        if (null !== $this->releaseDate) $json['releaseDate'] = $this->releaseDate->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ConformanceSoftware xmlns="http://hl7.org/fhir"></ConformanceSoftware>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->version) $this->version->xmlSerialize(true, $sxe->addChild('version'));
+        if (null !== $this->releaseDate) $this->releaseDate->xmlSerialize(true, $sxe->addChild('releaseDate'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

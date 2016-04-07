@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Indicates that a medication product is to be or has been dispensed for a named person/patient.  This includes a description of the medication product (supply) provided and the instructions for administering the medication.  The medication dispense is the result of a pharmacy system responding to a medication order.
  */
-class FHIRMedicationDispenseSubstitution extends FHIRBackboneElement
+class FHIRMedicationDispenseSubstitution extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A code signifying whether a different drug was dispensed from what was prescribed.
@@ -86,6 +87,11 @@ class FHIRMedicationDispenseSubstitution extends FHIRBackboneElement
     public $responsibleParty = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'MedicationDispense.Substitution';
+
+    /**
      * A code signifying whether a different drug was dispensed from what was prescribed.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -97,10 +103,12 @@ class FHIRMedicationDispenseSubstitution extends FHIRBackboneElement
     /**
      * A code signifying whether a different drug was dispensed from what was prescribed.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRMedicationDispenseSubstitution extends FHIRBackboneElement
     /**
      * Indicates the reason for the substitution of (or lack of substitution) from what was prescribed.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $reason
+     * @return $this
      */
     public function addReason($reason)
     {
         $this->reason[] = $reason;
+        return $this;
     }
 
     /**
@@ -133,10 +143,74 @@ class FHIRMedicationDispenseSubstitution extends FHIRBackboneElement
     /**
      * The person or organization that has primary responsibility for the substitution.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $responsibleParty
+     * @return $this
      */
     public function addResponsibleParty($responsibleParty)
     {
         $this->responsibleParty[] = $responsibleParty;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (0 < count($this->reason)) {
+            $json['reason'] = array();
+            foreach($this->reason as $reason) {
+                $json['reason'][] = $reason->jsonSerialize();
+            }
+        }
+        if (0 < count($this->responsibleParty)) {
+            $json['responsibleParty'] = array();
+            foreach($this->responsibleParty as $responsibleParty) {
+                $json['responsibleParty'][] = $responsibleParty->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<MedicationDispenseSubstitution xmlns="http://hl7.org/fhir"></MedicationDispenseSubstitution>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (0 < count($this->reason)) {
+            foreach($this->reason as $reason) {
+                $reason->xmlSerialize(true, $sxe->addChild('reason'));
+            }
+        }
+        if (0 < count($this->responsibleParty)) {
+            foreach($this->responsibleParty as $responsibleParty) {
+                $responsibleParty->xmlSerialize(true, $sxe->addChild('responsibleParty'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

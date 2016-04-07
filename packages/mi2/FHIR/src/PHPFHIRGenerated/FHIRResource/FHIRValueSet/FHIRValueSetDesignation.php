@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A value set specifies a set of codes drawn from one or more code systems.
  */
-class FHIRValueSetDesignation extends FHIRBackboneElement
+class FHIRValueSetDesignation extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The language this designation is defined for.
@@ -86,6 +87,11 @@ class FHIRValueSetDesignation extends FHIRBackboneElement
     public $value = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ValueSet.Designation';
+
+    /**
      * The language this designation is defined for.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCode
      */
@@ -97,10 +103,12 @@ class FHIRValueSetDesignation extends FHIRBackboneElement
     /**
      * The language this designation is defined for.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $language
+     * @return $this
      */
     public function setLanguage($language)
     {
         $this->language = $language;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRValueSetDesignation extends FHIRBackboneElement
     /**
      * A code that details how this designation would be used.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $use
+     * @return $this
      */
     public function setUse($use)
     {
         $this->use = $use;
+        return $this;
     }
 
     /**
@@ -133,10 +143,56 @@ class FHIRValueSetDesignation extends FHIRBackboneElement
     /**
      * The text value for this designation.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $value
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->language) $json['language'] = $this->language->jsonSerialize();
+        if (null !== $this->use) $json['use'] = $this->use->jsonSerialize();
+        if (null !== $this->value) $json['value'] = $this->value->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ValueSetDesignation xmlns="http://hl7.org/fhir"></ValueSetDesignation>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->language) $this->language->xmlSerialize(true, $sxe->addChild('language'));
+        if (null !== $this->use) $this->use->xmlSerialize(true, $sxe->addChild('use'));
+        if (null !== $this->value) $this->value->xmlSerialize(true, $sxe->addChild('value'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

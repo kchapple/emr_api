@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Describes the intention of how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions.
  */
-class FHIRCarePlanDetail extends FHIRBackboneElement
+class FHIRCarePlanDetail extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * High-level categorization of the type of activity in a care plan.
@@ -176,6 +177,11 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     public $description = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'CarePlan.Detail';
+
+    /**
      * High-level categorization of the type of activity in a care plan.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -187,10 +193,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * High-level categorization of the type of activity in a care plan.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $category
+     * @return $this
      */
     public function setCategory($category)
     {
         $this->category = $category;
+        return $this;
     }
 
     /**
@@ -205,10 +213,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * Detailed description of the type of planned activity; e.g. What lab test, what procedure, what kind of encounter.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -223,10 +233,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * Provides the rationale that drove the inclusion of this particular activity as part of the plan.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $reasonCode
+     * @return $this
      */
     public function addReasonCode($reasonCode)
     {
         $this->reasonCode[] = $reasonCode;
+        return $this;
     }
 
     /**
@@ -241,10 +253,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * Provides the health condition(s) that drove the inclusion of this particular activity as part of the plan.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $reasonReference
+     * @return $this
      */
     public function addReasonReference($reasonReference)
     {
         $this->reasonReference[] = $reasonReference;
+        return $this;
     }
 
     /**
@@ -259,10 +273,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * Internal reference that identifies the goals that this activity is intended to contribute towards meeting.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $goal
+     * @return $this
      */
     public function addGoal($goal)
     {
         $this->goal[] = $goal;
+        return $this;
     }
 
     /**
@@ -277,10 +293,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * Identifies what progress is being made for the specific activity.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCarePlanActivityStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -295,10 +313,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * Provides reason why the activity isn't yet started, is on hold, was cancelled, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $statusReason
+     * @return $this
      */
     public function setStatusReason($statusReason)
     {
         $this->statusReason = $statusReason;
+        return $this;
     }
 
     /**
@@ -313,10 +333,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * If true, indicates that the described activity is one that must NOT be engaged in when following the plan.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $prohibited
+     * @return $this
      */
     public function setProhibited($prohibited)
     {
         $this->prohibited = $prohibited;
+        return $this;
     }
 
     /**
@@ -331,10 +353,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * The period, timing or frequency upon which the described activity is to occur. (choose any one of scheduled*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRTiming $scheduledTiming
+     * @return $this
      */
     public function setScheduledTiming($scheduledTiming)
     {
         $this->scheduledTiming = $scheduledTiming;
+        return $this;
     }
 
     /**
@@ -349,10 +373,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * The period, timing or frequency upon which the described activity is to occur. (choose any one of scheduled*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $scheduledPeriod
+     * @return $this
      */
     public function setScheduledPeriod($scheduledPeriod)
     {
         $this->scheduledPeriod = $scheduledPeriod;
+        return $this;
     }
 
     /**
@@ -367,10 +393,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * The period, timing or frequency upon which the described activity is to occur. (choose any one of scheduled*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $scheduledString
+     * @return $this
      */
     public function setScheduledString($scheduledString)
     {
         $this->scheduledString = $scheduledString;
+        return $this;
     }
 
     /**
@@ -385,10 +413,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * Identifies the facility where the activity will occur; e.g. home, hospital, specific clinic, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $location
+     * @return $this
      */
     public function setLocation($location)
     {
         $this->location = $location;
+        return $this;
     }
 
     /**
@@ -403,10 +433,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * Identifies who's expected to be involved in the activity.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $performer
+     * @return $this
      */
     public function addPerformer($performer)
     {
         $this->performer[] = $performer;
+        return $this;
     }
 
     /**
@@ -421,10 +453,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * Identifies the food, drug or other product to be consumed or supplied in the activity. (choose any one of product*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $productCodeableConcept
+     * @return $this
      */
     public function setProductCodeableConcept($productCodeableConcept)
     {
         $this->productCodeableConcept = $productCodeableConcept;
+        return $this;
     }
 
     /**
@@ -439,10 +473,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * Identifies the food, drug or other product to be consumed or supplied in the activity. (choose any one of product*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $productReference
+     * @return $this
      */
     public function setProductReference($productReference)
     {
         $this->productReference = $productReference;
+        return $this;
     }
 
     /**
@@ -457,10 +493,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * Identifies the quantity expected to be consumed in a given day.
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $dailyAmount
+     * @return $this
      */
     public function setDailyAmount($dailyAmount)
     {
         $this->dailyAmount = $dailyAmount;
+        return $this;
     }
 
     /**
@@ -475,10 +513,12 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * Identifies the quantity expected to be supplied, administered or consumed by the subject.
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $quantity
+     * @return $this
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+        return $this;
     }
 
     /**
@@ -493,10 +533,122 @@ class FHIRCarePlanDetail extends FHIRBackboneElement
     /**
      * This provides a textual description of constraints on the intended activity occurrence, including relation to other activities.  It may also include objectives, pre-conditions and end-conditions.  Finally, it may convey specifics about the activity such as body site, method, route, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->category) $json['category'] = $this->category->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (0 < count($this->reasonCode)) {
+            $json['reasonCode'] = array();
+            foreach($this->reasonCode as $reasonCode) {
+                $json['reasonCode'][] = $reasonCode->jsonSerialize();
+            }
+        }
+        if (0 < count($this->reasonReference)) {
+            $json['reasonReference'] = array();
+            foreach($this->reasonReference as $reasonReference) {
+                $json['reasonReference'][] = $reasonReference->jsonSerialize();
+            }
+        }
+        if (0 < count($this->goal)) {
+            $json['goal'] = array();
+            foreach($this->goal as $goal) {
+                $json['goal'][] = $goal->jsonSerialize();
+            }
+        }
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->statusReason) $json['statusReason'] = $this->statusReason->jsonSerialize();
+        if (null !== $this->prohibited) $json['prohibited'] = $this->prohibited->jsonSerialize();
+        if (null !== $this->scheduledTiming) $json['scheduledTiming'] = $this->scheduledTiming->jsonSerialize();
+        if (null !== $this->scheduledPeriod) $json['scheduledPeriod'] = $this->scheduledPeriod->jsonSerialize();
+        if (null !== $this->scheduledString) $json['scheduledString'] = $this->scheduledString->jsonSerialize();
+        if (null !== $this->location) $json['location'] = $this->location->jsonSerialize();
+        if (0 < count($this->performer)) {
+            $json['performer'] = array();
+            foreach($this->performer as $performer) {
+                $json['performer'][] = $performer->jsonSerialize();
+            }
+        }
+        if (null !== $this->productCodeableConcept) $json['productCodeableConcept'] = $this->productCodeableConcept->jsonSerialize();
+        if (null !== $this->productReference) $json['productReference'] = $this->productReference->jsonSerialize();
+        if (null !== $this->dailyAmount) $json['dailyAmount'] = $this->dailyAmount->jsonSerialize();
+        if (null !== $this->quantity) $json['quantity'] = $this->quantity->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<CarePlanDetail xmlns="http://hl7.org/fhir"></CarePlanDetail>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->category) $this->category->xmlSerialize(true, $sxe->addChild('category'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (0 < count($this->reasonCode)) {
+            foreach($this->reasonCode as $reasonCode) {
+                $reasonCode->xmlSerialize(true, $sxe->addChild('reasonCode'));
+            }
+        }
+        if (0 < count($this->reasonReference)) {
+            foreach($this->reasonReference as $reasonReference) {
+                $reasonReference->xmlSerialize(true, $sxe->addChild('reasonReference'));
+            }
+        }
+        if (0 < count($this->goal)) {
+            foreach($this->goal as $goal) {
+                $goal->xmlSerialize(true, $sxe->addChild('goal'));
+            }
+        }
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->statusReason) $this->statusReason->xmlSerialize(true, $sxe->addChild('statusReason'));
+        if (null !== $this->prohibited) $this->prohibited->xmlSerialize(true, $sxe->addChild('prohibited'));
+        if (null !== $this->scheduledTiming) $this->scheduledTiming->xmlSerialize(true, $sxe->addChild('scheduledTiming'));
+        if (null !== $this->scheduledPeriod) $this->scheduledPeriod->xmlSerialize(true, $sxe->addChild('scheduledPeriod'));
+        if (null !== $this->scheduledString) $this->scheduledString->xmlSerialize(true, $sxe->addChild('scheduledString'));
+        if (null !== $this->location) $this->location->xmlSerialize(true, $sxe->addChild('location'));
+        if (0 < count($this->performer)) {
+            foreach($this->performer as $performer) {
+                $performer->xmlSerialize(true, $sxe->addChild('performer'));
+            }
+        }
+        if (null !== $this->productCodeableConcept) $this->productCodeableConcept->xmlSerialize(true, $sxe->addChild('productCodeableConcept'));
+        if (null !== $this->productReference) $this->productReference->xmlSerialize(true, $sxe->addChild('productReference'));
+        if (null !== $this->dailyAmount) $this->dailyAmount->xmlSerialize(true, $sxe->addChild('dailyAmount'));
+        if (null !== $this->quantity) $this->quantity->xmlSerialize(true, $sxe->addChild('quantity'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

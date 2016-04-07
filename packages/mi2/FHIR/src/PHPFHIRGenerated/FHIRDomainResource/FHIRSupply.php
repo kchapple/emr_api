@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A supply - a  request for something, and provision of what is supplied.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRSupply extends FHIRDomainResource
+class FHIRSupply extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Category of supply, e.g.  central, non-stock, etc. This is used to support work flows associated with the supply process.
@@ -105,6 +106,11 @@ class FHIRSupply extends FHIRDomainResource
     public $dispense = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Supply';
+
+    /**
      * Category of supply, e.g.  central, non-stock, etc. This is used to support work flows associated with the supply process.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -116,10 +122,12 @@ class FHIRSupply extends FHIRDomainResource
     /**
      * Category of supply, e.g.  central, non-stock, etc. This is used to support work flows associated with the supply process.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $kind
+     * @return $this
      */
     public function setKind($kind)
     {
         $this->kind = $kind;
+        return $this;
     }
 
     /**
@@ -134,10 +142,12 @@ class FHIRSupply extends FHIRDomainResource
     /**
      * Unique identifier for this supply request.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $identifier
+     * @return $this
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -152,10 +162,12 @@ class FHIRSupply extends FHIRDomainResource
     /**
      * Status of the supply request.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRSupplyStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -170,10 +182,12 @@ class FHIRSupply extends FHIRDomainResource
     /**
      * The item that is requested to be supplied.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $orderedItem
+     * @return $this
      */
     public function setOrderedItem($orderedItem)
     {
         $this->orderedItem = $orderedItem;
+        return $this;
     }
 
     /**
@@ -188,10 +202,12 @@ class FHIRSupply extends FHIRDomainResource
     /**
      * A link to a resource representing the person whom the ordered item is for.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $patient
+     * @return $this
      */
     public function setPatient($patient)
     {
         $this->patient = $patient;
+        return $this;
     }
 
     /**
@@ -206,10 +222,72 @@ class FHIRSupply extends FHIRDomainResource
     /**
      * Indicates the details of the dispense event such as the days supply and quantity of a supply dispensed.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRSupply\FHIRSupplyDispense[] $dispense
+     * @return $this
      */
     public function addDispense($dispense)
     {
         $this->dispense[] = $dispense;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->kind) $json['kind'] = $this->kind->jsonSerialize();
+        if (null !== $this->identifier) $json['identifier'] = $this->identifier->jsonSerialize();
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->orderedItem) $json['orderedItem'] = $this->orderedItem->jsonSerialize();
+        if (null !== $this->patient) $json['patient'] = $this->patient->jsonSerialize();
+        if (0 < count($this->dispense)) {
+            $json['dispense'] = array();
+            foreach($this->dispense as $dispense) {
+                $json['dispense'][] = $dispense->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Supply xmlns="http://hl7.org/fhir"></Supply>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->kind) $this->kind->xmlSerialize(true, $sxe->addChild('kind'));
+        if (null !== $this->identifier) $this->identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->orderedItem) $this->orderedItem->xmlSerialize(true, $sxe->addChild('orderedItem'));
+        if (null !== $this->patient) $this->patient->xmlSerialize(true, $sxe->addChild('patient'));
+        if (0 < count($this->dispense)) {
+            foreach($this->dispense as $dispense) {
+                $dispense->xmlSerialize(true, $sxe->addChild('dispense'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

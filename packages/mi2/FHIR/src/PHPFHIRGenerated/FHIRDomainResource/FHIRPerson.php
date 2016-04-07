@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Demographics and administrative information about a person independent of a specific health-related context.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRPerson extends FHIRDomainResource
+class FHIRPerson extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Identifier for a person within a particular scope.
@@ -129,6 +130,11 @@ class FHIRPerson extends FHIRDomainResource
     public $link = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Person';
+
+    /**
      * Identifier for a person within a particular scope.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -140,10 +146,12 @@ class FHIRPerson extends FHIRDomainResource
     /**
      * Identifier for a person within a particular scope.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -158,10 +166,12 @@ class FHIRPerson extends FHIRDomainResource
     /**
      * A name associated with the person.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRHumanName[] $name
+     * @return $this
      */
     public function addName($name)
     {
         $this->name[] = $name;
+        return $this;
     }
 
     /**
@@ -176,10 +186,12 @@ class FHIRPerson extends FHIRDomainResource
     /**
      * A contact detail for the person, e.g. a telephone number or an email address.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRContactPoint[] $telecom
+     * @return $this
      */
     public function addTelecom($telecom)
     {
         $this->telecom[] = $telecom;
+        return $this;
     }
 
     /**
@@ -194,10 +206,12 @@ class FHIRPerson extends FHIRDomainResource
     /**
      * Administrative Gender.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $gender
+     * @return $this
      */
     public function setGender($gender)
     {
         $this->gender = $gender;
+        return $this;
     }
 
     /**
@@ -212,10 +226,12 @@ class FHIRPerson extends FHIRDomainResource
     /**
      * The birth date for the person.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDate $birthDate
+     * @return $this
      */
     public function setBirthDate($birthDate)
     {
         $this->birthDate = $birthDate;
+        return $this;
     }
 
     /**
@@ -230,10 +246,12 @@ class FHIRPerson extends FHIRDomainResource
     /**
      * One or more addresses for the person.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAddress[] $address
+     * @return $this
      */
     public function addAddress($address)
     {
         $this->address[] = $address;
+        return $this;
     }
 
     /**
@@ -248,10 +266,12 @@ class FHIRPerson extends FHIRDomainResource
     /**
      * An image that can be displayed as a thumbnail of the person to enhance the identification of the individual.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAttachment $photo
+     * @return $this
      */
     public function setPhoto($photo)
     {
         $this->photo = $photo;
+        return $this;
     }
 
     /**
@@ -266,10 +286,12 @@ class FHIRPerson extends FHIRDomainResource
     /**
      * The organization that is the custodian of the person record.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $managingOrganization
+     * @return $this
      */
     public function setManagingOrganization($managingOrganization)
     {
         $this->managingOrganization = $managingOrganization;
+        return $this;
     }
 
     /**
@@ -284,10 +306,12 @@ class FHIRPerson extends FHIRDomainResource
     /**
      * Whether this person's record is in active use.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $active
+     * @return $this
      */
     public function setActive($active)
     {
         $this->active = $active;
+        return $this;
     }
 
     /**
@@ -302,10 +326,116 @@ class FHIRPerson extends FHIRDomainResource
     /**
      * Link to a resource that concerns the same actual person.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRPerson\FHIRPersonLink[] $link
+     * @return $this
      */
     public function addLink($link)
     {
         $this->link[] = $link;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (0 < count($this->name)) {
+            $json['name'] = array();
+            foreach($this->name as $name) {
+                $json['name'][] = $name->jsonSerialize();
+            }
+        }
+        if (0 < count($this->telecom)) {
+            $json['telecom'] = array();
+            foreach($this->telecom as $telecom) {
+                $json['telecom'][] = $telecom->jsonSerialize();
+            }
+        }
+        if (null !== $this->gender) $json['gender'] = $this->gender->jsonSerialize();
+        if (null !== $this->birthDate) $json['birthDate'] = $this->birthDate->jsonSerialize();
+        if (0 < count($this->address)) {
+            $json['address'] = array();
+            foreach($this->address as $address) {
+                $json['address'][] = $address->jsonSerialize();
+            }
+        }
+        if (null !== $this->photo) $json['photo'] = $this->photo->jsonSerialize();
+        if (null !== $this->managingOrganization) $json['managingOrganization'] = $this->managingOrganization->jsonSerialize();
+        if (null !== $this->active) $json['active'] = $this->active->jsonSerialize();
+        if (0 < count($this->link)) {
+            $json['link'] = array();
+            foreach($this->link as $link) {
+                $json['link'][] = $link->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Person xmlns="http://hl7.org/fhir"></Person>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (0 < count($this->name)) {
+            foreach($this->name as $name) {
+                $name->xmlSerialize(true, $sxe->addChild('name'));
+            }
+        }
+        if (0 < count($this->telecom)) {
+            foreach($this->telecom as $telecom) {
+                $telecom->xmlSerialize(true, $sxe->addChild('telecom'));
+            }
+        }
+        if (null !== $this->gender) $this->gender->xmlSerialize(true, $sxe->addChild('gender'));
+        if (null !== $this->birthDate) $this->birthDate->xmlSerialize(true, $sxe->addChild('birthDate'));
+        if (0 < count($this->address)) {
+            foreach($this->address as $address) {
+                $address->xmlSerialize(true, $sxe->addChild('address'));
+            }
+        }
+        if (null !== $this->photo) $this->photo->xmlSerialize(true, $sxe->addChild('photo'));
+        if (null !== $this->managingOrganization) $this->managingOrganization->xmlSerialize(true, $sxe->addChild('managingOrganization'));
+        if (null !== $this->active) $this->active->xmlSerialize(true, $sxe->addChild('active'));
+        if (0 < count($this->link)) {
+            foreach($this->link as $link) {
+                $link->xmlSerialize(true, $sxe->addChild('link'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

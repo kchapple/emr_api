@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A conformance statement is a set of capabilities of a FHIR Server that may be used as a statement of actual server functionality or a statement of required or desired server implementation.
  */
-class FHIRConformanceEvent extends FHIRBackboneElement
+class FHIRConformanceEvent extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A coded identifier of a supported messaging event.
@@ -110,6 +111,11 @@ class FHIRConformanceEvent extends FHIRBackboneElement
     public $documentation = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Conformance.Event';
+
+    /**
      * A coded identifier of a supported messaging event.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCoding
      */
@@ -121,10 +127,12 @@ class FHIRConformanceEvent extends FHIRBackboneElement
     /**
      * A coded identifier of a supported messaging event.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -139,10 +147,12 @@ class FHIRConformanceEvent extends FHIRBackboneElement
     /**
      * The impact of the content of the message.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRMessageSignificanceCategory $category
+     * @return $this
      */
     public function setCategory($category)
     {
         $this->category = $category;
+        return $this;
     }
 
     /**
@@ -157,10 +167,12 @@ class FHIRConformanceEvent extends FHIRBackboneElement
     /**
      * The mode of this event declaration - whether application is sender or receiver.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRConformanceEventMode $mode
+     * @return $this
      */
     public function setMode($mode)
     {
         $this->mode = $mode;
+        return $this;
     }
 
     /**
@@ -175,10 +187,12 @@ class FHIRConformanceEvent extends FHIRBackboneElement
     /**
      * A resource associated with the event.  This is the resource that defines the event.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $focus
+     * @return $this
      */
     public function setFocus($focus)
     {
         $this->focus = $focus;
+        return $this;
     }
 
     /**
@@ -193,10 +207,12 @@ class FHIRConformanceEvent extends FHIRBackboneElement
     /**
      * Information about the request for this event.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $request
+     * @return $this
      */
     public function setRequest($request)
     {
         $this->request = $request;
+        return $this;
     }
 
     /**
@@ -211,10 +227,12 @@ class FHIRConformanceEvent extends FHIRBackboneElement
     /**
      * Information about the response for this event.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $response
+     * @return $this
      */
     public function setResponse($response)
     {
         $this->response = $response;
+        return $this;
     }
 
     /**
@@ -229,10 +247,64 @@ class FHIRConformanceEvent extends FHIRBackboneElement
     /**
      * Guidance on how this event is handled, such as internal system trigger points, business rules, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $documentation
+     * @return $this
      */
     public function setDocumentation($documentation)
     {
         $this->documentation = $documentation;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->category) $json['category'] = $this->category->jsonSerialize();
+        if (null !== $this->mode) $json['mode'] = $this->mode->jsonSerialize();
+        if (null !== $this->focus) $json['focus'] = $this->focus->jsonSerialize();
+        if (null !== $this->request) $json['request'] = $this->request->jsonSerialize();
+        if (null !== $this->response) $json['response'] = $this->response->jsonSerialize();
+        if (null !== $this->documentation) $json['documentation'] = $this->documentation->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ConformanceEvent xmlns="http://hl7.org/fhir"></ConformanceEvent>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->category) $this->category->xmlSerialize(true, $sxe->addChild('category'));
+        if (null !== $this->mode) $this->mode->xmlSerialize(true, $sxe->addChild('mode'));
+        if (null !== $this->focus) $this->focus->xmlSerialize(true, $sxe->addChild('focus'));
+        if (null !== $this->request) $this->request->xmlSerialize(true, $sxe->addChild('request'));
+        if (null !== $this->response) $this->response->xmlSerialize(true, $sxe->addChild('response'));
+        if (null !== $this->documentation) $this->documentation->xmlSerialize(true, $sxe->addChild('documentation'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

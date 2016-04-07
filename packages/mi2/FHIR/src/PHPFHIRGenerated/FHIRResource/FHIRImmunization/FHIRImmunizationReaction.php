@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Describes the event of a patient being administered a vaccination or a record of a vaccination as reported by a patient, a clinician or another party and may include vaccine reaction information and what vaccination protocol was followed.
  */
-class FHIRImmunizationReaction extends FHIRBackboneElement
+class FHIRImmunizationReaction extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Date of reaction to the immunization.
@@ -86,6 +87,11 @@ class FHIRImmunizationReaction extends FHIRBackboneElement
     public $reported = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Immunization.Reaction';
+
+    /**
      * Date of reaction to the immunization.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRDateTime
      */
@@ -97,10 +103,12 @@ class FHIRImmunizationReaction extends FHIRBackboneElement
     /**
      * Date of reaction to the immunization.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $date
+     * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRImmunizationReaction extends FHIRBackboneElement
     /**
      * Details of the reaction.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $detail
+     * @return $this
      */
     public function setDetail($detail)
     {
         $this->detail = $detail;
+        return $this;
     }
 
     /**
@@ -133,10 +143,56 @@ class FHIRImmunizationReaction extends FHIRBackboneElement
     /**
      * Self-reported indicator.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $reported
+     * @return $this
      */
     public function setReported($reported)
     {
         $this->reported = $reported;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->date) $json['date'] = $this->date->jsonSerialize();
+        if (null !== $this->detail) $json['detail'] = $this->detail->jsonSerialize();
+        if (null !== $this->reported) $json['reported'] = $this->reported->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ImmunizationReaction xmlns="http://hl7.org/fhir"></ImmunizationReaction>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->date) $this->date->xmlSerialize(true, $sxe->addChild('date'));
+        if (null !== $this->detail) $this->detail->xmlSerialize(true, $sxe->addChild('detail'));
+        if (null !== $this->reported) $this->reported->xmlSerialize(true, $sxe->addChild('reported'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

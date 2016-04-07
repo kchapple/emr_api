@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * This resource is primarily used for the identification and definition of a medication. It covers the ingredients and the packaging for a medication.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRMedication extends FHIRDomainResource
+class FHIRMedication extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * A code (or set of codes) that specify this medication, or a textual description if no code is available. Usage note: This could be a standard medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or local formulary code, optionally with translations to other code systems.
@@ -99,6 +100,11 @@ class FHIRMedication extends FHIRDomainResource
     public $package = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Medication';
+
+    /**
      * A code (or set of codes) that specify this medication, or a textual description if no code is available. Usage note: This could be a standard medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or local formulary code, optionally with translations to other code systems.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -110,10 +116,12 @@ class FHIRMedication extends FHIRDomainResource
     /**
      * A code (or set of codes) that specify this medication, or a textual description if no code is available. Usage note: This could be a standard medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or local formulary code, optionally with translations to other code systems.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -128,10 +136,12 @@ class FHIRMedication extends FHIRDomainResource
     /**
      * Set to true if the item is attributable to a specific manufacturer.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $isBrand
+     * @return $this
      */
     public function setIsBrand($isBrand)
     {
         $this->isBrand = $isBrand;
+        return $this;
     }
 
     /**
@@ -146,10 +156,12 @@ class FHIRMedication extends FHIRDomainResource
     /**
      * Describes the details of the manufacturer.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $manufacturer
+     * @return $this
      */
     public function setManufacturer($manufacturer)
     {
         $this->manufacturer = $manufacturer;
+        return $this;
     }
 
     /**
@@ -164,10 +176,12 @@ class FHIRMedication extends FHIRDomainResource
     /**
      * Information that only applies to products (not packages).
      * @param \PHPFHIRGenerated\FHIRResource\FHIRMedication\FHIRMedicationProduct $product
+     * @return $this
      */
     public function setProduct($product)
     {
         $this->product = $product;
+        return $this;
     }
 
     /**
@@ -182,10 +196,61 @@ class FHIRMedication extends FHIRDomainResource
     /**
      * Information that only applies to packages (not products).
      * @param \PHPFHIRGenerated\FHIRResource\FHIRMedication\FHIRMedicationPackage $package
+     * @return $this
      */
     public function setPackage($package)
     {
         $this->package = $package;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->isBrand) $json['isBrand'] = $this->isBrand->jsonSerialize();
+        if (null !== $this->manufacturer) $json['manufacturer'] = $this->manufacturer->jsonSerialize();
+        if (null !== $this->product) $json['product'] = $this->product->jsonSerialize();
+        if (null !== $this->package) $json['package'] = $this->package->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Medication xmlns="http://hl7.org/fhir"></Medication>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->isBrand) $this->isBrand->xmlSerialize(true, $sxe->addChild('isBrand'));
+        if (null !== $this->manufacturer) $this->manufacturer->xmlSerialize(true, $sxe->addChild('manufacturer'));
+        if (null !== $this->product) $this->product->xmlSerialize(true, $sxe->addChild('product'));
+        if (null !== $this->package) $this->package->xmlSerialize(true, $sxe->addChild('package'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

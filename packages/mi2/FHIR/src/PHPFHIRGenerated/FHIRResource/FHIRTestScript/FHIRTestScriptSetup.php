@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * TestScript is a resource that specifies a suite of tests against a FHIR server implementation to determine compliance against the FHIR specification.
  */
-class FHIRTestScriptSetup extends FHIRBackboneElement
+class FHIRTestScriptSetup extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Capabilities that must exist and are assumed to function correctly on the FHIR server being tested.
@@ -80,6 +81,11 @@ class FHIRTestScriptSetup extends FHIRBackboneElement
     public $action = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'TestScript.Setup';
+
+    /**
      * Capabilities that must exist and are assumed to function correctly on the FHIR server being tested.
      * @return \PHPFHIRGenerated\FHIRResource\FHIRTestScript\FHIRTestScriptMetadata
      */
@@ -91,10 +97,12 @@ class FHIRTestScriptSetup extends FHIRBackboneElement
     /**
      * Capabilities that must exist and are assumed to function correctly on the FHIR server being tested.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRTestScript\FHIRTestScriptMetadata $metadata
+     * @return $this
      */
     public function setMetadata($metadata)
     {
         $this->metadata = $metadata;
+        return $this;
     }
 
     /**
@@ -109,10 +117,63 @@ class FHIRTestScriptSetup extends FHIRBackboneElement
     /**
      * Action would contain either an operation or an assertion.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRTestScript\FHIRTestScriptAction[] $action
+     * @return $this
      */
     public function addAction($action)
     {
         $this->action[] = $action;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->metadata) $json['metadata'] = $this->metadata->jsonSerialize();
+        if (0 < count($this->action)) {
+            $json['action'] = array();
+            foreach($this->action as $action) {
+                $json['action'][] = $action->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<TestScriptSetup xmlns="http://hl7.org/fhir"></TestScriptSetup>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->metadata) $this->metadata->xmlSerialize(true, $sxe->addChild('metadata'));
+        if (0 < count($this->action)) {
+            foreach($this->action as $action) {
+                $action->xmlSerialize(true, $sxe->addChild('action'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

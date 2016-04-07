@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * This resource provides payment details and claim references supporting a bulk payment.
  */
-class FHIRPaymentReconciliationNote extends FHIRBackboneElement
+class FHIRPaymentReconciliationNote extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The note purpose: Print/Display.
@@ -80,6 +81,11 @@ class FHIRPaymentReconciliationNote extends FHIRBackboneElement
     public $text = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'PaymentReconciliation.Note';
+
+    /**
      * The note purpose: Print/Display.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCoding
      */
@@ -91,10 +97,12 @@ class FHIRPaymentReconciliationNote extends FHIRBackboneElement
     /**
      * The note purpose: Print/Display.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRPaymentReconciliationNote extends FHIRBackboneElement
     /**
      * The note text.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $text
+     * @return $this
      */
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->text) $json['text'] = $this->text->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<PaymentReconciliationNote xmlns="http://hl7.org/fhir"></PaymentReconciliationNote>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->text) $this->text->xmlSerialize(true, $sxe->addChild('text'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

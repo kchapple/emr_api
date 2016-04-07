@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A technical identifier - identifies some entity uniquely and unambiguously.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRIdentifier extends FHIRElement
+class FHIRIdentifier extends FHIRElement implements JsonSerializable
 {
     /**
      * The purpose of this identifier.
@@ -105,6 +106,11 @@ class FHIRIdentifier extends FHIRElement
     public $assigner = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Identifier';
+
+    /**
      * The purpose of this identifier.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifierUse
      */
@@ -116,10 +122,12 @@ class FHIRIdentifier extends FHIRElement
     /**
      * The purpose of this identifier.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifierUse $use
+     * @return $this
      */
     public function setUse($use)
     {
         $this->use = $use;
+        return $this;
     }
 
     /**
@@ -134,10 +142,12 @@ class FHIRIdentifier extends FHIRElement
     /**
      * A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -152,10 +162,12 @@ class FHIRIdentifier extends FHIRElement
     /**
      * Establishes the namespace in which set of possible id values is unique.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $system
+     * @return $this
      */
     public function setSystem($system)
     {
         $this->system = $system;
+        return $this;
     }
 
     /**
@@ -170,10 +182,12 @@ class FHIRIdentifier extends FHIRElement
     /**
      * The portion of the identifier typically displayed to the user and which is unique within the context of the system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $value
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
     }
 
     /**
@@ -188,10 +202,12 @@ class FHIRIdentifier extends FHIRElement
     /**
      * Time period during which identifier is/was valid for use.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
     }
 
     /**
@@ -206,10 +222,62 @@ class FHIRIdentifier extends FHIRElement
     /**
      * Organization that issued/manages the identifier.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $assigner
+     * @return $this
      */
     public function setAssigner($assigner)
     {
         $this->assigner = $assigner;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->use) $json['use'] = $this->use->jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->system) $json['system'] = $this->system->jsonSerialize();
+        if (null !== $this->value) $json['value'] = $this->value->jsonSerialize();
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        if (null !== $this->assigner) $json['assigner'] = $this->assigner->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Identifier xmlns="http://hl7.org/fhir"></Identifier>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->use) $this->use->xmlSerialize(true, $sxe->addChild('use'));
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->system) $this->system->xmlSerialize(true, $sxe->addChild('system'));
+        if (null !== $this->value) $this->value->xmlSerialize(true, $sxe->addChild('value'));
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if (null !== $this->assigner) $this->assigner->xmlSerialize(true, $sxe->addChild('assigner'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

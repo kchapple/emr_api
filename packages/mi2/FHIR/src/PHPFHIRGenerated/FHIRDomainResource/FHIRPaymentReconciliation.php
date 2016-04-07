@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * This resource provides payment details and claim references supporting a bulk payment.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRPaymentReconciliation extends FHIRDomainResource
+class FHIRPaymentReconciliation extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * The Response business identifier.
@@ -159,6 +160,11 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     public $note = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'PaymentReconciliation';
+
+    /**
      * The Response business identifier.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -170,10 +176,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * The Response business identifier.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -188,10 +196,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * Original request resource reference.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $request
+     * @return $this
      */
     public function setRequest($request)
     {
         $this->request = $request;
+        return $this;
     }
 
     /**
@@ -206,10 +216,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * Transaction status: error, complete.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $outcome
+     * @return $this
      */
     public function setOutcome($outcome)
     {
         $this->outcome = $outcome;
+        return $this;
     }
 
     /**
@@ -224,10 +236,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * A description of the status of the adjudication.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $disposition
+     * @return $this
      */
     public function setDisposition($disposition)
     {
         $this->disposition = $disposition;
+        return $this;
     }
 
     /**
@@ -242,10 +256,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $ruleset
+     * @return $this
      */
     public function setRuleset($ruleset)
     {
         $this->ruleset = $ruleset;
+        return $this;
     }
 
     /**
@@ -260,10 +276,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * The style (standard) and version of the original material which was converted into this resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $originalRuleset
+     * @return $this
      */
     public function setOriginalRuleset($originalRuleset)
     {
         $this->originalRuleset = $originalRuleset;
+        return $this;
     }
 
     /**
@@ -278,10 +296,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * The date when the enclosed suite of services were performed or completed.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $created
+     * @return $this
      */
     public function setCreated($created)
     {
         $this->created = $created;
+        return $this;
     }
 
     /**
@@ -296,10 +316,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * The period of time for which payments have been gathered into this bulk payment for settlement.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
     }
 
     /**
@@ -314,10 +336,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * The Insurer who produced this adjudicated response.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $organization
+     * @return $this
      */
     public function setOrganization($organization)
     {
         $this->organization = $organization;
+        return $this;
     }
 
     /**
@@ -332,10 +356,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * The practitioner who is responsible for the services rendered to the patient.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $requestProvider
+     * @return $this
      */
     public function setRequestProvider($requestProvider)
     {
         $this->requestProvider = $requestProvider;
+        return $this;
     }
 
     /**
@@ -350,10 +376,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * The organization which is responsible for the services rendered to the patient.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $requestOrganization
+     * @return $this
      */
     public function setRequestOrganization($requestOrganization)
     {
         $this->requestOrganization = $requestOrganization;
+        return $this;
     }
 
     /**
@@ -368,10 +396,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * List of individual settlement amounts and the corresponding transaction.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRPaymentReconciliation\FHIRPaymentReconciliationDetail[] $detail
+     * @return $this
      */
     public function addDetail($detail)
     {
         $this->detail[] = $detail;
+        return $this;
     }
 
     /**
@@ -386,10 +416,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * The form to be used for printing the content.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $form
+     * @return $this
      */
     public function setForm($form)
     {
         $this->form = $form;
+        return $this;
     }
 
     /**
@@ -404,10 +436,12 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * Total payment amount.
      * @param \PHPFHIRGenerated\FHIRMoney $total
+     * @return $this
      */
     public function setTotal($total)
     {
         $this->total = $total;
+        return $this;
     }
 
     /**
@@ -422,10 +456,108 @@ class FHIRPaymentReconciliation extends FHIRDomainResource
     /**
      * Suite of notes.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRPaymentReconciliation\FHIRPaymentReconciliationNote[] $note
+     * @return $this
      */
     public function addNote($note)
     {
         $this->note[] = $note;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->request) $json['request'] = $this->request->jsonSerialize();
+        if (null !== $this->outcome) $json['outcome'] = $this->outcome->jsonSerialize();
+        if (null !== $this->disposition) $json['disposition'] = $this->disposition->jsonSerialize();
+        if (null !== $this->ruleset) $json['ruleset'] = $this->ruleset->jsonSerialize();
+        if (null !== $this->originalRuleset) $json['originalRuleset'] = $this->originalRuleset->jsonSerialize();
+        if (null !== $this->created) $json['created'] = $this->created->jsonSerialize();
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        if (null !== $this->organization) $json['organization'] = $this->organization->jsonSerialize();
+        if (null !== $this->requestProvider) $json['requestProvider'] = $this->requestProvider->jsonSerialize();
+        if (null !== $this->requestOrganization) $json['requestOrganization'] = $this->requestOrganization->jsonSerialize();
+        if (0 < count($this->detail)) {
+            $json['detail'] = array();
+            foreach($this->detail as $detail) {
+                $json['detail'][] = $detail->jsonSerialize();
+            }
+        }
+        if (null !== $this->form) $json['form'] = $this->form->jsonSerialize();
+        if (null !== $this->total) $json['total'] = $this->total->jsonSerialize();
+        if (0 < count($this->note)) {
+            $json['note'] = array();
+            foreach($this->note as $note) {
+                $json['note'][] = $note->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<PaymentReconciliation xmlns="http://hl7.org/fhir"></PaymentReconciliation>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->request) $this->request->xmlSerialize(true, $sxe->addChild('request'));
+        if (null !== $this->outcome) $this->outcome->xmlSerialize(true, $sxe->addChild('outcome'));
+        if (null !== $this->disposition) $this->disposition->xmlSerialize(true, $sxe->addChild('disposition'));
+        if (null !== $this->ruleset) $this->ruleset->xmlSerialize(true, $sxe->addChild('ruleset'));
+        if (null !== $this->originalRuleset) $this->originalRuleset->xmlSerialize(true, $sxe->addChild('originalRuleset'));
+        if (null !== $this->created) $this->created->xmlSerialize(true, $sxe->addChild('created'));
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if (null !== $this->organization) $this->organization->xmlSerialize(true, $sxe->addChild('organization'));
+        if (null !== $this->requestProvider) $this->requestProvider->xmlSerialize(true, $sxe->addChild('requestProvider'));
+        if (null !== $this->requestOrganization) $this->requestOrganization->xmlSerialize(true, $sxe->addChild('requestOrganization'));
+        if (0 < count($this->detail)) {
+            foreach($this->detail as $detail) {
+                $detail->xmlSerialize(true, $sxe->addChild('detail'));
+            }
+        }
+        if (null !== $this->form) $this->form->xmlSerialize(true, $sxe->addChild('form'));
+        if (null !== $this->total) $this->total->xmlSerialize(true, $sxe->addChild('total'));
+        if (0 < count($this->note)) {
+            foreach($this->note as $note) {
+                $note->xmlSerialize(true, $sxe->addChild('note'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A reference to a document .
  */
-class FHIRDocumentReferenceRelated extends FHIRBackboneElement
+class FHIRDocumentReferenceRelated extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Related identifier to this DocumentReference. If both id and ref are present they shall refer to the same thing.
@@ -80,6 +81,11 @@ class FHIRDocumentReferenceRelated extends FHIRBackboneElement
     public $ref = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'DocumentReference.Related';
+
+    /**
      * Related identifier to this DocumentReference. If both id and ref are present they shall refer to the same thing.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier
      */
@@ -91,10 +97,12 @@ class FHIRDocumentReferenceRelated extends FHIRBackboneElement
     /**
      * Related identifier to this DocumentReference. If both id and ref are present they shall refer to the same thing.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $identifier
+     * @return $this
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRDocumentReferenceRelated extends FHIRBackboneElement
     /**
      * Related Resource to this DocumentReference. If both id and ref are present they shall refer to the same thing.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $ref
+     * @return $this
      */
     public function setRef($ref)
     {
         $this->ref = $ref;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->identifier) $json['identifier'] = $this->identifier->jsonSerialize();
+        if (null !== $this->ref) $json['ref'] = $this->ref->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<DocumentReferenceRelated xmlns="http://hl7.org/fhir"></DocumentReferenceRelated>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->identifier) $this->identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+        if (null !== $this->ref) $this->ref->xmlSerialize(true, $sxe->addChild('ref'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

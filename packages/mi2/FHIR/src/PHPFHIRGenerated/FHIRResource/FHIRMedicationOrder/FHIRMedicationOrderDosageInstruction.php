@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * An order for both supply of the medication and the instructions for administration of the medication to a patient. The resource is called "MedicationOrder" rather than "MedicationPrescription" to generalize the use across inpatient and outpatient settings as well as for care plans, etc.
  */
-class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
+class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Free text dosage instructions can be used for cases where the instructions are too complex to code.  The content of this attribute does not include the name or description of the medication. When coded instructions are present, the free text instructions may still be present for display to humans taking or administering the medication. It is expected that the text instructions will always be populated.  If the dosage.timing attribute is also populated, then the dosage.text should reflect the same information as the timing.
@@ -152,6 +153,11 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     public $maxDosePerPeriod = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'MedicationOrder.DosageInstruction';
+
+    /**
      * Free text dosage instructions can be used for cases where the instructions are too complex to code.  The content of this attribute does not include the name or description of the medication. When coded instructions are present, the free text instructions may still be present for display to humans taking or administering the medication. It is expected that the text instructions will always be populated.  If the dosage.timing attribute is also populated, then the dosage.text should reflect the same information as the timing.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -163,10 +169,12 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * Free text dosage instructions can be used for cases where the instructions are too complex to code.  The content of this attribute does not include the name or description of the medication. When coded instructions are present, the free text instructions may still be present for display to humans taking or administering the medication. It is expected that the text instructions will always be populated.  If the dosage.timing attribute is also populated, then the dosage.text should reflect the same information as the timing.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $text
+     * @return $this
      */
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
     }
 
     /**
@@ -181,10 +189,12 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * Additional instructions such as "Swallow with plenty of water" which may or may not be coded.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $additionalInstructions
+     * @return $this
      */
     public function setAdditionalInstructions($additionalInstructions)
     {
         $this->additionalInstructions = $additionalInstructions;
+        return $this;
     }
 
     /**
@@ -199,10 +209,12 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * The timing schedule for giving the medication to the patient. The Schedule data type allows many different expressions. For example: "Every 8 hours"; "Three times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
      * @param \PHPFHIRGenerated\FHIRElement\FHIRTiming $timing
+     * @return $this
      */
     public function setTiming($timing)
     {
         $this->timing = $timing;
+        return $this;
     }
 
     /**
@@ -217,10 +229,12 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept). (choose any one of asNeeded*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $asNeededBoolean
+     * @return $this
      */
     public function setAsNeededBoolean($asNeededBoolean)
     {
         $this->asNeededBoolean = $asNeededBoolean;
+        return $this;
     }
 
     /**
@@ -235,10 +249,12 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept). (choose any one of asNeeded*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $asNeededCodeableConcept
+     * @return $this
      */
     public function setAsNeededCodeableConcept($asNeededCodeableConcept)
     {
         $this->asNeededCodeableConcept = $asNeededCodeableConcept;
+        return $this;
     }
 
     /**
@@ -253,10 +269,12 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * A coded specification of the anatomic site where the medication first enters the body. (choose any one of site*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $siteCodeableConcept
+     * @return $this
      */
     public function setSiteCodeableConcept($siteCodeableConcept)
     {
         $this->siteCodeableConcept = $siteCodeableConcept;
+        return $this;
     }
 
     /**
@@ -271,10 +289,12 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * A coded specification of the anatomic site where the medication first enters the body. (choose any one of site*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $siteReference
+     * @return $this
      */
     public function setSiteReference($siteReference)
     {
         $this->siteReference = $siteReference;
+        return $this;
     }
 
     /**
@@ -289,10 +309,12 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * A code specifying the route or physiological path of administration of a therapeutic agent into or onto a patient's body.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $route
+     * @return $this
      */
     public function setRoute($route)
     {
         $this->route = $route;
+        return $this;
     }
 
     /**
@@ -307,10 +329,12 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * A coded value indicating the method by which the medication is introduced into or onto the body. Most commonly used for injections.  For examples, Slow Push; Deep IV.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $method
+     * @return $this
      */
     public function setMethod($method)
     {
         $this->method = $method;
+        return $this;
     }
 
     /**
@@ -325,10 +349,12 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * The amount of therapeutic or other substance given at one administration event. (choose any one of dose*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRange $doseRange
+     * @return $this
      */
     public function setDoseRange($doseRange)
     {
         $this->doseRange = $doseRange;
+        return $this;
     }
 
     /**
@@ -343,10 +369,12 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * The amount of therapeutic or other substance given at one administration event. (choose any one of dose*, but only one)
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $doseQuantity
+     * @return $this
      */
     public function setDoseQuantity($doseQuantity)
     {
         $this->doseQuantity = $doseQuantity;
+        return $this;
     }
 
     /**
@@ -361,10 +389,12 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * Identifies the speed with which the medication was or will be introduced into the patient. Typically the rate for an infusion e.g. 100 ml per 1 hour or 100 ml/hr.  May also be expressed as a rate per unit of time e.g. 500 ml per 2 hours.   Currently we do not specify a default of '1' in the denominator, but this is being discussed. Other examples: 200 mcg/min or 200 mcg/1 minute; 1 liter/8 hours. (choose any one of rate*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRatio $rateRatio
+     * @return $this
      */
     public function setRateRatio($rateRatio)
     {
         $this->rateRatio = $rateRatio;
+        return $this;
     }
 
     /**
@@ -379,10 +409,12 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * Identifies the speed with which the medication was or will be introduced into the patient. Typically the rate for an infusion e.g. 100 ml per 1 hour or 100 ml/hr.  May also be expressed as a rate per unit of time e.g. 500 ml per 2 hours.   Currently we do not specify a default of '1' in the denominator, but this is being discussed. Other examples: 200 mcg/min or 200 mcg/1 minute; 1 liter/8 hours. (choose any one of rate*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRange $rateRange
+     * @return $this
      */
     public function setRateRange($rateRange)
     {
         $this->rateRange = $rateRange;
+        return $this;
     }
 
     /**
@@ -397,10 +429,78 @@ class FHIRMedicationOrderDosageInstruction extends FHIRBackboneElement
     /**
      * The maximum total quantity of a therapeutic substance that may be administered to a subject over the period of time.  For example, 1000mg in 24 hours.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRatio $maxDosePerPeriod
+     * @return $this
      */
     public function setMaxDosePerPeriod($maxDosePerPeriod)
     {
         $this->maxDosePerPeriod = $maxDosePerPeriod;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->text) $json['text'] = $this->text->jsonSerialize();
+        if (null !== $this->additionalInstructions) $json['additionalInstructions'] = $this->additionalInstructions->jsonSerialize();
+        if (null !== $this->timing) $json['timing'] = $this->timing->jsonSerialize();
+        if (null !== $this->asNeededBoolean) $json['asNeededBoolean'] = $this->asNeededBoolean->jsonSerialize();
+        if (null !== $this->asNeededCodeableConcept) $json['asNeededCodeableConcept'] = $this->asNeededCodeableConcept->jsonSerialize();
+        if (null !== $this->siteCodeableConcept) $json['siteCodeableConcept'] = $this->siteCodeableConcept->jsonSerialize();
+        if (null !== $this->siteReference) $json['siteReference'] = $this->siteReference->jsonSerialize();
+        if (null !== $this->route) $json['route'] = $this->route->jsonSerialize();
+        if (null !== $this->method) $json['method'] = $this->method->jsonSerialize();
+        if (null !== $this->doseRange) $json['doseRange'] = $this->doseRange->jsonSerialize();
+        if (null !== $this->doseQuantity) $json['doseQuantity'] = $this->doseQuantity->jsonSerialize();
+        if (null !== $this->rateRatio) $json['rateRatio'] = $this->rateRatio->jsonSerialize();
+        if (null !== $this->rateRange) $json['rateRange'] = $this->rateRange->jsonSerialize();
+        if (null !== $this->maxDosePerPeriod) $json['maxDosePerPeriod'] = $this->maxDosePerPeriod->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<MedicationOrderDosageInstruction xmlns="http://hl7.org/fhir"></MedicationOrderDosageInstruction>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->text) $this->text->xmlSerialize(true, $sxe->addChild('text'));
+        if (null !== $this->additionalInstructions) $this->additionalInstructions->xmlSerialize(true, $sxe->addChild('additionalInstructions'));
+        if (null !== $this->timing) $this->timing->xmlSerialize(true, $sxe->addChild('timing'));
+        if (null !== $this->asNeededBoolean) $this->asNeededBoolean->xmlSerialize(true, $sxe->addChild('asNeededBoolean'));
+        if (null !== $this->asNeededCodeableConcept) $this->asNeededCodeableConcept->xmlSerialize(true, $sxe->addChild('asNeededCodeableConcept'));
+        if (null !== $this->siteCodeableConcept) $this->siteCodeableConcept->xmlSerialize(true, $sxe->addChild('siteCodeableConcept'));
+        if (null !== $this->siteReference) $this->siteReference->xmlSerialize(true, $sxe->addChild('siteReference'));
+        if (null !== $this->route) $this->route->xmlSerialize(true, $sxe->addChild('route'));
+        if (null !== $this->method) $this->method->xmlSerialize(true, $sxe->addChild('method'));
+        if (null !== $this->doseRange) $this->doseRange->xmlSerialize(true, $sxe->addChild('doseRange'));
+        if (null !== $this->doseQuantity) $this->doseQuantity->xmlSerialize(true, $sxe->addChild('doseQuantity'));
+        if (null !== $this->rateRatio) $this->rateRatio->xmlSerialize(true, $sxe->addChild('rateRatio'));
+        if (null !== $this->rateRange) $this->rateRange->xmlSerialize(true, $sxe->addChild('rateRange'));
+        if (null !== $this->maxDosePerPeriod) $this->maxDosePerPeriod->xmlSerialize(true, $sxe->addChild('maxDosePerPeriod'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

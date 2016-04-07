@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A response to an order.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIROrderResponse extends FHIRDomainResource
+class FHIROrderResponse extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Identifiers assigned to this order. The identifiers are usually assigned by the system responding to the order, but they may be provided or added to by other systems.
@@ -111,6 +112,11 @@ class FHIROrderResponse extends FHIRDomainResource
     public $fulfillment = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'OrderResponse';
+
+    /**
      * Identifiers assigned to this order. The identifiers are usually assigned by the system responding to the order, but they may be provided or added to by other systems.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -122,10 +128,12 @@ class FHIROrderResponse extends FHIRDomainResource
     /**
      * Identifiers assigned to this order. The identifiers are usually assigned by the system responding to the order, but they may be provided or added to by other systems.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -140,10 +148,12 @@ class FHIROrderResponse extends FHIRDomainResource
     /**
      * A reference to the order that this is in response to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $request
+     * @return $this
      */
     public function setRequest($request)
     {
         $this->request = $request;
+        return $this;
     }
 
     /**
@@ -158,10 +168,12 @@ class FHIROrderResponse extends FHIRDomainResource
     /**
      * The date and time at which this order response was made (created/posted).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $date
+     * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -176,10 +188,12 @@ class FHIROrderResponse extends FHIRDomainResource
     /**
      * The person, organization, or device credited with making the response.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $who
+     * @return $this
      */
     public function setWho($who)
     {
         $this->who = $who;
+        return $this;
     }
 
     /**
@@ -194,10 +208,12 @@ class FHIROrderResponse extends FHIRDomainResource
     /**
      * What this response says about the status of the original order.
      * @param \PHPFHIRGenerated\FHIRElement\FHIROrderStatus $orderStatus
+     * @return $this
      */
     public function setOrderStatus($orderStatus)
     {
         $this->orderStatus = $orderStatus;
+        return $this;
     }
 
     /**
@@ -212,10 +228,12 @@ class FHIROrderResponse extends FHIRDomainResource
     /**
      * Additional description about the response - e.g. a text description provided by a human user when making decisions about the order.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -230,10 +248,83 @@ class FHIROrderResponse extends FHIRDomainResource
     /**
      * Links to resources that provide details of the outcome of performing the order; e.g. Diagnostic Reports in a response that is made to an order that referenced a diagnostic order.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $fulfillment
+     * @return $this
      */
     public function addFulfillment($fulfillment)
     {
         $this->fulfillment[] = $fulfillment;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->request) $json['request'] = $this->request->jsonSerialize();
+        if (null !== $this->date) $json['date'] = $this->date->jsonSerialize();
+        if (null !== $this->who) $json['who'] = $this->who->jsonSerialize();
+        if (null !== $this->orderStatus) $json['orderStatus'] = $this->orderStatus->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (0 < count($this->fulfillment)) {
+            $json['fulfillment'] = array();
+            foreach($this->fulfillment as $fulfillment) {
+                $json['fulfillment'][] = $fulfillment->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<OrderResponse xmlns="http://hl7.org/fhir"></OrderResponse>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->request) $this->request->xmlSerialize(true, $sxe->addChild('request'));
+        if (null !== $this->date) $this->date->xmlSerialize(true, $sxe->addChild('date'));
+        if (null !== $this->who) $this->who->xmlSerialize(true, $sxe->addChild('who'));
+        if (null !== $this->orderStatus) $this->orderStatus->xmlSerialize(true, $sxe->addChild('orderStatus'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (0 < count($this->fulfillment)) {
+            foreach($this->fulfillment as $fulfillment) {
+                $fulfillment->xmlSerialize(true, $sxe->addChild('fulfillment'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

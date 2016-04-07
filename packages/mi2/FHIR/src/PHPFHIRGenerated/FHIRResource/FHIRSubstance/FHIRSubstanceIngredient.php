@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A homogeneous material with a definite composition.
  */
-class FHIRSubstanceIngredient extends FHIRBackboneElement
+class FHIRSubstanceIngredient extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The amount of the ingredient in the substance - a concentration ratio.
@@ -80,6 +81,11 @@ class FHIRSubstanceIngredient extends FHIRBackboneElement
     public $substance = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Substance.Ingredient';
+
+    /**
      * The amount of the ingredient in the substance - a concentration ratio.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRRatio
      */
@@ -91,10 +97,12 @@ class FHIRSubstanceIngredient extends FHIRBackboneElement
     /**
      * The amount of the ingredient in the substance - a concentration ratio.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRatio $quantity
+     * @return $this
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRSubstanceIngredient extends FHIRBackboneElement
     /**
      * Another substance that is a component of this substance.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $substance
+     * @return $this
      */
     public function setSubstance($substance)
     {
         $this->substance = $substance;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->quantity) $json['quantity'] = $this->quantity->jsonSerialize();
+        if (null !== $this->substance) $json['substance'] = $this->substance->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<SubstanceIngredient xmlns="http://hl7.org/fhir"></SubstanceIngredient>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->quantity) $this->quantity->xmlSerialize(true, $sxe->addChild('quantity'));
+        if (null !== $this->substance) $this->substance->xmlSerialize(true, $sxe->addChild('substance'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

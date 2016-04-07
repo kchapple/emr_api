@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A value set specifies a set of codes drawn from one or more code systems.
  */
-class FHIRValueSetCompose extends FHIRBackboneElement
+class FHIRValueSetCompose extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Includes the contents of the referenced value set as a part of the contents of this value set. This is an absolute URI that is a reference to ValueSet.uri.
@@ -86,6 +87,11 @@ class FHIRValueSetCompose extends FHIRBackboneElement
     public $exclude = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ValueSet.Compose';
+
+    /**
      * Includes the contents of the referenced value set as a part of the contents of this value set. This is an absolute URI that is a reference to ValueSet.uri.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRUri[]
      */
@@ -97,10 +103,12 @@ class FHIRValueSetCompose extends FHIRBackboneElement
     /**
      * Includes the contents of the referenced value set as a part of the contents of this value set. This is an absolute URI that is a reference to ValueSet.uri.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri[] $import
+     * @return $this
      */
     public function addImport($import)
     {
         $this->import[] = $import;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRValueSetCompose extends FHIRBackboneElement
     /**
      * Include one or more codes from a code system.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRValueSet\FHIRValueSetInclude[] $include
+     * @return $this
      */
     public function addInclude($include)
     {
         $this->include[] = $include;
+        return $this;
     }
 
     /**
@@ -133,10 +143,83 @@ class FHIRValueSetCompose extends FHIRBackboneElement
     /**
      * Exclude one or more codes from the value set.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRValueSet\FHIRValueSetInclude[] $exclude
+     * @return $this
      */
     public function addExclude($exclude)
     {
         $this->exclude[] = $exclude;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->import)) {
+            $json['import'] = array();
+            foreach($this->import as $import) {
+                $json['import'][] = $import->jsonSerialize();
+            }
+        }
+        if (0 < count($this->include)) {
+            $json['include'] = array();
+            foreach($this->include as $include) {
+                $json['include'][] = $include->jsonSerialize();
+            }
+        }
+        if (0 < count($this->exclude)) {
+            $json['exclude'] = array();
+            foreach($this->exclude as $exclude) {
+                $json['exclude'][] = $exclude->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ValueSetCompose xmlns="http://hl7.org/fhir"></ValueSetCompose>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->import)) {
+            foreach($this->import as $import) {
+                $import->xmlSerialize(true, $sxe->addChild('import'));
+            }
+        }
+        if (0 < count($this->include)) {
+            foreach($this->include as $include) {
+                $include->xmlSerialize(true, $sxe->addChild('include'));
+            }
+        }
+        if (0 < count($this->exclude)) {
+            foreach($this->exclude as $exclude) {
+                $exclude->xmlSerialize(true, $sxe->addChild('exclude'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

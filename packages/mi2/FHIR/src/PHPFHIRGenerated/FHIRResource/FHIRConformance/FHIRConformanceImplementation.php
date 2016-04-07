@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A conformance statement is a set of capabilities of a FHIR Server that may be used as a statement of actual server functionality or a statement of required or desired server implementation.
  */
-class FHIRConformanceImplementation extends FHIRBackboneElement
+class FHIRConformanceImplementation extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Information about the specific installation that this conformance statement relates to.
@@ -80,6 +81,11 @@ class FHIRConformanceImplementation extends FHIRBackboneElement
     public $url = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Conformance.Implementation';
+
+    /**
      * Information about the specific installation that this conformance statement relates to.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -91,10 +97,12 @@ class FHIRConformanceImplementation extends FHIRBackboneElement
     /**
      * Information about the specific installation that this conformance statement relates to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRConformanceImplementation extends FHIRBackboneElement
     /**
      * An absolute base URL for the implementation.  This forms the base for REST interfaces as well as the mailbox and document interfaces.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $url
+     * @return $this
      */
     public function setUrl($url)
     {
         $this->url = $url;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->url) $json['url'] = $this->url->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ConformanceImplementation xmlns="http://hl7.org/fhir"></ConformanceImplementation>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->url) $this->url->xmlSerialize(true, $sxe->addChild('url'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

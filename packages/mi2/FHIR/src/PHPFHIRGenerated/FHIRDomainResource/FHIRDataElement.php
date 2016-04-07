@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * The formal description of a single piece of information that can be gathered and reported.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRDataElement extends FHIRDomainResource
+class FHIRDataElement extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * An absolute URL that is used to identify this data element when it is referenced in a specification, model, design or an instance. This SHALL be a URL, SHOULD be globally unique, and SHOULD be an address at which this data element is (or will be) published.
@@ -153,6 +154,11 @@ class FHIRDataElement extends FHIRDomainResource
     public $element = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'DataElement';
+
+    /**
      * An absolute URL that is used to identify this data element when it is referenced in a specification, model, design or an instance. This SHALL be a URL, SHOULD be globally unique, and SHOULD be an address at which this data element is (or will be) published.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRUri
      */
@@ -164,10 +170,12 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * An absolute URL that is used to identify this data element when it is referenced in a specification, model, design or an instance. This SHALL be a URL, SHOULD be globally unique, and SHOULD be an address at which this data element is (or will be) published.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $url
+     * @return $this
      */
     public function setUrl($url)
     {
         $this->url = $url;
+        return $this;
     }
 
     /**
@@ -182,10 +190,12 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * Formal identifier that is used to identify this data element when it is represented in other formats, or referenced in a specification, model, design or an instance.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -200,10 +210,12 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * The identifier that is used to identify this version of the data element when it is referenced in a StructureDefinition, Questionnaire or instance. This is an arbitrary value managed by the definition author manually.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $version
+     * @return $this
      */
     public function setVersion($version)
     {
         $this->version = $version;
+        return $this;
     }
 
     /**
@@ -218,10 +230,12 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * The term used by humans to refer to the data element.  Should ideally be unique within the context in which the data element is expected to be used.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -236,10 +250,12 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * The status of the data element.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -254,10 +270,12 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * A flag to indicate that this search data element definition is authored for testing purposes (or education/evaluation/marketing), and is not intended to be used for genuine usage.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $experimental
+     * @return $this
      */
     public function setExperimental($experimental)
     {
         $this->experimental = $experimental;
+        return $this;
     }
 
     /**
@@ -272,10 +290,12 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * The name of the individual or organization that published the data element.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $publisher
+     * @return $this
      */
     public function setPublisher($publisher)
     {
         $this->publisher = $publisher;
+        return $this;
     }
 
     /**
@@ -290,10 +310,12 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * Contacts to assist a user in finding and communicating with the publisher.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRDataElement\FHIRDataElementContact[] $contact
+     * @return $this
      */
     public function addContact($contact)
     {
         $this->contact[] = $contact;
+        return $this;
     }
 
     /**
@@ -308,10 +330,12 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * The date this version of the data element was published. The date must change when the business version changes, if it does, and it must change if the status code changes. In addition, it should change when the substantive content of the data element  changes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $date
+     * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -326,10 +350,12 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * The content was developed with a focus and intent of supporting the contexts that are listed. These terms may be used to assist with indexing and searching of data element definitions.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $useContext
+     * @return $this
      */
     public function addUseContext($useContext)
     {
         $this->useContext[] = $useContext;
+        return $this;
     }
 
     /**
@@ -344,10 +370,12 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * A copyright statement relating to the definition of the data element. Copyright statements are generally legal restrictions on the use and publishing of the details of the definition of the data element.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $copyright
+     * @return $this
      */
     public function setCopyright($copyright)
     {
         $this->copyright = $copyright;
+        return $this;
     }
 
     /**
@@ -362,10 +390,12 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * Identifies how precise the data element is in its definition.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDataElementStringency $stringency
+     * @return $this
      */
     public function setStringency($stringency)
     {
         $this->stringency = $stringency;
+        return $this;
     }
 
     /**
@@ -380,10 +410,12 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * Identifies a specification (other than a terminology) that the elements which make up the DataElement have some correspondence with.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRDataElement\FHIRDataElementMapping[] $mapping
+     * @return $this
      */
     public function addMapping($mapping)
     {
         $this->mapping[] = $mapping;
+        return $this;
     }
 
     /**
@@ -398,10 +430,124 @@ class FHIRDataElement extends FHIRDomainResource
     /**
      * Defines the structure, type, allowed values and other constraining characteristics of the data element.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRElementDefinition[] $element
+     * @return $this
      */
     public function addElement($element)
     {
         $this->element[] = $element;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->url) $json['url'] = $this->url->jsonSerialize();
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->version) $json['version'] = $this->version->jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->experimental) $json['experimental'] = $this->experimental->jsonSerialize();
+        if (null !== $this->publisher) $json['publisher'] = $this->publisher->jsonSerialize();
+        if (0 < count($this->contact)) {
+            $json['contact'] = array();
+            foreach($this->contact as $contact) {
+                $json['contact'][] = $contact->jsonSerialize();
+            }
+        }
+        if (null !== $this->date) $json['date'] = $this->date->jsonSerialize();
+        if (0 < count($this->useContext)) {
+            $json['useContext'] = array();
+            foreach($this->useContext as $useContext) {
+                $json['useContext'][] = $useContext->jsonSerialize();
+            }
+        }
+        if (null !== $this->copyright) $json['copyright'] = $this->copyright->jsonSerialize();
+        if (null !== $this->stringency) $json['stringency'] = $this->stringency->jsonSerialize();
+        if (0 < count($this->mapping)) {
+            $json['mapping'] = array();
+            foreach($this->mapping as $mapping) {
+                $json['mapping'][] = $mapping->jsonSerialize();
+            }
+        }
+        if (0 < count($this->element)) {
+            $json['element'] = array();
+            foreach($this->element as $element) {
+                $json['element'][] = $element->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<DataElement xmlns="http://hl7.org/fhir"></DataElement>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->url) $this->url->xmlSerialize(true, $sxe->addChild('url'));
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->version) $this->version->xmlSerialize(true, $sxe->addChild('version'));
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->experimental) $this->experimental->xmlSerialize(true, $sxe->addChild('experimental'));
+        if (null !== $this->publisher) $this->publisher->xmlSerialize(true, $sxe->addChild('publisher'));
+        if (0 < count($this->contact)) {
+            foreach($this->contact as $contact) {
+                $contact->xmlSerialize(true, $sxe->addChild('contact'));
+            }
+        }
+        if (null !== $this->date) $this->date->xmlSerialize(true, $sxe->addChild('date'));
+        if (0 < count($this->useContext)) {
+            foreach($this->useContext as $useContext) {
+                $useContext->xmlSerialize(true, $sxe->addChild('useContext'));
+            }
+        }
+        if (null !== $this->copyright) $this->copyright->xmlSerialize(true, $sxe->addChild('copyright'));
+        if (null !== $this->stringency) $this->stringency->xmlSerialize(true, $sxe->addChild('stringency'));
+        if (0 < count($this->mapping)) {
+            foreach($this->mapping as $mapping) {
+                $mapping->xmlSerialize(true, $sxe->addChild('mapping'));
+            }
+        }
+        if (0 < count($this->element)) {
+            foreach($this->element as $element) {
+                $element->xmlSerialize(true, $sxe->addChild('element'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

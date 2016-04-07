@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Indicates an actual or potential clinical issue with or between one or more active or proposed clinical actions for a patient.  E.g. Drug-drug interaction, Ineffective treatment frequency, Procedure-condition conflict, etc.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRContraindication extends FHIRDomainResource
+class FHIRContraindication extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Indicates the patient whose record the contraindication is associated with.
@@ -129,6 +130,11 @@ class FHIRContraindication extends FHIRDomainResource
     public $mitigation = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Contraindication';
+
+    /**
      * Indicates the patient whose record the contraindication is associated with.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRReference
      */
@@ -140,10 +146,12 @@ class FHIRContraindication extends FHIRDomainResource
     /**
      * Indicates the patient whose record the contraindication is associated with.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $patient
+     * @return $this
      */
     public function setPatient($patient)
     {
         $this->patient = $patient;
+        return $this;
     }
 
     /**
@@ -158,10 +166,12 @@ class FHIRContraindication extends FHIRDomainResource
     /**
      * Identifies the general type of issue identified.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $category
+     * @return $this
      */
     public function setCategory($category)
     {
         $this->category = $category;
+        return $this;
     }
 
     /**
@@ -176,10 +186,12 @@ class FHIRContraindication extends FHIRDomainResource
     /**
      * Indicates the degree of importance associated with the identified issue based on the potential impact on the patient.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRContraindicationSeverity $severity
+     * @return $this
      */
     public function setSeverity($severity)
     {
         $this->severity = $severity;
+        return $this;
     }
 
     /**
@@ -194,10 +206,12 @@ class FHIRContraindication extends FHIRDomainResource
     /**
      * Indicates the resource representing the current activity or proposed activity that.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $implicated
+     * @return $this
      */
     public function addImplicated($implicated)
     {
         $this->implicated[] = $implicated;
+        return $this;
     }
 
     /**
@@ -212,10 +226,12 @@ class FHIRContraindication extends FHIRDomainResource
     /**
      * A textual explanation of the contraindication.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $detail
+     * @return $this
      */
     public function setDetail($detail)
     {
         $this->detail = $detail;
+        return $this;
     }
 
     /**
@@ -230,10 +246,12 @@ class FHIRContraindication extends FHIRDomainResource
     /**
      * The date or date-time when the contraindication was initially identified.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $date
+     * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -248,10 +266,12 @@ class FHIRContraindication extends FHIRDomainResource
     /**
      * Individual or device responsible for the issue being raised.  For example, a decision support application or a pharmacist conducting a medication review.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $author
+     * @return $this
      */
     public function setAuthor($author)
     {
         $this->author = $author;
+        return $this;
     }
 
     /**
@@ -266,10 +286,12 @@ class FHIRContraindication extends FHIRDomainResource
     /**
      * Business identifier associated with the contraindication record.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $identifier
+     * @return $this
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -284,10 +306,12 @@ class FHIRContraindication extends FHIRDomainResource
     /**
      * The literature, knowledge-base or similar reference that describes the propensity for the contraindication identified.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $reference
+     * @return $this
      */
     public function setReference($reference)
     {
         $this->reference = $reference;
+        return $this;
     }
 
     /**
@@ -302,10 +326,89 @@ class FHIRContraindication extends FHIRDomainResource
     /**
      * Indicates an action that has been taken or is committed to to reduce or eliminate the likelihood of the risk identified by the contraindication from manifesting.  Can also reflect an observation of known mitigating factors that may reduce/eliminate the need for any action.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRContraindication\FHIRContraindicationMitigation[] $mitigation
+     * @return $this
      */
     public function addMitigation($mitigation)
     {
         $this->mitigation[] = $mitigation;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->patient) $json['patient'] = $this->patient->jsonSerialize();
+        if (null !== $this->category) $json['category'] = $this->category->jsonSerialize();
+        if (null !== $this->severity) $json['severity'] = $this->severity->jsonSerialize();
+        if (0 < count($this->implicated)) {
+            $json['implicated'] = array();
+            foreach($this->implicated as $implicated) {
+                $json['implicated'][] = $implicated->jsonSerialize();
+            }
+        }
+        if (null !== $this->detail) $json['detail'] = $this->detail->jsonSerialize();
+        if (null !== $this->date) $json['date'] = $this->date->jsonSerialize();
+        if (null !== $this->author) $json['author'] = $this->author->jsonSerialize();
+        if (null !== $this->identifier) $json['identifier'] = $this->identifier->jsonSerialize();
+        if (null !== $this->reference) $json['reference'] = $this->reference->jsonSerialize();
+        if (0 < count($this->mitigation)) {
+            $json['mitigation'] = array();
+            foreach($this->mitigation as $mitigation) {
+                $json['mitigation'][] = $mitigation->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Contraindication xmlns="http://hl7.org/fhir"></Contraindication>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->patient) $this->patient->xmlSerialize(true, $sxe->addChild('patient'));
+        if (null !== $this->category) $this->category->xmlSerialize(true, $sxe->addChild('category'));
+        if (null !== $this->severity) $this->severity->xmlSerialize(true, $sxe->addChild('severity'));
+        if (0 < count($this->implicated)) {
+            foreach($this->implicated as $implicated) {
+                $implicated->xmlSerialize(true, $sxe->addChild('implicated'));
+            }
+        }
+        if (null !== $this->detail) $this->detail->xmlSerialize(true, $sxe->addChild('detail'));
+        if (null !== $this->date) $this->date->xmlSerialize(true, $sxe->addChild('date'));
+        if (null !== $this->author) $this->author->xmlSerialize(true, $sxe->addChild('author'));
+        if (null !== $this->identifier) $this->identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+        if (null !== $this->reference) $this->reference->xmlSerialize(true, $sxe->addChild('reference'));
+        if (0 < count($this->mitigation)) {
+            foreach($this->mitigation as $mitigation) {
+                $mitigation->xmlSerialize(true, $sxe->addChild('mitigation'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

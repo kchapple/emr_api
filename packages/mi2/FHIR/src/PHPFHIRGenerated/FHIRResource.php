@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -60,10 +60,12 @@
  * 
  */
 
+use PHPFHIRGenerated\JsonSerializable;
+
 /**
  * This is the base resource type for everything.
  */
-class FHIRResource
+class FHIRResource implements JsonSerializable
 {
     /**
      * The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
@@ -90,6 +92,11 @@ class FHIRResource
     public $language = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Resource';
+
+    /**
      * The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRId
      */
@@ -101,10 +108,12 @@ class FHIRResource
     /**
      * The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRId $id
+     * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -119,10 +128,12 @@ class FHIRResource
     /**
      * The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content may not always be associated with version changes to the resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRMeta $meta
+     * @return $this
      */
     public function setMeta($meta)
     {
         $this->meta = $meta;
+        return $this;
     }
 
     /**
@@ -137,10 +148,12 @@ class FHIRResource
     /**
      * A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $implicitRules
+     * @return $this
      */
     public function setImplicitRules($implicitRules)
     {
         $this->implicitRules = $implicitRules;
+        return $this;
     }
 
     /**
@@ -155,10 +168,57 @@ class FHIRResource
     /**
      * The base language in which the resource is written.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $language
+     * @return $this
      */
     public function setLanguage($language)
     {
         $this->language = $language;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getId();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = array();
+        if (null !== $this->id) $json['id'] = $this->id->jsonSerialize();
+        if (null !== $this->meta) $json['meta'] = $this->meta->jsonSerialize();
+        if (null !== $this->implicitRules) $json['implicitRules'] = $this->implicitRules->jsonSerialize();
+        if (null !== $this->language) $json['language'] = $this->language->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Resource xmlns="http://hl7.org/fhir"></Resource>');
+        if (null !== $this->id) $this->id->xmlSerialize(true, $sxe->addChild('id'));
+        if (null !== $this->meta) $this->meta->xmlSerialize(true, $sxe->addChild('meta'));
+        if (null !== $this->implicitRules) $this->implicitRules->xmlSerialize(true, $sxe->addChild('implicitRules'));
+        if (null !== $this->language) $this->language->xmlSerialize(true, $sxe->addChild('language'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

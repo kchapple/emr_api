@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Measurements and simple assertions made about a patient, device or other subject.
  */
-class FHIRObservationReferenceRange extends FHIRBackboneElement
+class FHIRObservationReferenceRange extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is >=5 - <=9).   If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is <=2.3).
@@ -98,6 +99,11 @@ class FHIRObservationReferenceRange extends FHIRBackboneElement
     public $text = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Observation.ReferenceRange';
+
+    /**
      * The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is >=5 - <=9).   If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is <=2.3).
      * @return \PHPFHIRGenerated\FHIRSimpleQuantity
      */
@@ -109,10 +115,12 @@ class FHIRObservationReferenceRange extends FHIRBackboneElement
     /**
      * The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is >=5 - <=9).   If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is <=2.3).
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $low
+     * @return $this
      */
     public function setLow($low)
     {
         $this->low = $low;
+        return $this;
     }
 
     /**
@@ -127,10 +135,12 @@ class FHIRObservationReferenceRange extends FHIRBackboneElement
     /**
      * The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is >=5 - <=9).   If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is >= 2.3).
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $high
+     * @return $this
      */
     public function setHigh($high)
     {
         $this->high = $high;
+        return $this;
     }
 
     /**
@@ -145,10 +155,12 @@ class FHIRObservationReferenceRange extends FHIRBackboneElement
     /**
      * Code for the meaning of the reference range.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $meaning
+     * @return $this
      */
     public function setMeaning($meaning)
     {
         $this->meaning = $meaning;
+        return $this;
     }
 
     /**
@@ -163,10 +175,12 @@ class FHIRObservationReferenceRange extends FHIRBackboneElement
     /**
      * The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRange $age
+     * @return $this
      */
     public function setAge($age)
     {
         $this->age = $age;
+        return $this;
     }
 
     /**
@@ -181,10 +195,60 @@ class FHIRObservationReferenceRange extends FHIRBackboneElement
     /**
      * Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of "Negative" or a list or table of 'normals'.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $text
+     * @return $this
      */
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->low) $json['low'] = $this->low->jsonSerialize();
+        if (null !== $this->high) $json['high'] = $this->high->jsonSerialize();
+        if (null !== $this->meaning) $json['meaning'] = $this->meaning->jsonSerialize();
+        if (null !== $this->age) $json['age'] = $this->age->jsonSerialize();
+        if (null !== $this->text) $json['text'] = $this->text->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ObservationReferenceRange xmlns="http://hl7.org/fhir"></ObservationReferenceRange>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->low) $this->low->xmlSerialize(true, $sxe->addChild('low'));
+        if (null !== $this->high) $this->high->xmlSerialize(true, $sxe->addChild('high'));
+        if (null !== $this->meaning) $this->meaning->xmlSerialize(true, $sxe->addChild('meaning'));
+        if (null !== $this->age) $this->age->xmlSerialize(true, $sxe->addChild('age'));
+        if (null !== $this->text) $this->text->xmlSerialize(true, $sxe->addChild('text'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

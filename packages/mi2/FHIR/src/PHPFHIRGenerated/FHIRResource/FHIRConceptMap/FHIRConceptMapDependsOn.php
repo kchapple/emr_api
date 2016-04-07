@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A statement of relationships from one set of concepts to one or more other concepts - either code systems or data elements, or classes in class models.
  */
-class FHIRConceptMapDependsOn extends FHIRBackboneElement
+class FHIRConceptMapDependsOn extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A reference to a specific concept that holds a coded value. This can be an element in a FHIR resource, or a specific reference to a data element in a different specification (e.g. HL7 v2) or a general reference to a kind of data field, or a reference to a value set with an appropriately narrow definition.
@@ -86,6 +87,11 @@ class FHIRConceptMapDependsOn extends FHIRBackboneElement
     public $code = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ConceptMap.DependsOn';
+
+    /**
      * A reference to a specific concept that holds a coded value. This can be an element in a FHIR resource, or a specific reference to a data element in a different specification (e.g. HL7 v2) or a general reference to a kind of data field, or a reference to a value set with an appropriately narrow definition.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRUri
      */
@@ -97,10 +103,12 @@ class FHIRConceptMapDependsOn extends FHIRBackboneElement
     /**
      * A reference to a specific concept that holds a coded value. This can be an element in a FHIR resource, or a specific reference to a data element in a different specification (e.g. HL7 v2) or a general reference to a kind of data field, or a reference to a value set with an appropriately narrow definition.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $element
+     * @return $this
      */
     public function setElement($element)
     {
         $this->element = $element;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRConceptMapDependsOn extends FHIRBackboneElement
     /**
      * An absolute URI that identifies the code system of the dependency code (if the source/dependency is a value set that crosses code systems).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $codeSystem
+     * @return $this
      */
     public function setCodeSystem($codeSystem)
     {
         $this->codeSystem = $codeSystem;
+        return $this;
     }
 
     /**
@@ -133,10 +143,56 @@ class FHIRConceptMapDependsOn extends FHIRBackboneElement
     /**
      * Identity (code or path) or the element/item/ValueSet that the map depends on / refers to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->element) $json['element'] = $this->element->jsonSerialize();
+        if (null !== $this->codeSystem) $json['codeSystem'] = $this->codeSystem->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ConceptMapDependsOn xmlns="http://hl7.org/fhir"></ConceptMapDependsOn>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->element) $this->element->xmlSerialize(true, $sxe->addChild('element'));
+        if (null !== $this->codeSystem) $this->codeSystem->xmlSerialize(true, $sxe->addChild('codeSystem'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

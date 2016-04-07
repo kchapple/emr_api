@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A set of rules or how FHIR is used to solve a particular problem. This resource is used to gather all the parts of an implementation guide into a logical whole, and to publish a computable definition of all the parts.
  */
-class FHIRImplementationGuideGlobal extends FHIRBackboneElement
+class FHIRImplementationGuideGlobal extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The type of resource that all instances must conform to.
@@ -80,6 +81,11 @@ class FHIRImplementationGuideGlobal extends FHIRBackboneElement
     public $profile = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ImplementationGuide.Global';
+
+    /**
      * The type of resource that all instances must conform to.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCode
      */
@@ -91,10 +97,12 @@ class FHIRImplementationGuideGlobal extends FHIRBackboneElement
     /**
      * The type of resource that all instances must conform to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRImplementationGuideGlobal extends FHIRBackboneElement
     /**
      * A reference to the profile that all instances must conform to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $profile
+     * @return $this
      */
     public function setProfile($profile)
     {
         $this->profile = $profile;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->profile) $json['profile'] = $this->profile->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ImplementationGuideGlobal xmlns="http://hl7.org/fhir"></ImplementationGuideGlobal>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->profile) $this->profile->xmlSerialize(true, $sxe->addChild('profile'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

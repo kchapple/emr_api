@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A collection of error, warning or information messages that result from a system action.
  */
-class FHIROperationOutcomeIssue extends FHIRBackboneElement
+class FHIROperationOutcomeIssue extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Indicates whether the issue indicates a variation from successful processing.
@@ -98,6 +99,11 @@ class FHIROperationOutcomeIssue extends FHIRBackboneElement
     public $location = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'OperationOutcome.Issue';
+
+    /**
      * Indicates whether the issue indicates a variation from successful processing.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIssueSeverity
      */
@@ -109,10 +115,12 @@ class FHIROperationOutcomeIssue extends FHIRBackboneElement
     /**
      * Indicates whether the issue indicates a variation from successful processing.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIssueSeverity $severity
+     * @return $this
      */
     public function setSeverity($severity)
     {
         $this->severity = $severity;
+        return $this;
     }
 
     /**
@@ -127,10 +135,12 @@ class FHIROperationOutcomeIssue extends FHIRBackboneElement
     /**
      * Describes the type of the issue. The system that creates an OperationOutcome SHALL choose the most applicable code from the IssueType value set, and may additional provide its own code for the error in the details element.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIssueType $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -145,10 +155,12 @@ class FHIROperationOutcomeIssue extends FHIRBackboneElement
     /**
      * Additional details about the error. This may be a text description of the error, or a system code that identifies the error.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $details
+     * @return $this
      */
     public function setDetails($details)
     {
         $this->details = $details;
+        return $this;
     }
 
     /**
@@ -163,10 +175,12 @@ class FHIROperationOutcomeIssue extends FHIRBackboneElement
     /**
      * Additional diagnostic information about the issue.  Typically, this may be a description of how a value is erroneous, or a stack dump to help trace the issue.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $diagnostics
+     * @return $this
      */
     public function setDiagnostics($diagnostics)
     {
         $this->diagnostics = $diagnostics;
+        return $this;
     }
 
     /**
@@ -181,10 +195,69 @@ class FHIROperationOutcomeIssue extends FHIRBackboneElement
     /**
      * A simple XPath limited to element names, repetition indicators and the default child access that identifies one of the elements in the resource that caused this issue to be raised.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString[] $location
+     * @return $this
      */
     public function addLocation($location)
     {
         $this->location[] = $location;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->severity) $json['severity'] = $this->severity->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->details) $json['details'] = $this->details->jsonSerialize();
+        if (null !== $this->diagnostics) $json['diagnostics'] = $this->diagnostics->jsonSerialize();
+        if (0 < count($this->location)) {
+            $json['location'] = array();
+            foreach($this->location as $location) {
+                $json['location'][] = $location->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<OperationOutcomeIssue xmlns="http://hl7.org/fhir"></OperationOutcomeIssue>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->severity) $this->severity->xmlSerialize(true, $sxe->addChild('severity'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->details) $this->details->xmlSerialize(true, $sxe->addChild('details'));
+        if (null !== $this->diagnostics) $this->diagnostics->xmlSerialize(true, $sxe->addChild('diagnostics'));
+        if (0 < count($this->location)) {
+            foreach($this->location as $location) {
+                $location->xmlSerialize(true, $sxe->addChild('location'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

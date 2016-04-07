@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Significant health events and conditions for a person related to the patient relevant in the context of care for the patient.
  */
-class FHIRFamilyMemberHistoryCondition extends FHIRBackboneElement
+class FHIRFamilyMemberHistoryCondition extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The actual condition specified. Could be a coded condition (like MI or Diabetes) or a less specific string like 'cancer' depending on how much is known about the condition and the capabilities of the creating system.
@@ -110,6 +111,11 @@ class FHIRFamilyMemberHistoryCondition extends FHIRBackboneElement
     public $note = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'FamilyMemberHistory.Condition';
+
+    /**
      * The actual condition specified. Could be a coded condition (like MI or Diabetes) or a less specific string like 'cancer' depending on how much is known about the condition and the capabilities of the creating system.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -121,10 +127,12 @@ class FHIRFamilyMemberHistoryCondition extends FHIRBackboneElement
     /**
      * The actual condition specified. Could be a coded condition (like MI or Diabetes) or a less specific string like 'cancer' depending on how much is known about the condition and the capabilities of the creating system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -139,10 +147,12 @@ class FHIRFamilyMemberHistoryCondition extends FHIRBackboneElement
     /**
      * Indicates what happened as a result of this condition.  If the condition resulted in death, deceased date is captured on the relation.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $outcome
+     * @return $this
      */
     public function setOutcome($outcome)
     {
         $this->outcome = $outcome;
+        return $this;
     }
 
     /**
@@ -157,10 +167,12 @@ class FHIRFamilyMemberHistoryCondition extends FHIRBackboneElement
     /**
      * Either the age of onset, range of approximate age or descriptive string can be recorded.  For conditions with multiple occurrences, this describes the first known occurrence. (choose any one of onset*, but only one)
      * @param \PHPFHIRGenerated\FHIRAge $onsetQuantity
+     * @return $this
      */
     public function setOnsetQuantity($onsetQuantity)
     {
         $this->onsetQuantity = $onsetQuantity;
+        return $this;
     }
 
     /**
@@ -175,10 +187,12 @@ class FHIRFamilyMemberHistoryCondition extends FHIRBackboneElement
     /**
      * Either the age of onset, range of approximate age or descriptive string can be recorded.  For conditions with multiple occurrences, this describes the first known occurrence. (choose any one of onset*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRange $onsetRange
+     * @return $this
      */
     public function setOnsetRange($onsetRange)
     {
         $this->onsetRange = $onsetRange;
+        return $this;
     }
 
     /**
@@ -193,10 +207,12 @@ class FHIRFamilyMemberHistoryCondition extends FHIRBackboneElement
     /**
      * Either the age of onset, range of approximate age or descriptive string can be recorded.  For conditions with multiple occurrences, this describes the first known occurrence. (choose any one of onset*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $onsetPeriod
+     * @return $this
      */
     public function setOnsetPeriod($onsetPeriod)
     {
         $this->onsetPeriod = $onsetPeriod;
+        return $this;
     }
 
     /**
@@ -211,10 +227,12 @@ class FHIRFamilyMemberHistoryCondition extends FHIRBackboneElement
     /**
      * Either the age of onset, range of approximate age or descriptive string can be recorded.  For conditions with multiple occurrences, this describes the first known occurrence. (choose any one of onset*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $onsetString
+     * @return $this
      */
     public function setOnsetString($onsetString)
     {
         $this->onsetString = $onsetString;
+        return $this;
     }
 
     /**
@@ -229,10 +247,64 @@ class FHIRFamilyMemberHistoryCondition extends FHIRBackboneElement
     /**
      * An area where general notes can be placed about this specific condition.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAnnotation $note
+     * @return $this
      */
     public function setNote($note)
     {
         $this->note = $note;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->outcome) $json['outcome'] = $this->outcome->jsonSerialize();
+        if (null !== $this->onsetQuantity) $json['onsetQuantity'] = $this->onsetQuantity->jsonSerialize();
+        if (null !== $this->onsetRange) $json['onsetRange'] = $this->onsetRange->jsonSerialize();
+        if (null !== $this->onsetPeriod) $json['onsetPeriod'] = $this->onsetPeriod->jsonSerialize();
+        if (null !== $this->onsetString) $json['onsetString'] = $this->onsetString->jsonSerialize();
+        if (null !== $this->note) $json['note'] = $this->note->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<FamilyMemberHistoryCondition xmlns="http://hl7.org/fhir"></FamilyMemberHistoryCondition>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->outcome) $this->outcome->xmlSerialize(true, $sxe->addChild('outcome'));
+        if (null !== $this->onsetQuantity) $this->onsetQuantity->xmlSerialize(true, $sxe->addChild('onsetQuantity'));
+        if (null !== $this->onsetRange) $this->onsetRange->xmlSerialize(true, $sxe->addChild('onsetRange'));
+        if (null !== $this->onsetPeriod) $this->onsetPeriod->xmlSerialize(true, $sxe->addChild('onsetPeriod'));
+        if (null !== $this->onsetString) $this->onsetString->xmlSerialize(true, $sxe->addChild('onsetString'));
+        if (null !== $this->note) $this->note->xmlSerialize(true, $sxe->addChild('note'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

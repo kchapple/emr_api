@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A request for a procedure to be performed. May be a proposal or an order.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRProcedureRequest extends FHIRDomainResource
+class FHIRProcedureRequest extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Identifiers assigned to this order by the order or by the receiver.
@@ -177,6 +178,11 @@ class FHIRProcedureRequest extends FHIRDomainResource
     public $priority = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ProcedureRequest';
+
+    /**
      * Identifiers assigned to this order by the order or by the receiver.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -188,10 +194,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * Identifiers assigned to this order by the order or by the receiver.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -206,10 +214,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * The person, animal or group that should receive the procedure.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $subject
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -224,10 +234,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * The specific procedure that is ordered. Use text if the exact nature of the procedure cannot be coded.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -242,10 +254,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * Indicates the sites on the subject's body where the procedure should be performed (I.e. the target sites).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $bodySite
+     * @return $this
      */
     public function addBodySite($bodySite)
     {
         $this->bodySite[] = $bodySite;
+        return $this;
     }
 
     /**
@@ -260,10 +274,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * The reason why the procedure is being proposed or ordered. This procedure request may be motivated by a Condition for instance. (choose any one of reason*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $reasonCodeableConcept
+     * @return $this
      */
     public function setReasonCodeableConcept($reasonCodeableConcept)
     {
         $this->reasonCodeableConcept = $reasonCodeableConcept;
+        return $this;
     }
 
     /**
@@ -278,10 +294,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * The reason why the procedure is being proposed or ordered. This procedure request may be motivated by a Condition for instance. (choose any one of reason*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $reasonReference
+     * @return $this
      */
     public function setReasonReference($reasonReference)
     {
         $this->reasonReference = $reasonReference;
+        return $this;
     }
 
     /**
@@ -296,10 +314,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * The timing schedule for the proposed or ordered procedure. The Schedule data type allows many different expressions.  E.g. "Every 8 hours"; "Three times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013". (choose any one of scheduled*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $scheduledDateTime
+     * @return $this
      */
     public function setScheduledDateTime($scheduledDateTime)
     {
         $this->scheduledDateTime = $scheduledDateTime;
+        return $this;
     }
 
     /**
@@ -314,10 +334,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * The timing schedule for the proposed or ordered procedure. The Schedule data type allows many different expressions.  E.g. "Every 8 hours"; "Three times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013". (choose any one of scheduled*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $scheduledPeriod
+     * @return $this
      */
     public function setScheduledPeriod($scheduledPeriod)
     {
         $this->scheduledPeriod = $scheduledPeriod;
+        return $this;
     }
 
     /**
@@ -332,10 +354,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * The timing schedule for the proposed or ordered procedure. The Schedule data type allows many different expressions.  E.g. "Every 8 hours"; "Three times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013". (choose any one of scheduled*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRTiming $scheduledTiming
+     * @return $this
      */
     public function setScheduledTiming($scheduledTiming)
     {
         $this->scheduledTiming = $scheduledTiming;
+        return $this;
     }
 
     /**
@@ -350,10 +374,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * The encounter within which the procedure proposal or request was created.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $encounter
+     * @return $this
      */
     public function setEncounter($encounter)
     {
         $this->encounter = $encounter;
+        return $this;
     }
 
     /**
@@ -368,10 +394,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * For example, the surgeon, anaethetist, endoscopist, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $performer
+     * @return $this
      */
     public function setPerformer($performer)
     {
         $this->performer = $performer;
+        return $this;
     }
 
     /**
@@ -386,10 +414,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * The status of the order.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRProcedureRequestStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -404,10 +434,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * Any other notes associated with this proposal or order - e.g. provider instructions.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAnnotation[] $notes
+     * @return $this
      */
     public function addNotes($notes)
     {
         $this->notes[] = $notes;
+        return $this;
     }
 
     /**
@@ -422,10 +454,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * If a CodeableConcept is present, it indicates the pre-condition for performing the procedure. (choose any one of asNeeded*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $asNeededBoolean
+     * @return $this
      */
     public function setAsNeededBoolean($asNeededBoolean)
     {
         $this->asNeededBoolean = $asNeededBoolean;
+        return $this;
     }
 
     /**
@@ -440,10 +474,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * If a CodeableConcept is present, it indicates the pre-condition for performing the procedure. (choose any one of asNeeded*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $asNeededCodeableConcept
+     * @return $this
      */
     public function setAsNeededCodeableConcept($asNeededCodeableConcept)
     {
         $this->asNeededCodeableConcept = $asNeededCodeableConcept;
+        return $this;
     }
 
     /**
@@ -458,10 +494,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * The time when the request was made.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $orderedOn
+     * @return $this
      */
     public function setOrderedOn($orderedOn)
     {
         $this->orderedOn = $orderedOn;
+        return $this;
     }
 
     /**
@@ -476,10 +514,12 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * The healthcare professional responsible for proposing or ordering the procedure.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $orderer
+     * @return $this
      */
     public function setOrderer($orderer)
     {
         $this->orderer = $orderer;
+        return $this;
     }
 
     /**
@@ -494,10 +534,114 @@ class FHIRProcedureRequest extends FHIRDomainResource
     /**
      * The clinical priority associated with this order.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRProcedureRequestPriority $priority
+     * @return $this
      */
     public function setPriority($priority)
     {
         $this->priority = $priority;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->subject) $json['subject'] = $this->subject->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (0 < count($this->bodySite)) {
+            $json['bodySite'] = array();
+            foreach($this->bodySite as $bodySite) {
+                $json['bodySite'][] = $bodySite->jsonSerialize();
+            }
+        }
+        if (null !== $this->reasonCodeableConcept) $json['reasonCodeableConcept'] = $this->reasonCodeableConcept->jsonSerialize();
+        if (null !== $this->reasonReference) $json['reasonReference'] = $this->reasonReference->jsonSerialize();
+        if (null !== $this->scheduledDateTime) $json['scheduledDateTime'] = $this->scheduledDateTime->jsonSerialize();
+        if (null !== $this->scheduledPeriod) $json['scheduledPeriod'] = $this->scheduledPeriod->jsonSerialize();
+        if (null !== $this->scheduledTiming) $json['scheduledTiming'] = $this->scheduledTiming->jsonSerialize();
+        if (null !== $this->encounter) $json['encounter'] = $this->encounter->jsonSerialize();
+        if (null !== $this->performer) $json['performer'] = $this->performer->jsonSerialize();
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (0 < count($this->notes)) {
+            $json['notes'] = array();
+            foreach($this->notes as $notes) {
+                $json['notes'][] = $notes->jsonSerialize();
+            }
+        }
+        if (null !== $this->asNeededBoolean) $json['asNeededBoolean'] = $this->asNeededBoolean->jsonSerialize();
+        if (null !== $this->asNeededCodeableConcept) $json['asNeededCodeableConcept'] = $this->asNeededCodeableConcept->jsonSerialize();
+        if (null !== $this->orderedOn) $json['orderedOn'] = $this->orderedOn->jsonSerialize();
+        if (null !== $this->orderer) $json['orderer'] = $this->orderer->jsonSerialize();
+        if (null !== $this->priority) $json['priority'] = $this->priority->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ProcedureRequest xmlns="http://hl7.org/fhir"></ProcedureRequest>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->subject) $this->subject->xmlSerialize(true, $sxe->addChild('subject'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (0 < count($this->bodySite)) {
+            foreach($this->bodySite as $bodySite) {
+                $bodySite->xmlSerialize(true, $sxe->addChild('bodySite'));
+            }
+        }
+        if (null !== $this->reasonCodeableConcept) $this->reasonCodeableConcept->xmlSerialize(true, $sxe->addChild('reasonCodeableConcept'));
+        if (null !== $this->reasonReference) $this->reasonReference->xmlSerialize(true, $sxe->addChild('reasonReference'));
+        if (null !== $this->scheduledDateTime) $this->scheduledDateTime->xmlSerialize(true, $sxe->addChild('scheduledDateTime'));
+        if (null !== $this->scheduledPeriod) $this->scheduledPeriod->xmlSerialize(true, $sxe->addChild('scheduledPeriod'));
+        if (null !== $this->scheduledTiming) $this->scheduledTiming->xmlSerialize(true, $sxe->addChild('scheduledTiming'));
+        if (null !== $this->encounter) $this->encounter->xmlSerialize(true, $sxe->addChild('encounter'));
+        if (null !== $this->performer) $this->performer->xmlSerialize(true, $sxe->addChild('performer'));
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (0 < count($this->notes)) {
+            foreach($this->notes as $notes) {
+                $notes->xmlSerialize(true, $sxe->addChild('notes'));
+            }
+        }
+        if (null !== $this->asNeededBoolean) $this->asNeededBoolean->xmlSerialize(true, $sxe->addChild('asNeededBoolean'));
+        if (null !== $this->asNeededCodeableConcept) $this->asNeededCodeableConcept->xmlSerialize(true, $sxe->addChild('asNeededCodeableConcept'));
+        if (null !== $this->orderedOn) $this->orderedOn->xmlSerialize(true, $sxe->addChild('orderedOn'));
+        if (null !== $this->orderer) $this->orderer->xmlSerialize(true, $sxe->addChild('orderer'));
+        if (null !== $this->priority) $this->priority->xmlSerialize(true, $sxe->addChild('priority'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Record details about the anatomical location of a specimen or body part.  This resource may be used when a coded concept does not provide the necessary detail needed for the use case.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRBodySite extends FHIRDomainResource
+class FHIRBodySite extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * The person to which the body site belongs.
@@ -105,6 +106,11 @@ class FHIRBodySite extends FHIRDomainResource
     public $image = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'BodySite';
+
+    /**
      * The person to which the body site belongs.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRReference
      */
@@ -116,10 +122,12 @@ class FHIRBodySite extends FHIRDomainResource
     /**
      * The person to which the body site belongs.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $patient
+     * @return $this
      */
     public function setPatient($patient)
     {
         $this->patient = $patient;
+        return $this;
     }
 
     /**
@@ -134,10 +142,12 @@ class FHIRBodySite extends FHIRDomainResource
     /**
      * Identifier for this instance of the anatomical location.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -152,10 +162,12 @@ class FHIRBodySite extends FHIRDomainResource
     /**
      * Named anatomical location - ideally coded where possible.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -170,10 +182,12 @@ class FHIRBodySite extends FHIRDomainResource
     /**
      * Modifier to refine the anatomical location.  These include modifiers for laterality, relative location, directionality, number, and plane.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $modifier
+     * @return $this
      */
     public function addModifier($modifier)
     {
         $this->modifier[] = $modifier;
+        return $this;
     }
 
     /**
@@ -188,10 +202,12 @@ class FHIRBodySite extends FHIRDomainResource
     /**
      * Description of anatomical location.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -206,10 +222,90 @@ class FHIRBodySite extends FHIRDomainResource
     /**
      * Image or images used to identify a location.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAttachment[] $image
+     * @return $this
      */
     public function addImage($image)
     {
         $this->image[] = $image;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->patient) $json['patient'] = $this->patient->jsonSerialize();
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (0 < count($this->modifier)) {
+            $json['modifier'] = array();
+            foreach($this->modifier as $modifier) {
+                $json['modifier'][] = $modifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (0 < count($this->image)) {
+            $json['image'] = array();
+            foreach($this->image as $image) {
+                $json['image'][] = $image->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<BodySite xmlns="http://hl7.org/fhir"></BodySite>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->patient) $this->patient->xmlSerialize(true, $sxe->addChild('patient'));
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (0 < count($this->modifier)) {
+            foreach($this->modifier as $modifier) {
+                $modifier->xmlSerialize(true, $sxe->addChild('modifier'));
+            }
+        }
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (0 < count($this->image)) {
+            foreach($this->image as $image) {
+                $image->xmlSerialize(true, $sxe->addChild('image'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A sample to be used for analysis.
  */
-class FHIRSpecimenTreatment extends FHIRBackboneElement
+class FHIRSpecimenTreatment extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Textual description of procedure.
@@ -86,6 +87,11 @@ class FHIRSpecimenTreatment extends FHIRBackboneElement
     public $additive = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Specimen.Treatment';
+
+    /**
      * Textual description of procedure.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -97,10 +103,12 @@ class FHIRSpecimenTreatment extends FHIRBackboneElement
     /**
      * Textual description of procedure.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRSpecimenTreatment extends FHIRBackboneElement
     /**
      * A coded value specifying the procedure used to process the specimen.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $procedure
+     * @return $this
      */
     public function setProcedure($procedure)
     {
         $this->procedure = $procedure;
+        return $this;
     }
 
     /**
@@ -133,10 +143,65 @@ class FHIRSpecimenTreatment extends FHIRBackboneElement
     /**
      * Material used in the processing step.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $additive
+     * @return $this
      */
     public function addAdditive($additive)
     {
         $this->additive[] = $additive;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->procedure) $json['procedure'] = $this->procedure->jsonSerialize();
+        if (0 < count($this->additive)) {
+            $json['additive'] = array();
+            foreach($this->additive as $additive) {
+                $json['additive'][] = $additive->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<SpecimenTreatment xmlns="http://hl7.org/fhir"></SpecimenTreatment>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->procedure) $this->procedure->xmlSerialize(true, $sxe->addChild('procedure'));
+        if (0 < count($this->additive)) {
+            foreach($this->additive as $additive) {
+                $additive->xmlSerialize(true, $sxe->addChild('additive'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A curated namespace that issues unique symbols within that namespace for the identification of concepts, people, devices, etc.  Represents a "System" used within the Identifier and Coding data types.
  */
-class FHIRNamingSystemUniqueId extends FHIRBackboneElement
+class FHIRNamingSystemUniqueId extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Identifies the unique identifier scheme used for this particular identifier.
@@ -92,6 +93,11 @@ class FHIRNamingSystemUniqueId extends FHIRBackboneElement
     public $period = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'NamingSystem.UniqueId';
+
+    /**
      * Identifies the unique identifier scheme used for this particular identifier.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRNamingSystemIdentifierType
      */
@@ -103,10 +109,12 @@ class FHIRNamingSystemUniqueId extends FHIRBackboneElement
     /**
      * Identifies the unique identifier scheme used for this particular identifier.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRNamingSystemIdentifierType $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRNamingSystemUniqueId extends FHIRBackboneElement
     /**
      * The string that should be sent over the wire to identify the code system or identifier system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $value
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRNamingSystemUniqueId extends FHIRBackboneElement
     /**
      * Indicates whether this identifier is the "preferred" identifier of this type.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $preferred
+     * @return $this
      */
     public function setPreferred($preferred)
     {
         $this->preferred = $preferred;
+        return $this;
     }
 
     /**
@@ -157,10 +169,58 @@ class FHIRNamingSystemUniqueId extends FHIRBackboneElement
     /**
      * Identifies the period of time over which this identifier is considered appropriate to refer to the naming system.  Outside of this window, the identifier might be non-deterministic.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->value) $json['value'] = $this->value->jsonSerialize();
+        if (null !== $this->preferred) $json['preferred'] = $this->preferred->jsonSerialize();
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<NamingSystemUniqueId xmlns="http://hl7.org/fhir"></NamingSystemUniqueId>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->value) $this->value->xmlSerialize(true, $sxe->addChild('value'));
+        if (null !== $this->preferred) $this->preferred->xmlSerialize(true, $sxe->addChild('preferred'));
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

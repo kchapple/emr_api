@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,17 +61,23 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRCarePlanStatus extends FHIRElement
+class FHIRCarePlanStatus extends FHIRElement implements JsonSerializable
 {
     /**
      * @var string
      */
     public $value = null;
+
+    /**
+     * @var string
+     */
+    private $_fhirElementName = 'CarePlanStatus';
 
     /**
      * @return string
@@ -83,10 +89,49 @@ class FHIRCarePlanStatus extends FHIRElement
 
     /**
      * @param string $value
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
+     * @return string|int|float|bool|null
+     */
+    public function jsonSerialize()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<CarePlanStatus xmlns="http://hl7.org/fhir"></CarePlanStatus>');
+        $sxe->addAttribute('value', $this->value);
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

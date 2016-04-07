@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A provider issued list of services and products provided, or to be provided, to a patient which is provided to an insurer for payment recovery.
  */
-class FHIRClaimMissingTeeth extends FHIRBackboneElement
+class FHIRClaimMissingTeeth extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The code identifying which tooth is missing.
@@ -86,6 +87,11 @@ class FHIRClaimMissingTeeth extends FHIRBackboneElement
     public $extractionDate = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Claim.MissingTeeth';
+
+    /**
      * The code identifying which tooth is missing.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCoding
      */
@@ -97,10 +103,12 @@ class FHIRClaimMissingTeeth extends FHIRBackboneElement
     /**
      * The code identifying which tooth is missing.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $tooth
+     * @return $this
      */
     public function setTooth($tooth)
     {
         $this->tooth = $tooth;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRClaimMissingTeeth extends FHIRBackboneElement
     /**
      * Missing reason may be: E-extraction, O-other.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $reason
+     * @return $this
      */
     public function setReason($reason)
     {
         $this->reason = $reason;
+        return $this;
     }
 
     /**
@@ -133,10 +143,56 @@ class FHIRClaimMissingTeeth extends FHIRBackboneElement
     /**
      * The date of the extraction either known from records or patient reported estimate.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDate $extractionDate
+     * @return $this
      */
     public function setExtractionDate($extractionDate)
     {
         $this->extractionDate = $extractionDate;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->tooth) $json['tooth'] = $this->tooth->jsonSerialize();
+        if (null !== $this->reason) $json['reason'] = $this->reason->jsonSerialize();
+        if (null !== $this->extractionDate) $json['extractionDate'] = $this->extractionDate->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ClaimMissingTeeth xmlns="http://hl7.org/fhir"></ClaimMissingTeeth>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->tooth) $this->tooth->xmlSerialize(true, $sxe->addChild('tooth'));
+        if (null !== $this->reason) $this->reason->xmlSerialize(true, $sxe->addChild('reason'));
+        if (null !== $this->extractionDate) $this->extractionDate->xmlSerialize(true, $sxe->addChild('extractionDate'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

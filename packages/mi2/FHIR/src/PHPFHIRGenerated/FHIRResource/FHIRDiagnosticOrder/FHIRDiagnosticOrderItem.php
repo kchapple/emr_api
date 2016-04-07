@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A record of a request for a diagnostic investigation service to be performed.
  */
-class FHIRDiagnosticOrderItem extends FHIRBackboneElement
+class FHIRDiagnosticOrderItem extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A code that identifies a particular diagnostic investigation, or panel of investigations, that have been requested.
@@ -98,6 +99,11 @@ class FHIRDiagnosticOrderItem extends FHIRBackboneElement
     public $event = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'DiagnosticOrder.Item';
+
+    /**
      * A code that identifies a particular diagnostic investigation, or panel of investigations, that have been requested.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -109,10 +115,12 @@ class FHIRDiagnosticOrderItem extends FHIRBackboneElement
     /**
      * A code that identifies a particular diagnostic investigation, or panel of investigations, that have been requested.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -127,10 +135,12 @@ class FHIRDiagnosticOrderItem extends FHIRBackboneElement
     /**
      * If the item is related to a specific specimen.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $specimen
+     * @return $this
      */
     public function addSpecimen($specimen)
     {
         $this->specimen[] = $specimen;
+        return $this;
     }
 
     /**
@@ -145,10 +155,12 @@ class FHIRDiagnosticOrderItem extends FHIRBackboneElement
     /**
      * Anatomical location where the request test should be performed.  This is the target site.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $bodySite
+     * @return $this
      */
     public function setBodySite($bodySite)
     {
         $this->bodySite = $bodySite;
+        return $this;
     }
 
     /**
@@ -163,10 +175,12 @@ class FHIRDiagnosticOrderItem extends FHIRBackboneElement
     /**
      * The status of this individual item within the order.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDiagnosticOrderStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -181,10 +195,78 @@ class FHIRDiagnosticOrderItem extends FHIRBackboneElement
     /**
      * A summary of the events of interest that have occurred as this item of the request is processed.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRDiagnosticOrder\FHIRDiagnosticOrderEvent[] $event
+     * @return $this
      */
     public function addEvent($event)
     {
         $this->event[] = $event;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (0 < count($this->specimen)) {
+            $json['specimen'] = array();
+            foreach($this->specimen as $specimen) {
+                $json['specimen'][] = $specimen->jsonSerialize();
+            }
+        }
+        if (null !== $this->bodySite) $json['bodySite'] = $this->bodySite->jsonSerialize();
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (0 < count($this->event)) {
+            $json['event'] = array();
+            foreach($this->event as $event) {
+                $json['event'][] = $event->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<DiagnosticOrderItem xmlns="http://hl7.org/fhir"></DiagnosticOrderItem>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (0 < count($this->specimen)) {
+            foreach($this->specimen as $specimen) {
+                $specimen->xmlSerialize(true, $sxe->addChild('specimen'));
+            }
+        }
+        if (null !== $this->bodySite) $this->bodySite->xmlSerialize(true, $sxe->addChild('bodySite'));
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (0 < count($this->event)) {
+            foreach($this->event as $event) {
+                $event->xmlSerialize(true, $sxe->addChild('event'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

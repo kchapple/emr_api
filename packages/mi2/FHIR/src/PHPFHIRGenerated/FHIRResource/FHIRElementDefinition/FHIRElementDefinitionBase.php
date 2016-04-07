@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Captures constraints on each element within the resource, profile, or extension.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRElementDefinitionBase extends FHIRElement
+class FHIRElementDefinitionBase extends FHIRElement implements JsonSerializable
 {
     /**
      * The Path that identifies the base element - this matches the ElementDefinition.path for that element. Across FHIR, there is only one base definition of any element - that is, an element definition on a [[[StructureDefinition]]] without a StructureDefinition.base.
@@ -87,6 +88,11 @@ class FHIRElementDefinitionBase extends FHIRElement
     public $max = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ElementDefinition.Base';
+
+    /**
      * The Path that identifies the base element - this matches the ElementDefinition.path for that element. Across FHIR, there is only one base definition of any element - that is, an element definition on a [[[StructureDefinition]]] without a StructureDefinition.base.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -98,10 +104,12 @@ class FHIRElementDefinitionBase extends FHIRElement
     /**
      * The Path that identifies the base element - this matches the ElementDefinition.path for that element. Across FHIR, there is only one base definition of any element - that is, an element definition on a [[[StructureDefinition]]] without a StructureDefinition.base.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $path
+     * @return $this
      */
     public function setPath($path)
     {
         $this->path = $path;
+        return $this;
     }
 
     /**
@@ -116,10 +124,12 @@ class FHIRElementDefinitionBase extends FHIRElement
     /**
      * Minimum cardinality of the base element identified by the path.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInteger $min
+     * @return $this
      */
     public function setMin($min)
     {
         $this->min = $min;
+        return $this;
     }
 
     /**
@@ -134,10 +144,56 @@ class FHIRElementDefinitionBase extends FHIRElement
     /**
      * Maximum cardinality of the base element identified by the path.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $max
+     * @return $this
      */
     public function setMax($max)
     {
         $this->max = $max;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->path) $json['path'] = $this->path->jsonSerialize();
+        if (null !== $this->min) $json['min'] = $this->min->jsonSerialize();
+        if (null !== $this->max) $json['max'] = $this->max->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ElementDefinitionBase xmlns="http://hl7.org/fhir"></ElementDefinitionBase>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->path) $this->path->xmlSerialize(true, $sxe->addChild('path'));
+        if (null !== $this->min) $this->min->xmlSerialize(true, $sxe->addChild('min'));
+        if (null !== $this->max) $this->max->xmlSerialize(true, $sxe->addChild('max'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

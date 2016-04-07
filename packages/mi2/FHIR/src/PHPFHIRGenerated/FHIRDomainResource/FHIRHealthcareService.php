@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * The details of a healthcare service available at a location.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRHealthcareService extends FHIRDomainResource
+class FHIRHealthcareService extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * External identifiers for this item.
@@ -201,6 +202,11 @@ class FHIRHealthcareService extends FHIRDomainResource
     public $availabilityExceptions = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'HealthcareService';
+
+    /**
      * External identifiers for this item.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -212,10 +218,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * External identifiers for this item.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -230,10 +238,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * The organization that provides this healthcare service.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $providedBy
+     * @return $this
      */
     public function setProvidedBy($providedBy)
     {
         $this->providedBy = $providedBy;
+        return $this;
     }
 
     /**
@@ -248,10 +258,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * Identifies the broad category of service being performed or delivered.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $serviceCategory
+     * @return $this
      */
     public function setServiceCategory($serviceCategory)
     {
         $this->serviceCategory = $serviceCategory;
+        return $this;
     }
 
     /**
@@ -266,10 +278,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * A specific type of service that may be delivered or performed.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRHealthcareService\FHIRHealthcareServiceServiceType[] $serviceType
+     * @return $this
      */
     public function addServiceType($serviceType)
     {
         $this->serviceType[] = $serviceType;
+        return $this;
     }
 
     /**
@@ -284,10 +298,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * The location where this healthcare service may be provided.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $location
+     * @return $this
      */
     public function setLocation($location)
     {
         $this->location = $location;
+        return $this;
     }
 
     /**
@@ -302,10 +318,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * Further description of the service as it would be presented to a consumer while searching.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $serviceName
+     * @return $this
      */
     public function setServiceName($serviceName)
     {
         $this->serviceName = $serviceName;
+        return $this;
     }
 
     /**
@@ -320,10 +338,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * Any additional description of the service and/or any specific issues not covered by the other attributes, which can be displayed as further detail under the serviceName.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $comment
+     * @return $this
      */
     public function setComment($comment)
     {
         $this->comment = $comment;
+        return $this;
     }
 
     /**
@@ -338,10 +358,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * Extra details about the service that can't be placed in the other fields.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $extraDetails
+     * @return $this
      */
     public function setExtraDetails($extraDetails)
     {
         $this->extraDetails = $extraDetails;
+        return $this;
     }
 
     /**
@@ -356,10 +378,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * If there is a photo/symbol associated with this HealthcareService, it may be included here to facilitate quick identification of the service in a list.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAttachment $photo
+     * @return $this
      */
     public function setPhoto($photo)
     {
         $this->photo = $photo;
+        return $this;
     }
 
     /**
@@ -374,10 +398,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * List of contacts related to this specific healthcare service.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRContactPoint[] $telecom
+     * @return $this
      */
     public function addTelecom($telecom)
     {
         $this->telecom[] = $telecom;
+        return $this;
     }
 
     /**
@@ -392,10 +418,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * The location(s) that this service is available to (not where the service is provided).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $coverageArea
+     * @return $this
      */
     public function addCoverageArea($coverageArea)
     {
         $this->coverageArea[] = $coverageArea;
+        return $this;
     }
 
     /**
@@ -410,10 +438,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * The code(s) that detail the conditions under which the healthcare service is available/offered.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $serviceProvisionCode
+     * @return $this
      */
     public function addServiceProvisionCode($serviceProvisionCode)
     {
         $this->serviceProvisionCode[] = $serviceProvisionCode;
+        return $this;
     }
 
     /**
@@ -428,10 +458,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * Does this service have specific eligibility requirements that need to be met in order to use the service?
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $eligibility
+     * @return $this
      */
     public function setEligibility($eligibility)
     {
         $this->eligibility = $eligibility;
+        return $this;
     }
 
     /**
@@ -446,10 +478,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * Describes the eligibility conditions for the service.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $eligibilityNote
+     * @return $this
      */
     public function setEligibilityNote($eligibilityNote)
     {
         $this->eligibilityNote = $eligibilityNote;
+        return $this;
     }
 
     /**
@@ -464,10 +498,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * Program Names that can be used to categorize the service.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString[] $programName
+     * @return $this
      */
     public function addProgramName($programName)
     {
         $this->programName[] = $programName;
+        return $this;
     }
 
     /**
@@ -482,10 +518,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * Collection of characteristics (attributes).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $characteristic
+     * @return $this
      */
     public function addCharacteristic($characteristic)
     {
         $this->characteristic[] = $characteristic;
+        return $this;
     }
 
     /**
@@ -500,10 +538,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * Ways that the service accepts referrals, if this is not provided then it is implied that no referral is required.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $referralMethod
+     * @return $this
      */
     public function addReferralMethod($referralMethod)
     {
         $this->referralMethod[] = $referralMethod;
+        return $this;
     }
 
     /**
@@ -518,10 +558,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * The public part of the 'keys' allocated to an Organization by an accredited body to support secure exchange of data over the internet. To be provided by the Organization, where available.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $publicKey
+     * @return $this
      */
     public function setPublicKey($publicKey)
     {
         $this->publicKey = $publicKey;
+        return $this;
     }
 
     /**
@@ -536,10 +578,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * Indicates whether or not a prospective consumer will require an appointment for a particular service at a site to be provided by the Organization. Indicates if an appointment is required for access to this service.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $appointmentRequired
+     * @return $this
      */
     public function setAppointmentRequired($appointmentRequired)
     {
         $this->appointmentRequired = $appointmentRequired;
+        return $this;
     }
 
     /**
@@ -554,10 +598,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * A collection of times that the Service Site is available.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRHealthcareService\FHIRHealthcareServiceAvailableTime[] $availableTime
+     * @return $this
      */
     public function addAvailableTime($availableTime)
     {
         $this->availableTime[] = $availableTime;
+        return $this;
     }
 
     /**
@@ -572,10 +618,12 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * The HealthcareService is not available during this period of time due to the provided reason.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRHealthcareService\FHIRHealthcareServiceNotAvailable[] $notAvailable
+     * @return $this
      */
     public function addNotAvailable($notAvailable)
     {
         $this->notAvailable[] = $notAvailable;
+        return $this;
     }
 
     /**
@@ -590,10 +638,185 @@ class FHIRHealthcareService extends FHIRDomainResource
     /**
      * A description of site availability exceptions, e.g. public holiday availability. Succinctly describing all possible exceptions to normal site availability as details in the available Times and not available Times.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $availabilityExceptions
+     * @return $this
      */
     public function setAvailabilityExceptions($availabilityExceptions)
     {
         $this->availabilityExceptions = $availabilityExceptions;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->providedBy) $json['providedBy'] = $this->providedBy->jsonSerialize();
+        if (null !== $this->serviceCategory) $json['serviceCategory'] = $this->serviceCategory->jsonSerialize();
+        if (0 < count($this->serviceType)) {
+            $json['serviceType'] = array();
+            foreach($this->serviceType as $serviceType) {
+                $json['serviceType'][] = $serviceType->jsonSerialize();
+            }
+        }
+        if (null !== $this->location) $json['location'] = $this->location->jsonSerialize();
+        if (null !== $this->serviceName) $json['serviceName'] = $this->serviceName->jsonSerialize();
+        if (null !== $this->comment) $json['comment'] = $this->comment->jsonSerialize();
+        if (null !== $this->extraDetails) $json['extraDetails'] = $this->extraDetails->jsonSerialize();
+        if (null !== $this->photo) $json['photo'] = $this->photo->jsonSerialize();
+        if (0 < count($this->telecom)) {
+            $json['telecom'] = array();
+            foreach($this->telecom as $telecom) {
+                $json['telecom'][] = $telecom->jsonSerialize();
+            }
+        }
+        if (0 < count($this->coverageArea)) {
+            $json['coverageArea'] = array();
+            foreach($this->coverageArea as $coverageArea) {
+                $json['coverageArea'][] = $coverageArea->jsonSerialize();
+            }
+        }
+        if (0 < count($this->serviceProvisionCode)) {
+            $json['serviceProvisionCode'] = array();
+            foreach($this->serviceProvisionCode as $serviceProvisionCode) {
+                $json['serviceProvisionCode'][] = $serviceProvisionCode->jsonSerialize();
+            }
+        }
+        if (null !== $this->eligibility) $json['eligibility'] = $this->eligibility->jsonSerialize();
+        if (null !== $this->eligibilityNote) $json['eligibilityNote'] = $this->eligibilityNote->jsonSerialize();
+        if (0 < count($this->programName)) {
+            $json['programName'] = array();
+            foreach($this->programName as $programName) {
+                $json['programName'][] = $programName->jsonSerialize();
+            }
+        }
+        if (0 < count($this->characteristic)) {
+            $json['characteristic'] = array();
+            foreach($this->characteristic as $characteristic) {
+                $json['characteristic'][] = $characteristic->jsonSerialize();
+            }
+        }
+        if (0 < count($this->referralMethod)) {
+            $json['referralMethod'] = array();
+            foreach($this->referralMethod as $referralMethod) {
+                $json['referralMethod'][] = $referralMethod->jsonSerialize();
+            }
+        }
+        if (null !== $this->publicKey) $json['publicKey'] = $this->publicKey->jsonSerialize();
+        if (null !== $this->appointmentRequired) $json['appointmentRequired'] = $this->appointmentRequired->jsonSerialize();
+        if (0 < count($this->availableTime)) {
+            $json['availableTime'] = array();
+            foreach($this->availableTime as $availableTime) {
+                $json['availableTime'][] = $availableTime->jsonSerialize();
+            }
+        }
+        if (0 < count($this->notAvailable)) {
+            $json['notAvailable'] = array();
+            foreach($this->notAvailable as $notAvailable) {
+                $json['notAvailable'][] = $notAvailable->jsonSerialize();
+            }
+        }
+        if (null !== $this->availabilityExceptions) $json['availabilityExceptions'] = $this->availabilityExceptions->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<HealthcareService xmlns="http://hl7.org/fhir"></HealthcareService>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->providedBy) $this->providedBy->xmlSerialize(true, $sxe->addChild('providedBy'));
+        if (null !== $this->serviceCategory) $this->serviceCategory->xmlSerialize(true, $sxe->addChild('serviceCategory'));
+        if (0 < count($this->serviceType)) {
+            foreach($this->serviceType as $serviceType) {
+                $serviceType->xmlSerialize(true, $sxe->addChild('serviceType'));
+            }
+        }
+        if (null !== $this->location) $this->location->xmlSerialize(true, $sxe->addChild('location'));
+        if (null !== $this->serviceName) $this->serviceName->xmlSerialize(true, $sxe->addChild('serviceName'));
+        if (null !== $this->comment) $this->comment->xmlSerialize(true, $sxe->addChild('comment'));
+        if (null !== $this->extraDetails) $this->extraDetails->xmlSerialize(true, $sxe->addChild('extraDetails'));
+        if (null !== $this->photo) $this->photo->xmlSerialize(true, $sxe->addChild('photo'));
+        if (0 < count($this->telecom)) {
+            foreach($this->telecom as $telecom) {
+                $telecom->xmlSerialize(true, $sxe->addChild('telecom'));
+            }
+        }
+        if (0 < count($this->coverageArea)) {
+            foreach($this->coverageArea as $coverageArea) {
+                $coverageArea->xmlSerialize(true, $sxe->addChild('coverageArea'));
+            }
+        }
+        if (0 < count($this->serviceProvisionCode)) {
+            foreach($this->serviceProvisionCode as $serviceProvisionCode) {
+                $serviceProvisionCode->xmlSerialize(true, $sxe->addChild('serviceProvisionCode'));
+            }
+        }
+        if (null !== $this->eligibility) $this->eligibility->xmlSerialize(true, $sxe->addChild('eligibility'));
+        if (null !== $this->eligibilityNote) $this->eligibilityNote->xmlSerialize(true, $sxe->addChild('eligibilityNote'));
+        if (0 < count($this->programName)) {
+            foreach($this->programName as $programName) {
+                $programName->xmlSerialize(true, $sxe->addChild('programName'));
+            }
+        }
+        if (0 < count($this->characteristic)) {
+            foreach($this->characteristic as $characteristic) {
+                $characteristic->xmlSerialize(true, $sxe->addChild('characteristic'));
+            }
+        }
+        if (0 < count($this->referralMethod)) {
+            foreach($this->referralMethod as $referralMethod) {
+                $referralMethod->xmlSerialize(true, $sxe->addChild('referralMethod'));
+            }
+        }
+        if (null !== $this->publicKey) $this->publicKey->xmlSerialize(true, $sxe->addChild('publicKey'));
+        if (null !== $this->appointmentRequired) $this->appointmentRequired->xmlSerialize(true, $sxe->addChild('appointmentRequired'));
+        if (0 < count($this->availableTime)) {
+            foreach($this->availableTime as $availableTime) {
+                $availableTime->xmlSerialize(true, $sxe->addChild('availableTime'));
+            }
+        }
+        if (0 < count($this->notAvailable)) {
+            foreach($this->notAvailable as $notAvailable) {
+                $notAvailable->xmlSerialize(true, $sxe->addChild('notAvailable'));
+            }
+        }
+        if (null !== $this->availabilityExceptions) $this->availabilityExceptions->xmlSerialize(true, $sxe->addChild('availabilityExceptions'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

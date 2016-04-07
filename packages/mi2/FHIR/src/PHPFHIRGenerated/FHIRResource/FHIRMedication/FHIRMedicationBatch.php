@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * This resource is primarily used for the identification and definition of a medication. It covers the ingredients and the packaging for a medication.
  */
-class FHIRMedicationBatch extends FHIRBackboneElement
+class FHIRMedicationBatch extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The assigned lot number of a batch of the specified product.
@@ -80,6 +81,11 @@ class FHIRMedicationBatch extends FHIRBackboneElement
     public $expirationDate = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Medication.Batch';
+
+    /**
      * The assigned lot number of a batch of the specified product.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -91,10 +97,12 @@ class FHIRMedicationBatch extends FHIRBackboneElement
     /**
      * The assigned lot number of a batch of the specified product.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $lotNumber
+     * @return $this
      */
     public function setLotNumber($lotNumber)
     {
         $this->lotNumber = $lotNumber;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRMedicationBatch extends FHIRBackboneElement
     /**
      * When this specific batch of product will expire.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $expirationDate
+     * @return $this
      */
     public function setExpirationDate($expirationDate)
     {
         $this->expirationDate = $expirationDate;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->lotNumber) $json['lotNumber'] = $this->lotNumber->jsonSerialize();
+        if (null !== $this->expirationDate) $json['expirationDate'] = $this->expirationDate->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<MedicationBatch xmlns="http://hl7.org/fhir"></MedicationBatch>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->lotNumber) $this->lotNumber->xmlSerialize(true, $sxe->addChild('lotNumber'));
+        if (null !== $this->expirationDate) $this->expirationDate->xmlSerialize(true, $sxe->addChild('expirationDate'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

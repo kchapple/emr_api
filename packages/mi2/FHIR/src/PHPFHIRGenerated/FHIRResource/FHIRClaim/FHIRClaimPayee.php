@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A provider issued list of services and products provided, or to be provided, to a patient which is provided to an insurer for payment recovery.
  */
-class FHIRClaimPayee extends FHIRBackboneElement
+class FHIRClaimPayee extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Party to be reimbursed: Subscriber, provider, other.
@@ -92,6 +93,11 @@ class FHIRClaimPayee extends FHIRBackboneElement
     public $person = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Claim.Payee';
+
+    /**
      * Party to be reimbursed: Subscriber, provider, other.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCoding
      */
@@ -103,10 +109,12 @@ class FHIRClaimPayee extends FHIRBackboneElement
     /**
      * Party to be reimbursed: Subscriber, provider, other.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRClaimPayee extends FHIRBackboneElement
     /**
      * The provider who is to be reimbursed for the claim (the party to whom any benefit is assigned).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $provider
+     * @return $this
      */
     public function setProvider($provider)
     {
         $this->provider = $provider;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRClaimPayee extends FHIRBackboneElement
     /**
      * The organization who is to be reimbursed for the claim (the party to whom any benefit is assigned).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $organization
+     * @return $this
      */
     public function setOrganization($organization)
     {
         $this->organization = $organization;
+        return $this;
     }
 
     /**
@@ -157,10 +169,58 @@ class FHIRClaimPayee extends FHIRBackboneElement
     /**
      * The person other than the subscriber who is to be reimbursed for the claim (the party to whom any benefit is assigned).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $person
+     * @return $this
      */
     public function setPerson($person)
     {
         $this->person = $person;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->provider) $json['provider'] = $this->provider->jsonSerialize();
+        if (null !== $this->organization) $json['organization'] = $this->organization->jsonSerialize();
+        if (null !== $this->person) $json['person'] = $this->person->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ClaimPayee xmlns="http://hl7.org/fhir"></ClaimPayee>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->provider) $this->provider->xmlSerialize(true, $sxe->addChild('provider'));
+        if (null !== $this->organization) $this->organization->xmlSerialize(true, $sxe->addChild('organization'));
+        if (null !== $this->person) $this->person->xmlSerialize(true, $sxe->addChild('person'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

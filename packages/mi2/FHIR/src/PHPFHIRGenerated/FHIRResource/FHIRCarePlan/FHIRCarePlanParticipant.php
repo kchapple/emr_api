@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Describes the intention of how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions.
  */
-class FHIRCarePlanParticipant extends FHIRBackboneElement
+class FHIRCarePlanParticipant extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Indicates specific responsibility of an individual within the care plan; e.g. "Primary physician", "Team coordinator", "Caregiver", etc.
@@ -80,6 +81,11 @@ class FHIRCarePlanParticipant extends FHIRBackboneElement
     public $member = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'CarePlan.Participant';
+
+    /**
      * Indicates specific responsibility of an individual within the care plan; e.g. "Primary physician", "Team coordinator", "Caregiver", etc.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -91,10 +97,12 @@ class FHIRCarePlanParticipant extends FHIRBackboneElement
     /**
      * Indicates specific responsibility of an individual within the care plan; e.g. "Primary physician", "Team coordinator", "Caregiver", etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $role
+     * @return $this
      */
     public function setRole($role)
     {
         $this->role = $role;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRCarePlanParticipant extends FHIRBackboneElement
     /**
      * The specific person or organization who is participating/expected to participate in the care plan.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $member
+     * @return $this
      */
     public function setMember($member)
     {
         $this->member = $member;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->role) $json['role'] = $this->role->jsonSerialize();
+        if (null !== $this->member) $json['member'] = $this->member->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<CarePlanParticipant xmlns="http://hl7.org/fhir"></CarePlanParticipant>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->role) $this->role->xmlSerialize(true, $sxe->addChild('role'));
+        if (null !== $this->member) $this->member->xmlSerialize(true, $sxe->addChild('member'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

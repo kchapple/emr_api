@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A record of a device being used by a patient where the record is the result of a report from the patient or another clinician.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRDeviceUseStatement extends FHIRDomainResource
+class FHIRDeviceUseStatement extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Indicates the site on the subject's body where the device was used ( i.e. the target site). (choose any one of bodySite*, but only one)
@@ -141,6 +142,11 @@ class FHIRDeviceUseStatement extends FHIRDomainResource
     public $timingDateTime = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'DeviceUseStatement';
+
+    /**
      * Indicates the site on the subject's body where the device was used ( i.e. the target site). (choose any one of bodySite*, but only one)
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -152,10 +158,12 @@ class FHIRDeviceUseStatement extends FHIRDomainResource
     /**
      * Indicates the site on the subject's body where the device was used ( i.e. the target site). (choose any one of bodySite*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $bodySiteCodeableConcept
+     * @return $this
      */
     public function setBodySiteCodeableConcept($bodySiteCodeableConcept)
     {
         $this->bodySiteCodeableConcept = $bodySiteCodeableConcept;
+        return $this;
     }
 
     /**
@@ -170,10 +178,12 @@ class FHIRDeviceUseStatement extends FHIRDomainResource
     /**
      * Indicates the site on the subject's body where the device was used ( i.e. the target site). (choose any one of bodySite*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $bodySiteReference
+     * @return $this
      */
     public function setBodySiteReference($bodySiteReference)
     {
         $this->bodySiteReference = $bodySiteReference;
+        return $this;
     }
 
     /**
@@ -188,10 +198,12 @@ class FHIRDeviceUseStatement extends FHIRDomainResource
     /**
      * The time period over which the device was used.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $whenUsed
+     * @return $this
      */
     public function setWhenUsed($whenUsed)
     {
         $this->whenUsed = $whenUsed;
+        return $this;
     }
 
     /**
@@ -206,10 +218,12 @@ class FHIRDeviceUseStatement extends FHIRDomainResource
     /**
      * The details of the device used.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $device
+     * @return $this
      */
     public function setDevice($device)
     {
         $this->device = $device;
+        return $this;
     }
 
     /**
@@ -224,10 +238,12 @@ class FHIRDeviceUseStatement extends FHIRDomainResource
     /**
      * An external identifier for this statement such as an IRI.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -242,10 +258,12 @@ class FHIRDeviceUseStatement extends FHIRDomainResource
     /**
      * Reason or justification for the use of the device.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $indication
+     * @return $this
      */
     public function addIndication($indication)
     {
         $this->indication[] = $indication;
+        return $this;
     }
 
     /**
@@ -260,10 +278,12 @@ class FHIRDeviceUseStatement extends FHIRDomainResource
     /**
      * Details about the device statement that were not represented at all or sufficiently in one of the attributes provided in a class. These may include for example a comment, an instruction, or a note associated with the statement.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString[] $notes
+     * @return $this
      */
     public function addNotes($notes)
     {
         $this->notes[] = $notes;
+        return $this;
     }
 
     /**
@@ -278,10 +298,12 @@ class FHIRDeviceUseStatement extends FHIRDomainResource
     /**
      * The time at which the statement was made/recorded.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $recordedOn
+     * @return $this
      */
     public function setRecordedOn($recordedOn)
     {
         $this->recordedOn = $recordedOn;
+        return $this;
     }
 
     /**
@@ -296,10 +318,12 @@ class FHIRDeviceUseStatement extends FHIRDomainResource
     /**
      * The patient who used the device.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $subject
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -314,10 +338,12 @@ class FHIRDeviceUseStatement extends FHIRDomainResource
     /**
      * How often the device was used. (choose any one of timing*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRTiming $timingTiming
+     * @return $this
      */
     public function setTimingTiming($timingTiming)
     {
         $this->timingTiming = $timingTiming;
+        return $this;
     }
 
     /**
@@ -332,10 +358,12 @@ class FHIRDeviceUseStatement extends FHIRDomainResource
     /**
      * How often the device was used. (choose any one of timing*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $timingPeriod
+     * @return $this
      */
     public function setTimingPeriod($timingPeriod)
     {
         $this->timingPeriod = $timingPeriod;
+        return $this;
     }
 
     /**
@@ -350,10 +378,102 @@ class FHIRDeviceUseStatement extends FHIRDomainResource
     /**
      * How often the device was used. (choose any one of timing*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $timingDateTime
+     * @return $this
      */
     public function setTimingDateTime($timingDateTime)
     {
         $this->timingDateTime = $timingDateTime;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->bodySiteCodeableConcept) $json['bodySiteCodeableConcept'] = $this->bodySiteCodeableConcept->jsonSerialize();
+        if (null !== $this->bodySiteReference) $json['bodySiteReference'] = $this->bodySiteReference->jsonSerialize();
+        if (null !== $this->whenUsed) $json['whenUsed'] = $this->whenUsed->jsonSerialize();
+        if (null !== $this->device) $json['device'] = $this->device->jsonSerialize();
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (0 < count($this->indication)) {
+            $json['indication'] = array();
+            foreach($this->indication as $indication) {
+                $json['indication'][] = $indication->jsonSerialize();
+            }
+        }
+        if (0 < count($this->notes)) {
+            $json['notes'] = array();
+            foreach($this->notes as $notes) {
+                $json['notes'][] = $notes->jsonSerialize();
+            }
+        }
+        if (null !== $this->recordedOn) $json['recordedOn'] = $this->recordedOn->jsonSerialize();
+        if (null !== $this->subject) $json['subject'] = $this->subject->jsonSerialize();
+        if (null !== $this->timingTiming) $json['timingTiming'] = $this->timingTiming->jsonSerialize();
+        if (null !== $this->timingPeriod) $json['timingPeriod'] = $this->timingPeriod->jsonSerialize();
+        if (null !== $this->timingDateTime) $json['timingDateTime'] = $this->timingDateTime->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<DeviceUseStatement xmlns="http://hl7.org/fhir"></DeviceUseStatement>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->bodySiteCodeableConcept) $this->bodySiteCodeableConcept->xmlSerialize(true, $sxe->addChild('bodySiteCodeableConcept'));
+        if (null !== $this->bodySiteReference) $this->bodySiteReference->xmlSerialize(true, $sxe->addChild('bodySiteReference'));
+        if (null !== $this->whenUsed) $this->whenUsed->xmlSerialize(true, $sxe->addChild('whenUsed'));
+        if (null !== $this->device) $this->device->xmlSerialize(true, $sxe->addChild('device'));
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (0 < count($this->indication)) {
+            foreach($this->indication as $indication) {
+                $indication->xmlSerialize(true, $sxe->addChild('indication'));
+            }
+        }
+        if (0 < count($this->notes)) {
+            foreach($this->notes as $notes) {
+                $notes->xmlSerialize(true, $sxe->addChild('notes'));
+            }
+        }
+        if (null !== $this->recordedOn) $this->recordedOn->xmlSerialize(true, $sxe->addChild('recordedOn'));
+        if (null !== $this->subject) $this->subject->xmlSerialize(true, $sxe->addChild('subject'));
+        if (null !== $this->timingTiming) $this->timingTiming->xmlSerialize(true, $sxe->addChild('timingTiming'));
+        if (null !== $this->timingPeriod) $this->timingPeriod->xmlSerialize(true, $sxe->addChild('timingPeriod'));
+        if (null !== $this->timingDateTime) $this->timingDateTime->xmlSerialize(true, $sxe->addChild('timingDateTime'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

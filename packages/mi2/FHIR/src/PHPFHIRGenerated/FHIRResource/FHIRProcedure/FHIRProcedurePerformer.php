@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * An action that is or was performed on a patient. This can be a physical intervention like an operation, or less invasive like counseling or hypnotherapy.
  */
-class FHIRProcedurePerformer extends FHIRBackboneElement
+class FHIRProcedurePerformer extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The practitioner who was involved in the procedure.
@@ -80,6 +81,11 @@ class FHIRProcedurePerformer extends FHIRBackboneElement
     public $role = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Procedure.Performer';
+
+    /**
      * The practitioner who was involved in the procedure.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRReference
      */
@@ -91,10 +97,12 @@ class FHIRProcedurePerformer extends FHIRBackboneElement
     /**
      * The practitioner who was involved in the procedure.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $actor
+     * @return $this
      */
     public function setActor($actor)
     {
         $this->actor = $actor;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRProcedurePerformer extends FHIRBackboneElement
     /**
      * For example: surgeon, anaethetist, endoscopist.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $role
+     * @return $this
      */
     public function setRole($role)
     {
         $this->role = $role;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->actor) $json['actor'] = $this->actor->jsonSerialize();
+        if (null !== $this->role) $json['role'] = $this->role->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ProcedurePerformer xmlns="http://hl7.org/fhir"></ProcedurePerformer>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->actor) $this->actor->xmlSerialize(true, $sxe->addChild('actor'));
+        if (null !== $this->role) $this->role->xmlSerialize(true, $sxe->addChild('role'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

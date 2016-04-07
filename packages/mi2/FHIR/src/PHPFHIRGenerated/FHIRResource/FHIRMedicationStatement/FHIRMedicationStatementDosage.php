@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,13 +61,14 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A record of a medication that is being consumed by a patient.   A MedicationStatement may indicate that the patient may be taking the medication now, or has taken the medication in the past or will be taking the medication in the future.  The source of this information can be the patient, significant other (such as a family member or spouse), or a clinician.  A common scenario where this information is captured is during the history taking process during a patient visit or stay.   The medication information may come from e.g. the patient's memory, from a prescription bottle,  or from a list of medications the patient, clinician or other party maintains 
 
 The primary difference between a medication statement and a medication administration is that the medication administration has complete administration information and is based on actual administration information from the person who administered the medication.  A medication statement is often, if not always, less specific.  There is no required date/time when the medication was administered, in fact we only know that a source has reported the patient is taking this medication, where details such as time, quantity, or rate or even medication product may be incomplete or missing or less precise.  As stated earlier, the medication statement information may come from the patient's memory, from a prescription bottle or from a list of medications the patient, clinician or other party maintains.  Medication administration is more formal and is not missing detailed information.
  */
-class FHIRMedicationStatementDosage extends FHIRBackboneElement
+class FHIRMedicationStatementDosage extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Free text dosage information as reported about a patient's medication use. When coded dosage information is present, the free text may still be present for display to humans.
@@ -152,6 +153,11 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
     public $maxDosePerPeriod = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'MedicationStatement.Dosage';
+
+    /**
      * Free text dosage information as reported about a patient's medication use. When coded dosage information is present, the free text may still be present for display to humans.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -163,10 +169,12 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
     /**
      * Free text dosage information as reported about a patient's medication use. When coded dosage information is present, the free text may still be present for display to humans.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $text
+     * @return $this
      */
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
     }
 
     /**
@@ -181,10 +189,12 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
     /**
      * The timing schedule for giving the medication to the patient.  The Schedule data type allows many different expressions, for example.  "Every  8 hours"; "Three times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec 2011:";  "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
      * @param \PHPFHIRGenerated\FHIRElement\FHIRTiming $timing
+     * @return $this
      */
     public function setTiming($timing)
     {
         $this->timing = $timing;
+        return $this;
     }
 
     /**
@@ -203,10 +213,12 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
 
 Specifically if 'boolean' datatype is selected, then the following logic applies:  If set to True, this indicates that the medication is only taken when needed, within the specified schedule. (choose any one of asNeeded*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $asNeededBoolean
+     * @return $this
      */
     public function setAsNeededBoolean($asNeededBoolean)
     {
         $this->asNeededBoolean = $asNeededBoolean;
+        return $this;
     }
 
     /**
@@ -225,10 +237,12 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
 
 Specifically if 'boolean' datatype is selected, then the following logic applies:  If set to True, this indicates that the medication is only taken when needed, within the specified schedule. (choose any one of asNeeded*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $asNeededCodeableConcept
+     * @return $this
      */
     public function setAsNeededCodeableConcept($asNeededCodeableConcept)
     {
         $this->asNeededCodeableConcept = $asNeededCodeableConcept;
+        return $this;
     }
 
     /**
@@ -243,10 +257,12 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
     /**
      * A coded specification of or a reference to the anatomic site where the medication first enters the body. (choose any one of site*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $siteCodeableConcept
+     * @return $this
      */
     public function setSiteCodeableConcept($siteCodeableConcept)
     {
         $this->siteCodeableConcept = $siteCodeableConcept;
+        return $this;
     }
 
     /**
@@ -261,10 +277,12 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
     /**
      * A coded specification of or a reference to the anatomic site where the medication first enters the body. (choose any one of site*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $siteReference
+     * @return $this
      */
     public function setSiteReference($siteReference)
     {
         $this->siteReference = $siteReference;
+        return $this;
     }
 
     /**
@@ -279,10 +297,12 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
     /**
      * A code specifying the route or physiological path of administration of a therapeutic agent into or onto a subject.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $route
+     * @return $this
      */
     public function setRoute($route)
     {
         $this->route = $route;
+        return $this;
     }
 
     /**
@@ -297,10 +317,12 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
     /**
      * A coded value indicating the method by which the medication is intended to be or was introduced into or on the body.  This attribute will most often NOT be populated.  It is most commonly used for injections.  For example, Slow Push, Deep IV.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $method
+     * @return $this
      */
     public function setMethod($method)
     {
         $this->method = $method;
+        return $this;
     }
 
     /**
@@ -315,10 +337,12 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
     /**
      * The amount of therapeutic or other substance given at one administration event. (choose any one of quantity*, but only one)
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $quantityQuantity
+     * @return $this
      */
     public function setQuantityQuantity($quantityQuantity)
     {
         $this->quantityQuantity = $quantityQuantity;
+        return $this;
     }
 
     /**
@@ -333,10 +357,12 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
     /**
      * The amount of therapeutic or other substance given at one administration event. (choose any one of quantity*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRange $quantityRange
+     * @return $this
      */
     public function setQuantityRange($quantityRange)
     {
         $this->quantityRange = $quantityRange;
+        return $this;
     }
 
     /**
@@ -351,10 +377,12 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
     /**
      * Identifies the speed with which the medication was or will be introduced into the patient. Typically the rate for an infusion e.g. 100 ml per 1 hour or 100 ml/hr.  May also be expressed as a rate per unit of time e.g. 500 ml per 2 hours.   Currently we do not specify a default of '1' in the denominator, but this is being discussed. Other examples: 200 mcg/min or 200 mcg/1 minute; 1 liter/8 hours. (choose any one of rate*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRatio $rateRatio
+     * @return $this
      */
     public function setRateRatio($rateRatio)
     {
         $this->rateRatio = $rateRatio;
+        return $this;
     }
 
     /**
@@ -369,10 +397,12 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
     /**
      * Identifies the speed with which the medication was or will be introduced into the patient. Typically the rate for an infusion e.g. 100 ml per 1 hour or 100 ml/hr.  May also be expressed as a rate per unit of time e.g. 500 ml per 2 hours.   Currently we do not specify a default of '1' in the denominator, but this is being discussed. Other examples: 200 mcg/min or 200 mcg/1 minute; 1 liter/8 hours. (choose any one of rate*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRange $rateRange
+     * @return $this
      */
     public function setRateRange($rateRange)
     {
         $this->rateRange = $rateRange;
+        return $this;
     }
 
     /**
@@ -387,10 +417,76 @@ Specifically if 'boolean' datatype is selected, then the following logic applies
     /**
      * The maximum total quantity of a therapeutic substance that may be administered to a subject over the period of time.  For example, 1000mg in 24 hours.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRatio $maxDosePerPeriod
+     * @return $this
      */
     public function setMaxDosePerPeriod($maxDosePerPeriod)
     {
         $this->maxDosePerPeriod = $maxDosePerPeriod;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->text) $json['text'] = $this->text->jsonSerialize();
+        if (null !== $this->timing) $json['timing'] = $this->timing->jsonSerialize();
+        if (null !== $this->asNeededBoolean) $json['asNeededBoolean'] = $this->asNeededBoolean->jsonSerialize();
+        if (null !== $this->asNeededCodeableConcept) $json['asNeededCodeableConcept'] = $this->asNeededCodeableConcept->jsonSerialize();
+        if (null !== $this->siteCodeableConcept) $json['siteCodeableConcept'] = $this->siteCodeableConcept->jsonSerialize();
+        if (null !== $this->siteReference) $json['siteReference'] = $this->siteReference->jsonSerialize();
+        if (null !== $this->route) $json['route'] = $this->route->jsonSerialize();
+        if (null !== $this->method) $json['method'] = $this->method->jsonSerialize();
+        if (null !== $this->quantityQuantity) $json['quantityQuantity'] = $this->quantityQuantity->jsonSerialize();
+        if (null !== $this->quantityRange) $json['quantityRange'] = $this->quantityRange->jsonSerialize();
+        if (null !== $this->rateRatio) $json['rateRatio'] = $this->rateRatio->jsonSerialize();
+        if (null !== $this->rateRange) $json['rateRange'] = $this->rateRange->jsonSerialize();
+        if (null !== $this->maxDosePerPeriod) $json['maxDosePerPeriod'] = $this->maxDosePerPeriod->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<MedicationStatementDosage xmlns="http://hl7.org/fhir"></MedicationStatementDosage>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->text) $this->text->xmlSerialize(true, $sxe->addChild('text'));
+        if (null !== $this->timing) $this->timing->xmlSerialize(true, $sxe->addChild('timing'));
+        if (null !== $this->asNeededBoolean) $this->asNeededBoolean->xmlSerialize(true, $sxe->addChild('asNeededBoolean'));
+        if (null !== $this->asNeededCodeableConcept) $this->asNeededCodeableConcept->xmlSerialize(true, $sxe->addChild('asNeededCodeableConcept'));
+        if (null !== $this->siteCodeableConcept) $this->siteCodeableConcept->xmlSerialize(true, $sxe->addChild('siteCodeableConcept'));
+        if (null !== $this->siteReference) $this->siteReference->xmlSerialize(true, $sxe->addChild('siteReference'));
+        if (null !== $this->route) $this->route->xmlSerialize(true, $sxe->addChild('route'));
+        if (null !== $this->method) $this->method->xmlSerialize(true, $sxe->addChild('method'));
+        if (null !== $this->quantityQuantity) $this->quantityQuantity->xmlSerialize(true, $sxe->addChild('quantityQuantity'));
+        if (null !== $this->quantityRange) $this->quantityRange->xmlSerialize(true, $sxe->addChild('quantityRange'));
+        if (null !== $this->rateRatio) $this->rateRatio->xmlSerialize(true, $sxe->addChild('rateRatio'));
+        if (null !== $this->rateRange) $this->rateRange->xmlSerialize(true, $sxe->addChild('rateRange'));
+        if (null !== $this->maxDosePerPeriod) $this->maxDosePerPeriod->xmlSerialize(true, $sxe->addChild('maxDosePerPeriod'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

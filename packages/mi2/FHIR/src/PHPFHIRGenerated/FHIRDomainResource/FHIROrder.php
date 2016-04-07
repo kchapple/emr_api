@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A request to perform an action.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIROrder extends FHIRDomainResource
+class FHIROrder extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Identifiers assigned to this order by the orderer or by the receiver.
@@ -123,6 +124,11 @@ class FHIROrder extends FHIRDomainResource
     public $detail = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Order';
+
+    /**
      * Identifiers assigned to this order by the orderer or by the receiver.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -134,10 +140,12 @@ class FHIROrder extends FHIRDomainResource
     /**
      * Identifiers assigned to this order by the orderer or by the receiver.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -152,10 +160,12 @@ class FHIROrder extends FHIRDomainResource
     /**
      * When the order was made.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $date
+     * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -170,10 +180,12 @@ class FHIROrder extends FHIRDomainResource
     /**
      * Patient this order is about.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $subject
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -188,10 +200,12 @@ class FHIROrder extends FHIRDomainResource
     /**
      * Who initiated the order.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $source
+     * @return $this
      */
     public function setSource($source)
     {
         $this->source = $source;
+        return $this;
     }
 
     /**
@@ -206,10 +220,12 @@ class FHIROrder extends FHIRDomainResource
     /**
      * Who is intended to fulfill the order.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $target
+     * @return $this
      */
     public function setTarget($target)
     {
         $this->target = $target;
+        return $this;
     }
 
     /**
@@ -224,10 +240,12 @@ class FHIROrder extends FHIRDomainResource
     /**
      * Text - why the order was made. (choose any one of reason*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $reasonCodeableConcept
+     * @return $this
      */
     public function setReasonCodeableConcept($reasonCodeableConcept)
     {
         $this->reasonCodeableConcept = $reasonCodeableConcept;
+        return $this;
     }
 
     /**
@@ -242,10 +260,12 @@ class FHIROrder extends FHIRDomainResource
     /**
      * Text - why the order was made. (choose any one of reason*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $reasonReference
+     * @return $this
      */
     public function setReasonReference($reasonReference)
     {
         $this->reasonReference = $reasonReference;
+        return $this;
     }
 
     /**
@@ -260,10 +280,12 @@ class FHIROrder extends FHIRDomainResource
     /**
      * When order should be fulfilled.
      * @param \PHPFHIRGenerated\FHIRResource\FHIROrder\FHIROrderWhen $when
+     * @return $this
      */
     public function setWhen($when)
     {
         $this->when = $when;
+        return $this;
     }
 
     /**
@@ -278,10 +300,87 @@ class FHIROrder extends FHIRDomainResource
     /**
      * What action is being ordered.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $detail
+     * @return $this
      */
     public function addDetail($detail)
     {
         $this->detail[] = $detail;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->date) $json['date'] = $this->date->jsonSerialize();
+        if (null !== $this->subject) $json['subject'] = $this->subject->jsonSerialize();
+        if (null !== $this->source) $json['source'] = $this->source->jsonSerialize();
+        if (null !== $this->target) $json['target'] = $this->target->jsonSerialize();
+        if (null !== $this->reasonCodeableConcept) $json['reasonCodeableConcept'] = $this->reasonCodeableConcept->jsonSerialize();
+        if (null !== $this->reasonReference) $json['reasonReference'] = $this->reasonReference->jsonSerialize();
+        if (null !== $this->when) $json['when'] = $this->when->jsonSerialize();
+        if (0 < count($this->detail)) {
+            $json['detail'] = array();
+            foreach($this->detail as $detail) {
+                $json['detail'][] = $detail->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Order xmlns="http://hl7.org/fhir"></Order>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->date) $this->date->xmlSerialize(true, $sxe->addChild('date'));
+        if (null !== $this->subject) $this->subject->xmlSerialize(true, $sxe->addChild('subject'));
+        if (null !== $this->source) $this->source->xmlSerialize(true, $sxe->addChild('source'));
+        if (null !== $this->target) $this->target->xmlSerialize(true, $sxe->addChild('target'));
+        if (null !== $this->reasonCodeableConcept) $this->reasonCodeableConcept->xmlSerialize(true, $sxe->addChild('reasonCodeableConcept'));
+        if (null !== $this->reasonReference) $this->reasonReference->xmlSerialize(true, $sxe->addChild('reasonReference'));
+        if (null !== $this->when) $this->when->xmlSerialize(true, $sxe->addChild('when'));
+        if (0 < count($this->detail)) {
+            foreach($this->detail as $detail) {
+                $detail->xmlSerialize(true, $sxe->addChild('detail'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

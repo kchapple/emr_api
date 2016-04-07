@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -60,7 +60,9 @@
  * 
  */
 
-class FHIRResourceContainer
+use PHPFHIRGenerated\JsonSerializable;
+
+class FHIRResourceContainer implements JsonSerializable
 {
     /**
      * @var \PHPFHIRGenerated\FHIRDomainResource\FHIRAccount
@@ -533,6 +535,11 @@ class FHIRResourceContainer
     public $Parameters = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ResourceContainer';
+
+    /**
      * @return \PHPFHIRGenerated\FHIRDomainResource\FHIRAccount
      */
     public function getAccount()
@@ -542,10 +549,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRAccount $Account
+     * @return $this
      */
     public function setAccount($Account)
     {
         $this->Account = $Account;
+        return $this;
     }
 
     /**
@@ -558,10 +567,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRAllergyIntolerance $AllergyIntolerance
+     * @return $this
      */
     public function setAllergyIntolerance($AllergyIntolerance)
     {
         $this->AllergyIntolerance = $AllergyIntolerance;
+        return $this;
     }
 
     /**
@@ -574,10 +585,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRAppointment $Appointment
+     * @return $this
      */
     public function setAppointment($Appointment)
     {
         $this->Appointment = $Appointment;
+        return $this;
     }
 
     /**
@@ -590,10 +603,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRAppointmentResponse $AppointmentResponse
+     * @return $this
      */
     public function setAppointmentResponse($AppointmentResponse)
     {
         $this->AppointmentResponse = $AppointmentResponse;
+        return $this;
     }
 
     /**
@@ -606,10 +621,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRAuditEvent $AuditEvent
+     * @return $this
      */
     public function setAuditEvent($AuditEvent)
     {
         $this->AuditEvent = $AuditEvent;
+        return $this;
     }
 
     /**
@@ -622,10 +639,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRBasic $Basic
+     * @return $this
      */
     public function setBasic($Basic)
     {
         $this->Basic = $Basic;
+        return $this;
     }
 
     /**
@@ -638,10 +657,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRResource\FHIRBinary $Binary
+     * @return $this
      */
     public function setBinary($Binary)
     {
         $this->Binary = $Binary;
+        return $this;
     }
 
     /**
@@ -654,10 +675,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRBodySite $BodySite
+     * @return $this
      */
     public function setBodySite($BodySite)
     {
         $this->BodySite = $BodySite;
+        return $this;
     }
 
     /**
@@ -670,10 +693,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRResource\FHIRBundle $Bundle
+     * @return $this
      */
     public function setBundle($Bundle)
     {
         $this->Bundle = $Bundle;
+        return $this;
     }
 
     /**
@@ -686,10 +711,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRCarePlan $CarePlan
+     * @return $this
      */
     public function setCarePlan($CarePlan)
     {
         $this->CarePlan = $CarePlan;
+        return $this;
     }
 
     /**
@@ -702,10 +729,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRClaim $Claim
+     * @return $this
      */
     public function setClaim($Claim)
     {
         $this->Claim = $Claim;
+        return $this;
     }
 
     /**
@@ -718,10 +747,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRClaimResponse $ClaimResponse
+     * @return $this
      */
     public function setClaimResponse($ClaimResponse)
     {
         $this->ClaimResponse = $ClaimResponse;
+        return $this;
     }
 
     /**
@@ -734,10 +765,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRClinicalImpression $ClinicalImpression
+     * @return $this
      */
     public function setClinicalImpression($ClinicalImpression)
     {
         $this->ClinicalImpression = $ClinicalImpression;
+        return $this;
     }
 
     /**
@@ -750,10 +783,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRCommunication $Communication
+     * @return $this
      */
     public function setCommunication($Communication)
     {
         $this->Communication = $Communication;
+        return $this;
     }
 
     /**
@@ -766,10 +801,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRCommunicationRequest $CommunicationRequest
+     * @return $this
      */
     public function setCommunicationRequest($CommunicationRequest)
     {
         $this->CommunicationRequest = $CommunicationRequest;
+        return $this;
     }
 
     /**
@@ -782,10 +819,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRComposition $Composition
+     * @return $this
      */
     public function setComposition($Composition)
     {
         $this->Composition = $Composition;
+        return $this;
     }
 
     /**
@@ -798,10 +837,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRConceptMap $ConceptMap
+     * @return $this
      */
     public function setConceptMap($ConceptMap)
     {
         $this->ConceptMap = $ConceptMap;
+        return $this;
     }
 
     /**
@@ -814,10 +855,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRCondition $Condition
+     * @return $this
      */
     public function setCondition($Condition)
     {
         $this->Condition = $Condition;
+        return $this;
     }
 
     /**
@@ -830,10 +873,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRConformance $Conformance
+     * @return $this
      */
     public function setConformance($Conformance)
     {
         $this->Conformance = $Conformance;
+        return $this;
     }
 
     /**
@@ -846,10 +891,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRContract $Contract
+     * @return $this
      */
     public function setContract($Contract)
     {
         $this->Contract = $Contract;
+        return $this;
     }
 
     /**
@@ -862,10 +909,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRCoverage $Coverage
+     * @return $this
      */
     public function setCoverage($Coverage)
     {
         $this->Coverage = $Coverage;
+        return $this;
     }
 
     /**
@@ -878,10 +927,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRDataElement $DataElement
+     * @return $this
      */
     public function setDataElement($DataElement)
     {
         $this->DataElement = $DataElement;
+        return $this;
     }
 
     /**
@@ -894,10 +945,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRDetectedIssue $DetectedIssue
+     * @return $this
      */
     public function setDetectedIssue($DetectedIssue)
     {
         $this->DetectedIssue = $DetectedIssue;
+        return $this;
     }
 
     /**
@@ -910,10 +963,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRDevice $Device
+     * @return $this
      */
     public function setDevice($Device)
     {
         $this->Device = $Device;
+        return $this;
     }
 
     /**
@@ -926,10 +981,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRDeviceComponent $DeviceComponent
+     * @return $this
      */
     public function setDeviceComponent($DeviceComponent)
     {
         $this->DeviceComponent = $DeviceComponent;
+        return $this;
     }
 
     /**
@@ -942,10 +999,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRDeviceMetric $DeviceMetric
+     * @return $this
      */
     public function setDeviceMetric($DeviceMetric)
     {
         $this->DeviceMetric = $DeviceMetric;
+        return $this;
     }
 
     /**
@@ -958,10 +1017,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRDeviceUseRequest $DeviceUseRequest
+     * @return $this
      */
     public function setDeviceUseRequest($DeviceUseRequest)
     {
         $this->DeviceUseRequest = $DeviceUseRequest;
+        return $this;
     }
 
     /**
@@ -974,10 +1035,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRDeviceUseStatement $DeviceUseStatement
+     * @return $this
      */
     public function setDeviceUseStatement($DeviceUseStatement)
     {
         $this->DeviceUseStatement = $DeviceUseStatement;
+        return $this;
     }
 
     /**
@@ -990,10 +1053,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRDiagnosticOrder $DiagnosticOrder
+     * @return $this
      */
     public function setDiagnosticOrder($DiagnosticOrder)
     {
         $this->DiagnosticOrder = $DiagnosticOrder;
+        return $this;
     }
 
     /**
@@ -1006,10 +1071,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRDiagnosticReport $DiagnosticReport
+     * @return $this
      */
     public function setDiagnosticReport($DiagnosticReport)
     {
         $this->DiagnosticReport = $DiagnosticReport;
+        return $this;
     }
 
     /**
@@ -1022,10 +1089,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRDocumentManifest $DocumentManifest
+     * @return $this
      */
     public function setDocumentManifest($DocumentManifest)
     {
         $this->DocumentManifest = $DocumentManifest;
+        return $this;
     }
 
     /**
@@ -1038,10 +1107,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRDocumentReference $DocumentReference
+     * @return $this
      */
     public function setDocumentReference($DocumentReference)
     {
         $this->DocumentReference = $DocumentReference;
+        return $this;
     }
 
     /**
@@ -1054,10 +1125,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIREligibilityRequest $EligibilityRequest
+     * @return $this
      */
     public function setEligibilityRequest($EligibilityRequest)
     {
         $this->EligibilityRequest = $EligibilityRequest;
+        return $this;
     }
 
     /**
@@ -1070,10 +1143,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIREligibilityResponse $EligibilityResponse
+     * @return $this
      */
     public function setEligibilityResponse($EligibilityResponse)
     {
         $this->EligibilityResponse = $EligibilityResponse;
+        return $this;
     }
 
     /**
@@ -1086,10 +1161,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIREncounter $Encounter
+     * @return $this
      */
     public function setEncounter($Encounter)
     {
         $this->Encounter = $Encounter;
+        return $this;
     }
 
     /**
@@ -1102,10 +1179,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIREnrollmentRequest $EnrollmentRequest
+     * @return $this
      */
     public function setEnrollmentRequest($EnrollmentRequest)
     {
         $this->EnrollmentRequest = $EnrollmentRequest;
+        return $this;
     }
 
     /**
@@ -1118,10 +1197,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIREnrollmentResponse $EnrollmentResponse
+     * @return $this
      */
     public function setEnrollmentResponse($EnrollmentResponse)
     {
         $this->EnrollmentResponse = $EnrollmentResponse;
+        return $this;
     }
 
     /**
@@ -1134,10 +1215,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIREpisodeOfCare $EpisodeOfCare
+     * @return $this
      */
     public function setEpisodeOfCare($EpisodeOfCare)
     {
         $this->EpisodeOfCare = $EpisodeOfCare;
+        return $this;
     }
 
     /**
@@ -1150,10 +1233,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRExplanationOfBenefit $ExplanationOfBenefit
+     * @return $this
      */
     public function setExplanationOfBenefit($ExplanationOfBenefit)
     {
         $this->ExplanationOfBenefit = $ExplanationOfBenefit;
+        return $this;
     }
 
     /**
@@ -1166,10 +1251,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRFamilyMemberHistory $FamilyMemberHistory
+     * @return $this
      */
     public function setFamilyMemberHistory($FamilyMemberHistory)
     {
         $this->FamilyMemberHistory = $FamilyMemberHistory;
+        return $this;
     }
 
     /**
@@ -1182,10 +1269,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRFlag $Flag
+     * @return $this
      */
     public function setFlag($Flag)
     {
         $this->Flag = $Flag;
+        return $this;
     }
 
     /**
@@ -1198,10 +1287,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRGoal $Goal
+     * @return $this
      */
     public function setGoal($Goal)
     {
         $this->Goal = $Goal;
+        return $this;
     }
 
     /**
@@ -1214,10 +1305,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRGroup $Group
+     * @return $this
      */
     public function setGroup($Group)
     {
         $this->Group = $Group;
+        return $this;
     }
 
     /**
@@ -1230,10 +1323,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRHealthcareService $HealthcareService
+     * @return $this
      */
     public function setHealthcareService($HealthcareService)
     {
         $this->HealthcareService = $HealthcareService;
+        return $this;
     }
 
     /**
@@ -1246,10 +1341,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRImagingObjectSelection $ImagingObjectSelection
+     * @return $this
      */
     public function setImagingObjectSelection($ImagingObjectSelection)
     {
         $this->ImagingObjectSelection = $ImagingObjectSelection;
+        return $this;
     }
 
     /**
@@ -1262,10 +1359,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRImagingStudy $ImagingStudy
+     * @return $this
      */
     public function setImagingStudy($ImagingStudy)
     {
         $this->ImagingStudy = $ImagingStudy;
+        return $this;
     }
 
     /**
@@ -1278,10 +1377,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRImmunization $Immunization
+     * @return $this
      */
     public function setImmunization($Immunization)
     {
         $this->Immunization = $Immunization;
+        return $this;
     }
 
     /**
@@ -1294,10 +1395,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRImmunizationRecommendation $ImmunizationRecommendation
+     * @return $this
      */
     public function setImmunizationRecommendation($ImmunizationRecommendation)
     {
         $this->ImmunizationRecommendation = $ImmunizationRecommendation;
+        return $this;
     }
 
     /**
@@ -1310,10 +1413,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRImplementationGuide $ImplementationGuide
+     * @return $this
      */
     public function setImplementationGuide($ImplementationGuide)
     {
         $this->ImplementationGuide = $ImplementationGuide;
+        return $this;
     }
 
     /**
@@ -1326,10 +1431,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRList $List
+     * @return $this
      */
     public function setList($List)
     {
         $this->List = $List;
+        return $this;
     }
 
     /**
@@ -1342,10 +1449,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRLocation $Location
+     * @return $this
      */
     public function setLocation($Location)
     {
         $this->Location = $Location;
+        return $this;
     }
 
     /**
@@ -1358,10 +1467,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRMedia $Media
+     * @return $this
      */
     public function setMedia($Media)
     {
         $this->Media = $Media;
+        return $this;
     }
 
     /**
@@ -1374,10 +1485,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRMedication $Medication
+     * @return $this
      */
     public function setMedication($Medication)
     {
         $this->Medication = $Medication;
+        return $this;
     }
 
     /**
@@ -1390,10 +1503,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRMedicationAdministration $MedicationAdministration
+     * @return $this
      */
     public function setMedicationAdministration($MedicationAdministration)
     {
         $this->MedicationAdministration = $MedicationAdministration;
+        return $this;
     }
 
     /**
@@ -1406,10 +1521,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRMedicationDispense $MedicationDispense
+     * @return $this
      */
     public function setMedicationDispense($MedicationDispense)
     {
         $this->MedicationDispense = $MedicationDispense;
+        return $this;
     }
 
     /**
@@ -1422,10 +1539,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRMedicationOrder $MedicationOrder
+     * @return $this
      */
     public function setMedicationOrder($MedicationOrder)
     {
         $this->MedicationOrder = $MedicationOrder;
+        return $this;
     }
 
     /**
@@ -1438,10 +1557,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRMedicationStatement $MedicationStatement
+     * @return $this
      */
     public function setMedicationStatement($MedicationStatement)
     {
         $this->MedicationStatement = $MedicationStatement;
+        return $this;
     }
 
     /**
@@ -1454,10 +1575,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRMessageHeader $MessageHeader
+     * @return $this
      */
     public function setMessageHeader($MessageHeader)
     {
         $this->MessageHeader = $MessageHeader;
+        return $this;
     }
 
     /**
@@ -1470,10 +1593,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRNamingSystem $NamingSystem
+     * @return $this
      */
     public function setNamingSystem($NamingSystem)
     {
         $this->NamingSystem = $NamingSystem;
+        return $this;
     }
 
     /**
@@ -1486,10 +1611,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRNutritionOrder $NutritionOrder
+     * @return $this
      */
     public function setNutritionOrder($NutritionOrder)
     {
         $this->NutritionOrder = $NutritionOrder;
+        return $this;
     }
 
     /**
@@ -1502,10 +1629,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRObservation $Observation
+     * @return $this
      */
     public function setObservation($Observation)
     {
         $this->Observation = $Observation;
+        return $this;
     }
 
     /**
@@ -1518,10 +1647,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIROperationDefinition $OperationDefinition
+     * @return $this
      */
     public function setOperationDefinition($OperationDefinition)
     {
         $this->OperationDefinition = $OperationDefinition;
+        return $this;
     }
 
     /**
@@ -1534,10 +1665,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIROperationOutcome $OperationOutcome
+     * @return $this
      */
     public function setOperationOutcome($OperationOutcome)
     {
         $this->OperationOutcome = $OperationOutcome;
+        return $this;
     }
 
     /**
@@ -1550,10 +1683,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIROrder $Order
+     * @return $this
      */
     public function setOrder($Order)
     {
         $this->Order = $Order;
+        return $this;
     }
 
     /**
@@ -1566,10 +1701,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIROrderResponse $OrderResponse
+     * @return $this
      */
     public function setOrderResponse($OrderResponse)
     {
         $this->OrderResponse = $OrderResponse;
+        return $this;
     }
 
     /**
@@ -1582,10 +1719,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIROrganization $Organization
+     * @return $this
      */
     public function setOrganization($Organization)
     {
         $this->Organization = $Organization;
+        return $this;
     }
 
     /**
@@ -1598,10 +1737,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRPatient $Patient
+     * @return $this
      */
     public function setPatient($Patient)
     {
         $this->Patient = $Patient;
+        return $this;
     }
 
     /**
@@ -1614,10 +1755,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRPaymentNotice $PaymentNotice
+     * @return $this
      */
     public function setPaymentNotice($PaymentNotice)
     {
         $this->PaymentNotice = $PaymentNotice;
+        return $this;
     }
 
     /**
@@ -1630,10 +1773,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRPaymentReconciliation $PaymentReconciliation
+     * @return $this
      */
     public function setPaymentReconciliation($PaymentReconciliation)
     {
         $this->PaymentReconciliation = $PaymentReconciliation;
+        return $this;
     }
 
     /**
@@ -1646,10 +1791,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRPerson $Person
+     * @return $this
      */
     public function setPerson($Person)
     {
         $this->Person = $Person;
+        return $this;
     }
 
     /**
@@ -1662,10 +1809,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRPractitioner $Practitioner
+     * @return $this
      */
     public function setPractitioner($Practitioner)
     {
         $this->Practitioner = $Practitioner;
+        return $this;
     }
 
     /**
@@ -1678,10 +1827,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRProcedure $Procedure
+     * @return $this
      */
     public function setProcedure($Procedure)
     {
         $this->Procedure = $Procedure;
+        return $this;
     }
 
     /**
@@ -1694,10 +1845,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRProcedureRequest $ProcedureRequest
+     * @return $this
      */
     public function setProcedureRequest($ProcedureRequest)
     {
         $this->ProcedureRequest = $ProcedureRequest;
+        return $this;
     }
 
     /**
@@ -1710,10 +1863,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRProcessRequest $ProcessRequest
+     * @return $this
      */
     public function setProcessRequest($ProcessRequest)
     {
         $this->ProcessRequest = $ProcessRequest;
+        return $this;
     }
 
     /**
@@ -1726,10 +1881,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRProcessResponse $ProcessResponse
+     * @return $this
      */
     public function setProcessResponse($ProcessResponse)
     {
         $this->ProcessResponse = $ProcessResponse;
+        return $this;
     }
 
     /**
@@ -1742,10 +1899,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRProvenance $Provenance
+     * @return $this
      */
     public function setProvenance($Provenance)
     {
         $this->Provenance = $Provenance;
+        return $this;
     }
 
     /**
@@ -1758,10 +1917,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRQuestionnaire $Questionnaire
+     * @return $this
      */
     public function setQuestionnaire($Questionnaire)
     {
         $this->Questionnaire = $Questionnaire;
+        return $this;
     }
 
     /**
@@ -1774,10 +1935,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRQuestionnaireResponse $QuestionnaireResponse
+     * @return $this
      */
     public function setQuestionnaireResponse($QuestionnaireResponse)
     {
         $this->QuestionnaireResponse = $QuestionnaireResponse;
+        return $this;
     }
 
     /**
@@ -1790,10 +1953,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRReferralRequest $ReferralRequest
+     * @return $this
      */
     public function setReferralRequest($ReferralRequest)
     {
         $this->ReferralRequest = $ReferralRequest;
+        return $this;
     }
 
     /**
@@ -1806,10 +1971,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRRelatedPerson $RelatedPerson
+     * @return $this
      */
     public function setRelatedPerson($RelatedPerson)
     {
         $this->RelatedPerson = $RelatedPerson;
+        return $this;
     }
 
     /**
@@ -1822,10 +1989,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRRiskAssessment $RiskAssessment
+     * @return $this
      */
     public function setRiskAssessment($RiskAssessment)
     {
         $this->RiskAssessment = $RiskAssessment;
+        return $this;
     }
 
     /**
@@ -1838,10 +2007,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRSchedule $Schedule
+     * @return $this
      */
     public function setSchedule($Schedule)
     {
         $this->Schedule = $Schedule;
+        return $this;
     }
 
     /**
@@ -1854,10 +2025,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRSearchParameter $SearchParameter
+     * @return $this
      */
     public function setSearchParameter($SearchParameter)
     {
         $this->SearchParameter = $SearchParameter;
+        return $this;
     }
 
     /**
@@ -1870,10 +2043,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRSlot $Slot
+     * @return $this
      */
     public function setSlot($Slot)
     {
         $this->Slot = $Slot;
+        return $this;
     }
 
     /**
@@ -1886,10 +2061,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRSpecimen $Specimen
+     * @return $this
      */
     public function setSpecimen($Specimen)
     {
         $this->Specimen = $Specimen;
+        return $this;
     }
 
     /**
@@ -1902,10 +2079,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRStructureDefinition $StructureDefinition
+     * @return $this
      */
     public function setStructureDefinition($StructureDefinition)
     {
         $this->StructureDefinition = $StructureDefinition;
+        return $this;
     }
 
     /**
@@ -1918,10 +2097,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRSubscription $Subscription
+     * @return $this
      */
     public function setSubscription($Subscription)
     {
         $this->Subscription = $Subscription;
+        return $this;
     }
 
     /**
@@ -1934,10 +2115,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRSubstance $Substance
+     * @return $this
      */
     public function setSubstance($Substance)
     {
         $this->Substance = $Substance;
+        return $this;
     }
 
     /**
@@ -1950,10 +2133,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRSupplyDelivery $SupplyDelivery
+     * @return $this
      */
     public function setSupplyDelivery($SupplyDelivery)
     {
         $this->SupplyDelivery = $SupplyDelivery;
+        return $this;
     }
 
     /**
@@ -1966,10 +2151,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRSupplyRequest $SupplyRequest
+     * @return $this
      */
     public function setSupplyRequest($SupplyRequest)
     {
         $this->SupplyRequest = $SupplyRequest;
+        return $this;
     }
 
     /**
@@ -1982,10 +2169,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRTestScript $TestScript
+     * @return $this
      */
     public function setTestScript($TestScript)
     {
         $this->TestScript = $TestScript;
+        return $this;
     }
 
     /**
@@ -1998,10 +2187,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRValueSet $ValueSet
+     * @return $this
      */
     public function setValueSet($ValueSet)
     {
         $this->ValueSet = $ValueSet;
+        return $this;
     }
 
     /**
@@ -2014,10 +2205,12 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRDomainResource\FHIRVisionPrescription $VisionPrescription
+     * @return $this
      */
     public function setVisionPrescription($VisionPrescription)
     {
         $this->VisionPrescription = $VisionPrescription;
+        return $this;
     }
 
     /**
@@ -2030,10 +2223,236 @@ class FHIRResourceContainer
 
     /**
      * @param \PHPFHIRGenerated\FHIRResource\FHIRParameters $Parameters
+     * @return $this
      */
     public function setParameters($Parameters)
     {
         $this->Parameters = $Parameters;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        if (null !== $this->Account) return $this->Account->jsonSerialize();
+        if (null !== $this->AllergyIntolerance) return $this->AllergyIntolerance->jsonSerialize();
+        if (null !== $this->Appointment) return $this->Appointment->jsonSerialize();
+        if (null !== $this->AppointmentResponse) return $this->AppointmentResponse->jsonSerialize();
+        if (null !== $this->AuditEvent) return $this->AuditEvent->jsonSerialize();
+        if (null !== $this->Basic) return $this->Basic->jsonSerialize();
+        if (null !== $this->Binary) return $this->Binary->jsonSerialize();
+        if (null !== $this->BodySite) return $this->BodySite->jsonSerialize();
+        if (null !== $this->Bundle) return $this->Bundle->jsonSerialize();
+        if (null !== $this->CarePlan) return $this->CarePlan->jsonSerialize();
+        if (null !== $this->Claim) return $this->Claim->jsonSerialize();
+        if (null !== $this->ClaimResponse) return $this->ClaimResponse->jsonSerialize();
+        if (null !== $this->ClinicalImpression) return $this->ClinicalImpression->jsonSerialize();
+        if (null !== $this->Communication) return $this->Communication->jsonSerialize();
+        if (null !== $this->CommunicationRequest) return $this->CommunicationRequest->jsonSerialize();
+        if (null !== $this->Composition) return $this->Composition->jsonSerialize();
+        if (null !== $this->ConceptMap) return $this->ConceptMap->jsonSerialize();
+        if (null !== $this->Condition) return $this->Condition->jsonSerialize();
+        if (null !== $this->Conformance) return $this->Conformance->jsonSerialize();
+        if (null !== $this->Contract) return $this->Contract->jsonSerialize();
+        if (null !== $this->Coverage) return $this->Coverage->jsonSerialize();
+        if (null !== $this->DataElement) return $this->DataElement->jsonSerialize();
+        if (null !== $this->DetectedIssue) return $this->DetectedIssue->jsonSerialize();
+        if (null !== $this->Device) return $this->Device->jsonSerialize();
+        if (null !== $this->DeviceComponent) return $this->DeviceComponent->jsonSerialize();
+        if (null !== $this->DeviceMetric) return $this->DeviceMetric->jsonSerialize();
+        if (null !== $this->DeviceUseRequest) return $this->DeviceUseRequest->jsonSerialize();
+        if (null !== $this->DeviceUseStatement) return $this->DeviceUseStatement->jsonSerialize();
+        if (null !== $this->DiagnosticOrder) return $this->DiagnosticOrder->jsonSerialize();
+        if (null !== $this->DiagnosticReport) return $this->DiagnosticReport->jsonSerialize();
+        if (null !== $this->DocumentManifest) return $this->DocumentManifest->jsonSerialize();
+        if (null !== $this->DocumentReference) return $this->DocumentReference->jsonSerialize();
+        if (null !== $this->EligibilityRequest) return $this->EligibilityRequest->jsonSerialize();
+        if (null !== $this->EligibilityResponse) return $this->EligibilityResponse->jsonSerialize();
+        if (null !== $this->Encounter) return $this->Encounter->jsonSerialize();
+        if (null !== $this->EnrollmentRequest) return $this->EnrollmentRequest->jsonSerialize();
+        if (null !== $this->EnrollmentResponse) return $this->EnrollmentResponse->jsonSerialize();
+        if (null !== $this->EpisodeOfCare) return $this->EpisodeOfCare->jsonSerialize();
+        if (null !== $this->ExplanationOfBenefit) return $this->ExplanationOfBenefit->jsonSerialize();
+        if (null !== $this->FamilyMemberHistory) return $this->FamilyMemberHistory->jsonSerialize();
+        if (null !== $this->Flag) return $this->Flag->jsonSerialize();
+        if (null !== $this->Goal) return $this->Goal->jsonSerialize();
+        if (null !== $this->Group) return $this->Group->jsonSerialize();
+        if (null !== $this->HealthcareService) return $this->HealthcareService->jsonSerialize();
+        if (null !== $this->ImagingObjectSelection) return $this->ImagingObjectSelection->jsonSerialize();
+        if (null !== $this->ImagingStudy) return $this->ImagingStudy->jsonSerialize();
+        if (null !== $this->Immunization) return $this->Immunization->jsonSerialize();
+        if (null !== $this->ImmunizationRecommendation) return $this->ImmunizationRecommendation->jsonSerialize();
+        if (null !== $this->ImplementationGuide) return $this->ImplementationGuide->jsonSerialize();
+        if (null !== $this->List) return $this->List->jsonSerialize();
+        if (null !== $this->Location) return $this->Location->jsonSerialize();
+        if (null !== $this->Media) return $this->Media->jsonSerialize();
+        if (null !== $this->Medication) return $this->Medication->jsonSerialize();
+        if (null !== $this->MedicationAdministration) return $this->MedicationAdministration->jsonSerialize();
+        if (null !== $this->MedicationDispense) return $this->MedicationDispense->jsonSerialize();
+        if (null !== $this->MedicationOrder) return $this->MedicationOrder->jsonSerialize();
+        if (null !== $this->MedicationStatement) return $this->MedicationStatement->jsonSerialize();
+        if (null !== $this->MessageHeader) return $this->MessageHeader->jsonSerialize();
+        if (null !== $this->NamingSystem) return $this->NamingSystem->jsonSerialize();
+        if (null !== $this->NutritionOrder) return $this->NutritionOrder->jsonSerialize();
+        if (null !== $this->Observation) return $this->Observation->jsonSerialize();
+        if (null !== $this->OperationDefinition) return $this->OperationDefinition->jsonSerialize();
+        if (null !== $this->OperationOutcome) return $this->OperationOutcome->jsonSerialize();
+        if (null !== $this->Order) return $this->Order->jsonSerialize();
+        if (null !== $this->OrderResponse) return $this->OrderResponse->jsonSerialize();
+        if (null !== $this->Organization) return $this->Organization->jsonSerialize();
+        if (null !== $this->Patient) return $this->Patient->jsonSerialize();
+        if (null !== $this->PaymentNotice) return $this->PaymentNotice->jsonSerialize();
+        if (null !== $this->PaymentReconciliation) return $this->PaymentReconciliation->jsonSerialize();
+        if (null !== $this->Person) return $this->Person->jsonSerialize();
+        if (null !== $this->Practitioner) return $this->Practitioner->jsonSerialize();
+        if (null !== $this->Procedure) return $this->Procedure->jsonSerialize();
+        if (null !== $this->ProcedureRequest) return $this->ProcedureRequest->jsonSerialize();
+        if (null !== $this->ProcessRequest) return $this->ProcessRequest->jsonSerialize();
+        if (null !== $this->ProcessResponse) return $this->ProcessResponse->jsonSerialize();
+        if (null !== $this->Provenance) return $this->Provenance->jsonSerialize();
+        if (null !== $this->Questionnaire) return $this->Questionnaire->jsonSerialize();
+        if (null !== $this->QuestionnaireResponse) return $this->QuestionnaireResponse->jsonSerialize();
+        if (null !== $this->ReferralRequest) return $this->ReferralRequest->jsonSerialize();
+        if (null !== $this->RelatedPerson) return $this->RelatedPerson->jsonSerialize();
+        if (null !== $this->RiskAssessment) return $this->RiskAssessment->jsonSerialize();
+        if (null !== $this->Schedule) return $this->Schedule->jsonSerialize();
+        if (null !== $this->SearchParameter) return $this->SearchParameter->jsonSerialize();
+        if (null !== $this->Slot) return $this->Slot->jsonSerialize();
+        if (null !== $this->Specimen) return $this->Specimen->jsonSerialize();
+        if (null !== $this->StructureDefinition) return $this->StructureDefinition->jsonSerialize();
+        if (null !== $this->Subscription) return $this->Subscription->jsonSerialize();
+        if (null !== $this->Substance) return $this->Substance->jsonSerialize();
+        if (null !== $this->SupplyDelivery) return $this->SupplyDelivery->jsonSerialize();
+        if (null !== $this->SupplyRequest) return $this->SupplyRequest->jsonSerialize();
+        if (null !== $this->TestScript) return $this->TestScript->jsonSerialize();
+        if (null !== $this->ValueSet) return $this->ValueSet->jsonSerialize();
+        if (null !== $this->VisionPrescription) return $this->VisionPrescription->jsonSerialize();
+        if (null !== $this->Parameters) return $this->Parameters->jsonSerialize();
+        return array();
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ResourceContainer xmlns="http://hl7.org/fhir"></ResourceContainer>');
+        if (null !== $this->Account) $this->Account->xmlSerialize(true, $sxe->addChild('Account'));
+        if (null !== $this->AllergyIntolerance) $this->AllergyIntolerance->xmlSerialize(true, $sxe->addChild('AllergyIntolerance'));
+        if (null !== $this->Appointment) $this->Appointment->xmlSerialize(true, $sxe->addChild('Appointment'));
+        if (null !== $this->AppointmentResponse) $this->AppointmentResponse->xmlSerialize(true, $sxe->addChild('AppointmentResponse'));
+        if (null !== $this->AuditEvent) $this->AuditEvent->xmlSerialize(true, $sxe->addChild('AuditEvent'));
+        if (null !== $this->Basic) $this->Basic->xmlSerialize(true, $sxe->addChild('Basic'));
+        if (null !== $this->Binary) $this->Binary->xmlSerialize(true, $sxe->addChild('Binary'));
+        if (null !== $this->BodySite) $this->BodySite->xmlSerialize(true, $sxe->addChild('BodySite'));
+        if (null !== $this->Bundle) $this->Bundle->xmlSerialize(true, $sxe->addChild('Bundle'));
+        if (null !== $this->CarePlan) $this->CarePlan->xmlSerialize(true, $sxe->addChild('CarePlan'));
+        if (null !== $this->Claim) $this->Claim->xmlSerialize(true, $sxe->addChild('Claim'));
+        if (null !== $this->ClaimResponse) $this->ClaimResponse->xmlSerialize(true, $sxe->addChild('ClaimResponse'));
+        if (null !== $this->ClinicalImpression) $this->ClinicalImpression->xmlSerialize(true, $sxe->addChild('ClinicalImpression'));
+        if (null !== $this->Communication) $this->Communication->xmlSerialize(true, $sxe->addChild('Communication'));
+        if (null !== $this->CommunicationRequest) $this->CommunicationRequest->xmlSerialize(true, $sxe->addChild('CommunicationRequest'));
+        if (null !== $this->Composition) $this->Composition->xmlSerialize(true, $sxe->addChild('Composition'));
+        if (null !== $this->ConceptMap) $this->ConceptMap->xmlSerialize(true, $sxe->addChild('ConceptMap'));
+        if (null !== $this->Condition) $this->Condition->xmlSerialize(true, $sxe->addChild('Condition'));
+        if (null !== $this->Conformance) $this->Conformance->xmlSerialize(true, $sxe->addChild('Conformance'));
+        if (null !== $this->Contract) $this->Contract->xmlSerialize(true, $sxe->addChild('Contract'));
+        if (null !== $this->Coverage) $this->Coverage->xmlSerialize(true, $sxe->addChild('Coverage'));
+        if (null !== $this->DataElement) $this->DataElement->xmlSerialize(true, $sxe->addChild('DataElement'));
+        if (null !== $this->DetectedIssue) $this->DetectedIssue->xmlSerialize(true, $sxe->addChild('DetectedIssue'));
+        if (null !== $this->Device) $this->Device->xmlSerialize(true, $sxe->addChild('Device'));
+        if (null !== $this->DeviceComponent) $this->DeviceComponent->xmlSerialize(true, $sxe->addChild('DeviceComponent'));
+        if (null !== $this->DeviceMetric) $this->DeviceMetric->xmlSerialize(true, $sxe->addChild('DeviceMetric'));
+        if (null !== $this->DeviceUseRequest) $this->DeviceUseRequest->xmlSerialize(true, $sxe->addChild('DeviceUseRequest'));
+        if (null !== $this->DeviceUseStatement) $this->DeviceUseStatement->xmlSerialize(true, $sxe->addChild('DeviceUseStatement'));
+        if (null !== $this->DiagnosticOrder) $this->DiagnosticOrder->xmlSerialize(true, $sxe->addChild('DiagnosticOrder'));
+        if (null !== $this->DiagnosticReport) $this->DiagnosticReport->xmlSerialize(true, $sxe->addChild('DiagnosticReport'));
+        if (null !== $this->DocumentManifest) $this->DocumentManifest->xmlSerialize(true, $sxe->addChild('DocumentManifest'));
+        if (null !== $this->DocumentReference) $this->DocumentReference->xmlSerialize(true, $sxe->addChild('DocumentReference'));
+        if (null !== $this->EligibilityRequest) $this->EligibilityRequest->xmlSerialize(true, $sxe->addChild('EligibilityRequest'));
+        if (null !== $this->EligibilityResponse) $this->EligibilityResponse->xmlSerialize(true, $sxe->addChild('EligibilityResponse'));
+        if (null !== $this->Encounter) $this->Encounter->xmlSerialize(true, $sxe->addChild('Encounter'));
+        if (null !== $this->EnrollmentRequest) $this->EnrollmentRequest->xmlSerialize(true, $sxe->addChild('EnrollmentRequest'));
+        if (null !== $this->EnrollmentResponse) $this->EnrollmentResponse->xmlSerialize(true, $sxe->addChild('EnrollmentResponse'));
+        if (null !== $this->EpisodeOfCare) $this->EpisodeOfCare->xmlSerialize(true, $sxe->addChild('EpisodeOfCare'));
+        if (null !== $this->ExplanationOfBenefit) $this->ExplanationOfBenefit->xmlSerialize(true, $sxe->addChild('ExplanationOfBenefit'));
+        if (null !== $this->FamilyMemberHistory) $this->FamilyMemberHistory->xmlSerialize(true, $sxe->addChild('FamilyMemberHistory'));
+        if (null !== $this->Flag) $this->Flag->xmlSerialize(true, $sxe->addChild('Flag'));
+        if (null !== $this->Goal) $this->Goal->xmlSerialize(true, $sxe->addChild('Goal'));
+        if (null !== $this->Group) $this->Group->xmlSerialize(true, $sxe->addChild('Group'));
+        if (null !== $this->HealthcareService) $this->HealthcareService->xmlSerialize(true, $sxe->addChild('HealthcareService'));
+        if (null !== $this->ImagingObjectSelection) $this->ImagingObjectSelection->xmlSerialize(true, $sxe->addChild('ImagingObjectSelection'));
+        if (null !== $this->ImagingStudy) $this->ImagingStudy->xmlSerialize(true, $sxe->addChild('ImagingStudy'));
+        if (null !== $this->Immunization) $this->Immunization->xmlSerialize(true, $sxe->addChild('Immunization'));
+        if (null !== $this->ImmunizationRecommendation) $this->ImmunizationRecommendation->xmlSerialize(true, $sxe->addChild('ImmunizationRecommendation'));
+        if (null !== $this->ImplementationGuide) $this->ImplementationGuide->xmlSerialize(true, $sxe->addChild('ImplementationGuide'));
+        if (null !== $this->List) $this->List->xmlSerialize(true, $sxe->addChild('List'));
+        if (null !== $this->Location) $this->Location->xmlSerialize(true, $sxe->addChild('Location'));
+        if (null !== $this->Media) $this->Media->xmlSerialize(true, $sxe->addChild('Media'));
+        if (null !== $this->Medication) $this->Medication->xmlSerialize(true, $sxe->addChild('Medication'));
+        if (null !== $this->MedicationAdministration) $this->MedicationAdministration->xmlSerialize(true, $sxe->addChild('MedicationAdministration'));
+        if (null !== $this->MedicationDispense) $this->MedicationDispense->xmlSerialize(true, $sxe->addChild('MedicationDispense'));
+        if (null !== $this->MedicationOrder) $this->MedicationOrder->xmlSerialize(true, $sxe->addChild('MedicationOrder'));
+        if (null !== $this->MedicationStatement) $this->MedicationStatement->xmlSerialize(true, $sxe->addChild('MedicationStatement'));
+        if (null !== $this->MessageHeader) $this->MessageHeader->xmlSerialize(true, $sxe->addChild('MessageHeader'));
+        if (null !== $this->NamingSystem) $this->NamingSystem->xmlSerialize(true, $sxe->addChild('NamingSystem'));
+        if (null !== $this->NutritionOrder) $this->NutritionOrder->xmlSerialize(true, $sxe->addChild('NutritionOrder'));
+        if (null !== $this->Observation) $this->Observation->xmlSerialize(true, $sxe->addChild('Observation'));
+        if (null !== $this->OperationDefinition) $this->OperationDefinition->xmlSerialize(true, $sxe->addChild('OperationDefinition'));
+        if (null !== $this->OperationOutcome) $this->OperationOutcome->xmlSerialize(true, $sxe->addChild('OperationOutcome'));
+        if (null !== $this->Order) $this->Order->xmlSerialize(true, $sxe->addChild('Order'));
+        if (null !== $this->OrderResponse) $this->OrderResponse->xmlSerialize(true, $sxe->addChild('OrderResponse'));
+        if (null !== $this->Organization) $this->Organization->xmlSerialize(true, $sxe->addChild('Organization'));
+        if (null !== $this->Patient) $this->Patient->xmlSerialize(true, $sxe->addChild('Patient'));
+        if (null !== $this->PaymentNotice) $this->PaymentNotice->xmlSerialize(true, $sxe->addChild('PaymentNotice'));
+        if (null !== $this->PaymentReconciliation) $this->PaymentReconciliation->xmlSerialize(true, $sxe->addChild('PaymentReconciliation'));
+        if (null !== $this->Person) $this->Person->xmlSerialize(true, $sxe->addChild('Person'));
+        if (null !== $this->Practitioner) $this->Practitioner->xmlSerialize(true, $sxe->addChild('Practitioner'));
+        if (null !== $this->Procedure) $this->Procedure->xmlSerialize(true, $sxe->addChild('Procedure'));
+        if (null !== $this->ProcedureRequest) $this->ProcedureRequest->xmlSerialize(true, $sxe->addChild('ProcedureRequest'));
+        if (null !== $this->ProcessRequest) $this->ProcessRequest->xmlSerialize(true, $sxe->addChild('ProcessRequest'));
+        if (null !== $this->ProcessResponse) $this->ProcessResponse->xmlSerialize(true, $sxe->addChild('ProcessResponse'));
+        if (null !== $this->Provenance) $this->Provenance->xmlSerialize(true, $sxe->addChild('Provenance'));
+        if (null !== $this->Questionnaire) $this->Questionnaire->xmlSerialize(true, $sxe->addChild('Questionnaire'));
+        if (null !== $this->QuestionnaireResponse) $this->QuestionnaireResponse->xmlSerialize(true, $sxe->addChild('QuestionnaireResponse'));
+        if (null !== $this->ReferralRequest) $this->ReferralRequest->xmlSerialize(true, $sxe->addChild('ReferralRequest'));
+        if (null !== $this->RelatedPerson) $this->RelatedPerson->xmlSerialize(true, $sxe->addChild('RelatedPerson'));
+        if (null !== $this->RiskAssessment) $this->RiskAssessment->xmlSerialize(true, $sxe->addChild('RiskAssessment'));
+        if (null !== $this->Schedule) $this->Schedule->xmlSerialize(true, $sxe->addChild('Schedule'));
+        if (null !== $this->SearchParameter) $this->SearchParameter->xmlSerialize(true, $sxe->addChild('SearchParameter'));
+        if (null !== $this->Slot) $this->Slot->xmlSerialize(true, $sxe->addChild('Slot'));
+        if (null !== $this->Specimen) $this->Specimen->xmlSerialize(true, $sxe->addChild('Specimen'));
+        if (null !== $this->StructureDefinition) $this->StructureDefinition->xmlSerialize(true, $sxe->addChild('StructureDefinition'));
+        if (null !== $this->Subscription) $this->Subscription->xmlSerialize(true, $sxe->addChild('Subscription'));
+        if (null !== $this->Substance) $this->Substance->xmlSerialize(true, $sxe->addChild('Substance'));
+        if (null !== $this->SupplyDelivery) $this->SupplyDelivery->xmlSerialize(true, $sxe->addChild('SupplyDelivery'));
+        if (null !== $this->SupplyRequest) $this->SupplyRequest->xmlSerialize(true, $sxe->addChild('SupplyRequest'));
+        if (null !== $this->TestScript) $this->TestScript->xmlSerialize(true, $sxe->addChild('TestScript'));
+        if (null !== $this->ValueSet) $this->ValueSet->xmlSerialize(true, $sxe->addChild('ValueSet'));
+        if (null !== $this->VisionPrescription) $this->VisionPrescription->xmlSerialize(true, $sxe->addChild('VisionPrescription'));
+        if (null !== $this->Parameters) $this->Parameters->xmlSerialize(true, $sxe->addChild('Parameters'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

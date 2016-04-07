@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * The findings and interpretation of diagnostic  tests performed on patients, groups of patients, devices, and locations, and/or specimens derived from these. The report includes clinical context such as requesting and provider information, and some mix of atomic results, images, textual and coded interpretations, and formatted representation of diagnostic reports.
  */
-class FHIRDiagnosticReportImage extends FHIRBackboneElement
+class FHIRDiagnosticReportImage extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A comment about the image. Typically, this is used to provide an explanation for why the image is included, or to draw the viewer's attention to important features.
@@ -80,6 +81,11 @@ class FHIRDiagnosticReportImage extends FHIRBackboneElement
     public $link = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'DiagnosticReport.Image';
+
+    /**
      * A comment about the image. Typically, this is used to provide an explanation for why the image is included, or to draw the viewer's attention to important features.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -91,10 +97,12 @@ class FHIRDiagnosticReportImage extends FHIRBackboneElement
     /**
      * A comment about the image. Typically, this is used to provide an explanation for why the image is included, or to draw the viewer's attention to important features.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $comment
+     * @return $this
      */
     public function setComment($comment)
     {
         $this->comment = $comment;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRDiagnosticReportImage extends FHIRBackboneElement
     /**
      * Reference to the image source.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $link
+     * @return $this
      */
     public function setLink($link)
     {
         $this->link = $link;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->comment) $json['comment'] = $this->comment->jsonSerialize();
+        if (null !== $this->link) $json['link'] = $this->link->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<DiagnosticReportImage xmlns="http://hl7.org/fhir"></DiagnosticReportImage>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->comment) $this->comment->xmlSerialize(true, $sxe->addChild('comment'));
+        if (null !== $this->link) $this->link->xmlSerialize(true, $sxe->addChild('link'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

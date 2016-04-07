@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Specifies an event that may occur multiple times. Timing schedules are used to record when things are expected or requested to occur. The most common usage is in dosage instructions for medications. They are also used when planning care of various kinds.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRTimingRepeat extends FHIRElement
+class FHIRTimingRepeat extends FHIRElement implements JsonSerializable
 {
     /**
      * Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule. (choose any one of bounds*, but only one)
@@ -147,6 +148,11 @@ class FHIRTimingRepeat extends FHIRElement
     public $when = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Timing.Repeat';
+
+    /**
      * Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule. (choose any one of bounds*, but only one)
      * @return \PHPFHIRGenerated\FHIRDuration
      */
@@ -158,10 +164,12 @@ class FHIRTimingRepeat extends FHIRElement
     /**
      * Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule. (choose any one of bounds*, but only one)
      * @param \PHPFHIRGenerated\FHIRDuration $boundsQuantity
+     * @return $this
      */
     public function setBoundsQuantity($boundsQuantity)
     {
         $this->boundsQuantity = $boundsQuantity;
+        return $this;
     }
 
     /**
@@ -176,10 +184,12 @@ class FHIRTimingRepeat extends FHIRElement
     /**
      * Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule. (choose any one of bounds*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRange $boundsRange
+     * @return $this
      */
     public function setBoundsRange($boundsRange)
     {
         $this->boundsRange = $boundsRange;
+        return $this;
     }
 
     /**
@@ -194,10 +204,12 @@ class FHIRTimingRepeat extends FHIRElement
     /**
      * Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule. (choose any one of bounds*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $boundsPeriod
+     * @return $this
      */
     public function setBoundsPeriod($boundsPeriod)
     {
         $this->boundsPeriod = $boundsPeriod;
+        return $this;
     }
 
     /**
@@ -212,10 +224,12 @@ class FHIRTimingRepeat extends FHIRElement
     /**
      * A total count of the desired number of repetitions.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInteger $count
+     * @return $this
      */
     public function setCount($count)
     {
         $this->count = $count;
+        return $this;
     }
 
     /**
@@ -230,10 +244,12 @@ class FHIRTimingRepeat extends FHIRElement
     /**
      * How long this thing happens for when it happens.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $duration
+     * @return $this
      */
     public function setDuration($duration)
     {
         $this->duration = $duration;
+        return $this;
     }
 
     /**
@@ -248,10 +264,12 @@ class FHIRTimingRepeat extends FHIRElement
     /**
      * The upper limit of how long this thing happens for when it happens.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $durationMax
+     * @return $this
      */
     public function setDurationMax($durationMax)
     {
         $this->durationMax = $durationMax;
+        return $this;
     }
 
     /**
@@ -266,10 +284,12 @@ class FHIRTimingRepeat extends FHIRElement
     /**
      * The units of time for the duration, in UCUM units.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUnitsOfTime $durationUnits
+     * @return $this
      */
     public function setDurationUnits($durationUnits)
     {
         $this->durationUnits = $durationUnits;
+        return $this;
     }
 
     /**
@@ -284,10 +304,12 @@ class FHIRTimingRepeat extends FHIRElement
     /**
      * The number of times to repeat the action within the specified period / period range (i.e. both period and periodMax provided).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInteger $frequency
+     * @return $this
      */
     public function setFrequency($frequency)
     {
         $this->frequency = $frequency;
+        return $this;
     }
 
     /**
@@ -302,10 +324,12 @@ class FHIRTimingRepeat extends FHIRElement
     /**
      * If present, indicates that the frequency is a range - so repeat between [frequency] and [frequencyMax] times within the period or period range.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInteger $frequencyMax
+     * @return $this
      */
     public function setFrequencyMax($frequencyMax)
     {
         $this->frequencyMax = $frequencyMax;
+        return $this;
     }
 
     /**
@@ -320,10 +344,12 @@ class FHIRTimingRepeat extends FHIRElement
     /**
      * Indicates the duration of time over which repetitions are to occur; e.g. to express "3 times per day", 3 would be the frequency and "1 day" would be the period.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
     }
 
     /**
@@ -338,10 +364,12 @@ class FHIRTimingRepeat extends FHIRElement
     /**
      * If present, indicates that the period is a range from [period] to [periodMax], allowing expressing concepts such as "do this once every 3-5 days.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $periodMax
+     * @return $this
      */
     public function setPeriodMax($periodMax)
     {
         $this->periodMax = $periodMax;
+        return $this;
     }
 
     /**
@@ -356,10 +384,12 @@ class FHIRTimingRepeat extends FHIRElement
     /**
      * The units of time for the period in UCUM units.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUnitsOfTime $periodUnits
+     * @return $this
      */
     public function setPeriodUnits($periodUnits)
     {
         $this->periodUnits = $periodUnits;
+        return $this;
     }
 
     /**
@@ -374,10 +404,76 @@ class FHIRTimingRepeat extends FHIRElement
     /**
      * A real world event that the occurrence of the event should be tied to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIREventTiming $when
+     * @return $this
      */
     public function setWhen($when)
     {
         $this->when = $when;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->boundsQuantity) $json['boundsQuantity'] = $this->boundsQuantity->jsonSerialize();
+        if (null !== $this->boundsRange) $json['boundsRange'] = $this->boundsRange->jsonSerialize();
+        if (null !== $this->boundsPeriod) $json['boundsPeriod'] = $this->boundsPeriod->jsonSerialize();
+        if (null !== $this->count) $json['count'] = $this->count->jsonSerialize();
+        if (null !== $this->duration) $json['duration'] = $this->duration->jsonSerialize();
+        if (null !== $this->durationMax) $json['durationMax'] = $this->durationMax->jsonSerialize();
+        if (null !== $this->durationUnits) $json['durationUnits'] = $this->durationUnits->jsonSerialize();
+        if (null !== $this->frequency) $json['frequency'] = $this->frequency->jsonSerialize();
+        if (null !== $this->frequencyMax) $json['frequencyMax'] = $this->frequencyMax->jsonSerialize();
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        if (null !== $this->periodMax) $json['periodMax'] = $this->periodMax->jsonSerialize();
+        if (null !== $this->periodUnits) $json['periodUnits'] = $this->periodUnits->jsonSerialize();
+        if (null !== $this->when) $json['when'] = $this->when->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<TimingRepeat xmlns="http://hl7.org/fhir"></TimingRepeat>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->boundsQuantity) $this->boundsQuantity->xmlSerialize(true, $sxe->addChild('boundsQuantity'));
+        if (null !== $this->boundsRange) $this->boundsRange->xmlSerialize(true, $sxe->addChild('boundsRange'));
+        if (null !== $this->boundsPeriod) $this->boundsPeriod->xmlSerialize(true, $sxe->addChild('boundsPeriod'));
+        if (null !== $this->count) $this->count->xmlSerialize(true, $sxe->addChild('count'));
+        if (null !== $this->duration) $this->duration->xmlSerialize(true, $sxe->addChild('duration'));
+        if (null !== $this->durationMax) $this->durationMax->xmlSerialize(true, $sxe->addChild('durationMax'));
+        if (null !== $this->durationUnits) $this->durationUnits->xmlSerialize(true, $sxe->addChild('durationUnits'));
+        if (null !== $this->frequency) $this->frequency->xmlSerialize(true, $sxe->addChild('frequency'));
+        if (null !== $this->frequencyMax) $this->frequencyMax->xmlSerialize(true, $sxe->addChild('frequencyMax'));
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if (null !== $this->periodMax) $this->periodMax->xmlSerialize(true, $sxe->addChild('periodMax'));
+        if (null !== $this->periodUnits) $this->periodUnits->xmlSerialize(true, $sxe->addChild('periodUnits'));
+        if (null !== $this->when) $this->when->xmlSerialize(true, $sxe->addChild('when'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

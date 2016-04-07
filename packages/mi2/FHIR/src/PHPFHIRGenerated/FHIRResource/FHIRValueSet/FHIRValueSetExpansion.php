@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A value set specifies a set of codes drawn from one or more code systems.
  */
-class FHIRValueSetExpansion extends FHIRBackboneElement
+class FHIRValueSetExpansion extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * An identifier that uniquely identifies this expansion of the valueset. Systems may re-use the same identifier as long as the expansion and the definition remain the same, but are not required to do so.
@@ -104,6 +105,11 @@ class FHIRValueSetExpansion extends FHIRBackboneElement
     public $contains = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ValueSet.Expansion';
+
+    /**
      * An identifier that uniquely identifies this expansion of the valueset. Systems may re-use the same identifier as long as the expansion and the definition remain the same, but are not required to do so.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRUri
      */
@@ -115,10 +121,12 @@ class FHIRValueSetExpansion extends FHIRBackboneElement
     /**
      * An identifier that uniquely identifies this expansion of the valueset. Systems may re-use the same identifier as long as the expansion and the definition remain the same, but are not required to do so.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $identifier
+     * @return $this
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -133,10 +141,12 @@ class FHIRValueSetExpansion extends FHIRBackboneElement
     /**
      * The time at which the expansion was produced by the expanding system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $timestamp
+     * @return $this
      */
     public function setTimestamp($timestamp)
     {
         $this->timestamp = $timestamp;
+        return $this;
     }
 
     /**
@@ -151,10 +161,12 @@ class FHIRValueSetExpansion extends FHIRBackboneElement
     /**
      * The total number of concepts in the expansion. If the number of concept nodes in this resource is less than the stated number, then the server can return more using the offset parameter.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInteger $total
+     * @return $this
      */
     public function setTotal($total)
     {
         $this->total = $total;
+        return $this;
     }
 
     /**
@@ -169,10 +181,12 @@ class FHIRValueSetExpansion extends FHIRBackboneElement
     /**
      * If paging is being used, the offset at which this resource starts.  I.e. this resource is a partial view into the expansion. If paging is not being used, this element SHALL not be present.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInteger $offset
+     * @return $this
      */
     public function setOffset($offset)
     {
         $this->offset = $offset;
+        return $this;
     }
 
     /**
@@ -187,10 +201,12 @@ class FHIRValueSetExpansion extends FHIRBackboneElement
     /**
      * A parameter that controlled the expansion process. These parameters may be used by users of expanded value sets to check whether the expansion is suitable for a particular purpose, or to pick the correct expansion.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRValueSet\FHIRValueSetParameter[] $parameter
+     * @return $this
      */
     public function addParameter($parameter)
     {
         $this->parameter[] = $parameter;
+        return $this;
     }
 
     /**
@@ -205,10 +221,80 @@ class FHIRValueSetExpansion extends FHIRBackboneElement
     /**
      * The codes that are contained in the value set expansion.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRValueSet\FHIRValueSetContains[] $contains
+     * @return $this
      */
     public function addContains($contains)
     {
         $this->contains[] = $contains;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->identifier) $json['identifier'] = $this->identifier->jsonSerialize();
+        if (null !== $this->timestamp) $json['timestamp'] = $this->timestamp->jsonSerialize();
+        if (null !== $this->total) $json['total'] = $this->total->jsonSerialize();
+        if (null !== $this->offset) $json['offset'] = $this->offset->jsonSerialize();
+        if (0 < count($this->parameter)) {
+            $json['parameter'] = array();
+            foreach($this->parameter as $parameter) {
+                $json['parameter'][] = $parameter->jsonSerialize();
+            }
+        }
+        if (0 < count($this->contains)) {
+            $json['contains'] = array();
+            foreach($this->contains as $contains) {
+                $json['contains'][] = $contains->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ValueSetExpansion xmlns="http://hl7.org/fhir"></ValueSetExpansion>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->identifier) $this->identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+        if (null !== $this->timestamp) $this->timestamp->xmlSerialize(true, $sxe->addChild('timestamp'));
+        if (null !== $this->total) $this->total->xmlSerialize(true, $sxe->addChild('total'));
+        if (null !== $this->offset) $this->offset->xmlSerialize(true, $sxe->addChild('offset'));
+        if (0 < count($this->parameter)) {
+            foreach($this->parameter as $parameter) {
+                $parameter->xmlSerialize(true, $sxe->addChild('parameter'));
+            }
+        }
+        if (0 < count($this->contains)) {
+            foreach($this->contains as $contains) {
+                $contains->xmlSerialize(true, $sxe->addChild('contains'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

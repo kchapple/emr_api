@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A set of healthcare-related information that is assembled together into a single logical document that provides a single coherent statement of meaning, establishes its own context and that has clinical attestation with regard to who is making the statement. While a Composition defines the structure, it does not actually contain the content: rather the full content of a document is contained in a Bundle, of which the Composition is the first resource contained.
  */
-class FHIRCompositionSection extends FHIRBackboneElement
+class FHIRCompositionSection extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The label for this particular section.  This will be part of the rendered content for the document, and is often used to build a table of contents.
@@ -116,6 +117,11 @@ class FHIRCompositionSection extends FHIRBackboneElement
     public $section = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Composition.Section';
+
+    /**
      * The label for this particular section.  This will be part of the rendered content for the document, and is often used to build a table of contents.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -127,10 +133,12 @@ class FHIRCompositionSection extends FHIRBackboneElement
     /**
      * The label for this particular section.  This will be part of the rendered content for the document, and is often used to build a table of contents.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $title
+     * @return $this
      */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -145,10 +153,12 @@ class FHIRCompositionSection extends FHIRBackboneElement
     /**
      * A code identifying the kind of content contained within the section. This must be consistent with the section title.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -163,10 +173,12 @@ class FHIRCompositionSection extends FHIRBackboneElement
     /**
      * A human-readable narrative that contains the attested content of the section, used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRNarrative $text
+     * @return $this
      */
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
     }
 
     /**
@@ -181,10 +193,12 @@ class FHIRCompositionSection extends FHIRBackboneElement
     /**
      * How the entry list was prepared - whether it is a working list that is suitable for being maintained on an ongoing basis, or if it represents a snapshot of a list of items from another source, or whether it is a prepared list where items may be marked as added, modified or deleted.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $mode
+     * @return $this
      */
     public function setMode($mode)
     {
         $this->mode = $mode;
+        return $this;
     }
 
     /**
@@ -199,10 +213,12 @@ class FHIRCompositionSection extends FHIRBackboneElement
     /**
      * Specifies the order applied to the items in the section entries.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $orderedBy
+     * @return $this
      */
     public function setOrderedBy($orderedBy)
     {
         $this->orderedBy = $orderedBy;
+        return $this;
     }
 
     /**
@@ -217,10 +233,12 @@ class FHIRCompositionSection extends FHIRBackboneElement
     /**
      * A reference to the actual resource from which the narrative in the section is derived.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $entry
+     * @return $this
      */
     public function addEntry($entry)
     {
         $this->entry[] = $entry;
+        return $this;
     }
 
     /**
@@ -235,10 +253,12 @@ class FHIRCompositionSection extends FHIRBackboneElement
     /**
      * If the section is empty, why the list is empty. An empty section typically has some text explaining the empty reason.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $emptyReason
+     * @return $this
      */
     public function setEmptyReason($emptyReason)
     {
         $this->emptyReason = $emptyReason;
+        return $this;
     }
 
     /**
@@ -253,10 +273,84 @@ class FHIRCompositionSection extends FHIRBackboneElement
     /**
      * A nested sub-section within this section.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRComposition\FHIRCompositionSection[] $section
+     * @return $this
      */
     public function addSection($section)
     {
         $this->section[] = $section;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->title) $json['title'] = $this->title->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->text) $json['text'] = $this->text->jsonSerialize();
+        if (null !== $this->mode) $json['mode'] = $this->mode->jsonSerialize();
+        if (null !== $this->orderedBy) $json['orderedBy'] = $this->orderedBy->jsonSerialize();
+        if (0 < count($this->entry)) {
+            $json['entry'] = array();
+            foreach($this->entry as $entry) {
+                $json['entry'][] = $entry->jsonSerialize();
+            }
+        }
+        if (null !== $this->emptyReason) $json['emptyReason'] = $this->emptyReason->jsonSerialize();
+        if (0 < count($this->section)) {
+            $json['section'] = array();
+            foreach($this->section as $section) {
+                $json['section'][] = $section->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<CompositionSection xmlns="http://hl7.org/fhir"></CompositionSection>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->title) $this->title->xmlSerialize(true, $sxe->addChild('title'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->text) $this->text->xmlSerialize(true, $sxe->addChild('text'));
+        if (null !== $this->mode) $this->mode->xmlSerialize(true, $sxe->addChild('mode'));
+        if (null !== $this->orderedBy) $this->orderedBy->xmlSerialize(true, $sxe->addChild('orderedBy'));
+        if (0 < count($this->entry)) {
+            foreach($this->entry as $entry) {
+                $entry->xmlSerialize(true, $sxe->addChild('entry'));
+            }
+        }
+        if (null !== $this->emptyReason) $this->emptyReason->xmlSerialize(true, $sxe->addChild('emptyReason'));
+        if (0 < count($this->section)) {
+            foreach($this->section as $section) {
+                $section->xmlSerialize(true, $sxe->addChild('section'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

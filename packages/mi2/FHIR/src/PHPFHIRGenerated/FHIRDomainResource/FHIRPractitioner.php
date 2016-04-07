@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A person who is directly or indirectly involved in the provisioning of healthcare.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRPractitioner extends FHIRDomainResource
+class FHIRPractitioner extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * An identifier that applies to this person in this role.
@@ -135,6 +136,11 @@ class FHIRPractitioner extends FHIRDomainResource
     public $communication = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Practitioner';
+
+    /**
      * An identifier that applies to this person in this role.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -146,10 +152,12 @@ class FHIRPractitioner extends FHIRDomainResource
     /**
      * An identifier that applies to this person in this role.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -164,10 +172,12 @@ class FHIRPractitioner extends FHIRDomainResource
     /**
      * Whether this practitioner's record is in active use.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $active
+     * @return $this
      */
     public function setActive($active)
     {
         $this->active = $active;
+        return $this;
     }
 
     /**
@@ -182,10 +192,12 @@ class FHIRPractitioner extends FHIRDomainResource
     /**
      * A name associated with the person.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRHumanName $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -200,10 +212,12 @@ class FHIRPractitioner extends FHIRDomainResource
     /**
      * A contact detail for the practitioner, e.g. a telephone number or an email address.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRContactPoint[] $telecom
+     * @return $this
      */
     public function addTelecom($telecom)
     {
         $this->telecom[] = $telecom;
+        return $this;
     }
 
     /**
@@ -218,10 +232,12 @@ class FHIRPractitioner extends FHIRDomainResource
     /**
      * The postal address where the practitioner can be found or visited or to which mail can be delivered.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAddress[] $address
+     * @return $this
      */
     public function addAddress($address)
     {
         $this->address[] = $address;
+        return $this;
     }
 
     /**
@@ -236,10 +252,12 @@ class FHIRPractitioner extends FHIRDomainResource
     /**
      * Administrative Gender - the gender that the person is considered to have for administration and record keeping purposes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $gender
+     * @return $this
      */
     public function setGender($gender)
     {
         $this->gender = $gender;
+        return $this;
     }
 
     /**
@@ -254,10 +272,12 @@ class FHIRPractitioner extends FHIRDomainResource
     /**
      * The date of birth for the practitioner.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDate $birthDate
+     * @return $this
      */
     public function setBirthDate($birthDate)
     {
         $this->birthDate = $birthDate;
+        return $this;
     }
 
     /**
@@ -272,10 +292,12 @@ class FHIRPractitioner extends FHIRDomainResource
     /**
      * Image of the person.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAttachment[] $photo
+     * @return $this
      */
     public function addPhoto($photo)
     {
         $this->photo[] = $photo;
+        return $this;
     }
 
     /**
@@ -290,10 +312,12 @@ class FHIRPractitioner extends FHIRDomainResource
     /**
      * The list of roles/organizations that the practitioner is associated with.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRPractitioner\FHIRPractitionerPractitionerRole[] $practitionerRole
+     * @return $this
      */
     public function addPractitionerRole($practitionerRole)
     {
         $this->practitionerRole[] = $practitionerRole;
+        return $this;
     }
 
     /**
@@ -308,10 +332,12 @@ class FHIRPractitioner extends FHIRDomainResource
     /**
      * Qualifications obtained by training and certification.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRPractitioner\FHIRPractitionerQualification[] $qualification
+     * @return $this
      */
     public function addQualification($qualification)
     {
         $this->qualification[] = $qualification;
+        return $this;
     }
 
     /**
@@ -326,10 +352,136 @@ class FHIRPractitioner extends FHIRDomainResource
     /**
      * A language the practitioner is able to use in patient communication.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $communication
+     * @return $this
      */
     public function addCommunication($communication)
     {
         $this->communication[] = $communication;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->active) $json['active'] = $this->active->jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (0 < count($this->telecom)) {
+            $json['telecom'] = array();
+            foreach($this->telecom as $telecom) {
+                $json['telecom'][] = $telecom->jsonSerialize();
+            }
+        }
+        if (0 < count($this->address)) {
+            $json['address'] = array();
+            foreach($this->address as $address) {
+                $json['address'][] = $address->jsonSerialize();
+            }
+        }
+        if (null !== $this->gender) $json['gender'] = $this->gender->jsonSerialize();
+        if (null !== $this->birthDate) $json['birthDate'] = $this->birthDate->jsonSerialize();
+        if (0 < count($this->photo)) {
+            $json['photo'] = array();
+            foreach($this->photo as $photo) {
+                $json['photo'][] = $photo->jsonSerialize();
+            }
+        }
+        if (0 < count($this->practitionerRole)) {
+            $json['practitionerRole'] = array();
+            foreach($this->practitionerRole as $practitionerRole) {
+                $json['practitionerRole'][] = $practitionerRole->jsonSerialize();
+            }
+        }
+        if (0 < count($this->qualification)) {
+            $json['qualification'] = array();
+            foreach($this->qualification as $qualification) {
+                $json['qualification'][] = $qualification->jsonSerialize();
+            }
+        }
+        if (0 < count($this->communication)) {
+            $json['communication'] = array();
+            foreach($this->communication as $communication) {
+                $json['communication'][] = $communication->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Practitioner xmlns="http://hl7.org/fhir"></Practitioner>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->active) $this->active->xmlSerialize(true, $sxe->addChild('active'));
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (0 < count($this->telecom)) {
+            foreach($this->telecom as $telecom) {
+                $telecom->xmlSerialize(true, $sxe->addChild('telecom'));
+            }
+        }
+        if (0 < count($this->address)) {
+            foreach($this->address as $address) {
+                $address->xmlSerialize(true, $sxe->addChild('address'));
+            }
+        }
+        if (null !== $this->gender) $this->gender->xmlSerialize(true, $sxe->addChild('gender'));
+        if (null !== $this->birthDate) $this->birthDate->xmlSerialize(true, $sxe->addChild('birthDate'));
+        if (0 < count($this->photo)) {
+            foreach($this->photo as $photo) {
+                $photo->xmlSerialize(true, $sxe->addChild('photo'));
+            }
+        }
+        if (0 < count($this->practitionerRole)) {
+            foreach($this->practitionerRole as $practitionerRole) {
+                $practitionerRole->xmlSerialize(true, $sxe->addChild('practitionerRole'));
+            }
+        }
+        if (0 < count($this->qualification)) {
+            foreach($this->qualification as $qualification) {
+                $qualification->xmlSerialize(true, $sxe->addChild('qualification'));
+            }
+        }
+        if (0 < count($this->communication)) {
+            foreach($this->communication as $communication) {
+                $communication->xmlSerialize(true, $sxe->addChild('communication'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

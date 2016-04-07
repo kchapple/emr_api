@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient.
  */
-class FHIREncounterParticipant extends FHIRBackboneElement
+class FHIREncounterParticipant extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Role of participant in encounter.
@@ -86,6 +87,11 @@ class FHIREncounterParticipant extends FHIRBackboneElement
     public $individual = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Encounter.Participant';
+
+    /**
      * Role of participant in encounter.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[]
      */
@@ -97,10 +103,12 @@ class FHIREncounterParticipant extends FHIRBackboneElement
     /**
      * Role of participant in encounter.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $type
+     * @return $this
      */
     public function addType($type)
     {
         $this->type[] = $type;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIREncounterParticipant extends FHIRBackboneElement
     /**
      * The period of time that the specified participant was present during the encounter. These can overlap or be sub-sets of the overall encounters period.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
     }
 
     /**
@@ -133,10 +143,65 @@ class FHIREncounterParticipant extends FHIRBackboneElement
     /**
      * Persons involved in the encounter other than the patient.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $individual
+     * @return $this
      */
     public function setIndividual($individual)
     {
         $this->individual = $individual;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->type)) {
+            $json['type'] = array();
+            foreach($this->type as $type) {
+                $json['type'][] = $type->jsonSerialize();
+            }
+        }
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        if (null !== $this->individual) $json['individual'] = $this->individual->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<EncounterParticipant xmlns="http://hl7.org/fhir"></EncounterParticipant>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->type)) {
+            foreach($this->type as $type) {
+                $type->xmlSerialize(true, $sxe->addChild('type'));
+            }
+        }
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if (null !== $this->individual) $this->individual->xmlSerialize(true, $sxe->addChild('individual'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

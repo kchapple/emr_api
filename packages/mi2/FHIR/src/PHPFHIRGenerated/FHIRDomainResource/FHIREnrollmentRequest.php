@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * This resource provides the insurance enrollment details to the insurer regarding a specified coverage.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIREnrollmentRequest extends FHIRDomainResource
+class FHIREnrollmentRequest extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * The Response business identifier.
@@ -129,6 +130,11 @@ class FHIREnrollmentRequest extends FHIRDomainResource
     public $relationship = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'EnrollmentRequest';
+
+    /**
      * The Response business identifier.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -140,10 +146,12 @@ class FHIREnrollmentRequest extends FHIRDomainResource
     /**
      * The Response business identifier.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -158,10 +166,12 @@ class FHIREnrollmentRequest extends FHIRDomainResource
     /**
      * The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $ruleset
+     * @return $this
      */
     public function setRuleset($ruleset)
     {
         $this->ruleset = $ruleset;
+        return $this;
     }
 
     /**
@@ -176,10 +186,12 @@ class FHIREnrollmentRequest extends FHIRDomainResource
     /**
      * The style (standard) and version of the original material which was converted into this resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $originalRuleset
+     * @return $this
      */
     public function setOriginalRuleset($originalRuleset)
     {
         $this->originalRuleset = $originalRuleset;
+        return $this;
     }
 
     /**
@@ -194,10 +206,12 @@ class FHIREnrollmentRequest extends FHIRDomainResource
     /**
      * The date when this resource was created.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $created
+     * @return $this
      */
     public function setCreated($created)
     {
         $this->created = $created;
+        return $this;
     }
 
     /**
@@ -212,10 +226,12 @@ class FHIREnrollmentRequest extends FHIRDomainResource
     /**
      * The Insurer who is target  of the request.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $target
+     * @return $this
      */
     public function setTarget($target)
     {
         $this->target = $target;
+        return $this;
     }
 
     /**
@@ -230,10 +246,12 @@ class FHIREnrollmentRequest extends FHIRDomainResource
     /**
      * The practitioner who is responsible for the services rendered to the patient.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $provider
+     * @return $this
      */
     public function setProvider($provider)
     {
         $this->provider = $provider;
+        return $this;
     }
 
     /**
@@ -248,10 +266,12 @@ class FHIREnrollmentRequest extends FHIRDomainResource
     /**
      * The organization which is responsible for the services rendered to the patient.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $organization
+     * @return $this
      */
     public function setOrganization($organization)
     {
         $this->organization = $organization;
+        return $this;
     }
 
     /**
@@ -266,10 +286,12 @@ class FHIREnrollmentRequest extends FHIRDomainResource
     /**
      * Patient Resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $subject
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -284,10 +306,12 @@ class FHIREnrollmentRequest extends FHIRDomainResource
     /**
      * Reference to the program or plan identification, underwriter or payor.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $coverage
+     * @return $this
      */
     public function setCoverage($coverage)
     {
         $this->coverage = $coverage;
+        return $this;
     }
 
     /**
@@ -302,10 +326,80 @@ class FHIREnrollmentRequest extends FHIRDomainResource
     /**
      * The relationship of the patient to the subscriber.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $relationship
+     * @return $this
      */
     public function setRelationship($relationship)
     {
         $this->relationship = $relationship;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->ruleset) $json['ruleset'] = $this->ruleset->jsonSerialize();
+        if (null !== $this->originalRuleset) $json['originalRuleset'] = $this->originalRuleset->jsonSerialize();
+        if (null !== $this->created) $json['created'] = $this->created->jsonSerialize();
+        if (null !== $this->target) $json['target'] = $this->target->jsonSerialize();
+        if (null !== $this->provider) $json['provider'] = $this->provider->jsonSerialize();
+        if (null !== $this->organization) $json['organization'] = $this->organization->jsonSerialize();
+        if (null !== $this->subject) $json['subject'] = $this->subject->jsonSerialize();
+        if (null !== $this->coverage) $json['coverage'] = $this->coverage->jsonSerialize();
+        if (null !== $this->relationship) $json['relationship'] = $this->relationship->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<EnrollmentRequest xmlns="http://hl7.org/fhir"></EnrollmentRequest>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->ruleset) $this->ruleset->xmlSerialize(true, $sxe->addChild('ruleset'));
+        if (null !== $this->originalRuleset) $this->originalRuleset->xmlSerialize(true, $sxe->addChild('originalRuleset'));
+        if (null !== $this->created) $this->created->xmlSerialize(true, $sxe->addChild('created'));
+        if (null !== $this->target) $this->target->xmlSerialize(true, $sxe->addChild('target'));
+        if (null !== $this->provider) $this->provider->xmlSerialize(true, $sxe->addChild('provider'));
+        if (null !== $this->organization) $this->organization->xmlSerialize(true, $sxe->addChild('organization'));
+        if (null !== $this->subject) $this->subject->xmlSerialize(true, $sxe->addChild('subject'));
+        if (null !== $this->coverage) $this->coverage->xmlSerialize(true, $sxe->addChild('coverage'));
+        if (null !== $this->relationship) $this->relationship->xmlSerialize(true, $sxe->addChild('relationship'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

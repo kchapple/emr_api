@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A manifest of a set of DICOM Service-Object Pair Instances (SOP Instances).  The referenced SOP Instances (images or other content) are for a single patient, and may be from one or more studies. The referenced SOP Instances have been selected for a purpose, such as quality assurance, conference, or consult. Reflecting that range of purposes, typical ImagingObjectSelection resources may include all SOP Instances in a study (perhaps for sharing through a Health Information Exchange); key images from multiple studies (for reference by a referring or treating physician); a multi-frame ultrasound instance ("cine" video clip) and a set of measurements taken from that instance (for inclusion in a teaching file); and so on.
  */
-class FHIRImagingObjectSelectionSeries extends FHIRBackboneElement
+class FHIRImagingObjectSelectionSeries extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Series instance UID of the SOP instances in the selection.
@@ -86,6 +87,11 @@ class FHIRImagingObjectSelectionSeries extends FHIRBackboneElement
     public $instance = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ImagingObjectSelection.Series';
+
+    /**
      * Series instance UID of the SOP instances in the selection.
      * @return \PHPFHIRGenerated\FHIRElement\FHIROid
      */
@@ -97,10 +103,12 @@ class FHIRImagingObjectSelectionSeries extends FHIRBackboneElement
     /**
      * Series instance UID of the SOP instances in the selection.
      * @param \PHPFHIRGenerated\FHIRElement\FHIROid $uid
+     * @return $this
      */
     public function setUid($uid)
     {
         $this->uid = $uid;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRImagingObjectSelectionSeries extends FHIRBackboneElement
     /**
      * WADO-RS URL to retrieve the series. Note that this URL retrieves all SOP instances of the series not only those in the selection.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $url
+     * @return $this
      */
     public function setUrl($url)
     {
         $this->url = $url;
+        return $this;
     }
 
     /**
@@ -133,10 +143,65 @@ class FHIRImagingObjectSelectionSeries extends FHIRBackboneElement
     /**
      * Identity and locating information of the selected DICOM SOP instances.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRImagingObjectSelection\FHIRImagingObjectSelectionInstance[] $instance
+     * @return $this
      */
     public function addInstance($instance)
     {
         $this->instance[] = $instance;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->uid) $json['uid'] = $this->uid->jsonSerialize();
+        if (null !== $this->url) $json['url'] = $this->url->jsonSerialize();
+        if (0 < count($this->instance)) {
+            $json['instance'] = array();
+            foreach($this->instance as $instance) {
+                $json['instance'][] = $instance->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ImagingObjectSelectionSeries xmlns="http://hl7.org/fhir"></ImagingObjectSelectionSeries>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->uid) $this->uid->xmlSerialize(true, $sxe->addChild('uid'));
+        if (null !== $this->url) $this->url->xmlSerialize(true, $sxe->addChild('url'));
+        if (0 < count($this->instance)) {
+            foreach($this->instance as $instance) {
+                $instance->xmlSerialize(true, $sxe->addChild('instance'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

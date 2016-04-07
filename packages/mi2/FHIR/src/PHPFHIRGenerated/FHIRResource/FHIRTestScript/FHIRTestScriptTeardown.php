@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,17 +61,23 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * TestScript is a resource that specifies a suite of tests against a FHIR server implementation to determine compliance against the FHIR specification.
  */
-class FHIRTestScriptTeardown extends FHIRBackboneElement
+class FHIRTestScriptTeardown extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The teardown action will only contain an operation.
      * @var \PHPFHIRGenerated\FHIRResource\FHIRTestScript\FHIRTestScriptAction2[]
      */
     public $action = array();
+
+    /**
+     * @var string
+     */
+    private $_fhirElementName = 'TestScript.Teardown';
 
     /**
      * The teardown action will only contain an operation.
@@ -85,10 +91,61 @@ class FHIRTestScriptTeardown extends FHIRBackboneElement
     /**
      * The teardown action will only contain an operation.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRTestScript\FHIRTestScriptAction2[] $action
+     * @return $this
      */
     public function addAction($action)
     {
         $this->action[] = $action;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->action)) {
+            $json['action'] = array();
+            foreach($this->action as $action) {
+                $json['action'][] = $action->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<TestScriptTeardown xmlns="http://hl7.org/fhir"></TestScriptTeardown>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->action)) {
+            foreach($this->action as $action) {
+                $action->xmlSerialize(true, $sxe->addChild('action'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

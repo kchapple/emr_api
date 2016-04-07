@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Provenance of a resource is a record that describes entities and processes involved in producing and delivering or otherwise influencing that resource. Provenance provides a critical foundation for assessing authenticity, enabling trust, and allowing reproducibility. Provenance assertions are a form of contextual metadata and can themselves become important records with their own provenance. Provenance statement indicates clinical significance in terms of confidence in authenticity, reliability, and trustworthiness, integrity, and stage in lifecycle (e.g. Document Completion - has the artifact been legally authenticated), all of which may impact security, privacy, and trust policies.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRProvenance extends FHIRDomainResource
+class FHIRProvenance extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * The Reference(s) that were generated or updated by  the activity described in this resource. A provenance can point to more than one target if multiple resources were created/updated by the same activity.
@@ -129,6 +130,11 @@ class FHIRProvenance extends FHIRDomainResource
     public $signature = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Provenance';
+
+    /**
      * The Reference(s) that were generated or updated by  the activity described in this resource. A provenance can point to more than one target if multiple resources were created/updated by the same activity.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRReference[]
      */
@@ -140,10 +146,12 @@ class FHIRProvenance extends FHIRDomainResource
     /**
      * The Reference(s) that were generated or updated by  the activity described in this resource. A provenance can point to more than one target if multiple resources were created/updated by the same activity.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $target
+     * @return $this
      */
     public function addTarget($target)
     {
         $this->target[] = $target;
+        return $this;
     }
 
     /**
@@ -158,10 +166,12 @@ class FHIRProvenance extends FHIRDomainResource
     /**
      * The period during which the activity occurred.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
     }
 
     /**
@@ -176,10 +186,12 @@ class FHIRProvenance extends FHIRDomainResource
     /**
      * The instant of time at which the activity was recorded.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInstant $recorded
+     * @return $this
      */
     public function setRecorded($recorded)
     {
         $this->recorded = $recorded;
+        return $this;
     }
 
     /**
@@ -194,10 +206,12 @@ class FHIRProvenance extends FHIRDomainResource
     /**
      * The reason that the activity was taking place.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $reason
+     * @return $this
      */
     public function addReason($reason)
     {
         $this->reason[] = $reason;
+        return $this;
     }
 
     /**
@@ -212,10 +226,12 @@ class FHIRProvenance extends FHIRDomainResource
     /**
      * An activity is something that occurs over a period of time and acts upon or with entities; it may include consuming, processing, transforming, modifying, relocating, using, or generating entities.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $activity
+     * @return $this
      */
     public function setActivity($activity)
     {
         $this->activity = $activity;
+        return $this;
     }
 
     /**
@@ -230,10 +246,12 @@ class FHIRProvenance extends FHIRDomainResource
     /**
      * Where the activity occurred, if relevant.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $location
+     * @return $this
      */
     public function setLocation($location)
     {
         $this->location = $location;
+        return $this;
     }
 
     /**
@@ -248,10 +266,12 @@ class FHIRProvenance extends FHIRDomainResource
     /**
      * Policy or plan the activity was defined by. Typically, a single activity may have multiple applicable policy documents, such as patient consent, guarantor funding, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri[] $policy
+     * @return $this
      */
     public function addPolicy($policy)
     {
         $this->policy[] = $policy;
+        return $this;
     }
 
     /**
@@ -266,10 +286,12 @@ class FHIRProvenance extends FHIRDomainResource
     /**
      * An agent takes a role in an activity such that the agent can be assigned some degree of responsibility for the activity taking place. An agent can be a person, an organization, software, or other entities that may be ascribed responsibility.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRProvenance\FHIRProvenanceAgent[] $agent
+     * @return $this
      */
     public function addAgent($agent)
     {
         $this->agent[] = $agent;
+        return $this;
     }
 
     /**
@@ -284,10 +306,12 @@ class FHIRProvenance extends FHIRDomainResource
     /**
      * An entity used in this activity.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRProvenance\FHIRProvenanceEntity[] $entity
+     * @return $this
      */
     public function addEntity($entity)
     {
         $this->entity[] = $entity;
+        return $this;
     }
 
     /**
@@ -302,10 +326,125 @@ class FHIRProvenance extends FHIRDomainResource
     /**
      * A digital signature on the target Reference(s). The signer should match a Provenance.agent. The purpose of the signature is indicated.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRSignature[] $signature
+     * @return $this
      */
     public function addSignature($signature)
     {
         $this->signature[] = $signature;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->target)) {
+            $json['target'] = array();
+            foreach($this->target as $target) {
+                $json['target'][] = $target->jsonSerialize();
+            }
+        }
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        if (null !== $this->recorded) $json['recorded'] = $this->recorded->jsonSerialize();
+        if (0 < count($this->reason)) {
+            $json['reason'] = array();
+            foreach($this->reason as $reason) {
+                $json['reason'][] = $reason->jsonSerialize();
+            }
+        }
+        if (null !== $this->activity) $json['activity'] = $this->activity->jsonSerialize();
+        if (null !== $this->location) $json['location'] = $this->location->jsonSerialize();
+        if (0 < count($this->policy)) {
+            $json['policy'] = array();
+            foreach($this->policy as $policy) {
+                $json['policy'][] = $policy->jsonSerialize();
+            }
+        }
+        if (0 < count($this->agent)) {
+            $json['agent'] = array();
+            foreach($this->agent as $agent) {
+                $json['agent'][] = $agent->jsonSerialize();
+            }
+        }
+        if (0 < count($this->entity)) {
+            $json['entity'] = array();
+            foreach($this->entity as $entity) {
+                $json['entity'][] = $entity->jsonSerialize();
+            }
+        }
+        if (0 < count($this->signature)) {
+            $json['signature'] = array();
+            foreach($this->signature as $signature) {
+                $json['signature'][] = $signature->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Provenance xmlns="http://hl7.org/fhir"></Provenance>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->target)) {
+            foreach($this->target as $target) {
+                $target->xmlSerialize(true, $sxe->addChild('target'));
+            }
+        }
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if (null !== $this->recorded) $this->recorded->xmlSerialize(true, $sxe->addChild('recorded'));
+        if (0 < count($this->reason)) {
+            foreach($this->reason as $reason) {
+                $reason->xmlSerialize(true, $sxe->addChild('reason'));
+            }
+        }
+        if (null !== $this->activity) $this->activity->xmlSerialize(true, $sxe->addChild('activity'));
+        if (null !== $this->location) $this->location->xmlSerialize(true, $sxe->addChild('location'));
+        if (0 < count($this->policy)) {
+            foreach($this->policy as $policy) {
+                $policy->xmlSerialize(true, $sxe->addChild('policy'));
+            }
+        }
+        if (0 < count($this->agent)) {
+            foreach($this->agent as $agent) {
+                $agent->xmlSerialize(true, $sxe->addChild('agent'));
+            }
+        }
+        if (0 < count($this->entity)) {
+            foreach($this->entity as $entity) {
+                $entity->xmlSerialize(true, $sxe->addChild('entity'));
+            }
+        }
+        if (0 < count($this->signature)) {
+            foreach($this->signature as $signature) {
+                $signature->xmlSerialize(true, $sxe->addChild('signature'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

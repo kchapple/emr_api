@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A request to perform an action.
  */
-class FHIROrderWhen extends FHIRBackboneElement
+class FHIROrderWhen extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Code specifies when request should be done. The code may simply be a priority code.
@@ -80,6 +81,11 @@ class FHIROrderWhen extends FHIRBackboneElement
     public $schedule = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Order.When';
+
+    /**
      * Code specifies when request should be done. The code may simply be a priority code.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -91,10 +97,12 @@ class FHIROrderWhen extends FHIRBackboneElement
     /**
      * Code specifies when request should be done. The code may simply be a priority code.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIROrderWhen extends FHIRBackboneElement
     /**
      * A formal schedule.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRTiming $schedule
+     * @return $this
      */
     public function setSchedule($schedule)
     {
         $this->schedule = $schedule;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->schedule) $json['schedule'] = $this->schedule->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<OrderWhen xmlns="http://hl7.org/fhir"></OrderWhen>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->schedule) $this->schedule->xmlSerialize(true, $sxe->addChild('schedule'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

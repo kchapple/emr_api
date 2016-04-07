@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Use to record detailed information about conditions, problems or diagnoses recognized by a clinician. There are many uses including: recording a diagnosis during an encounter; populating a problem list or a summary statement, such as a discharge summary.
  */
-class FHIRConditionEvidence extends FHIRBackboneElement
+class FHIRConditionEvidence extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A manifestation or symptom that led to the recording of this condition.
@@ -80,6 +81,11 @@ class FHIRConditionEvidence extends FHIRBackboneElement
     public $detail = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Condition.Evidence';
+
+    /**
      * A manifestation or symptom that led to the recording of this condition.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -91,10 +97,12 @@ class FHIRConditionEvidence extends FHIRBackboneElement
     /**
      * A manifestation or symptom that led to the recording of this condition.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -109,10 +117,63 @@ class FHIRConditionEvidence extends FHIRBackboneElement
     /**
      * Links to other relevant information, including pathology reports.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $detail
+     * @return $this
      */
     public function addDetail($detail)
     {
         $this->detail[] = $detail;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (0 < count($this->detail)) {
+            $json['detail'] = array();
+            foreach($this->detail as $detail) {
+                $json['detail'][] = $detail->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ConditionEvidence xmlns="http://hl7.org/fhir"></ConditionEvidence>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (0 < count($this->detail)) {
+            foreach($this->detail as $detail) {
+                $detail->xmlSerialize(true, $sxe->addChild('detail'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

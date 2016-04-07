@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient.
  */
-class FHIREncounterHospitalization extends FHIRBackboneElement
+class FHIREncounterHospitalization extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Pre-admission identifier.
@@ -134,6 +135,11 @@ class FHIREncounterHospitalization extends FHIRBackboneElement
     public $dischargeDiagnosis = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Encounter.Hospitalization';
+
+    /**
      * Pre-admission identifier.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier
      */
@@ -145,10 +151,12 @@ class FHIREncounterHospitalization extends FHIRBackboneElement
     /**
      * Pre-admission identifier.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $preAdmissionIdentifier
+     * @return $this
      */
     public function setPreAdmissionIdentifier($preAdmissionIdentifier)
     {
         $this->preAdmissionIdentifier = $preAdmissionIdentifier;
+        return $this;
     }
 
     /**
@@ -163,10 +171,12 @@ class FHIREncounterHospitalization extends FHIRBackboneElement
     /**
      * The location from which the patient came before admission.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $origin
+     * @return $this
      */
     public function setOrigin($origin)
     {
         $this->origin = $origin;
+        return $this;
     }
 
     /**
@@ -181,10 +191,12 @@ class FHIREncounterHospitalization extends FHIRBackboneElement
     /**
      * From where patient was admitted (physician referral, transfer).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $admitSource
+     * @return $this
      */
     public function setAdmitSource($admitSource)
     {
         $this->admitSource = $admitSource;
+        return $this;
     }
 
     /**
@@ -199,10 +211,12 @@ class FHIREncounterHospitalization extends FHIRBackboneElement
     /**
      * The admitting diagnosis field is used to record the diagnosis codes as reported by admitting practitioner. This could be different or in addition to the conditions reported as reason-condition(s) for the encounter.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $admittingDiagnosis
+     * @return $this
      */
     public function addAdmittingDiagnosis($admittingDiagnosis)
     {
         $this->admittingDiagnosis[] = $admittingDiagnosis;
+        return $this;
     }
 
     /**
@@ -217,10 +231,12 @@ class FHIREncounterHospitalization extends FHIRBackboneElement
     /**
      * Whether this hospitalization is a readmission and why if known.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $reAdmission
+     * @return $this
      */
     public function setReAdmission($reAdmission)
     {
         $this->reAdmission = $reAdmission;
+        return $this;
     }
 
     /**
@@ -235,10 +251,12 @@ class FHIREncounterHospitalization extends FHIRBackboneElement
     /**
      * Diet preferences reported by the patient.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $dietPreference
+     * @return $this
      */
     public function addDietPreference($dietPreference)
     {
         $this->dietPreference[] = $dietPreference;
+        return $this;
     }
 
     /**
@@ -253,10 +271,12 @@ class FHIREncounterHospitalization extends FHIRBackboneElement
     /**
      * Special courtesies (VIP, board member).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $specialCourtesy
+     * @return $this
      */
     public function addSpecialCourtesy($specialCourtesy)
     {
         $this->specialCourtesy[] = $specialCourtesy;
+        return $this;
     }
 
     /**
@@ -271,10 +291,12 @@ class FHIREncounterHospitalization extends FHIRBackboneElement
     /**
      * Wheelchair, translator, stretcher, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $specialArrangement
+     * @return $this
      */
     public function addSpecialArrangement($specialArrangement)
     {
         $this->specialArrangement[] = $specialArrangement;
+        return $this;
     }
 
     /**
@@ -289,10 +311,12 @@ class FHIREncounterHospitalization extends FHIRBackboneElement
     /**
      * Location to which the patient is discharged.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $destination
+     * @return $this
      */
     public function setDestination($destination)
     {
         $this->destination = $destination;
+        return $this;
     }
 
     /**
@@ -307,10 +331,12 @@ class FHIREncounterHospitalization extends FHIRBackboneElement
     /**
      * Category or kind of location after discharge.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $dischargeDisposition
+     * @return $this
      */
     public function setDischargeDisposition($dischargeDisposition)
     {
         $this->dischargeDisposition = $dischargeDisposition;
+        return $this;
     }
 
     /**
@@ -325,10 +351,117 @@ class FHIREncounterHospitalization extends FHIRBackboneElement
     /**
      * The final diagnosis given a patient before release from the hospital after all testing, surgery, and workup are complete.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $dischargeDiagnosis
+     * @return $this
      */
     public function addDischargeDiagnosis($dischargeDiagnosis)
     {
         $this->dischargeDiagnosis[] = $dischargeDiagnosis;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->preAdmissionIdentifier) $json['preAdmissionIdentifier'] = $this->preAdmissionIdentifier->jsonSerialize();
+        if (null !== $this->origin) $json['origin'] = $this->origin->jsonSerialize();
+        if (null !== $this->admitSource) $json['admitSource'] = $this->admitSource->jsonSerialize();
+        if (0 < count($this->admittingDiagnosis)) {
+            $json['admittingDiagnosis'] = array();
+            foreach($this->admittingDiagnosis as $admittingDiagnosis) {
+                $json['admittingDiagnosis'][] = $admittingDiagnosis->jsonSerialize();
+            }
+        }
+        if (null !== $this->reAdmission) $json['reAdmission'] = $this->reAdmission->jsonSerialize();
+        if (0 < count($this->dietPreference)) {
+            $json['dietPreference'] = array();
+            foreach($this->dietPreference as $dietPreference) {
+                $json['dietPreference'][] = $dietPreference->jsonSerialize();
+            }
+        }
+        if (0 < count($this->specialCourtesy)) {
+            $json['specialCourtesy'] = array();
+            foreach($this->specialCourtesy as $specialCourtesy) {
+                $json['specialCourtesy'][] = $specialCourtesy->jsonSerialize();
+            }
+        }
+        if (0 < count($this->specialArrangement)) {
+            $json['specialArrangement'] = array();
+            foreach($this->specialArrangement as $specialArrangement) {
+                $json['specialArrangement'][] = $specialArrangement->jsonSerialize();
+            }
+        }
+        if (null !== $this->destination) $json['destination'] = $this->destination->jsonSerialize();
+        if (null !== $this->dischargeDisposition) $json['dischargeDisposition'] = $this->dischargeDisposition->jsonSerialize();
+        if (0 < count($this->dischargeDiagnosis)) {
+            $json['dischargeDiagnosis'] = array();
+            foreach($this->dischargeDiagnosis as $dischargeDiagnosis) {
+                $json['dischargeDiagnosis'][] = $dischargeDiagnosis->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<EncounterHospitalization xmlns="http://hl7.org/fhir"></EncounterHospitalization>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->preAdmissionIdentifier) $this->preAdmissionIdentifier->xmlSerialize(true, $sxe->addChild('preAdmissionIdentifier'));
+        if (null !== $this->origin) $this->origin->xmlSerialize(true, $sxe->addChild('origin'));
+        if (null !== $this->admitSource) $this->admitSource->xmlSerialize(true, $sxe->addChild('admitSource'));
+        if (0 < count($this->admittingDiagnosis)) {
+            foreach($this->admittingDiagnosis as $admittingDiagnosis) {
+                $admittingDiagnosis->xmlSerialize(true, $sxe->addChild('admittingDiagnosis'));
+            }
+        }
+        if (null !== $this->reAdmission) $this->reAdmission->xmlSerialize(true, $sxe->addChild('reAdmission'));
+        if (0 < count($this->dietPreference)) {
+            foreach($this->dietPreference as $dietPreference) {
+                $dietPreference->xmlSerialize(true, $sxe->addChild('dietPreference'));
+            }
+        }
+        if (0 < count($this->specialCourtesy)) {
+            foreach($this->specialCourtesy as $specialCourtesy) {
+                $specialCourtesy->xmlSerialize(true, $sxe->addChild('specialCourtesy'));
+            }
+        }
+        if (0 < count($this->specialArrangement)) {
+            foreach($this->specialArrangement as $specialArrangement) {
+                $specialArrangement->xmlSerialize(true, $sxe->addChild('specialArrangement'));
+            }
+        }
+        if (null !== $this->destination) $this->destination->xmlSerialize(true, $sxe->addChild('destination'));
+        if (null !== $this->dischargeDisposition) $this->dischargeDisposition->xmlSerialize(true, $sxe->addChild('dischargeDisposition'));
+        if (0 < count($this->dischargeDiagnosis)) {
+            foreach($this->dischargeDiagnosis as $dischargeDiagnosis) {
+                $dischargeDiagnosis->xmlSerialize(true, $sxe->addChild('dischargeDiagnosis'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

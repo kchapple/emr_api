@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * This resource provides the adjudication details from the processing of a Claim resource.
  */
-class FHIRClaimResponseDetail1 extends FHIRBackboneElement
+class FHIRClaimResponseDetail1 extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A code to indicate the Professional Service or Product supplied.
@@ -86,6 +87,11 @@ class FHIRClaimResponseDetail1 extends FHIRBackboneElement
     public $adjudication = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ClaimResponse.Detail1';
+
+    /**
      * A code to indicate the Professional Service or Product supplied.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCoding
      */
@@ -97,10 +103,12 @@ class FHIRClaimResponseDetail1 extends FHIRBackboneElement
     /**
      * A code to indicate the Professional Service or Product supplied.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $service
+     * @return $this
      */
     public function setService($service)
     {
         $this->service = $service;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRClaimResponseDetail1 extends FHIRBackboneElement
     /**
      * The fee charged for the professional service or product..
      * @param \PHPFHIRGenerated\FHIRMoney $fee
+     * @return $this
      */
     public function setFee($fee)
     {
         $this->fee = $fee;
+        return $this;
     }
 
     /**
@@ -133,10 +143,65 @@ class FHIRClaimResponseDetail1 extends FHIRBackboneElement
     /**
      * The adjudications results.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRClaimResponse\FHIRClaimResponseAdjudication4[] $adjudication
+     * @return $this
      */
     public function addAdjudication($adjudication)
     {
         $this->adjudication[] = $adjudication;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->service) $json['service'] = $this->service->jsonSerialize();
+        if (null !== $this->fee) $json['fee'] = $this->fee->jsonSerialize();
+        if (0 < count($this->adjudication)) {
+            $json['adjudication'] = array();
+            foreach($this->adjudication as $adjudication) {
+                $json['adjudication'][] = $adjudication->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ClaimResponseDetail1 xmlns="http://hl7.org/fhir"></ClaimResponseDetail1>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->service) $this->service->xmlSerialize(true, $sxe->addChild('service'));
+        if (null !== $this->fee) $this->fee->xmlSerialize(true, $sxe->addChild('fee'));
+        if (0 < count($this->adjudication)) {
+            foreach($this->adjudication as $adjudication) {
+                $adjudication->xmlSerialize(true, $sxe->addChild('adjudication'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A statement of relationships from one set of concepts to one or more other concepts - either code systems or data elements, or classes in class models.
  */
-class FHIRConceptMapElement extends FHIRBackboneElement
+class FHIRConceptMapElement extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * An absolute URI that identifies the Code System (if the source is a value set that crosses more than one code system).
@@ -86,6 +87,11 @@ class FHIRConceptMapElement extends FHIRBackboneElement
     public $target = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ConceptMap.Element';
+
+    /**
      * An absolute URI that identifies the Code System (if the source is a value set that crosses more than one code system).
      * @return \PHPFHIRGenerated\FHIRElement\FHIRUri
      */
@@ -97,10 +103,12 @@ class FHIRConceptMapElement extends FHIRBackboneElement
     /**
      * An absolute URI that identifies the Code System (if the source is a value set that crosses more than one code system).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $codeSystem
+     * @return $this
      */
     public function setCodeSystem($codeSystem)
     {
         $this->codeSystem = $codeSystem;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRConceptMapElement extends FHIRBackboneElement
     /**
      * Identity (code or path) or the element/item being mapped.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -133,10 +143,65 @@ class FHIRConceptMapElement extends FHIRBackboneElement
     /**
      * A concept from the target value set that this concept maps to.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRConceptMap\FHIRConceptMapTarget[] $target
+     * @return $this
      */
     public function addTarget($target)
     {
         $this->target[] = $target;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->codeSystem) $json['codeSystem'] = $this->codeSystem->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (0 < count($this->target)) {
+            $json['target'] = array();
+            foreach($this->target as $target) {
+                $json['target'][] = $target->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ConceptMapElement xmlns="http://hl7.org/fhir"></ConceptMapElement>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->codeSystem) $this->codeSystem->xmlSerialize(true, $sxe->addChild('codeSystem'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (0 < count($this->target)) {
+            foreach($this->target as $target) {
+                $target->xmlSerialize(true, $sxe->addChild('target'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

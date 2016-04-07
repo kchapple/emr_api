@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Captures constraints on each element within the resource, profile, or extension.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRElementDefinitionSlicing extends FHIRElement
+class FHIRElementDefinitionSlicing extends FHIRElement implements JsonSerializable
 {
     /**
      * Designates which child elements are used to discriminate between the slices when processing an instance. If one or more discriminators are provided, the value of the child elements in the instance data SHALL completely distinguish which slice the element in the resource matches based on the allowed values for those elements in each of the slices.
@@ -93,6 +94,11 @@ class FHIRElementDefinitionSlicing extends FHIRElement
     public $rules = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ElementDefinition.Slicing';
+
+    /**
      * Designates which child elements are used to discriminate between the slices when processing an instance. If one or more discriminators are provided, the value of the child elements in the instance data SHALL completely distinguish which slice the element in the resource matches based on the allowed values for those elements in each of the slices.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString[]
      */
@@ -104,10 +110,12 @@ class FHIRElementDefinitionSlicing extends FHIRElement
     /**
      * Designates which child elements are used to discriminate between the slices when processing an instance. If one or more discriminators are provided, the value of the child elements in the instance data SHALL completely distinguish which slice the element in the resource matches based on the allowed values for those elements in each of the slices.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString[] $discriminator
+     * @return $this
      */
     public function addDiscriminator($discriminator)
     {
         $this->discriminator[] = $discriminator;
+        return $this;
     }
 
     /**
@@ -122,10 +130,12 @@ class FHIRElementDefinitionSlicing extends FHIRElement
     /**
      * A human-readable text description of how the slicing works. If there is no discriminator, this is required to be present to provide whatever information is possible about how the slices can be differentiated.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -140,10 +150,12 @@ class FHIRElementDefinitionSlicing extends FHIRElement
     /**
      * If the matching elements have to occur in the same order as defined in the profile.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $ordered
+     * @return $this
      */
     public function setOrdered($ordered)
     {
         $this->ordered = $ordered;
+        return $this;
     }
 
     /**
@@ -158,10 +170,67 @@ class FHIRElementDefinitionSlicing extends FHIRElement
     /**
      * Whether additional slices are allowed or not. When the slices are ordered, profile authors can also say that additional slices are only allowed at the end.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRSlicingRules $rules
+     * @return $this
      */
     public function setRules($rules)
     {
         $this->rules = $rules;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->discriminator)) {
+            $json['discriminator'] = array();
+            foreach($this->discriminator as $discriminator) {
+                $json['discriminator'][] = $discriminator->jsonSerialize();
+            }
+        }
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->ordered) $json['ordered'] = $this->ordered->jsonSerialize();
+        if (null !== $this->rules) $json['rules'] = $this->rules->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ElementDefinitionSlicing xmlns="http://hl7.org/fhir"></ElementDefinitionSlicing>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->discriminator)) {
+            foreach($this->discriminator as $discriminator) {
+                $discriminator->xmlSerialize(true, $sxe->addChild('discriminator'));
+            }
+        }
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->ordered) $this->ordered->xmlSerialize(true, $sxe->addChild('ordered'));
+        if (null !== $this->rules) $this->rules->xmlSerialize(true, $sxe->addChild('rules'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

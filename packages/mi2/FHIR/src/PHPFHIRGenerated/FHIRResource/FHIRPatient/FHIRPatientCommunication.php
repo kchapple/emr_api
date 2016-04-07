@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Demographics and other administrative information about an individual or animal receiving care or other health-related services.
  */
-class FHIRPatientCommunication extends FHIRBackboneElement
+class FHIRPatientCommunication extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The ISO-639-1 alpha 2 code in lower case for the language, optionally followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in upper case; e.g. "en" for English, or "en-US" for American English versus "en-EN" for England English.
@@ -80,6 +81,11 @@ class FHIRPatientCommunication extends FHIRBackboneElement
     public $preferred = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Patient.Communication';
+
+    /**
      * The ISO-639-1 alpha 2 code in lower case for the language, optionally followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in upper case; e.g. "en" for English, or "en-US" for American English versus "en-EN" for England English.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -91,10 +97,12 @@ class FHIRPatientCommunication extends FHIRBackboneElement
     /**
      * The ISO-639-1 alpha 2 code in lower case for the language, optionally followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in upper case; e.g. "en" for English, or "en-US" for American English versus "en-EN" for England English.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $language
+     * @return $this
      */
     public function setLanguage($language)
     {
         $this->language = $language;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRPatientCommunication extends FHIRBackboneElement
     /**
      * Indicates whether or not the patient prefers this language (over other languages he masters up a certain level).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $preferred
+     * @return $this
      */
     public function setPreferred($preferred)
     {
         $this->preferred = $preferred;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->language) $json['language'] = $this->language->jsonSerialize();
+        if (null !== $this->preferred) $json['preferred'] = $this->preferred->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<PatientCommunication xmlns="http://hl7.org/fhir"></PatientCommunication>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->language) $this->language->xmlSerialize(true, $sxe->addChild('language'));
+        if (null !== $this->preferred) $this->preferred->xmlSerialize(true, $sxe->addChild('preferred'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * This resource provides the adjudication details from the processing of a Claim resource.
  */
-class FHIRClaimResponseCoverage extends FHIRBackboneElement
+class FHIRClaimResponseCoverage extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A service line item.
@@ -116,6 +117,11 @@ class FHIRClaimResponseCoverage extends FHIRBackboneElement
     public $originalRuleset = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ClaimResponse.Coverage';
+
+    /**
      * A service line item.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt
      */
@@ -127,10 +133,12 @@ class FHIRClaimResponseCoverage extends FHIRBackboneElement
     /**
      * A service line item.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt $sequence
+     * @return $this
      */
     public function setSequence($sequence)
     {
         $this->sequence = $sequence;
+        return $this;
     }
 
     /**
@@ -145,10 +153,12 @@ class FHIRClaimResponseCoverage extends FHIRBackboneElement
     /**
      * The instance number of the Coverage which is the focus for adjudication. The Coverage against which the claim is to be adjudicated.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $focal
+     * @return $this
      */
     public function setFocal($focal)
     {
         $this->focal = $focal;
+        return $this;
     }
 
     /**
@@ -163,10 +173,12 @@ class FHIRClaimResponseCoverage extends FHIRBackboneElement
     /**
      * Reference to the program or plan identification, underwriter or payor.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $coverage
+     * @return $this
      */
     public function setCoverage($coverage)
     {
         $this->coverage = $coverage;
+        return $this;
     }
 
     /**
@@ -181,10 +193,12 @@ class FHIRClaimResponseCoverage extends FHIRBackboneElement
     /**
      * The contract number of a business agreement which describes the terms and conditions.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $businessArrangement
+     * @return $this
      */
     public function setBusinessArrangement($businessArrangement)
     {
         $this->businessArrangement = $businessArrangement;
+        return $this;
     }
 
     /**
@@ -199,10 +213,12 @@ class FHIRClaimResponseCoverage extends FHIRBackboneElement
     /**
      * The relationship of the patient to the subscriber.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $relationship
+     * @return $this
      */
     public function setRelationship($relationship)
     {
         $this->relationship = $relationship;
+        return $this;
     }
 
     /**
@@ -217,10 +233,12 @@ class FHIRClaimResponseCoverage extends FHIRBackboneElement
     /**
      * A list of references from the Insurer to which these services pertain.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString[] $preAuthRef
+     * @return $this
      */
     public function addPreAuthRef($preAuthRef)
     {
         $this->preAuthRef[] = $preAuthRef;
+        return $this;
     }
 
     /**
@@ -235,10 +253,12 @@ class FHIRClaimResponseCoverage extends FHIRBackboneElement
     /**
      * The Coverages adjudication details.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $claimResponse
+     * @return $this
      */
     public function setClaimResponse($claimResponse)
     {
         $this->claimResponse = $claimResponse;
+        return $this;
     }
 
     /**
@@ -253,10 +273,75 @@ class FHIRClaimResponseCoverage extends FHIRBackboneElement
     /**
      * The style (standard) and version of the original material which was converted into this resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $originalRuleset
+     * @return $this
      */
     public function setOriginalRuleset($originalRuleset)
     {
         $this->originalRuleset = $originalRuleset;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->sequence) $json['sequence'] = $this->sequence->jsonSerialize();
+        if (null !== $this->focal) $json['focal'] = $this->focal->jsonSerialize();
+        if (null !== $this->coverage) $json['coverage'] = $this->coverage->jsonSerialize();
+        if (null !== $this->businessArrangement) $json['businessArrangement'] = $this->businessArrangement->jsonSerialize();
+        if (null !== $this->relationship) $json['relationship'] = $this->relationship->jsonSerialize();
+        if (0 < count($this->preAuthRef)) {
+            $json['preAuthRef'] = array();
+            foreach($this->preAuthRef as $preAuthRef) {
+                $json['preAuthRef'][] = $preAuthRef->jsonSerialize();
+            }
+        }
+        if (null !== $this->claimResponse) $json['claimResponse'] = $this->claimResponse->jsonSerialize();
+        if (null !== $this->originalRuleset) $json['originalRuleset'] = $this->originalRuleset->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ClaimResponseCoverage xmlns="http://hl7.org/fhir"></ClaimResponseCoverage>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->sequence) $this->sequence->xmlSerialize(true, $sxe->addChild('sequence'));
+        if (null !== $this->focal) $this->focal->xmlSerialize(true, $sxe->addChild('focal'));
+        if (null !== $this->coverage) $this->coverage->xmlSerialize(true, $sxe->addChild('coverage'));
+        if (null !== $this->businessArrangement) $this->businessArrangement->xmlSerialize(true, $sxe->addChild('businessArrangement'));
+        if (null !== $this->relationship) $this->relationship->xmlSerialize(true, $sxe->addChild('relationship'));
+        if (0 < count($this->preAuthRef)) {
+            foreach($this->preAuthRef as $preAuthRef) {
+                $preAuthRef->xmlSerialize(true, $sxe->addChild('preAuthRef'));
+            }
+        }
+        if (null !== $this->claimResponse) $this->claimResponse->xmlSerialize(true, $sxe->addChild('claimResponse'));
+        if (null !== $this->originalRuleset) $this->originalRuleset->xmlSerialize(true, $sxe->addChild('originalRuleset'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

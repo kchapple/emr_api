@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * An assessment of the likely outcome(s) for a patient or other subject as well as the likelihood of each outcome.
  */
-class FHIRRiskAssessmentPrediction extends FHIRBackboneElement
+class FHIRRiskAssessmentPrediction extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * One of the potential outcomes for the patient (e.g. remission, death,  a particular condition).
@@ -116,6 +117,11 @@ class FHIRRiskAssessmentPrediction extends FHIRBackboneElement
     public $rationale = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'RiskAssessment.Prediction';
+
+    /**
      * One of the potential outcomes for the patient (e.g. remission, death,  a particular condition).
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -127,10 +133,12 @@ class FHIRRiskAssessmentPrediction extends FHIRBackboneElement
     /**
      * One of the potential outcomes for the patient (e.g. remission, death,  a particular condition).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $outcome
+     * @return $this
      */
     public function setOutcome($outcome)
     {
         $this->outcome = $outcome;
+        return $this;
     }
 
     /**
@@ -145,10 +153,12 @@ class FHIRRiskAssessmentPrediction extends FHIRBackboneElement
     /**
      * How likely is the outcome (in the specified timeframe). (choose any one of probability*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $probabilityDecimal
+     * @return $this
      */
     public function setProbabilityDecimal($probabilityDecimal)
     {
         $this->probabilityDecimal = $probabilityDecimal;
+        return $this;
     }
 
     /**
@@ -163,10 +173,12 @@ class FHIRRiskAssessmentPrediction extends FHIRBackboneElement
     /**
      * How likely is the outcome (in the specified timeframe). (choose any one of probability*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRange $probabilityRange
+     * @return $this
      */
     public function setProbabilityRange($probabilityRange)
     {
         $this->probabilityRange = $probabilityRange;
+        return $this;
     }
 
     /**
@@ -181,10 +193,12 @@ class FHIRRiskAssessmentPrediction extends FHIRBackboneElement
     /**
      * How likely is the outcome (in the specified timeframe). (choose any one of probability*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $probabilityCodeableConcept
+     * @return $this
      */
     public function setProbabilityCodeableConcept($probabilityCodeableConcept)
     {
         $this->probabilityCodeableConcept = $probabilityCodeableConcept;
+        return $this;
     }
 
     /**
@@ -199,10 +213,12 @@ class FHIRRiskAssessmentPrediction extends FHIRBackboneElement
     /**
      * Indicates the risk for this particular subject (with their specific characteristics) divided by the risk of the population in general.  (Numbers greater than 1 = higher risk than the population, numbers less than 1 = lower risk.).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $relativeRisk
+     * @return $this
      */
     public function setRelativeRisk($relativeRisk)
     {
         $this->relativeRisk = $relativeRisk;
+        return $this;
     }
 
     /**
@@ -217,10 +233,12 @@ class FHIRRiskAssessmentPrediction extends FHIRBackboneElement
     /**
      * Indicates the period of time or age range of the subject to which the specified probability applies. (choose any one of when*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $whenPeriod
+     * @return $this
      */
     public function setWhenPeriod($whenPeriod)
     {
         $this->whenPeriod = $whenPeriod;
+        return $this;
     }
 
     /**
@@ -235,10 +253,12 @@ class FHIRRiskAssessmentPrediction extends FHIRBackboneElement
     /**
      * Indicates the period of time or age range of the subject to which the specified probability applies. (choose any one of when*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRange $whenRange
+     * @return $this
      */
     public function setWhenRange($whenRange)
     {
         $this->whenRange = $whenRange;
+        return $this;
     }
 
     /**
@@ -253,10 +273,66 @@ class FHIRRiskAssessmentPrediction extends FHIRBackboneElement
     /**
      * Additional information explaining the basis for the prediction.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $rationale
+     * @return $this
      */
     public function setRationale($rationale)
     {
         $this->rationale = $rationale;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->outcome) $json['outcome'] = $this->outcome->jsonSerialize();
+        if (null !== $this->probabilityDecimal) $json['probabilityDecimal'] = $this->probabilityDecimal->jsonSerialize();
+        if (null !== $this->probabilityRange) $json['probabilityRange'] = $this->probabilityRange->jsonSerialize();
+        if (null !== $this->probabilityCodeableConcept) $json['probabilityCodeableConcept'] = $this->probabilityCodeableConcept->jsonSerialize();
+        if (null !== $this->relativeRisk) $json['relativeRisk'] = $this->relativeRisk->jsonSerialize();
+        if (null !== $this->whenPeriod) $json['whenPeriod'] = $this->whenPeriod->jsonSerialize();
+        if (null !== $this->whenRange) $json['whenRange'] = $this->whenRange->jsonSerialize();
+        if (null !== $this->rationale) $json['rationale'] = $this->rationale->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<RiskAssessmentPrediction xmlns="http://hl7.org/fhir"></RiskAssessmentPrediction>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->outcome) $this->outcome->xmlSerialize(true, $sxe->addChild('outcome'));
+        if (null !== $this->probabilityDecimal) $this->probabilityDecimal->xmlSerialize(true, $sxe->addChild('probabilityDecimal'));
+        if (null !== $this->probabilityRange) $this->probabilityRange->xmlSerialize(true, $sxe->addChild('probabilityRange'));
+        if (null !== $this->probabilityCodeableConcept) $this->probabilityCodeableConcept->xmlSerialize(true, $sxe->addChild('probabilityCodeableConcept'));
+        if (null !== $this->relativeRisk) $this->relativeRisk->xmlSerialize(true, $sxe->addChild('relativeRisk'));
+        if (null !== $this->whenPeriod) $this->whenPeriod->xmlSerialize(true, $sxe->addChild('whenPeriod'));
+        if (null !== $this->whenRange) $this->whenRange->xmlSerialize(true, $sxe->addChild('whenRange'));
+        if (null !== $this->rationale) $this->rationale->xmlSerialize(true, $sxe->addChild('rationale'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

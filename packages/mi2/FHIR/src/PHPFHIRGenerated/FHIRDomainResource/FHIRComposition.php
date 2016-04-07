@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A set of healthcare-related information that is assembled together into a single logical document that provides a single coherent statement of meaning, establishes its own context and that has clinical attestation with regard to who is making the statement. While a Composition defines the structure, it does not actually contain the content: rather the full content of a document is contained in a Bundle, of which the Composition is the first resource contained.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRComposition extends FHIRDomainResource
+class FHIRComposition extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Logical identifier for the composition, assigned when created. This identifier stays constant as the composition is changed over time.
@@ -153,6 +154,11 @@ class FHIRComposition extends FHIRDomainResource
     public $section = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Composition';
+
+    /**
      * Logical identifier for the composition, assigned when created. This identifier stays constant as the composition is changed over time.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier
      */
@@ -164,10 +170,12 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * Logical identifier for the composition, assigned when created. This identifier stays constant as the composition is changed over time.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $identifier
+     * @return $this
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -182,10 +190,12 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * The composition editing time, when the composition was last logically changed by the author.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $date
+     * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -200,10 +210,12 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * Specifies the particular kind of composition (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the composition.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -218,10 +230,12 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * A categorization for the type of the composition - helps for indexing and searching. This may be implied by or derived from the code specified in the Composition Type.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $class
+     * @return $this
      */
     public function setClass($class)
     {
         $this->class = $class;
+        return $this;
     }
 
     /**
@@ -236,10 +250,12 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * Official human-readable label for the composition.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $title
+     * @return $this
      */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -254,10 +270,12 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * The workflow/clinical status of this composition. The status is a marker for the clinical standing of the document.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCompositionStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -272,10 +290,12 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * The code specifying the level of confidentiality of the Composition.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $confidentiality
+     * @return $this
      */
     public function setConfidentiality($confidentiality)
     {
         $this->confidentiality = $confidentiality;
+        return $this;
     }
 
     /**
@@ -290,10 +310,12 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * Who or what the composition is about. The composition can be about a person, (patient or healthcare practitioner), a device (e.g. a machine) or even a group of subjects (such as a document about a herd of livestock, or a set of patients that share a common exposure).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $subject
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -308,10 +330,12 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * Identifies who is responsible for the information in the composition, not necessarily who typed it in.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $author
+     * @return $this
      */
     public function addAuthor($author)
     {
         $this->author[] = $author;
+        return $this;
     }
 
     /**
@@ -326,10 +350,12 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * A participant who has attested to the accuracy of the composition/document.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRComposition\FHIRCompositionAttester[] $attester
+     * @return $this
      */
     public function addAttester($attester)
     {
         $this->attester[] = $attester;
+        return $this;
     }
 
     /**
@@ -344,10 +370,12 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * Identifies the organization or group who is responsible for ongoing maintenance of and access to the composition/document information.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $custodian
+     * @return $this
      */
     public function setCustodian($custodian)
     {
         $this->custodian = $custodian;
+        return $this;
     }
 
     /**
@@ -362,10 +390,12 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * The clinical service, such as a colonoscopy or an appendectomy, being documented.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRComposition\FHIRCompositionEvent[] $event
+     * @return $this
      */
     public function addEvent($event)
     {
         $this->event[] = $event;
+        return $this;
     }
 
     /**
@@ -380,10 +410,12 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * Describes the clinical encounter or type of care this documentation is associated with.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $encounter
+     * @return $this
      */
     public function setEncounter($encounter)
     {
         $this->encounter = $encounter;
+        return $this;
     }
 
     /**
@@ -398,10 +430,115 @@ class FHIRComposition extends FHIRDomainResource
     /**
      * The root of the sections that make up the composition.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRComposition\FHIRCompositionSection[] $section
+     * @return $this
      */
     public function addSection($section)
     {
         $this->section[] = $section;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->identifier) $json['identifier'] = $this->identifier->jsonSerialize();
+        if (null !== $this->date) $json['date'] = $this->date->jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->class) $json['class'] = $this->class->jsonSerialize();
+        if (null !== $this->title) $json['title'] = $this->title->jsonSerialize();
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->confidentiality) $json['confidentiality'] = $this->confidentiality->jsonSerialize();
+        if (null !== $this->subject) $json['subject'] = $this->subject->jsonSerialize();
+        if (0 < count($this->author)) {
+            $json['author'] = array();
+            foreach($this->author as $author) {
+                $json['author'][] = $author->jsonSerialize();
+            }
+        }
+        if (0 < count($this->attester)) {
+            $json['attester'] = array();
+            foreach($this->attester as $attester) {
+                $json['attester'][] = $attester->jsonSerialize();
+            }
+        }
+        if (null !== $this->custodian) $json['custodian'] = $this->custodian->jsonSerialize();
+        if (0 < count($this->event)) {
+            $json['event'] = array();
+            foreach($this->event as $event) {
+                $json['event'][] = $event->jsonSerialize();
+            }
+        }
+        if (null !== $this->encounter) $json['encounter'] = $this->encounter->jsonSerialize();
+        if (0 < count($this->section)) {
+            $json['section'] = array();
+            foreach($this->section as $section) {
+                $json['section'][] = $section->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Composition xmlns="http://hl7.org/fhir"></Composition>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->identifier) $this->identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+        if (null !== $this->date) $this->date->xmlSerialize(true, $sxe->addChild('date'));
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->class) $this->class->xmlSerialize(true, $sxe->addChild('class'));
+        if (null !== $this->title) $this->title->xmlSerialize(true, $sxe->addChild('title'));
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->confidentiality) $this->confidentiality->xmlSerialize(true, $sxe->addChild('confidentiality'));
+        if (null !== $this->subject) $this->subject->xmlSerialize(true, $sxe->addChild('subject'));
+        if (0 < count($this->author)) {
+            foreach($this->author as $author) {
+                $author->xmlSerialize(true, $sxe->addChild('author'));
+            }
+        }
+        if (0 < count($this->attester)) {
+            foreach($this->attester as $attester) {
+                $attester->xmlSerialize(true, $sxe->addChild('attester'));
+            }
+        }
+        if (null !== $this->custodian) $this->custodian->xmlSerialize(true, $sxe->addChild('custodian'));
+        if (0 < count($this->event)) {
+            foreach($this->event as $event) {
+                $event->xmlSerialize(true, $sxe->addChild('event'));
+            }
+        }
+        if (null !== $this->encounter) $this->encounter->xmlSerialize(true, $sxe->addChild('encounter'));
+        if (0 < count($this->section)) {
+            foreach($this->section as $section) {
+                $section->xmlSerialize(true, $sxe->addChild('section'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

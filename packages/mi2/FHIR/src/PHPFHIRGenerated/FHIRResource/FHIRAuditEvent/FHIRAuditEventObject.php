@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A record of an event made for purposes of maintaining a security log. Typical uses include detection of intrusion attempts and monitoring for inappropriate usage.
  */
-class FHIRAuditEventObject extends FHIRBackboneElement
+class FHIRAuditEventObject extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Identifies a specific instance of the participant object. The reference should always be version specific.
@@ -128,6 +129,11 @@ class FHIRAuditEventObject extends FHIRBackboneElement
     public $detail = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'AuditEvent.Object';
+
+    /**
      * Identifies a specific instance of the participant object. The reference should always be version specific.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier
      */
@@ -139,10 +145,12 @@ class FHIRAuditEventObject extends FHIRBackboneElement
     /**
      * Identifies a specific instance of the participant object. The reference should always be version specific.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $identifier
+     * @return $this
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -157,10 +165,12 @@ class FHIRAuditEventObject extends FHIRBackboneElement
     /**
      * Identifies a specific instance of the participant object. The reference should always be version specific.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $reference
+     * @return $this
      */
     public function setReference($reference)
     {
         $this->reference = $reference;
+        return $this;
     }
 
     /**
@@ -175,10 +185,12 @@ class FHIRAuditEventObject extends FHIRBackboneElement
     /**
      * The type of the object that was involved in this audit event.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -193,10 +205,12 @@ class FHIRAuditEventObject extends FHIRBackboneElement
     /**
      * Code representing the functional application role of Participant Object being audited.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $role
+     * @return $this
      */
     public function setRole($role)
     {
         $this->role = $role;
+        return $this;
     }
 
     /**
@@ -211,10 +225,12 @@ class FHIRAuditEventObject extends FHIRBackboneElement
     /**
      * Identifier for the data life-cycle stage for the participant object.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $lifecycle
+     * @return $this
      */
     public function setLifecycle($lifecycle)
     {
         $this->lifecycle = $lifecycle;
+        return $this;
     }
 
     /**
@@ -229,10 +245,12 @@ class FHIRAuditEventObject extends FHIRBackboneElement
     /**
      * Denotes security labels for the identified object.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding[] $securityLabel
+     * @return $this
      */
     public function addSecurityLabel($securityLabel)
     {
         $this->securityLabel[] = $securityLabel;
+        return $this;
     }
 
     /**
@@ -247,10 +265,12 @@ class FHIRAuditEventObject extends FHIRBackboneElement
     /**
      * An instance-specific descriptor of the Participant Object ID audited, such as a person's name.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -265,10 +285,12 @@ class FHIRAuditEventObject extends FHIRBackboneElement
     /**
      * Text that describes the object in more detail.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -283,10 +305,12 @@ class FHIRAuditEventObject extends FHIRBackboneElement
     /**
      * The actual query for a query-type participant object.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBase64Binary $query
+     * @return $this
      */
     public function setQuery($query)
     {
         $this->query = $query;
+        return $this;
     }
 
     /**
@@ -301,10 +325,88 @@ class FHIRAuditEventObject extends FHIRBackboneElement
     /**
      * Additional Information about the Object.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRAuditEvent\FHIRAuditEventDetail[] $detail
+     * @return $this
      */
     public function addDetail($detail)
     {
         $this->detail[] = $detail;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->identifier) $json['identifier'] = $this->identifier->jsonSerialize();
+        if (null !== $this->reference) $json['reference'] = $this->reference->jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->role) $json['role'] = $this->role->jsonSerialize();
+        if (null !== $this->lifecycle) $json['lifecycle'] = $this->lifecycle->jsonSerialize();
+        if (0 < count($this->securityLabel)) {
+            $json['securityLabel'] = array();
+            foreach($this->securityLabel as $securityLabel) {
+                $json['securityLabel'][] = $securityLabel->jsonSerialize();
+            }
+        }
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->query) $json['query'] = $this->query->jsonSerialize();
+        if (0 < count($this->detail)) {
+            $json['detail'] = array();
+            foreach($this->detail as $detail) {
+                $json['detail'][] = $detail->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<AuditEventObject xmlns="http://hl7.org/fhir"></AuditEventObject>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->identifier) $this->identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+        if (null !== $this->reference) $this->reference->xmlSerialize(true, $sxe->addChild('reference'));
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->role) $this->role->xmlSerialize(true, $sxe->addChild('role'));
+        if (null !== $this->lifecycle) $this->lifecycle->xmlSerialize(true, $sxe->addChild('lifecycle'));
+        if (0 < count($this->securityLabel)) {
+            foreach($this->securityLabel as $securityLabel) {
+                $securityLabel->xmlSerialize(true, $sxe->addChild('securityLabel'));
+            }
+        }
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->query) $this->query->xmlSerialize(true, $sxe->addChild('query'));
+        if (0 < count($this->detail)) {
+            foreach($this->detail as $detail) {
+                $detail->xmlSerialize(true, $sxe->addChild('detail'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

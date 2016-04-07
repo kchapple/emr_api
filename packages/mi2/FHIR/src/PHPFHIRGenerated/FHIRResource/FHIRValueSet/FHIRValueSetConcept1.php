@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A value set specifies a set of codes drawn from one or more code systems.
  */
-class FHIRValueSetConcept1 extends FHIRBackboneElement
+class FHIRValueSetConcept1 extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Specifies a code for the concept to be included or excluded.
@@ -86,6 +87,11 @@ class FHIRValueSetConcept1 extends FHIRBackboneElement
     public $designation = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ValueSet.Concept1';
+
+    /**
      * Specifies a code for the concept to be included or excluded.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCode
      */
@@ -97,10 +103,12 @@ class FHIRValueSetConcept1 extends FHIRBackboneElement
     /**
      * Specifies a code for the concept to be included or excluded.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRValueSetConcept1 extends FHIRBackboneElement
     /**
      * The text to display to the user for this concept in the context of this valueset. If no display is provided, then applications using the value set use the display specified for the code by the system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $display
+     * @return $this
      */
     public function setDisplay($display)
     {
         $this->display = $display;
+        return $this;
     }
 
     /**
@@ -133,10 +143,65 @@ class FHIRValueSetConcept1 extends FHIRBackboneElement
     /**
      * Additional representations for this concept when used in this value set - other languages, aliases, specialized purposes, used for particular purposes, etc.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRValueSet\FHIRValueSetDesignation[] $designation
+     * @return $this
      */
     public function addDesignation($designation)
     {
         $this->designation[] = $designation;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->display) $json['display'] = $this->display->jsonSerialize();
+        if (0 < count($this->designation)) {
+            $json['designation'] = array();
+            foreach($this->designation as $designation) {
+                $json['designation'][] = $designation->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ValueSetConcept1 xmlns="http://hl7.org/fhir"></ValueSetConcept1>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->display) $this->display->xmlSerialize(true, $sxe->addChild('display'));
+        if (0 < count($this->designation)) {
+            foreach($this->designation as $designation) {
+                $designation->xmlSerialize(true, $sxe->addChild('designation'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

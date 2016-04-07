@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * TestScript is a resource that specifies a suite of tests against a FHIR server implementation to determine compliance against the FHIR specification.
  */
-class FHIRTestScriptRequestHeader extends FHIRBackboneElement
+class FHIRTestScriptRequestHeader extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The HTTP header field e.g. "Accept".
@@ -80,6 +81,11 @@ class FHIRTestScriptRequestHeader extends FHIRBackboneElement
     public $value = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'TestScript.RequestHeader';
+
+    /**
      * The HTTP header field e.g. "Accept".
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -91,10 +97,12 @@ class FHIRTestScriptRequestHeader extends FHIRBackboneElement
     /**
      * The HTTP header field e.g. "Accept".
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $field
+     * @return $this
      */
     public function setField($field)
     {
         $this->field = $field;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRTestScriptRequestHeader extends FHIRBackboneElement
     /**
      * The value of the header e.g. "application/xml".
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $value
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->field) $json['field'] = $this->field->jsonSerialize();
+        if (null !== $this->value) $json['value'] = $this->value->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<TestScriptRequestHeader xmlns="http://hl7.org/fhir"></TestScriptRequestHeader>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->field) $this->field->xmlSerialize(true, $sxe->addChild('field'));
+        if (null !== $this->value) $this->value->xmlSerialize(true, $sxe->addChild('value'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

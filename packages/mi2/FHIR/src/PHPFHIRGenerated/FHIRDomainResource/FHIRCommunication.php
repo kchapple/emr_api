@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * An occurrence of information being transmitted; e.g. an alert that was sent to a responsible provider, a public health agency was notified about a reportable condition.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRCommunication extends FHIRDomainResource
+class FHIRCommunication extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Identifiers associated with this Communication that are defined by business processes and/ or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).
@@ -147,6 +148,11 @@ class FHIRCommunication extends FHIRDomainResource
     public $requestDetail = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Communication';
+
+    /**
      * Identifiers associated with this Communication that are defined by business processes and/ or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -158,10 +164,12 @@ class FHIRCommunication extends FHIRDomainResource
     /**
      * Identifiers associated with this Communication that are defined by business processes and/ or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -176,10 +184,12 @@ class FHIRCommunication extends FHIRDomainResource
     /**
      * The type of message conveyed such as alert, notification, reminder, instruction, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $category
+     * @return $this
      */
     public function setCategory($category)
     {
         $this->category = $category;
+        return $this;
     }
 
     /**
@@ -194,10 +204,12 @@ class FHIRCommunication extends FHIRDomainResource
     /**
      * The entity (e.g. person, organization, clinical information system, or device) which was the source of the communication.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $sender
+     * @return $this
      */
     public function setSender($sender)
     {
         $this->sender = $sender;
+        return $this;
     }
 
     /**
@@ -212,10 +224,12 @@ class FHIRCommunication extends FHIRDomainResource
     /**
      * The entity (e.g. person, organization, clinical information system, or device) which was the target of the communication. If receipts need to be tracked by individual, a separate resource instance will need to be created for each recipient.  Multiple recipient communications are intended where either a receipt(s) is not tracked (e.g. a mass mail-out) or is captured in aggregate (all emails confirmed received by a particular time).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $recipient
+     * @return $this
      */
     public function addRecipient($recipient)
     {
         $this->recipient[] = $recipient;
+        return $this;
     }
 
     /**
@@ -230,10 +244,12 @@ class FHIRCommunication extends FHIRDomainResource
     /**
      * Text, attachment(s), or resource(s) that was communicated to the recipient.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRCommunication\FHIRCommunicationPayload[] $payload
+     * @return $this
      */
     public function addPayload($payload)
     {
         $this->payload[] = $payload;
+        return $this;
     }
 
     /**
@@ -248,10 +264,12 @@ class FHIRCommunication extends FHIRDomainResource
     /**
      * A channel that was used for this communication (e.g. email, fax).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $medium
+     * @return $this
      */
     public function addMedium($medium)
     {
         $this->medium[] = $medium;
+        return $this;
     }
 
     /**
@@ -266,10 +284,12 @@ class FHIRCommunication extends FHIRDomainResource
     /**
      * The status of the transmission.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCommunicationStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -284,10 +304,12 @@ class FHIRCommunication extends FHIRDomainResource
     /**
      * The encounter within which the communication was sent.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $encounter
+     * @return $this
      */
     public function setEncounter($encounter)
     {
         $this->encounter = $encounter;
+        return $this;
     }
 
     /**
@@ -302,10 +324,12 @@ class FHIRCommunication extends FHIRDomainResource
     /**
      * The time when this communication was sent.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $sent
+     * @return $this
      */
     public function setSent($sent)
     {
         $this->sent = $sent;
+        return $this;
     }
 
     /**
@@ -320,10 +344,12 @@ class FHIRCommunication extends FHIRDomainResource
     /**
      * The time when this communication arrived at the destination.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $received
+     * @return $this
      */
     public function setReceived($received)
     {
         $this->received = $received;
+        return $this;
     }
 
     /**
@@ -338,10 +364,12 @@ class FHIRCommunication extends FHIRDomainResource
     /**
      * The reason or justification for the communication.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $reason
+     * @return $this
      */
     public function addReason($reason)
     {
         $this->reason[] = $reason;
+        return $this;
     }
 
     /**
@@ -356,10 +384,12 @@ class FHIRCommunication extends FHIRDomainResource
     /**
      * The patient who was the focus of this communication.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $subject
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -374,10 +404,122 @@ class FHIRCommunication extends FHIRDomainResource
     /**
      * The communication request that was responsible for producing this communication.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $requestDetail
+     * @return $this
      */
     public function setRequestDetail($requestDetail)
     {
         $this->requestDetail = $requestDetail;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->category) $json['category'] = $this->category->jsonSerialize();
+        if (null !== $this->sender) $json['sender'] = $this->sender->jsonSerialize();
+        if (0 < count($this->recipient)) {
+            $json['recipient'] = array();
+            foreach($this->recipient as $recipient) {
+                $json['recipient'][] = $recipient->jsonSerialize();
+            }
+        }
+        if (0 < count($this->payload)) {
+            $json['payload'] = array();
+            foreach($this->payload as $payload) {
+                $json['payload'][] = $payload->jsonSerialize();
+            }
+        }
+        if (0 < count($this->medium)) {
+            $json['medium'] = array();
+            foreach($this->medium as $medium) {
+                $json['medium'][] = $medium->jsonSerialize();
+            }
+        }
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->encounter) $json['encounter'] = $this->encounter->jsonSerialize();
+        if (null !== $this->sent) $json['sent'] = $this->sent->jsonSerialize();
+        if (null !== $this->received) $json['received'] = $this->received->jsonSerialize();
+        if (0 < count($this->reason)) {
+            $json['reason'] = array();
+            foreach($this->reason as $reason) {
+                $json['reason'][] = $reason->jsonSerialize();
+            }
+        }
+        if (null !== $this->subject) $json['subject'] = $this->subject->jsonSerialize();
+        if (null !== $this->requestDetail) $json['requestDetail'] = $this->requestDetail->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Communication xmlns="http://hl7.org/fhir"></Communication>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->category) $this->category->xmlSerialize(true, $sxe->addChild('category'));
+        if (null !== $this->sender) $this->sender->xmlSerialize(true, $sxe->addChild('sender'));
+        if (0 < count($this->recipient)) {
+            foreach($this->recipient as $recipient) {
+                $recipient->xmlSerialize(true, $sxe->addChild('recipient'));
+            }
+        }
+        if (0 < count($this->payload)) {
+            foreach($this->payload as $payload) {
+                $payload->xmlSerialize(true, $sxe->addChild('payload'));
+            }
+        }
+        if (0 < count($this->medium)) {
+            foreach($this->medium as $medium) {
+                $medium->xmlSerialize(true, $sxe->addChild('medium'));
+            }
+        }
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->encounter) $this->encounter->xmlSerialize(true, $sxe->addChild('encounter'));
+        if (null !== $this->sent) $this->sent->xmlSerialize(true, $sxe->addChild('sent'));
+        if (null !== $this->received) $this->received->xmlSerialize(true, $sxe->addChild('received'));
+        if (0 < count($this->reason)) {
+            foreach($this->reason as $reason) {
+                $reason->xmlSerialize(true, $sxe->addChild('reason'));
+            }
+        }
+        if (null !== $this->subject) $this->subject->xmlSerialize(true, $sxe->addChild('subject'));
+        if (null !== $this->requestDetail) $this->requestDetail->xmlSerialize(true, $sxe->addChild('requestDetail'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

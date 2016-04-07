@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A conformance statement is a set of capabilities of a FHIR Server that may be used as a statement of actual server functionality or a statement of required or desired server implementation.
  */
-class FHIRConformanceSearchParam extends FHIRBackboneElement
+class FHIRConformanceSearchParam extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The name of the search parameter used in the interface.
@@ -110,6 +111,11 @@ class FHIRConformanceSearchParam extends FHIRBackboneElement
     public $chain = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Conformance.SearchParam';
+
+    /**
      * The name of the search parameter used in the interface.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -121,10 +127,12 @@ class FHIRConformanceSearchParam extends FHIRBackboneElement
     /**
      * The name of the search parameter used in the interface.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -139,10 +147,12 @@ class FHIRConformanceSearchParam extends FHIRBackboneElement
     /**
      * An absolute URI that is a formal reference to where this parameter was first defined, so that a client can be confident of the meaning of the search parameter (a reference to [[[SearchParameter.url]]]).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $definition
+     * @return $this
      */
     public function setDefinition($definition)
     {
         $this->definition = $definition;
+        return $this;
     }
 
     /**
@@ -157,10 +167,12 @@ class FHIRConformanceSearchParam extends FHIRBackboneElement
     /**
      * The type of value a search parameter refers to, and how the content is interpreted.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -175,10 +187,12 @@ class FHIRConformanceSearchParam extends FHIRBackboneElement
     /**
      * This allows documentation of any distinct behaviors about how the search parameter is used.  For example, text matching algorithms.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $documentation
+     * @return $this
      */
     public function setDocumentation($documentation)
     {
         $this->documentation = $documentation;
+        return $this;
     }
 
     /**
@@ -193,10 +207,12 @@ class FHIRConformanceSearchParam extends FHIRBackboneElement
     /**
      * Types of resource (if a resource is referenced).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode[] $target
+     * @return $this
      */
     public function addTarget($target)
     {
         $this->target[] = $target;
+        return $this;
     }
 
     /**
@@ -211,10 +227,12 @@ class FHIRConformanceSearchParam extends FHIRBackboneElement
     /**
      * A modifier supported for the search parameter.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRSearchModifierCode[] $modifier
+     * @return $this
      */
     public function addModifier($modifier)
     {
         $this->modifier[] = $modifier;
+        return $this;
     }
 
     /**
@@ -229,10 +247,91 @@ class FHIRConformanceSearchParam extends FHIRBackboneElement
     /**
      * Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference, and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from Conformance.rest.resource.searchParam.name on the target resource type.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString[] $chain
+     * @return $this
      */
     public function addChain($chain)
     {
         $this->chain[] = $chain;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->definition) $json['definition'] = $this->definition->jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->documentation) $json['documentation'] = $this->documentation->jsonSerialize();
+        if (0 < count($this->target)) {
+            $json['target'] = array();
+            foreach($this->target as $target) {
+                $json['target'][] = $target->jsonSerialize();
+            }
+        }
+        if (0 < count($this->modifier)) {
+            $json['modifier'] = array();
+            foreach($this->modifier as $modifier) {
+                $json['modifier'][] = $modifier->jsonSerialize();
+            }
+        }
+        if (0 < count($this->chain)) {
+            $json['chain'] = array();
+            foreach($this->chain as $chain) {
+                $json['chain'][] = $chain->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ConformanceSearchParam xmlns="http://hl7.org/fhir"></ConformanceSearchParam>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->definition) $this->definition->xmlSerialize(true, $sxe->addChild('definition'));
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->documentation) $this->documentation->xmlSerialize(true, $sxe->addChild('documentation'));
+        if (0 < count($this->target)) {
+            foreach($this->target as $target) {
+                $target->xmlSerialize(true, $sxe->addChild('target'));
+            }
+        }
+        if (0 < count($this->modifier)) {
+            foreach($this->modifier as $modifier) {
+                $modifier->xmlSerialize(true, $sxe->addChild('modifier'));
+            }
+        }
+        if (0 < count($this->chain)) {
+            foreach($this->chain as $chain) {
+                $chain->xmlSerialize(true, $sxe->addChild('chain'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * This resource provides the adjudication details from the processing of a Claim resource.
  */
-class FHIRClaimResponseSubDetail extends FHIRBackboneElement
+class FHIRClaimResponseSubDetail extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A service line number.
@@ -80,6 +81,11 @@ class FHIRClaimResponseSubDetail extends FHIRBackboneElement
     public $adjudication = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ClaimResponse.SubDetail';
+
+    /**
      * A service line number.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt
      */
@@ -91,10 +97,12 @@ class FHIRClaimResponseSubDetail extends FHIRBackboneElement
     /**
      * A service line number.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt $sequenceLinkId
+     * @return $this
      */
     public function setSequenceLinkId($sequenceLinkId)
     {
         $this->sequenceLinkId = $sequenceLinkId;
+        return $this;
     }
 
     /**
@@ -109,10 +117,63 @@ class FHIRClaimResponseSubDetail extends FHIRBackboneElement
     /**
      * The adjudications results.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRClaimResponse\FHIRClaimResponseAdjudication2[] $adjudication
+     * @return $this
      */
     public function addAdjudication($adjudication)
     {
         $this->adjudication[] = $adjudication;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->sequenceLinkId) $json['sequenceLinkId'] = $this->sequenceLinkId->jsonSerialize();
+        if (0 < count($this->adjudication)) {
+            $json['adjudication'] = array();
+            foreach($this->adjudication as $adjudication) {
+                $json['adjudication'][] = $adjudication->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ClaimResponseSubDetail xmlns="http://hl7.org/fhir"></ClaimResponseSubDetail>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->sequenceLinkId) $this->sequenceLinkId->xmlSerialize(true, $sxe->addChild('sequenceLinkId'));
+        if (0 < count($this->adjudication)) {
+            foreach($this->adjudication as $adjudication) {
+                $adjudication->xmlSerialize(true, $sxe->addChild('adjudication'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

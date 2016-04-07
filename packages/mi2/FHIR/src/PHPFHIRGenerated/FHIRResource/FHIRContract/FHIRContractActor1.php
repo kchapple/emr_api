@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A formal agreement between parties regarding the conduct of business, exchange of information or other matters.
  */
-class FHIRContractActor1 extends FHIRBackboneElement
+class FHIRContractActor1 extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The actor assigned a role in this Contract Provision.
@@ -80,6 +81,11 @@ class FHIRContractActor1 extends FHIRBackboneElement
     public $role = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Contract.Actor1';
+
+    /**
      * The actor assigned a role in this Contract Provision.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRReference
      */
@@ -91,10 +97,12 @@ class FHIRContractActor1 extends FHIRBackboneElement
     /**
      * The actor assigned a role in this Contract Provision.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $entity
+     * @return $this
      */
     public function setEntity($entity)
     {
         $this->entity = $entity;
+        return $this;
     }
 
     /**
@@ -109,10 +117,63 @@ class FHIRContractActor1 extends FHIRBackboneElement
     /**
      * Role played by the actor assigned this role in this Contract Provision.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $role
+     * @return $this
      */
     public function addRole($role)
     {
         $this->role[] = $role;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->entity) $json['entity'] = $this->entity->jsonSerialize();
+        if (0 < count($this->role)) {
+            $json['role'] = array();
+            foreach($this->role as $role) {
+                $json['role'][] = $role->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ContractActor1 xmlns="http://hl7.org/fhir"></ContractActor1>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->entity) $this->entity->xmlSerialize(true, $sxe->addChild('entity'));
+        if (0 < count($this->role)) {
+            foreach($this->role as $role) {
+                $role->xmlSerialize(true, $sxe->addChild('role'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

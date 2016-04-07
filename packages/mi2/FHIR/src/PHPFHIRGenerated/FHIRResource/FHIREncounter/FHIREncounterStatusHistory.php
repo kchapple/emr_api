@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient.
  */
-class FHIREncounterStatusHistory extends FHIRBackboneElement
+class FHIREncounterStatusHistory extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * planned | arrived | in-progress | onleave | finished | cancelled.
@@ -80,6 +81,11 @@ class FHIREncounterStatusHistory extends FHIRBackboneElement
     public $period = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Encounter.StatusHistory';
+
+    /**
      * planned | arrived | in-progress | onleave | finished | cancelled.
      * @return \PHPFHIRGenerated\FHIRElement\FHIREncounterState
      */
@@ -91,10 +97,12 @@ class FHIREncounterStatusHistory extends FHIRBackboneElement
     /**
      * planned | arrived | in-progress | onleave | finished | cancelled.
      * @param \PHPFHIRGenerated\FHIRElement\FHIREncounterState $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIREncounterStatusHistory extends FHIRBackboneElement
     /**
      * The time that the episode was in the specified status.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<EncounterStatusHistory xmlns="http://hl7.org/fhir"></EncounterStatusHistory>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

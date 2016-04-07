@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Basic is used for handling concepts not yet defined in FHIR, narrative-only resources that don't map to an existing resource, and custom resources not appropriate for inclusion in the FHIR specification.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRBasic extends FHIRDomainResource
+class FHIRBasic extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Identifier assigned to the resource for business purposes, outside the context of FHIR.
@@ -99,6 +100,11 @@ class FHIRBasic extends FHIRDomainResource
     public $created = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Basic';
+
+    /**
      * Identifier assigned to the resource for business purposes, outside the context of FHIR.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -110,10 +116,12 @@ class FHIRBasic extends FHIRDomainResource
     /**
      * Identifier assigned to the resource for business purposes, outside the context of FHIR.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -128,10 +136,12 @@ class FHIRBasic extends FHIRDomainResource
     /**
      * Identifies the 'type' of resource - equivalent to the resource name for other resources.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -146,10 +156,12 @@ class FHIRBasic extends FHIRDomainResource
     /**
      * Identifies the patient, practitioner, device or any other resource that is the "focus" of this resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $subject
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -164,10 +176,12 @@ class FHIRBasic extends FHIRDomainResource
     /**
      * Indicates who was responsible for creating the resource instance.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $author
+     * @return $this
      */
     public function setAuthor($author)
     {
         $this->author = $author;
+        return $this;
     }
 
     /**
@@ -182,10 +196,70 @@ class FHIRBasic extends FHIRDomainResource
     /**
      * Identifies when the resource was first created.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDate $created
+     * @return $this
      */
     public function setCreated($created)
     {
         $this->created = $created;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->subject) $json['subject'] = $this->subject->jsonSerialize();
+        if (null !== $this->author) $json['author'] = $this->author->jsonSerialize();
+        if (null !== $this->created) $json['created'] = $this->created->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Basic xmlns="http://hl7.org/fhir"></Basic>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->subject) $this->subject->xmlSerialize(true, $sxe->addChild('subject'));
+        if (null !== $this->author) $this->author->xmlSerialize(true, $sxe->addChild('author'));
+        if (null !== $this->created) $this->created->xmlSerialize(true, $sxe->addChild('created'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

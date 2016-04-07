@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * The details of a healthcare service available at a location.
  */
-class FHIRHealthcareServiceServiceType extends FHIRBackboneElement
+class FHIRHealthcareServiceServiceType extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The specific type of service being delivered or performed.
@@ -80,6 +81,11 @@ class FHIRHealthcareServiceServiceType extends FHIRBackboneElement
     public $specialty = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'HealthcareService.ServiceType';
+
+    /**
      * The specific type of service being delivered or performed.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -91,10 +97,12 @@ class FHIRHealthcareServiceServiceType extends FHIRBackboneElement
     /**
      * The specific type of service being delivered or performed.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -109,10 +117,63 @@ class FHIRHealthcareServiceServiceType extends FHIRBackboneElement
     /**
      * Collection of specialties handled by the service site. This is more of a medical term.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $specialty
+     * @return $this
      */
     public function addSpecialty($specialty)
     {
         $this->specialty[] = $specialty;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (0 < count($this->specialty)) {
+            $json['specialty'] = array();
+            foreach($this->specialty as $specialty) {
+                $json['specialty'][] = $specialty->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<HealthcareServiceServiceType xmlns="http://hl7.org/fhir"></HealthcareServiceServiceType>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (0 < count($this->specialty)) {
+            foreach($this->specialty as $specialty) {
+                $specialty->xmlSerialize(true, $sxe->addChild('specialty'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

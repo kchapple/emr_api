@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A request to supply a diet, formula feeding (enteral) or oral nutritional supplement to a patient/resident.
  */
-class FHIRNutritionOrderAdministration extends FHIRBackboneElement
+class FHIRNutritionOrderAdministration extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The time period and frequency at which the enteral formula should be delivered to the patient.
@@ -92,6 +93,11 @@ class FHIRNutritionOrderAdministration extends FHIRBackboneElement
     public $rateRatio = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'NutritionOrder.Administration';
+
+    /**
      * The time period and frequency at which the enteral formula should be delivered to the patient.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRTiming
      */
@@ -103,10 +109,12 @@ class FHIRNutritionOrderAdministration extends FHIRBackboneElement
     /**
      * The time period and frequency at which the enteral formula should be delivered to the patient.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRTiming $schedule
+     * @return $this
      */
     public function setSchedule($schedule)
     {
         $this->schedule = $schedule;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRNutritionOrderAdministration extends FHIRBackboneElement
     /**
      * The volume of formula to provide to the patient per the specified administration schedule.
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $quantity
+     * @return $this
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRNutritionOrderAdministration extends FHIRBackboneElement
     /**
      * The rate of administration of formula via a feeding pump, e.g. 60 mL per hour, according to the specified schedule. (choose any one of rate*, but only one)
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $rateQuantity
+     * @return $this
      */
     public function setRateQuantity($rateQuantity)
     {
         $this->rateQuantity = $rateQuantity;
+        return $this;
     }
 
     /**
@@ -157,10 +169,58 @@ class FHIRNutritionOrderAdministration extends FHIRBackboneElement
     /**
      * The rate of administration of formula via a feeding pump, e.g. 60 mL per hour, according to the specified schedule. (choose any one of rate*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRRatio $rateRatio
+     * @return $this
      */
     public function setRateRatio($rateRatio)
     {
         $this->rateRatio = $rateRatio;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->schedule) $json['schedule'] = $this->schedule->jsonSerialize();
+        if (null !== $this->quantity) $json['quantity'] = $this->quantity->jsonSerialize();
+        if (null !== $this->rateQuantity) $json['rateQuantity'] = $this->rateQuantity->jsonSerialize();
+        if (null !== $this->rateRatio) $json['rateRatio'] = $this->rateRatio->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<NutritionOrderAdministration xmlns="http://hl7.org/fhir"></NutritionOrderAdministration>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->schedule) $this->schedule->xmlSerialize(true, $sxe->addChild('schedule'));
+        if (null !== $this->quantity) $this->quantity->xmlSerialize(true, $sxe->addChild('quantity'));
+        if (null !== $this->rateQuantity) $this->rateQuantity->xmlSerialize(true, $sxe->addChild('rateQuantity'));
+        if (null !== $this->rateRatio) $this->rateRatio->xmlSerialize(true, $sxe->addChild('rateRatio'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

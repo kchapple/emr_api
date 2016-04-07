@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Demographics and administrative information about a person independent of a specific health-related context.
  */
-class FHIRPersonLink extends FHIRBackboneElement
+class FHIRPersonLink extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The resource to which this actual person is associated.
@@ -80,6 +81,11 @@ class FHIRPersonLink extends FHIRBackboneElement
     public $assurance = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Person.Link';
+
+    /**
      * The resource to which this actual person is associated.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRReference
      */
@@ -91,10 +97,12 @@ class FHIRPersonLink extends FHIRBackboneElement
     /**
      * The resource to which this actual person is associated.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $target
+     * @return $this
      */
     public function setTarget($target)
     {
         $this->target = $target;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRPersonLink extends FHIRBackboneElement
     /**
      * Level of assurance that this link is actually associated with the target resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentityAssuranceLevel $assurance
+     * @return $this
      */
     public function setAssurance($assurance)
     {
         $this->assurance = $assurance;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->target) $json['target'] = $this->target->jsonSerialize();
+        if (null !== $this->assurance) $json['assurance'] = $this->assurance->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<PersonLink xmlns="http://hl7.org/fhir"></PersonLink>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->target) $this->target->xmlSerialize(true, $sxe->addChild('target'));
+        if (null !== $this->assurance) $this->assurance->xmlSerialize(true, $sxe->addChild('assurance'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

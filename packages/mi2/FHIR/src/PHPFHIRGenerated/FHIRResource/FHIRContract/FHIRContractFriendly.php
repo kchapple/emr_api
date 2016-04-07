@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A formal agreement between parties regarding the conduct of business, exchange of information or other matters.
  */
-class FHIRContractFriendly extends FHIRBackboneElement
+class FHIRContractFriendly extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Human readable rendering of this Contract in a format and representation intended to enhance comprehension and ensure understandability. (choose any one of content*, but only one)
@@ -80,6 +81,11 @@ class FHIRContractFriendly extends FHIRBackboneElement
     public $contentReference = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Contract.Friendly';
+
+    /**
      * Human readable rendering of this Contract in a format and representation intended to enhance comprehension and ensure understandability. (choose any one of content*, but only one)
      * @return \PHPFHIRGenerated\FHIRElement\FHIRAttachment
      */
@@ -91,10 +97,12 @@ class FHIRContractFriendly extends FHIRBackboneElement
     /**
      * Human readable rendering of this Contract in a format and representation intended to enhance comprehension and ensure understandability. (choose any one of content*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAttachment $contentAttachment
+     * @return $this
      */
     public function setContentAttachment($contentAttachment)
     {
         $this->contentAttachment = $contentAttachment;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRContractFriendly extends FHIRBackboneElement
     /**
      * Human readable rendering of this Contract in a format and representation intended to enhance comprehension and ensure understandability. (choose any one of content*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $contentReference
+     * @return $this
      */
     public function setContentReference($contentReference)
     {
         $this->contentReference = $contentReference;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->contentAttachment) $json['contentAttachment'] = $this->contentAttachment->jsonSerialize();
+        if (null !== $this->contentReference) $json['contentReference'] = $this->contentReference->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ContractFriendly xmlns="http://hl7.org/fhir"></ContractFriendly>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->contentAttachment) $this->contentAttachment->xmlSerialize(true, $sxe->addChild('contentAttachment'));
+        if (null !== $this->contentReference) $this->contentReference->xmlSerialize(true, $sxe->addChild('contentReference'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A definition of a FHIR structure. This resource is used to describe the underlying resources, data types defined in FHIR, and also for describing extensions, and constraints on resources and data types.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRStructureDefinition extends FHIRDomainResource
+class FHIRStructureDefinition extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * An absolute URL that is used to identify this structure definition when it is referenced in a specification, model, design or an instance. This SHALL be a URL, SHOULD be globally unique, and SHOULD be an address at which this structure definition is (or will be) published.
@@ -219,6 +220,11 @@ class FHIRStructureDefinition extends FHIRDomainResource
     public $differential = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'StructureDefinition';
+
+    /**
      * An absolute URL that is used to identify this structure definition when it is referenced in a specification, model, design or an instance. This SHALL be a URL, SHOULD be globally unique, and SHOULD be an address at which this structure definition is (or will be) published.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRUri
      */
@@ -230,10 +236,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * An absolute URL that is used to identify this structure definition when it is referenced in a specification, model, design or an instance. This SHALL be a URL, SHOULD be globally unique, and SHOULD be an address at which this structure definition is (or will be) published.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $url
+     * @return $this
      */
     public function setUrl($url)
     {
         $this->url = $url;
+        return $this;
     }
 
     /**
@@ -248,10 +256,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * Formal identifier that is used to identify this StructureDefinition when it is represented in other formats, or referenced in a specification, model, design or an instance  (should be globally unique OID, UUID, or URI), (if it's not possible to use the literal URI).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -266,10 +276,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * The identifier that is used to identify this version of the StructureDefinition when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the StructureDefinition author manually.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $version
+     * @return $this
      */
     public function setVersion($version)
     {
         $this->version = $version;
+        return $this;
     }
 
     /**
@@ -284,10 +296,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * A free text natural language name identifying the StructureDefinition.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -302,10 +316,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * Defined so that applications can use this name when displaying the value of the extension to the user.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $display
+     * @return $this
      */
     public function setDisplay($display)
     {
         $this->display = $display;
+        return $this;
     }
 
     /**
@@ -320,10 +336,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * The status of the StructureDefinition.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -338,10 +356,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * This StructureDefinition was authored for testing purposes (or education/evaluation/marketing), and is not intended to be used for genuine usage.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $experimental
+     * @return $this
      */
     public function setExperimental($experimental)
     {
         $this->experimental = $experimental;
+        return $this;
     }
 
     /**
@@ -356,10 +376,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * The name of the individual or organization that published the structure definition.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $publisher
+     * @return $this
      */
     public function setPublisher($publisher)
     {
         $this->publisher = $publisher;
+        return $this;
     }
 
     /**
@@ -374,10 +396,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * Contacts to assist a user in finding and communicating with the publisher.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRStructureDefinition\FHIRStructureDefinitionContact[] $contact
+     * @return $this
      */
     public function addContact($contact)
     {
         $this->contact[] = $contact;
+        return $this;
     }
 
     /**
@@ -392,10 +416,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * The date this version of the structure definition was published. The date must change when the business version changes, if it does, and it must change if the status code changes. In addition, it should change when the substantive content of the structure definition changes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $date
+     * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -410,10 +436,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * A free text natural language description of the StructureDefinition and its use.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -428,10 +456,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * The content was developed with a focus and intent of supporting the contexts that are listed. These terms may be used to assist with indexing and searching of structure definitions.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $useContext
+     * @return $this
      */
     public function addUseContext($useContext)
     {
         $this->useContext[] = $useContext;
+        return $this;
     }
 
     /**
@@ -446,10 +476,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * Explains why this structure definition is needed and why it's been constrained as it has.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $requirements
+     * @return $this
      */
     public function setRequirements($requirements)
     {
         $this->requirements = $requirements;
+        return $this;
     }
 
     /**
@@ -464,10 +496,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * A copyright statement relating to the structure definition and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the details of the constraints and mappings.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $copyright
+     * @return $this
      */
     public function setCopyright($copyright)
     {
         $this->copyright = $copyright;
+        return $this;
     }
 
     /**
@@ -482,10 +516,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * A set of terms from external terminologies that may be used to assist with indexing and searching of templates.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding[] $code
+     * @return $this
      */
     public function addCode($code)
     {
         $this->code[] = $code;
+        return $this;
     }
 
     /**
@@ -500,10 +536,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * The version of the FHIR specification on which this StructureDefinition is based - this is the formal version of the specification, without the revision number, e.g. [publication].[major].[minor], which is 1.0.2 for this version.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRId $fhirVersion
+     * @return $this
      */
     public function setFhirVersion($fhirVersion)
     {
         $this->fhirVersion = $fhirVersion;
+        return $this;
     }
 
     /**
@@ -518,10 +556,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * An external specification that the content is mapped to.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRStructureDefinition\FHIRStructureDefinitionMapping[] $mapping
+     * @return $this
      */
     public function addMapping($mapping)
     {
         $this->mapping[] = $mapping;
+        return $this;
     }
 
     /**
@@ -536,10 +576,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * Defines the kind of structure that this definition is describing.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRStructureDefinitionKind $kind
+     * @return $this
      */
     public function setKind($kind)
     {
         $this->kind = $kind;
+        return $this;
     }
 
     /**
@@ -554,10 +596,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * The type of type that is being constrained - a data type, an extension, a resource, including abstract ones. If this field is present, it indicates that the structure definition is a constraint. If it is not present, then the structure definition is the definition of a base structure.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $constrainedType
+     * @return $this
      */
     public function setConstrainedType($constrainedType)
     {
         $this->constrainedType = $constrainedType;
+        return $this;
     }
 
     /**
@@ -572,10 +616,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * Whether structure this definition describes is abstract or not  - that is, whether an actual exchanged item can ever be of this type.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $abstract
+     * @return $this
      */
     public function setAbstract($abstract)
     {
         $this->abstract = $abstract;
+        return $this;
     }
 
     /**
@@ -590,10 +636,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * If this is an extension, Identifies the context within FHIR resources where the extension can be used.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRExtensionContext $contextType
+     * @return $this
      */
     public function setContextType($contextType)
     {
         $this->contextType = $contextType;
+        return $this;
     }
 
     /**
@@ -608,10 +656,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * Identifies the types of resource or data type elements to which the extension can be applied.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString[] $context
+     * @return $this
      */
     public function addContext($context)
     {
         $this->context[] = $context;
+        return $this;
     }
 
     /**
@@ -626,10 +676,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * An absolute URI that is the base structure from which this set of constraints is derived.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $base
+     * @return $this
      */
     public function setBase($base)
     {
         $this->base = $base;
+        return $this;
     }
 
     /**
@@ -644,10 +696,12 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * A snapshot view is expressed in a stand alone form that can be used and interpreted without considering the base StructureDefinition.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRStructureDefinition\FHIRStructureDefinitionSnapshot $snapshot
+     * @return $this
      */
     public function setSnapshot($snapshot)
     {
         $this->snapshot = $snapshot;
+        return $this;
     }
 
     /**
@@ -662,10 +716,155 @@ class FHIRStructureDefinition extends FHIRDomainResource
     /**
      * A differential view is expressed relative to the base StructureDefinition - a statement of differences that it applies.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRStructureDefinition\FHIRStructureDefinitionDifferential $differential
+     * @return $this
      */
     public function setDifferential($differential)
     {
         $this->differential = $differential;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->url) $json['url'] = $this->url->jsonSerialize();
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->version) $json['version'] = $this->version->jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->display) $json['display'] = $this->display->jsonSerialize();
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->experimental) $json['experimental'] = $this->experimental->jsonSerialize();
+        if (null !== $this->publisher) $json['publisher'] = $this->publisher->jsonSerialize();
+        if (0 < count($this->contact)) {
+            $json['contact'] = array();
+            foreach($this->contact as $contact) {
+                $json['contact'][] = $contact->jsonSerialize();
+            }
+        }
+        if (null !== $this->date) $json['date'] = $this->date->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (0 < count($this->useContext)) {
+            $json['useContext'] = array();
+            foreach($this->useContext as $useContext) {
+                $json['useContext'][] = $useContext->jsonSerialize();
+            }
+        }
+        if (null !== $this->requirements) $json['requirements'] = $this->requirements->jsonSerialize();
+        if (null !== $this->copyright) $json['copyright'] = $this->copyright->jsonSerialize();
+        if (0 < count($this->code)) {
+            $json['code'] = array();
+            foreach($this->code as $code) {
+                $json['code'][] = $code->jsonSerialize();
+            }
+        }
+        if (null !== $this->fhirVersion) $json['fhirVersion'] = $this->fhirVersion->jsonSerialize();
+        if (0 < count($this->mapping)) {
+            $json['mapping'] = array();
+            foreach($this->mapping as $mapping) {
+                $json['mapping'][] = $mapping->jsonSerialize();
+            }
+        }
+        if (null !== $this->kind) $json['kind'] = $this->kind->jsonSerialize();
+        if (null !== $this->constrainedType) $json['constrainedType'] = $this->constrainedType->jsonSerialize();
+        if (null !== $this->abstract) $json['abstract'] = $this->abstract->jsonSerialize();
+        if (null !== $this->contextType) $json['contextType'] = $this->contextType->jsonSerialize();
+        if (0 < count($this->context)) {
+            $json['context'] = array();
+            foreach($this->context as $context) {
+                $json['context'][] = $context->jsonSerialize();
+            }
+        }
+        if (null !== $this->base) $json['base'] = $this->base->jsonSerialize();
+        if (null !== $this->snapshot) $json['snapshot'] = $this->snapshot->jsonSerialize();
+        if (null !== $this->differential) $json['differential'] = $this->differential->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<StructureDefinition xmlns="http://hl7.org/fhir"></StructureDefinition>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->url) $this->url->xmlSerialize(true, $sxe->addChild('url'));
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->version) $this->version->xmlSerialize(true, $sxe->addChild('version'));
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->display) $this->display->xmlSerialize(true, $sxe->addChild('display'));
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->experimental) $this->experimental->xmlSerialize(true, $sxe->addChild('experimental'));
+        if (null !== $this->publisher) $this->publisher->xmlSerialize(true, $sxe->addChild('publisher'));
+        if (0 < count($this->contact)) {
+            foreach($this->contact as $contact) {
+                $contact->xmlSerialize(true, $sxe->addChild('contact'));
+            }
+        }
+        if (null !== $this->date) $this->date->xmlSerialize(true, $sxe->addChild('date'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (0 < count($this->useContext)) {
+            foreach($this->useContext as $useContext) {
+                $useContext->xmlSerialize(true, $sxe->addChild('useContext'));
+            }
+        }
+        if (null !== $this->requirements) $this->requirements->xmlSerialize(true, $sxe->addChild('requirements'));
+        if (null !== $this->copyright) $this->copyright->xmlSerialize(true, $sxe->addChild('copyright'));
+        if (0 < count($this->code)) {
+            foreach($this->code as $code) {
+                $code->xmlSerialize(true, $sxe->addChild('code'));
+            }
+        }
+        if (null !== $this->fhirVersion) $this->fhirVersion->xmlSerialize(true, $sxe->addChild('fhirVersion'));
+        if (0 < count($this->mapping)) {
+            foreach($this->mapping as $mapping) {
+                $mapping->xmlSerialize(true, $sxe->addChild('mapping'));
+            }
+        }
+        if (null !== $this->kind) $this->kind->xmlSerialize(true, $sxe->addChild('kind'));
+        if (null !== $this->constrainedType) $this->constrainedType->xmlSerialize(true, $sxe->addChild('constrainedType'));
+        if (null !== $this->abstract) $this->abstract->xmlSerialize(true, $sxe->addChild('abstract'));
+        if (null !== $this->contextType) $this->contextType->xmlSerialize(true, $sxe->addChild('contextType'));
+        if (0 < count($this->context)) {
+            foreach($this->context as $context) {
+                $context->xmlSerialize(true, $sxe->addChild('context'));
+            }
+        }
+        if (null !== $this->base) $this->base->xmlSerialize(true, $sxe->addChild('base'));
+        if (null !== $this->snapshot) $this->snapshot->xmlSerialize(true, $sxe->addChild('snapshot'));
+        if (null !== $this->differential) $this->differential->xmlSerialize(true, $sxe->addChild('differential'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * An order for both supply of the medication and the instructions for administration of the medication to a patient.
  */
-class FHIRMedicationPrescriptionDispense extends FHIRBackboneElement
+class FHIRMedicationPrescriptionDispense extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Identifies the medication being administered. This is a link to a resource that represents the medication which may be the details of the medication or simply an attribute carrying a code that identifies the medication from a known list of medications. (choose any one of medication*, but only one)
@@ -104,6 +105,11 @@ class FHIRMedicationPrescriptionDispense extends FHIRBackboneElement
     public $expectedSupplyDuration = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'MedicationPrescription.Dispense';
+
+    /**
      * Identifies the medication being administered. This is a link to a resource that represents the medication which may be the details of the medication or simply an attribute carrying a code that identifies the medication from a known list of medications. (choose any one of medication*, but only one)
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -115,10 +121,12 @@ class FHIRMedicationPrescriptionDispense extends FHIRBackboneElement
     /**
      * Identifies the medication being administered. This is a link to a resource that represents the medication which may be the details of the medication or simply an attribute carrying a code that identifies the medication from a known list of medications. (choose any one of medication*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $medicationCodeableConcept
+     * @return $this
      */
     public function setMedicationCodeableConcept($medicationCodeableConcept)
     {
         $this->medicationCodeableConcept = $medicationCodeableConcept;
+        return $this;
     }
 
     /**
@@ -133,10 +141,12 @@ class FHIRMedicationPrescriptionDispense extends FHIRBackboneElement
     /**
      * Identifies the medication being administered. This is a link to a resource that represents the medication which may be the details of the medication or simply an attribute carrying a code that identifies the medication from a known list of medications. (choose any one of medication*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $medicationReference
+     * @return $this
      */
     public function setMedicationReference($medicationReference)
     {
         $this->medicationReference = $medicationReference;
+        return $this;
     }
 
     /**
@@ -151,10 +161,12 @@ class FHIRMedicationPrescriptionDispense extends FHIRBackboneElement
     /**
      * Design Comments: This indicates the validity period of a prescription (stale dating the Prescription)  It reflects the prescriber perspective for the validity of the prescription. Dispenses must not be made against the prescription outside of this period. The lower-bound of the Dispensing Window signifies the earliest date that the prescription can be filled for the first time. If an upper-bound is not specified then the Prescription is open-ended or will default to a stale-date based on regulations.  Rationale: Indicates when the Prescription becomes valid, and when it ceases to be a dispensable Prescription.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $validityPeriod
+     * @return $this
      */
     public function setValidityPeriod($validityPeriod)
     {
         $this->validityPeriod = $validityPeriod;
+        return $this;
     }
 
     /**
@@ -169,10 +181,12 @@ class FHIRMedicationPrescriptionDispense extends FHIRBackboneElement
     /**
      * An integer indicating the number of repeats of the Dispense.  UsageNotes: For example, the number of times the prescribed quantity is to be supplied including the initial standard fill.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt $numberOfRepeatsAllowed
+     * @return $this
      */
     public function setNumberOfRepeatsAllowed($numberOfRepeatsAllowed)
     {
         $this->numberOfRepeatsAllowed = $numberOfRepeatsAllowed;
+        return $this;
     }
 
     /**
@@ -187,10 +201,12 @@ class FHIRMedicationPrescriptionDispense extends FHIRBackboneElement
     /**
      * The amount that is to be dispensed for one fill.
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $quantity
+     * @return $this
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+        return $this;
     }
 
     /**
@@ -205,10 +221,62 @@ class FHIRMedicationPrescriptionDispense extends FHIRBackboneElement
     /**
      * Identifies the period time over which the supplied product is expected to be used, or the length of time the dispense is expected to last.  In some situations, this attribute may be used instead of quantity to identify the amount supplied by how long it is expected to last, rather than the physical quantity issued, e.g. 90 days supply of medication (based on an ordered dosage) When possible, it is always better to specify quantity, as this tends to be more precise. expectedSupplyDuration will always be an estimate that can be influenced by external factors.
      * @param \PHPFHIRGenerated\FHIRDuration $expectedSupplyDuration
+     * @return $this
      */
     public function setExpectedSupplyDuration($expectedSupplyDuration)
     {
         $this->expectedSupplyDuration = $expectedSupplyDuration;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->medicationCodeableConcept) $json['medicationCodeableConcept'] = $this->medicationCodeableConcept->jsonSerialize();
+        if (null !== $this->medicationReference) $json['medicationReference'] = $this->medicationReference->jsonSerialize();
+        if (null !== $this->validityPeriod) $json['validityPeriod'] = $this->validityPeriod->jsonSerialize();
+        if (null !== $this->numberOfRepeatsAllowed) $json['numberOfRepeatsAllowed'] = $this->numberOfRepeatsAllowed->jsonSerialize();
+        if (null !== $this->quantity) $json['quantity'] = $this->quantity->jsonSerialize();
+        if (null !== $this->expectedSupplyDuration) $json['expectedSupplyDuration'] = $this->expectedSupplyDuration->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<MedicationPrescriptionDispense xmlns="http://hl7.org/fhir"></MedicationPrescriptionDispense>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->medicationCodeableConcept) $this->medicationCodeableConcept->xmlSerialize(true, $sxe->addChild('medicationCodeableConcept'));
+        if (null !== $this->medicationReference) $this->medicationReference->xmlSerialize(true, $sxe->addChild('medicationReference'));
+        if (null !== $this->validityPeriod) $this->validityPeriod->xmlSerialize(true, $sxe->addChild('validityPeriod'));
+        if (null !== $this->numberOfRepeatsAllowed) $this->numberOfRepeatsAllowed->xmlSerialize(true, $sxe->addChild('numberOfRepeatsAllowed'));
+        if (null !== $this->quantity) $this->quantity->xmlSerialize(true, $sxe->addChild('quantity'));
+        if (null !== $this->expectedSupplyDuration) $this->expectedSupplyDuration->xmlSerialize(true, $sxe->addChild('expectedSupplyDuration'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

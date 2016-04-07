@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A person who is directly or indirectly involved in the provisioning of healthcare.
  */
-class FHIRPractitionerPractitionerRole extends FHIRBackboneElement
+class FHIRPractitionerPractitionerRole extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The organization where the Practitioner performs the roles associated.
@@ -104,6 +105,11 @@ class FHIRPractitionerPractitionerRole extends FHIRBackboneElement
     public $healthcareService = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Practitioner.PractitionerRole';
+
+    /**
      * The organization where the Practitioner performs the roles associated.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRReference
      */
@@ -115,10 +121,12 @@ class FHIRPractitionerPractitionerRole extends FHIRBackboneElement
     /**
      * The organization where the Practitioner performs the roles associated.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $managingOrganization
+     * @return $this
      */
     public function setManagingOrganization($managingOrganization)
     {
         $this->managingOrganization = $managingOrganization;
+        return $this;
     }
 
     /**
@@ -133,10 +141,12 @@ class FHIRPractitionerPractitionerRole extends FHIRBackboneElement
     /**
      * Roles which this practitioner is authorized to perform for the organization.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $role
+     * @return $this
      */
     public function setRole($role)
     {
         $this->role = $role;
+        return $this;
     }
 
     /**
@@ -151,10 +161,12 @@ class FHIRPractitionerPractitionerRole extends FHIRBackboneElement
     /**
      * Specific specialty of the practitioner.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $specialty
+     * @return $this
      */
     public function addSpecialty($specialty)
     {
         $this->specialty[] = $specialty;
+        return $this;
     }
 
     /**
@@ -169,10 +181,12 @@ class FHIRPractitionerPractitionerRole extends FHIRBackboneElement
     /**
      * The period during which the person is authorized to act as a practitioner in these role(s) for the organization.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
     }
 
     /**
@@ -187,10 +201,12 @@ class FHIRPractitionerPractitionerRole extends FHIRBackboneElement
     /**
      * The location(s) at which this practitioner provides care.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $location
+     * @return $this
      */
     public function addLocation($location)
     {
         $this->location[] = $location;
+        return $this;
     }
 
     /**
@@ -205,10 +221,89 @@ class FHIRPractitionerPractitionerRole extends FHIRBackboneElement
     /**
      * The list of healthcare services that this worker provides for this role's Organization/Location(s).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $healthcareService
+     * @return $this
      */
     public function addHealthcareService($healthcareService)
     {
         $this->healthcareService[] = $healthcareService;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->managingOrganization) $json['managingOrganization'] = $this->managingOrganization->jsonSerialize();
+        if (null !== $this->role) $json['role'] = $this->role->jsonSerialize();
+        if (0 < count($this->specialty)) {
+            $json['specialty'] = array();
+            foreach($this->specialty as $specialty) {
+                $json['specialty'][] = $specialty->jsonSerialize();
+            }
+        }
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        if (0 < count($this->location)) {
+            $json['location'] = array();
+            foreach($this->location as $location) {
+                $json['location'][] = $location->jsonSerialize();
+            }
+        }
+        if (0 < count($this->healthcareService)) {
+            $json['healthcareService'] = array();
+            foreach($this->healthcareService as $healthcareService) {
+                $json['healthcareService'][] = $healthcareService->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<PractitionerPractitionerRole xmlns="http://hl7.org/fhir"></PractitionerPractitionerRole>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->managingOrganization) $this->managingOrganization->xmlSerialize(true, $sxe->addChild('managingOrganization'));
+        if (null !== $this->role) $this->role->xmlSerialize(true, $sxe->addChild('role'));
+        if (0 < count($this->specialty)) {
+            foreach($this->specialty as $specialty) {
+                $specialty->xmlSerialize(true, $sxe->addChild('specialty'));
+            }
+        }
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if (0 < count($this->location)) {
+            foreach($this->location as $location) {
+                $location->xmlSerialize(true, $sxe->addChild('location'));
+            }
+        }
+        if (0 < count($this->healthcareService)) {
+            foreach($this->healthcareService as $healthcareService) {
+                $healthcareService->xmlSerialize(true, $sxe->addChild('healthcareService'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

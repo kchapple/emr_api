@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A conformance statement is a set of capabilities of a FHIR Server that may be used as a statement of actual server functionality or a statement of required or desired server implementation.
  */
-class FHIRConformanceResource extends FHIRBackboneElement
+class FHIRConformanceResource extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A type of resource exposed via the restful interface.
@@ -140,6 +141,11 @@ class FHIRConformanceResource extends FHIRBackboneElement
     public $searchParam = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Conformance.Resource';
+
+    /**
      * A type of resource exposed via the restful interface.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCode
      */
@@ -151,10 +157,12 @@ class FHIRConformanceResource extends FHIRBackboneElement
     /**
      * A type of resource exposed via the restful interface.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -169,10 +177,12 @@ class FHIRConformanceResource extends FHIRBackboneElement
     /**
      * A specification of the profile that describes the solution's overall support for the resource, including any constraints on cardinality, bindings, lengths or other limitations. See further discussion in [Using Profiles]{profiling.html#profile-uses}.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $profile
+     * @return $this
      */
     public function setProfile($profile)
     {
         $this->profile = $profile;
+        return $this;
     }
 
     /**
@@ -187,10 +197,12 @@ class FHIRConformanceResource extends FHIRBackboneElement
     /**
      * Identifies a restful operation supported by the solution.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRConformance\FHIRConformanceInteraction[] $interaction
+     * @return $this
      */
     public function addInteraction($interaction)
     {
         $this->interaction[] = $interaction;
+        return $this;
     }
 
     /**
@@ -205,10 +217,12 @@ class FHIRConformanceResource extends FHIRBackboneElement
     /**
      * This field is set to no-version to specify that the system does not support (server) or use (client) versioning for this resource type. If this has some other value, the server must at least correctly track and populate the versionId meta-property on resources. If the value is 'versioned-update', then the server supports all the versioning features, including using e-tags for version integrity in the API.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRResourceVersionPolicy $versioning
+     * @return $this
      */
     public function setVersioning($versioning)
     {
         $this->versioning = $versioning;
+        return $this;
     }
 
     /**
@@ -223,10 +237,12 @@ class FHIRConformanceResource extends FHIRBackboneElement
     /**
      * A flag for whether the server is able to return past versions as part of the vRead operation.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $readHistory
+     * @return $this
      */
     public function setReadHistory($readHistory)
     {
         $this->readHistory = $readHistory;
+        return $this;
     }
 
     /**
@@ -241,10 +257,12 @@ class FHIRConformanceResource extends FHIRBackboneElement
     /**
      * A flag to indicate that the server allows or needs to allow the client to create new identities on the server (e.g. that is, the client PUTs to a location where there is no existing resource). Allowing this operation means that the server allows the client to create new identities on the server.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $updateCreate
+     * @return $this
      */
     public function setUpdateCreate($updateCreate)
     {
         $this->updateCreate = $updateCreate;
+        return $this;
     }
 
     /**
@@ -259,10 +277,12 @@ class FHIRConformanceResource extends FHIRBackboneElement
     /**
      * A flag that indicates that the server supports conditional create.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $conditionalCreate
+     * @return $this
      */
     public function setConditionalCreate($conditionalCreate)
     {
         $this->conditionalCreate = $conditionalCreate;
+        return $this;
     }
 
     /**
@@ -277,10 +297,12 @@ class FHIRConformanceResource extends FHIRBackboneElement
     /**
      * A flag that indicates that the server supports conditional update.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $conditionalUpdate
+     * @return $this
      */
     public function setConditionalUpdate($conditionalUpdate)
     {
         $this->conditionalUpdate = $conditionalUpdate;
+        return $this;
     }
 
     /**
@@ -295,10 +317,12 @@ class FHIRConformanceResource extends FHIRBackboneElement
     /**
      * A code that indicates how the server supports conditional delete.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRConditionalDeleteStatus $conditionalDelete
+     * @return $this
      */
     public function setConditionalDelete($conditionalDelete)
     {
         $this->conditionalDelete = $conditionalDelete;
+        return $this;
     }
 
     /**
@@ -313,10 +337,12 @@ class FHIRConformanceResource extends FHIRBackboneElement
     /**
      * A list of _include values supported by the server.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString[] $searchInclude
+     * @return $this
      */
     public function addSearchInclude($searchInclude)
     {
         $this->searchInclude[] = $searchInclude;
+        return $this;
     }
 
     /**
@@ -331,10 +357,12 @@ class FHIRConformanceResource extends FHIRBackboneElement
     /**
      * A list of _revinclude (reverse include) values supported by the server.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString[] $searchRevInclude
+     * @return $this
      */
     public function addSearchRevInclude($searchRevInclude)
     {
         $this->searchRevInclude[] = $searchRevInclude;
+        return $this;
     }
 
     /**
@@ -349,10 +377,110 @@ class FHIRConformanceResource extends FHIRBackboneElement
     /**
      * Search parameters for implementations to support and/or make use of - either references to ones defined in the specification, or additional ones defined for/by the implementation.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRConformance\FHIRConformanceSearchParam[] $searchParam
+     * @return $this
      */
     public function addSearchParam($searchParam)
     {
         $this->searchParam[] = $searchParam;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->profile) $json['profile'] = $this->profile->jsonSerialize();
+        if (0 < count($this->interaction)) {
+            $json['interaction'] = array();
+            foreach($this->interaction as $interaction) {
+                $json['interaction'][] = $interaction->jsonSerialize();
+            }
+        }
+        if (null !== $this->versioning) $json['versioning'] = $this->versioning->jsonSerialize();
+        if (null !== $this->readHistory) $json['readHistory'] = $this->readHistory->jsonSerialize();
+        if (null !== $this->updateCreate) $json['updateCreate'] = $this->updateCreate->jsonSerialize();
+        if (null !== $this->conditionalCreate) $json['conditionalCreate'] = $this->conditionalCreate->jsonSerialize();
+        if (null !== $this->conditionalUpdate) $json['conditionalUpdate'] = $this->conditionalUpdate->jsonSerialize();
+        if (null !== $this->conditionalDelete) $json['conditionalDelete'] = $this->conditionalDelete->jsonSerialize();
+        if (0 < count($this->searchInclude)) {
+            $json['searchInclude'] = array();
+            foreach($this->searchInclude as $searchInclude) {
+                $json['searchInclude'][] = $searchInclude->jsonSerialize();
+            }
+        }
+        if (0 < count($this->searchRevInclude)) {
+            $json['searchRevInclude'] = array();
+            foreach($this->searchRevInclude as $searchRevInclude) {
+                $json['searchRevInclude'][] = $searchRevInclude->jsonSerialize();
+            }
+        }
+        if (0 < count($this->searchParam)) {
+            $json['searchParam'] = array();
+            foreach($this->searchParam as $searchParam) {
+                $json['searchParam'][] = $searchParam->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ConformanceResource xmlns="http://hl7.org/fhir"></ConformanceResource>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->profile) $this->profile->xmlSerialize(true, $sxe->addChild('profile'));
+        if (0 < count($this->interaction)) {
+            foreach($this->interaction as $interaction) {
+                $interaction->xmlSerialize(true, $sxe->addChild('interaction'));
+            }
+        }
+        if (null !== $this->versioning) $this->versioning->xmlSerialize(true, $sxe->addChild('versioning'));
+        if (null !== $this->readHistory) $this->readHistory->xmlSerialize(true, $sxe->addChild('readHistory'));
+        if (null !== $this->updateCreate) $this->updateCreate->xmlSerialize(true, $sxe->addChild('updateCreate'));
+        if (null !== $this->conditionalCreate) $this->conditionalCreate->xmlSerialize(true, $sxe->addChild('conditionalCreate'));
+        if (null !== $this->conditionalUpdate) $this->conditionalUpdate->xmlSerialize(true, $sxe->addChild('conditionalUpdate'));
+        if (null !== $this->conditionalDelete) $this->conditionalDelete->xmlSerialize(true, $sxe->addChild('conditionalDelete'));
+        if (0 < count($this->searchInclude)) {
+            foreach($this->searchInclude as $searchInclude) {
+                $searchInclude->xmlSerialize(true, $sxe->addChild('searchInclude'));
+            }
+        }
+        if (0 < count($this->searchRevInclude)) {
+            foreach($this->searchRevInclude as $searchRevInclude) {
+                $searchRevInclude->xmlSerialize(true, $sxe->addChild('searchRevInclude'));
+            }
+        }
+        if (0 < count($this->searchParam)) {
+            foreach($this->searchParam as $searchParam) {
+                $searchParam->xmlSerialize(true, $sxe->addChild('searchParam'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

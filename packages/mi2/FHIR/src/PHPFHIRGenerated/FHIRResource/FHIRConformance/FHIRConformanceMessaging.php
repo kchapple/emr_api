@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A conformance statement is a set of capabilities of a FHIR Server that may be used as a statement of actual server functionality or a statement of required or desired server implementation.
  */
-class FHIRConformanceMessaging extends FHIRBackboneElement
+class FHIRConformanceMessaging extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * An endpoint (network accessible address) to which messages and/or replies are to be sent.
@@ -92,6 +93,11 @@ class FHIRConformanceMessaging extends FHIRBackboneElement
     public $event = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Conformance.Messaging';
+
+    /**
      * An endpoint (network accessible address) to which messages and/or replies are to be sent.
      * @return \PHPFHIRGenerated\FHIRResource\FHIRConformance\FHIRConformanceEndpoint[]
      */
@@ -103,10 +109,12 @@ class FHIRConformanceMessaging extends FHIRBackboneElement
     /**
      * An endpoint (network accessible address) to which messages and/or replies are to be sent.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRConformance\FHIRConformanceEndpoint[] $endpoint
+     * @return $this
      */
     public function addEndpoint($endpoint)
     {
         $this->endpoint[] = $endpoint;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRConformanceMessaging extends FHIRBackboneElement
     /**
      * Length if the receiver's reliable messaging cache in minutes (if a receiver) or how long the cache length on the receiver should be (if a sender).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUnsignedInt $reliableCache
+     * @return $this
      */
     public function setReliableCache($reliableCache)
     {
         $this->reliableCache = $reliableCache;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRConformanceMessaging extends FHIRBackboneElement
     /**
      * Documentation about the system's messaging capabilities for this endpoint not otherwise documented by the conformance statement.  For example, process for becoming an authorized messaging exchange partner.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $documentation
+     * @return $this
      */
     public function setDocumentation($documentation)
     {
         $this->documentation = $documentation;
+        return $this;
     }
 
     /**
@@ -157,10 +169,76 @@ class FHIRConformanceMessaging extends FHIRBackboneElement
     /**
      * A description of the solution's support for an event at this end-point.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRConformance\FHIRConformanceEvent[] $event
+     * @return $this
      */
     public function addEvent($event)
     {
         $this->event[] = $event;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->endpoint)) {
+            $json['endpoint'] = array();
+            foreach($this->endpoint as $endpoint) {
+                $json['endpoint'][] = $endpoint->jsonSerialize();
+            }
+        }
+        if (null !== $this->reliableCache) $json['reliableCache'] = $this->reliableCache->jsonSerialize();
+        if (null !== $this->documentation) $json['documentation'] = $this->documentation->jsonSerialize();
+        if (0 < count($this->event)) {
+            $json['event'] = array();
+            foreach($this->event as $event) {
+                $json['event'][] = $event->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ConformanceMessaging xmlns="http://hl7.org/fhir"></ConformanceMessaging>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->endpoint)) {
+            foreach($this->endpoint as $endpoint) {
+                $endpoint->xmlSerialize(true, $sxe->addChild('endpoint'));
+            }
+        }
+        if (null !== $this->reliableCache) $this->reliableCache->xmlSerialize(true, $sxe->addChild('reliableCache'));
+        if (null !== $this->documentation) $this->documentation->xmlSerialize(true, $sxe->addChild('documentation'));
+        if (0 < count($this->event)) {
+            foreach($this->event as $event) {
+                $event->xmlSerialize(true, $sxe->addChild('event'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

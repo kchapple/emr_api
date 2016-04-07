@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A set of rules or how FHIR is used to solve a particular problem. This resource is used to gather all the parts of an implementation guide into a logical whole, and to publish a computable definition of all the parts.
  */
-class FHIRImplementationGuideResource extends FHIRBackboneElement
+class FHIRImplementationGuideResource extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Why the resource is included in the guide.
@@ -110,6 +111,11 @@ class FHIRImplementationGuideResource extends FHIRBackboneElement
     public $exampleFor = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ImplementationGuide.Resource';
+
+    /**
      * Why the resource is included in the guide.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRGuideResourcePurpose
      */
@@ -121,10 +127,12 @@ class FHIRImplementationGuideResource extends FHIRBackboneElement
     /**
      * Why the resource is included in the guide.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRGuideResourcePurpose $purpose
+     * @return $this
      */
     public function setPurpose($purpose)
     {
         $this->purpose = $purpose;
+        return $this;
     }
 
     /**
@@ -139,10 +147,12 @@ class FHIRImplementationGuideResource extends FHIRBackboneElement
     /**
      * A human assigned name for the resource. All resources SHOULD have a name, but the name may be extracted from the resource (e.g. ValueSet.name).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -157,10 +167,12 @@ class FHIRImplementationGuideResource extends FHIRBackboneElement
     /**
      * A description of the reason that a resource has been included in the implementation guide.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -175,10 +187,12 @@ class FHIRImplementationGuideResource extends FHIRBackboneElement
     /**
      * A short code that may be used to identify the resource throughout the implementation guide.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $acronym
+     * @return $this
      */
     public function setAcronym($acronym)
     {
         $this->acronym = $acronym;
+        return $this;
     }
 
     /**
@@ -193,10 +207,12 @@ class FHIRImplementationGuideResource extends FHIRBackboneElement
     /**
      * Where this resource is found. (choose any one of source*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $sourceUri
+     * @return $this
      */
     public function setSourceUri($sourceUri)
     {
         $this->sourceUri = $sourceUri;
+        return $this;
     }
 
     /**
@@ -211,10 +227,12 @@ class FHIRImplementationGuideResource extends FHIRBackboneElement
     /**
      * Where this resource is found. (choose any one of source*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $sourceReference
+     * @return $this
      */
     public function setSourceReference($sourceReference)
     {
         $this->sourceReference = $sourceReference;
+        return $this;
     }
 
     /**
@@ -229,10 +247,64 @@ class FHIRImplementationGuideResource extends FHIRBackboneElement
     /**
      * Another resource that this resource is an example for. This is mostly used for resources that are included as examples of StructureDefinitions.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $exampleFor
+     * @return $this
      */
     public function setExampleFor($exampleFor)
     {
         $this->exampleFor = $exampleFor;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->purpose) $json['purpose'] = $this->purpose->jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->acronym) $json['acronym'] = $this->acronym->jsonSerialize();
+        if (null !== $this->sourceUri) $json['sourceUri'] = $this->sourceUri->jsonSerialize();
+        if (null !== $this->sourceReference) $json['sourceReference'] = $this->sourceReference->jsonSerialize();
+        if (null !== $this->exampleFor) $json['exampleFor'] = $this->exampleFor->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ImplementationGuideResource xmlns="http://hl7.org/fhir"></ImplementationGuideResource>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->purpose) $this->purpose->xmlSerialize(true, $sxe->addChild('purpose'));
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->acronym) $this->acronym->xmlSerialize(true, $sxe->addChild('acronym'));
+        if (null !== $this->sourceUri) $this->sourceUri->xmlSerialize(true, $sxe->addChild('sourceUri'));
+        if (null !== $this->sourceReference) $this->sourceReference->xmlSerialize(true, $sxe->addChild('sourceReference'));
+        if (null !== $this->exampleFor) $this->exampleFor->xmlSerialize(true, $sxe->addChild('exampleFor'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

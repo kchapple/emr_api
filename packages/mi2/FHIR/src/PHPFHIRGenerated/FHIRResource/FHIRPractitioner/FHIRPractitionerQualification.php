@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A person who is directly or indirectly involved in the provisioning of healthcare.
  */
-class FHIRPractitionerQualification extends FHIRBackboneElement
+class FHIRPractitionerQualification extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * An identifier that applies to this person's qualification in this role.
@@ -92,6 +93,11 @@ class FHIRPractitionerQualification extends FHIRBackboneElement
     public $issuer = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Practitioner.Qualification';
+
+    /**
      * An identifier that applies to this person's qualification in this role.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -103,10 +109,12 @@ class FHIRPractitionerQualification extends FHIRBackboneElement
     /**
      * An identifier that applies to this person's qualification in this role.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRPractitionerQualification extends FHIRBackboneElement
     /**
      * Coded representation of the qualification.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRPractitionerQualification extends FHIRBackboneElement
     /**
      * Period during which the qualification is valid.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
     }
 
     /**
@@ -157,10 +169,67 @@ class FHIRPractitionerQualification extends FHIRBackboneElement
     /**
      * Organization that regulates and issues the qualification.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $issuer
+     * @return $this
      */
     public function setIssuer($issuer)
     {
         $this->issuer = $issuer;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        if (null !== $this->issuer) $json['issuer'] = $this->issuer->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<PractitionerQualification xmlns="http://hl7.org/fhir"></PractitionerQualification>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if (null !== $this->issuer) $this->issuer->xmlSerialize(true, $sxe->addChild('issuer'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A provider issued list of services and products provided, or to be provided, to a patient which is provided to an insurer for payment recovery.
  */
-class FHIRClaimSubDetail extends FHIRBackboneElement
+class FHIRClaimSubDetail extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A service line number.
@@ -122,6 +123,11 @@ class FHIRClaimSubDetail extends FHIRBackboneElement
     public $udi = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Claim.SubDetail';
+
+    /**
      * A service line number.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt
      */
@@ -133,10 +139,12 @@ class FHIRClaimSubDetail extends FHIRBackboneElement
     /**
      * A service line number.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt $sequence
+     * @return $this
      */
     public function setSequence($sequence)
     {
         $this->sequence = $sequence;
+        return $this;
     }
 
     /**
@@ -151,10 +159,12 @@ class FHIRClaimSubDetail extends FHIRBackboneElement
     /**
      * The type of product or service.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -169,10 +179,12 @@ class FHIRClaimSubDetail extends FHIRBackboneElement
     /**
      * The fee for an additional  service or product or charge.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $service
+     * @return $this
      */
     public function setService($service)
     {
         $this->service = $service;
+        return $this;
     }
 
     /**
@@ -187,10 +199,12 @@ class FHIRClaimSubDetail extends FHIRBackboneElement
     /**
      * The number of repetitions of a service or product.
      * @param \PHPFHIRGenerated\FHIRSimpleQuantity $quantity
+     * @return $this
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+        return $this;
     }
 
     /**
@@ -205,10 +219,12 @@ class FHIRClaimSubDetail extends FHIRBackboneElement
     /**
      * The fee for an additional  service or product or charge.
      * @param \PHPFHIRGenerated\FHIRMoney $unitPrice
+     * @return $this
      */
     public function setUnitPrice($unitPrice)
     {
         $this->unitPrice = $unitPrice;
+        return $this;
     }
 
     /**
@@ -223,10 +239,12 @@ class FHIRClaimSubDetail extends FHIRBackboneElement
     /**
      * A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $factor
+     * @return $this
      */
     public function setFactor($factor)
     {
         $this->factor = $factor;
+        return $this;
     }
 
     /**
@@ -241,10 +259,12 @@ class FHIRClaimSubDetail extends FHIRBackboneElement
     /**
      * An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDecimal $points
+     * @return $this
      */
     public function setPoints($points)
     {
         $this->points = $points;
+        return $this;
     }
 
     /**
@@ -259,10 +279,12 @@ class FHIRClaimSubDetail extends FHIRBackboneElement
     /**
      * The quantity times the unit price for an additional  service or product or charge. For example, the formula: unit Quantity * unit Price (Cost per Point) * factor Number  * points = net Amount. Quantity, factor and points are assumed to be 1 if not supplied.
      * @param \PHPFHIRGenerated\FHIRMoney $net
+     * @return $this
      */
     public function setNet($net)
     {
         $this->net = $net;
+        return $this;
     }
 
     /**
@@ -277,10 +299,68 @@ class FHIRClaimSubDetail extends FHIRBackboneElement
     /**
      * List of Unique Device Identifiers associated with this line item.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $udi
+     * @return $this
      */
     public function setUdi($udi)
     {
         $this->udi = $udi;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->sequence) $json['sequence'] = $this->sequence->jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->service) $json['service'] = $this->service->jsonSerialize();
+        if (null !== $this->quantity) $json['quantity'] = $this->quantity->jsonSerialize();
+        if (null !== $this->unitPrice) $json['unitPrice'] = $this->unitPrice->jsonSerialize();
+        if (null !== $this->factor) $json['factor'] = $this->factor->jsonSerialize();
+        if (null !== $this->points) $json['points'] = $this->points->jsonSerialize();
+        if (null !== $this->net) $json['net'] = $this->net->jsonSerialize();
+        if (null !== $this->udi) $json['udi'] = $this->udi->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ClaimSubDetail xmlns="http://hl7.org/fhir"></ClaimSubDetail>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->sequence) $this->sequence->xmlSerialize(true, $sxe->addChild('sequence'));
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->service) $this->service->xmlSerialize(true, $sxe->addChild('service'));
+        if (null !== $this->quantity) $this->quantity->xmlSerialize(true, $sxe->addChild('quantity'));
+        if (null !== $this->unitPrice) $this->unitPrice->xmlSerialize(true, $sxe->addChild('unitPrice'));
+        if (null !== $this->factor) $this->factor->xmlSerialize(true, $sxe->addChild('factor'));
+        if (null !== $this->points) $this->points->xmlSerialize(true, $sxe->addChild('points'));
+        if (null !== $this->net) $this->net->xmlSerialize(true, $sxe->addChild('net'));
+        if (null !== $this->udi) $this->udi->xmlSerialize(true, $sxe->addChild('udi'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

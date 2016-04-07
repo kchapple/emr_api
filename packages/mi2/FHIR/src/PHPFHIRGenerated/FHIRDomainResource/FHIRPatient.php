@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Demographics and other administrative information about an individual or animal receiving care or other health-related services.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRPatient extends FHIRDomainResource
+class FHIRPatient extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * An identifier for this patient.
@@ -183,6 +184,11 @@ class FHIRPatient extends FHIRDomainResource
     public $link = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Patient';
+
+    /**
      * An identifier for this patient.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -194,10 +200,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * An identifier for this patient.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -212,10 +220,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * Whether this patient record is in active use.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $active
+     * @return $this
      */
     public function setActive($active)
     {
         $this->active = $active;
+        return $this;
     }
 
     /**
@@ -230,10 +240,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * A name associated with the individual.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRHumanName[] $name
+     * @return $this
      */
     public function addName($name)
     {
         $this->name[] = $name;
+        return $this;
     }
 
     /**
@@ -248,10 +260,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * A contact detail (e.g. a telephone number or an email address) by which the individual may be contacted.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRContactPoint[] $telecom
+     * @return $this
      */
     public function addTelecom($telecom)
     {
         $this->telecom[] = $telecom;
+        return $this;
     }
 
     /**
@@ -266,10 +280,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * Administrative Gender - the gender that the patient is considered to have for administration and record keeping purposes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $gender
+     * @return $this
      */
     public function setGender($gender)
     {
         $this->gender = $gender;
+        return $this;
     }
 
     /**
@@ -284,10 +300,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * The date of birth for the individual.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDate $birthDate
+     * @return $this
      */
     public function setBirthDate($birthDate)
     {
         $this->birthDate = $birthDate;
+        return $this;
     }
 
     /**
@@ -302,10 +320,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * Indicates if the individual is deceased or not. (choose any one of deceased*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $deceasedBoolean
+     * @return $this
      */
     public function setDeceasedBoolean($deceasedBoolean)
     {
         $this->deceasedBoolean = $deceasedBoolean;
+        return $this;
     }
 
     /**
@@ -320,10 +340,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * Indicates if the individual is deceased or not. (choose any one of deceased*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $deceasedDateTime
+     * @return $this
      */
     public function setDeceasedDateTime($deceasedDateTime)
     {
         $this->deceasedDateTime = $deceasedDateTime;
+        return $this;
     }
 
     /**
@@ -338,10 +360,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * Addresses for the individual.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAddress[] $address
+     * @return $this
      */
     public function addAddress($address)
     {
         $this->address[] = $address;
+        return $this;
     }
 
     /**
@@ -356,10 +380,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * This field contains a patient's most recent marital (civil) status.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $maritalStatus
+     * @return $this
      */
     public function setMaritalStatus($maritalStatus)
     {
         $this->maritalStatus = $maritalStatus;
+        return $this;
     }
 
     /**
@@ -374,10 +400,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * Indicates whether the patient is part of a multiple or indicates the actual birth order. (choose any one of multipleBirth*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $multipleBirthBoolean
+     * @return $this
      */
     public function setMultipleBirthBoolean($multipleBirthBoolean)
     {
         $this->multipleBirthBoolean = $multipleBirthBoolean;
+        return $this;
     }
 
     /**
@@ -392,10 +420,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * Indicates whether the patient is part of a multiple or indicates the actual birth order. (choose any one of multipleBirth*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInteger $multipleBirthInteger
+     * @return $this
      */
     public function setMultipleBirthInteger($multipleBirthInteger)
     {
         $this->multipleBirthInteger = $multipleBirthInteger;
+        return $this;
     }
 
     /**
@@ -410,10 +440,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * Image of the patient.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAttachment[] $photo
+     * @return $this
      */
     public function addPhoto($photo)
     {
         $this->photo[] = $photo;
+        return $this;
     }
 
     /**
@@ -428,10 +460,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * A contact party (e.g. guardian, partner, friend) for the patient.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRPatient\FHIRPatientContact[] $contact
+     * @return $this
      */
     public function addContact($contact)
     {
         $this->contact[] = $contact;
+        return $this;
     }
 
     /**
@@ -446,10 +480,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * This patient is known to be an animal.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRPatient\FHIRPatientAnimal $animal
+     * @return $this
      */
     public function setAnimal($animal)
     {
         $this->animal = $animal;
+        return $this;
     }
 
     /**
@@ -464,10 +500,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * Languages which may be used to communicate with the patient about his or her health.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRPatient\FHIRPatientCommunication[] $communication
+     * @return $this
      */
     public function addCommunication($communication)
     {
         $this->communication[] = $communication;
+        return $this;
     }
 
     /**
@@ -482,10 +520,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * Patient's nominated care provider.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $careProvider
+     * @return $this
      */
     public function addCareProvider($careProvider)
     {
         $this->careProvider[] = $careProvider;
+        return $this;
     }
 
     /**
@@ -500,10 +540,12 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * Organization that is the custodian of the patient record.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $managingOrganization
+     * @return $this
      */
     public function setManagingOrganization($managingOrganization)
     {
         $this->managingOrganization = $managingOrganization;
+        return $this;
     }
 
     /**
@@ -518,10 +560,170 @@ class FHIRPatient extends FHIRDomainResource
     /**
      * Link to another patient resource that concerns the same actual patient.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRPatient\FHIRPatientLink[] $link
+     * @return $this
      */
     public function addLink($link)
     {
         $this->link[] = $link;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->active) $json['active'] = $this->active->jsonSerialize();
+        if (0 < count($this->name)) {
+            $json['name'] = array();
+            foreach($this->name as $name) {
+                $json['name'][] = $name->jsonSerialize();
+            }
+        }
+        if (0 < count($this->telecom)) {
+            $json['telecom'] = array();
+            foreach($this->telecom as $telecom) {
+                $json['telecom'][] = $telecom->jsonSerialize();
+            }
+        }
+        if (null !== $this->gender) $json['gender'] = $this->gender->jsonSerialize();
+        if (null !== $this->birthDate) $json['birthDate'] = $this->birthDate->jsonSerialize();
+        if (null !== $this->deceasedBoolean) $json['deceasedBoolean'] = $this->deceasedBoolean->jsonSerialize();
+        if (null !== $this->deceasedDateTime) $json['deceasedDateTime'] = $this->deceasedDateTime->jsonSerialize();
+        if (0 < count($this->address)) {
+            $json['address'] = array();
+            foreach($this->address as $address) {
+                $json['address'][] = $address->jsonSerialize();
+            }
+        }
+        if (null !== $this->maritalStatus) $json['maritalStatus'] = $this->maritalStatus->jsonSerialize();
+        if (null !== $this->multipleBirthBoolean) $json['multipleBirthBoolean'] = $this->multipleBirthBoolean->jsonSerialize();
+        if (null !== $this->multipleBirthInteger) $json['multipleBirthInteger'] = $this->multipleBirthInteger->jsonSerialize();
+        if (0 < count($this->photo)) {
+            $json['photo'] = array();
+            foreach($this->photo as $photo) {
+                $json['photo'][] = $photo->jsonSerialize();
+            }
+        }
+        if (0 < count($this->contact)) {
+            $json['contact'] = array();
+            foreach($this->contact as $contact) {
+                $json['contact'][] = $contact->jsonSerialize();
+            }
+        }
+        if (null !== $this->animal) $json['animal'] = $this->animal->jsonSerialize();
+        if (0 < count($this->communication)) {
+            $json['communication'] = array();
+            foreach($this->communication as $communication) {
+                $json['communication'][] = $communication->jsonSerialize();
+            }
+        }
+        if (0 < count($this->careProvider)) {
+            $json['careProvider'] = array();
+            foreach($this->careProvider as $careProvider) {
+                $json['careProvider'][] = $careProvider->jsonSerialize();
+            }
+        }
+        if (null !== $this->managingOrganization) $json['managingOrganization'] = $this->managingOrganization->jsonSerialize();
+        if (0 < count($this->link)) {
+            $json['link'] = array();
+            foreach($this->link as $link) {
+                $json['link'][] = $link->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Patient xmlns="http://hl7.org/fhir"></Patient>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->active) $this->active->xmlSerialize(true, $sxe->addChild('active'));
+        if (0 < count($this->name)) {
+            foreach($this->name as $name) {
+                $name->xmlSerialize(true, $sxe->addChild('name'));
+            }
+        }
+        if (0 < count($this->telecom)) {
+            foreach($this->telecom as $telecom) {
+                $telecom->xmlSerialize(true, $sxe->addChild('telecom'));
+            }
+        }
+        if (null !== $this->gender) $this->gender->xmlSerialize(true, $sxe->addChild('gender'));
+        if (null !== $this->birthDate) $this->birthDate->xmlSerialize(true, $sxe->addChild('birthDate'));
+        if (null !== $this->deceasedBoolean) $this->deceasedBoolean->xmlSerialize(true, $sxe->addChild('deceasedBoolean'));
+        if (null !== $this->deceasedDateTime) $this->deceasedDateTime->xmlSerialize(true, $sxe->addChild('deceasedDateTime'));
+        if (0 < count($this->address)) {
+            foreach($this->address as $address) {
+                $address->xmlSerialize(true, $sxe->addChild('address'));
+            }
+        }
+        if (null !== $this->maritalStatus) $this->maritalStatus->xmlSerialize(true, $sxe->addChild('maritalStatus'));
+        if (null !== $this->multipleBirthBoolean) $this->multipleBirthBoolean->xmlSerialize(true, $sxe->addChild('multipleBirthBoolean'));
+        if (null !== $this->multipleBirthInteger) $this->multipleBirthInteger->xmlSerialize(true, $sxe->addChild('multipleBirthInteger'));
+        if (0 < count($this->photo)) {
+            foreach($this->photo as $photo) {
+                $photo->xmlSerialize(true, $sxe->addChild('photo'));
+            }
+        }
+        if (0 < count($this->contact)) {
+            foreach($this->contact as $contact) {
+                $contact->xmlSerialize(true, $sxe->addChild('contact'));
+            }
+        }
+        if (null !== $this->animal) $this->animal->xmlSerialize(true, $sxe->addChild('animal'));
+        if (0 < count($this->communication)) {
+            foreach($this->communication as $communication) {
+                $communication->xmlSerialize(true, $sxe->addChild('communication'));
+            }
+        }
+        if (0 < count($this->careProvider)) {
+            foreach($this->careProvider as $careProvider) {
+                $careProvider->xmlSerialize(true, $sxe->addChild('careProvider'));
+            }
+        }
+        if (null !== $this->managingOrganization) $this->managingOrganization->xmlSerialize(true, $sxe->addChild('managingOrganization'));
+        if (0 < count($this->link)) {
+            foreach($this->link as $link) {
+                $link->xmlSerialize(true, $sxe->addChild('link'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

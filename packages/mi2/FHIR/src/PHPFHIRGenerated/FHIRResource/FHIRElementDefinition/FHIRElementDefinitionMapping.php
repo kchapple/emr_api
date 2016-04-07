@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Captures constraints on each element within the resource, profile, or extension.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRElementDefinitionMapping extends FHIRElement
+class FHIRElementDefinitionMapping extends FHIRElement implements JsonSerializable
 {
     /**
      * An internal reference to the definition of a mapping.
@@ -87,6 +88,11 @@ class FHIRElementDefinitionMapping extends FHIRElement
     public $map = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ElementDefinition.Mapping';
+
+    /**
      * An internal reference to the definition of a mapping.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRId
      */
@@ -98,10 +104,12 @@ class FHIRElementDefinitionMapping extends FHIRElement
     /**
      * An internal reference to the definition of a mapping.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRId $identity
+     * @return $this
      */
     public function setIdentity($identity)
     {
         $this->identity = $identity;
+        return $this;
     }
 
     /**
@@ -116,10 +124,12 @@ class FHIRElementDefinitionMapping extends FHIRElement
     /**
      * Identifies the computable language in which mapping.map is expressed.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $language
+     * @return $this
      */
     public function setLanguage($language)
     {
         $this->language = $language;
+        return $this;
     }
 
     /**
@@ -134,10 +144,56 @@ class FHIRElementDefinitionMapping extends FHIRElement
     /**
      * Expresses what part of the target specification corresponds to this element.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $map
+     * @return $this
      */
     public function setMap($map)
     {
         $this->map = $map;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->identity) $json['identity'] = $this->identity->jsonSerialize();
+        if (null !== $this->language) $json['language'] = $this->language->jsonSerialize();
+        if (null !== $this->map) $json['map'] = $this->map->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ElementDefinitionMapping xmlns="http://hl7.org/fhir"></ElementDefinitionMapping>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->identity) $this->identity->xmlSerialize(true, $sxe->addChild('identity'));
+        if (null !== $this->language) $this->language->xmlSerialize(true, $sxe->addChild('language'));
+        if (null !== $this->map) $this->map->xmlSerialize(true, $sxe->addChild('map'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

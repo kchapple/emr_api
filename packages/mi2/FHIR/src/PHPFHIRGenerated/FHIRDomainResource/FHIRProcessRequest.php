@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * This resource provides the target, request and response, and action details for an action to be performed by the target on or about existing resources.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRProcessRequest extends FHIRDomainResource
+class FHIRProcessRequest extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * The type of processing action being requested, for example Reversal, Readjudication, StatusRequest,PendedRequest.
@@ -165,6 +166,11 @@ class FHIRProcessRequest extends FHIRDomainResource
     public $period = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ProcessRequest';
+
+    /**
      * The type of processing action being requested, for example Reversal, Readjudication, StatusRequest,PendedRequest.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRActionList
      */
@@ -176,10 +182,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * The type of processing action being requested, for example Reversal, Readjudication, StatusRequest,PendedRequest.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRActionList $action
+     * @return $this
      */
     public function setAction($action)
     {
         $this->action = $action;
+        return $this;
     }
 
     /**
@@ -194,10 +202,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * The ProcessRequest business identifier.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -212,10 +222,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $ruleset
+     * @return $this
      */
     public function setRuleset($ruleset)
     {
         $this->ruleset = $ruleset;
+        return $this;
     }
 
     /**
@@ -230,10 +242,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * The style (standard) and version of the original material which was converted into this resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $originalRuleset
+     * @return $this
      */
     public function setOriginalRuleset($originalRuleset)
     {
         $this->originalRuleset = $originalRuleset;
+        return $this;
     }
 
     /**
@@ -248,10 +262,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * The date when this resource was created.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $created
+     * @return $this
      */
     public function setCreated($created)
     {
         $this->created = $created;
+        return $this;
     }
 
     /**
@@ -266,10 +282,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * The organization which is the target of the request.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $target
+     * @return $this
      */
     public function setTarget($target)
     {
         $this->target = $target;
+        return $this;
     }
 
     /**
@@ -284,10 +302,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * The practitioner who is responsible for the action specified in thise request.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $provider
+     * @return $this
      */
     public function setProvider($provider)
     {
         $this->provider = $provider;
+        return $this;
     }
 
     /**
@@ -302,10 +322,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * The organization which is responsible for the action speccified in thise request.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $organization
+     * @return $this
      */
     public function setOrganization($organization)
     {
         $this->organization = $organization;
+        return $this;
     }
 
     /**
@@ -320,10 +342,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * Reference of resource which is the target or subject of this action.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $request
+     * @return $this
      */
     public function setRequest($request)
     {
         $this->request = $request;
+        return $this;
     }
 
     /**
@@ -338,10 +362,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * Reference of a prior response to resource which is the target or subject of this action.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $response
+     * @return $this
      */
     public function setResponse($response)
     {
         $this->response = $response;
+        return $this;
     }
 
     /**
@@ -356,10 +382,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * If true remove all history excluding audit.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $nullify
+     * @return $this
      */
     public function setNullify($nullify)
     {
         $this->nullify = $nullify;
+        return $this;
     }
 
     /**
@@ -374,10 +402,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * A reference to supply which authenticates the process.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $reference
+     * @return $this
      */
     public function setReference($reference)
     {
         $this->reference = $reference;
+        return $this;
     }
 
     /**
@@ -392,10 +422,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * List of top level items to be re-adjudicated, if none specified then the entire submission is re-adjudicated.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRProcessRequest\FHIRProcessRequestItem[] $item
+     * @return $this
      */
     public function addItem($item)
     {
         $this->item[] = $item;
+        return $this;
     }
 
     /**
@@ -410,10 +442,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * Names of resource types to include.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString[] $include
+     * @return $this
      */
     public function addInclude($include)
     {
         $this->include[] = $include;
+        return $this;
     }
 
     /**
@@ -428,10 +462,12 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * Names of resource types to exclude.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString[] $exclude
+     * @return $this
      */
     public function addExclude($exclude)
     {
         $this->exclude[] = $exclude;
+        return $this;
     }
 
     /**
@@ -446,10 +482,119 @@ class FHIRProcessRequest extends FHIRDomainResource
     /**
      * A period of time during which the fulfilling resources would have been created.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->action) $json['action'] = $this->action->jsonSerialize();
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->ruleset) $json['ruleset'] = $this->ruleset->jsonSerialize();
+        if (null !== $this->originalRuleset) $json['originalRuleset'] = $this->originalRuleset->jsonSerialize();
+        if (null !== $this->created) $json['created'] = $this->created->jsonSerialize();
+        if (null !== $this->target) $json['target'] = $this->target->jsonSerialize();
+        if (null !== $this->provider) $json['provider'] = $this->provider->jsonSerialize();
+        if (null !== $this->organization) $json['organization'] = $this->organization->jsonSerialize();
+        if (null !== $this->request) $json['request'] = $this->request->jsonSerialize();
+        if (null !== $this->response) $json['response'] = $this->response->jsonSerialize();
+        if (null !== $this->nullify) $json['nullify'] = $this->nullify->jsonSerialize();
+        if (null !== $this->reference) $json['reference'] = $this->reference->jsonSerialize();
+        if (0 < count($this->item)) {
+            $json['item'] = array();
+            foreach($this->item as $item) {
+                $json['item'][] = $item->jsonSerialize();
+            }
+        }
+        if (0 < count($this->include)) {
+            $json['include'] = array();
+            foreach($this->include as $include) {
+                $json['include'][] = $include->jsonSerialize();
+            }
+        }
+        if (0 < count($this->exclude)) {
+            $json['exclude'] = array();
+            foreach($this->exclude as $exclude) {
+                $json['exclude'][] = $exclude->jsonSerialize();
+            }
+        }
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ProcessRequest xmlns="http://hl7.org/fhir"></ProcessRequest>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->action) $this->action->xmlSerialize(true, $sxe->addChild('action'));
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->ruleset) $this->ruleset->xmlSerialize(true, $sxe->addChild('ruleset'));
+        if (null !== $this->originalRuleset) $this->originalRuleset->xmlSerialize(true, $sxe->addChild('originalRuleset'));
+        if (null !== $this->created) $this->created->xmlSerialize(true, $sxe->addChild('created'));
+        if (null !== $this->target) $this->target->xmlSerialize(true, $sxe->addChild('target'));
+        if (null !== $this->provider) $this->provider->xmlSerialize(true, $sxe->addChild('provider'));
+        if (null !== $this->organization) $this->organization->xmlSerialize(true, $sxe->addChild('organization'));
+        if (null !== $this->request) $this->request->xmlSerialize(true, $sxe->addChild('request'));
+        if (null !== $this->response) $this->response->xmlSerialize(true, $sxe->addChild('response'));
+        if (null !== $this->nullify) $this->nullify->xmlSerialize(true, $sxe->addChild('nullify'));
+        if (null !== $this->reference) $this->reference->xmlSerialize(true, $sxe->addChild('reference'));
+        if (0 < count($this->item)) {
+            foreach($this->item as $item) {
+                $item->xmlSerialize(true, $sxe->addChild('item'));
+            }
+        }
+        if (0 < count($this->include)) {
+            foreach($this->include as $include) {
+                $include->xmlSerialize(true, $sxe->addChild('include'));
+            }
+        }
+        if (0 < count($this->exclude)) {
+            foreach($this->exclude as $exclude) {
+                $exclude->xmlSerialize(true, $sxe->addChild('exclude'));
+            }
+        }
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

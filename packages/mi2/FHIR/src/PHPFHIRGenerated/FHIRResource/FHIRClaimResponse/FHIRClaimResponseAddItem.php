@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * This resource provides the adjudication details from the processing of a Claim resource.
  */
-class FHIRClaimResponseAddItem extends FHIRBackboneElement
+class FHIRClaimResponseAddItem extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * List of input service items which this service line is intended to replace.
@@ -104,6 +105,11 @@ class FHIRClaimResponseAddItem extends FHIRBackboneElement
     public $detail = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ClaimResponse.AddItem';
+
+    /**
      * List of input service items which this service line is intended to replace.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt[]
      */
@@ -115,10 +121,12 @@ class FHIRClaimResponseAddItem extends FHIRBackboneElement
     /**
      * List of input service items which this service line is intended to replace.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt[] $sequenceLinkId
+     * @return $this
      */
     public function addSequenceLinkId($sequenceLinkId)
     {
         $this->sequenceLinkId[] = $sequenceLinkId;
+        return $this;
     }
 
     /**
@@ -133,10 +141,12 @@ class FHIRClaimResponseAddItem extends FHIRBackboneElement
     /**
      * A code to indicate the Professional Service or Product supplied.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $service
+     * @return $this
      */
     public function setService($service)
     {
         $this->service = $service;
+        return $this;
     }
 
     /**
@@ -151,10 +161,12 @@ class FHIRClaimResponseAddItem extends FHIRBackboneElement
     /**
      * The fee charged for the professional service or product..
      * @param \PHPFHIRGenerated\FHIRMoney $fee
+     * @return $this
      */
     public function setFee($fee)
     {
         $this->fee = $fee;
+        return $this;
     }
 
     /**
@@ -169,10 +181,12 @@ class FHIRClaimResponseAddItem extends FHIRBackboneElement
     /**
      * A list of note references to the notes provided below.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt[] $noteNumberLinkId
+     * @return $this
      */
     public function addNoteNumberLinkId($noteNumberLinkId)
     {
         $this->noteNumberLinkId[] = $noteNumberLinkId;
+        return $this;
     }
 
     /**
@@ -187,10 +201,12 @@ class FHIRClaimResponseAddItem extends FHIRBackboneElement
     /**
      * The adjudications results.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRClaimResponse\FHIRClaimResponseAdjudication3[] $adjudication
+     * @return $this
      */
     public function addAdjudication($adjudication)
     {
         $this->adjudication[] = $adjudication;
+        return $this;
     }
 
     /**
@@ -205,10 +221,98 @@ class FHIRClaimResponseAddItem extends FHIRBackboneElement
     /**
      * The second tier service adjudications for payor added services.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRClaimResponse\FHIRClaimResponseDetail1[] $detail
+     * @return $this
      */
     public function addDetail($detail)
     {
         $this->detail[] = $detail;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->sequenceLinkId)) {
+            $json['sequenceLinkId'] = array();
+            foreach($this->sequenceLinkId as $sequenceLinkId) {
+                $json['sequenceLinkId'][] = $sequenceLinkId->jsonSerialize();
+            }
+        }
+        if (null !== $this->service) $json['service'] = $this->service->jsonSerialize();
+        if (null !== $this->fee) $json['fee'] = $this->fee->jsonSerialize();
+        if (0 < count($this->noteNumberLinkId)) {
+            $json['noteNumberLinkId'] = array();
+            foreach($this->noteNumberLinkId as $noteNumberLinkId) {
+                $json['noteNumberLinkId'][] = $noteNumberLinkId->jsonSerialize();
+            }
+        }
+        if (0 < count($this->adjudication)) {
+            $json['adjudication'] = array();
+            foreach($this->adjudication as $adjudication) {
+                $json['adjudication'][] = $adjudication->jsonSerialize();
+            }
+        }
+        if (0 < count($this->detail)) {
+            $json['detail'] = array();
+            foreach($this->detail as $detail) {
+                $json['detail'][] = $detail->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ClaimResponseAddItem xmlns="http://hl7.org/fhir"></ClaimResponseAddItem>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->sequenceLinkId)) {
+            foreach($this->sequenceLinkId as $sequenceLinkId) {
+                $sequenceLinkId->xmlSerialize(true, $sxe->addChild('sequenceLinkId'));
+            }
+        }
+        if (null !== $this->service) $this->service->xmlSerialize(true, $sxe->addChild('service'));
+        if (null !== $this->fee) $this->fee->xmlSerialize(true, $sxe->addChild('fee'));
+        if (0 < count($this->noteNumberLinkId)) {
+            foreach($this->noteNumberLinkId as $noteNumberLinkId) {
+                $noteNumberLinkId->xmlSerialize(true, $sxe->addChild('noteNumberLinkId'));
+            }
+        }
+        if (0 < count($this->adjudication)) {
+            foreach($this->adjudication as $adjudication) {
+                $adjudication->xmlSerialize(true, $sxe->addChild('adjudication'));
+            }
+        }
+        if (0 < count($this->detail)) {
+            foreach($this->detail as $detail) {
+                $detail->xmlSerialize(true, $sxe->addChild('detail'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

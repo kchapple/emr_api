@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A formal agreement between parties regarding the conduct of business, exchange of information or other matters.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRContract extends FHIRDomainResource
+class FHIRContract extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Unique identifier for this Contract.
@@ -183,6 +184,11 @@ class FHIRContract extends FHIRDomainResource
     public $rule = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Contract';
+
+    /**
      * Unique identifier for this Contract.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier
      */
@@ -194,10 +200,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * Unique identifier for this Contract.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $identifier
+     * @return $this
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -212,10 +220,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * When this  Contract was issued.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $issued
+     * @return $this
      */
     public function setIssued($issued)
     {
         $this->issued = $issued;
+        return $this;
     }
 
     /**
@@ -230,10 +240,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * Relevant time or time-period when this Contract is applicable.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $applies
+     * @return $this
      */
     public function setApplies($applies)
     {
         $this->applies = $applies;
+        return $this;
     }
 
     /**
@@ -248,10 +260,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * Who and/or what this Contract is about: typically a Patient, Organization, or valued items such as goods and services.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $subject
+     * @return $this
      */
     public function addSubject($subject)
     {
         $this->subject[] = $subject;
+        return $this;
     }
 
     /**
@@ -266,10 +280,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * A formally or informally recognized grouping of people, principals, organizations, or jurisdictions formed for the purpose of achieving some form of collective action such as the promulgation, administration and enforcement of contracts and policies.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $authority
+     * @return $this
      */
     public function addAuthority($authority)
     {
         $this->authority[] = $authority;
+        return $this;
     }
 
     /**
@@ -284,10 +300,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * Recognized governance framework or system operating with a circumscribed scope in accordance with specified principles, policies, processes or procedures for managing rights, actions, or behaviors of parties or principals relative to resources.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $domain
+     * @return $this
      */
     public function addDomain($domain)
     {
         $this->domain[] = $domain;
+        return $this;
     }
 
     /**
@@ -302,10 +320,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * Type of Contract such as an insurance policy, real estate contract, a will, power of attorny, Privacy or Security policy , trust framework agreement, etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -320,10 +340,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * More specific type or specialization of an overarching or more general contract such as auto insurance, home owner  insurance, prenupial agreement, Advanced-Directive, or privacy consent.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $subType
+     * @return $this
      */
     public function addSubType($subType)
     {
         $this->subType[] = $subType;
+        return $this;
     }
 
     /**
@@ -338,10 +360,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * Action stipulated by this Contract.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $action
+     * @return $this
      */
     public function addAction($action)
     {
         $this->action[] = $action;
+        return $this;
     }
 
     /**
@@ -356,10 +380,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * Reason for action stipulated by this Contract.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $actionReason
+     * @return $this
      */
     public function addActionReason($actionReason)
     {
         $this->actionReason[] = $actionReason;
+        return $this;
     }
 
     /**
@@ -374,10 +400,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * List of Contract actors.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRContract\FHIRContractActor[] $actor
+     * @return $this
      */
     public function addActor($actor)
     {
         $this->actor[] = $actor;
+        return $this;
     }
 
     /**
@@ -392,10 +420,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * Contract Valued Item List.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRContract\FHIRContractValuedItem[] $valuedItem
+     * @return $this
      */
     public function addValuedItem($valuedItem)
     {
         $this->valuedItem[] = $valuedItem;
+        return $this;
     }
 
     /**
@@ -410,10 +440,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * Party signing this Contract.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRContract\FHIRContractSigner[] $signer
+     * @return $this
      */
     public function addSigner($signer)
     {
         $this->signer[] = $signer;
+        return $this;
     }
 
     /**
@@ -428,10 +460,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * One or more Contract Provisions, which may be related and conveyed as a group, and may contain nested groups.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRContract\FHIRContractTerm[] $term
+     * @return $this
      */
     public function addTerm($term)
     {
         $this->term[] = $term;
+        return $this;
     }
 
     /**
@@ -446,10 +480,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * Legally binding Contract: This is the signed and legally recognized representation of the Contract, which is considered the "source of truth" and which would be the basis for legal action related to enforcement of this Contract. (choose any one of binding*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAttachment $bindingAttachment
+     * @return $this
      */
     public function setBindingAttachment($bindingAttachment)
     {
         $this->bindingAttachment = $bindingAttachment;
+        return $this;
     }
 
     /**
@@ -464,10 +500,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * Legally binding Contract: This is the signed and legally recognized representation of the Contract, which is considered the "source of truth" and which would be the basis for legal action related to enforcement of this Contract. (choose any one of binding*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $bindingReference
+     * @return $this
      */
     public function setBindingReference($bindingReference)
     {
         $this->bindingReference = $bindingReference;
+        return $this;
     }
 
     /**
@@ -482,10 +520,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * The "patient friendly language" versionof the Contract in whole or in parts. "Patient friendly language" means the representation of the Contract and Contract Provisions in a manner that is readily accessible and understandable by a layperson in accordance with best practices for communication styles that ensure that those agreeing to or signing the Contract understand the roles, actions, obligations, responsibilities, and implication of the agreement.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRContract\FHIRContractFriendly[] $friendly
+     * @return $this
      */
     public function addFriendly($friendly)
     {
         $this->friendly[] = $friendly;
+        return $this;
     }
 
     /**
@@ -500,10 +540,12 @@ class FHIRContract extends FHIRDomainResource
     /**
      * List of Legal expressions or representations of this Contract.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRContract\FHIRContractLegal[] $legal
+     * @return $this
      */
     public function addLegal($legal)
     {
         $this->legal[] = $legal;
+        return $this;
     }
 
     /**
@@ -518,10 +560,206 @@ class FHIRContract extends FHIRDomainResource
     /**
      * List of Computable Policy Rule Language Representations of this Contract.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRContract\FHIRContractRule[] $rule
+     * @return $this
      */
     public function addRule($rule)
     {
         $this->rule[] = $rule;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->identifier) $json['identifier'] = $this->identifier->jsonSerialize();
+        if (null !== $this->issued) $json['issued'] = $this->issued->jsonSerialize();
+        if (null !== $this->applies) $json['applies'] = $this->applies->jsonSerialize();
+        if (0 < count($this->subject)) {
+            $json['subject'] = array();
+            foreach($this->subject as $subject) {
+                $json['subject'][] = $subject->jsonSerialize();
+            }
+        }
+        if (0 < count($this->authority)) {
+            $json['authority'] = array();
+            foreach($this->authority as $authority) {
+                $json['authority'][] = $authority->jsonSerialize();
+            }
+        }
+        if (0 < count($this->domain)) {
+            $json['domain'] = array();
+            foreach($this->domain as $domain) {
+                $json['domain'][] = $domain->jsonSerialize();
+            }
+        }
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (0 < count($this->subType)) {
+            $json['subType'] = array();
+            foreach($this->subType as $subType) {
+                $json['subType'][] = $subType->jsonSerialize();
+            }
+        }
+        if (0 < count($this->action)) {
+            $json['action'] = array();
+            foreach($this->action as $action) {
+                $json['action'][] = $action->jsonSerialize();
+            }
+        }
+        if (0 < count($this->actionReason)) {
+            $json['actionReason'] = array();
+            foreach($this->actionReason as $actionReason) {
+                $json['actionReason'][] = $actionReason->jsonSerialize();
+            }
+        }
+        if (0 < count($this->actor)) {
+            $json['actor'] = array();
+            foreach($this->actor as $actor) {
+                $json['actor'][] = $actor->jsonSerialize();
+            }
+        }
+        if (0 < count($this->valuedItem)) {
+            $json['valuedItem'] = array();
+            foreach($this->valuedItem as $valuedItem) {
+                $json['valuedItem'][] = $valuedItem->jsonSerialize();
+            }
+        }
+        if (0 < count($this->signer)) {
+            $json['signer'] = array();
+            foreach($this->signer as $signer) {
+                $json['signer'][] = $signer->jsonSerialize();
+            }
+        }
+        if (0 < count($this->term)) {
+            $json['term'] = array();
+            foreach($this->term as $term) {
+                $json['term'][] = $term->jsonSerialize();
+            }
+        }
+        if (null !== $this->bindingAttachment) $json['bindingAttachment'] = $this->bindingAttachment->jsonSerialize();
+        if (null !== $this->bindingReference) $json['bindingReference'] = $this->bindingReference->jsonSerialize();
+        if (0 < count($this->friendly)) {
+            $json['friendly'] = array();
+            foreach($this->friendly as $friendly) {
+                $json['friendly'][] = $friendly->jsonSerialize();
+            }
+        }
+        if (0 < count($this->legal)) {
+            $json['legal'] = array();
+            foreach($this->legal as $legal) {
+                $json['legal'][] = $legal->jsonSerialize();
+            }
+        }
+        if (0 < count($this->rule)) {
+            $json['rule'] = array();
+            foreach($this->rule as $rule) {
+                $json['rule'][] = $rule->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Contract xmlns="http://hl7.org/fhir"></Contract>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->identifier) $this->identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+        if (null !== $this->issued) $this->issued->xmlSerialize(true, $sxe->addChild('issued'));
+        if (null !== $this->applies) $this->applies->xmlSerialize(true, $sxe->addChild('applies'));
+        if (0 < count($this->subject)) {
+            foreach($this->subject as $subject) {
+                $subject->xmlSerialize(true, $sxe->addChild('subject'));
+            }
+        }
+        if (0 < count($this->authority)) {
+            foreach($this->authority as $authority) {
+                $authority->xmlSerialize(true, $sxe->addChild('authority'));
+            }
+        }
+        if (0 < count($this->domain)) {
+            foreach($this->domain as $domain) {
+                $domain->xmlSerialize(true, $sxe->addChild('domain'));
+            }
+        }
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (0 < count($this->subType)) {
+            foreach($this->subType as $subType) {
+                $subType->xmlSerialize(true, $sxe->addChild('subType'));
+            }
+        }
+        if (0 < count($this->action)) {
+            foreach($this->action as $action) {
+                $action->xmlSerialize(true, $sxe->addChild('action'));
+            }
+        }
+        if (0 < count($this->actionReason)) {
+            foreach($this->actionReason as $actionReason) {
+                $actionReason->xmlSerialize(true, $sxe->addChild('actionReason'));
+            }
+        }
+        if (0 < count($this->actor)) {
+            foreach($this->actor as $actor) {
+                $actor->xmlSerialize(true, $sxe->addChild('actor'));
+            }
+        }
+        if (0 < count($this->valuedItem)) {
+            foreach($this->valuedItem as $valuedItem) {
+                $valuedItem->xmlSerialize(true, $sxe->addChild('valuedItem'));
+            }
+        }
+        if (0 < count($this->signer)) {
+            foreach($this->signer as $signer) {
+                $signer->xmlSerialize(true, $sxe->addChild('signer'));
+            }
+        }
+        if (0 < count($this->term)) {
+            foreach($this->term as $term) {
+                $term->xmlSerialize(true, $sxe->addChild('term'));
+            }
+        }
+        if (null !== $this->bindingAttachment) $this->bindingAttachment->xmlSerialize(true, $sxe->addChild('bindingAttachment'));
+        if (null !== $this->bindingReference) $this->bindingReference->xmlSerialize(true, $sxe->addChild('bindingReference'));
+        if (0 < count($this->friendly)) {
+            foreach($this->friendly as $friendly) {
+                $friendly->xmlSerialize(true, $sxe->addChild('friendly'));
+            }
+        }
+        if (0 < count($this->legal)) {
+            foreach($this->legal as $legal) {
+                $legal->xmlSerialize(true, $sxe->addChild('legal'));
+            }
+        }
+        if (0 < count($this->rule)) {
+            foreach($this->rule as $rule) {
+                $rule->xmlSerialize(true, $sxe->addChild('rule'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

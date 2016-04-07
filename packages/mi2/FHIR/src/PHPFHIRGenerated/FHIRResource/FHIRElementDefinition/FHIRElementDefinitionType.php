@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Captures constraints on each element within the resource, profile, or extension.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRElementDefinitionType extends FHIRElement
+class FHIRElementDefinitionType extends FHIRElement implements JsonSerializable
 {
     /**
      * Name of Data type or Resource that is a(or the) type used for this element.
@@ -87,6 +88,11 @@ class FHIRElementDefinitionType extends FHIRElement
     public $aggregation = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ElementDefinition.Type';
+
+    /**
      * Name of Data type or Resource that is a(or the) type used for this element.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCode
      */
@@ -98,10 +104,12 @@ class FHIRElementDefinitionType extends FHIRElement
     /**
      * Name of Data type or Resource that is a(or the) type used for this element.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -116,10 +124,12 @@ class FHIRElementDefinitionType extends FHIRElement
     /**
      * Identifies a profile structure or implementation Guide that SHALL hold for resources or datatypes referenced as the type of this element. Can be a local reference - to another structure in this profile, or a reference to a structure in another profile. When more than one profile is specified, the content must conform to all of them. When an implementation guide is specified, the resource SHALL conform to at least one profile defined in the implementation guide.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri[] $profile
+     * @return $this
      */
     public function addProfile($profile)
     {
         $this->profile[] = $profile;
+        return $this;
     }
 
     /**
@@ -134,10 +144,74 @@ class FHIRElementDefinitionType extends FHIRElement
     /**
      * If the type is a reference to another resource, how the resource is or can be aggregated - is it a contained resource, or a reference, and if the context is a bundle, is it included in the bundle.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAggregationMode[] $aggregation
+     * @return $this
      */
     public function addAggregation($aggregation)
     {
         $this->aggregation[] = $aggregation;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (0 < count($this->profile)) {
+            $json['profile'] = array();
+            foreach($this->profile as $profile) {
+                $json['profile'][] = $profile->jsonSerialize();
+            }
+        }
+        if (0 < count($this->aggregation)) {
+            $json['aggregation'] = array();
+            foreach($this->aggregation as $aggregation) {
+                $json['aggregation'][] = $aggregation->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ElementDefinitionType xmlns="http://hl7.org/fhir"></ElementDefinitionType>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (0 < count($this->profile)) {
+            foreach($this->profile as $profile) {
+                $profile->xmlSerialize(true, $sxe->addChild('profile'));
+            }
+        }
+        if (0 < count($this->aggregation)) {
+            foreach($this->aggregation as $aggregation) {
+                $aggregation->xmlSerialize(true, $sxe->addChild('aggregation'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

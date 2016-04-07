@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s).
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRAppointment extends FHIRDomainResource
+class FHIRAppointment extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * This records identifiers associated with this appointment concern that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).
@@ -141,6 +142,11 @@ class FHIRAppointment extends FHIRDomainResource
     public $participant = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Appointment';
+
+    /**
      * This records identifiers associated with this appointment concern that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -152,10 +158,12 @@ class FHIRAppointment extends FHIRDomainResource
     /**
      * This records identifiers associated with this appointment concern that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -170,10 +178,12 @@ class FHIRAppointment extends FHIRDomainResource
     /**
      * The overall status of the Appointment. Each of the participants has their own participation status which indicates their involvement in the process, however this status indicates the shared status.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAppointmentStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -188,10 +198,12 @@ class FHIRAppointment extends FHIRDomainResource
     /**
      * The type of appointment that is being booked (This may also be associated with participants for location, and/or a HealthcareService).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -206,10 +218,12 @@ class FHIRAppointment extends FHIRDomainResource
     /**
      * The reason that this appointment is being scheduled. This is more clinical than administrative.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $reason
+     * @return $this
      */
     public function setReason($reason)
     {
         $this->reason = $reason;
+        return $this;
     }
 
     /**
@@ -224,10 +238,12 @@ class FHIRAppointment extends FHIRDomainResource
     /**
      * The priority of the appointment. Can be used to make informed decisions if needing to re-prioritize appointments. (The iCal Standard specifies 0 as undefined, 1 as highest, 9 as lowest priority).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUnsignedInt $priority
+     * @return $this
      */
     public function setPriority($priority)
     {
         $this->priority = $priority;
+        return $this;
     }
 
     /**
@@ -242,10 +258,12 @@ class FHIRAppointment extends FHIRDomainResource
     /**
      * The brief description of the appointment as would be shown on a subject line in a meeting request, or appointment list. Detailed or expanded information should be put in the comment field.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -260,10 +278,12 @@ class FHIRAppointment extends FHIRDomainResource
     /**
      * Date/Time that the appointment is to take place.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInstant $start
+     * @return $this
      */
     public function setStart($start)
     {
         $this->start = $start;
+        return $this;
     }
 
     /**
@@ -278,10 +298,12 @@ class FHIRAppointment extends FHIRDomainResource
     /**
      * Date/Time that the appointment is to conclude.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInstant $end
+     * @return $this
      */
     public function setEnd($end)
     {
         $this->end = $end;
+        return $this;
     }
 
     /**
@@ -296,10 +318,12 @@ class FHIRAppointment extends FHIRDomainResource
     /**
      * Number of minutes that the appointment is to take. This can be less than the duration between the start and end times (where actual time of appointment is only an estimate or is a planned appointment request).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPositiveInt $minutesDuration
+     * @return $this
      */
     public function setMinutesDuration($minutesDuration)
     {
         $this->minutesDuration = $minutesDuration;
+        return $this;
     }
 
     /**
@@ -314,10 +338,12 @@ class FHIRAppointment extends FHIRDomainResource
     /**
      * The slot that this appointment is filling. If provided then the schedule will not be provided as slots are not recursive, and the start/end values MUST be the same as from the slot.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $slot
+     * @return $this
      */
     public function addSlot($slot)
     {
         $this->slot[] = $slot;
+        return $this;
     }
 
     /**
@@ -332,10 +358,12 @@ class FHIRAppointment extends FHIRDomainResource
     /**
      * Additional comments about the appointment.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $comment
+     * @return $this
      */
     public function setComment($comment)
     {
         $this->comment = $comment;
+        return $this;
     }
 
     /**
@@ -350,10 +378,102 @@ class FHIRAppointment extends FHIRDomainResource
     /**
      * List of participants involved in the appointment.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRAppointment\FHIRAppointmentParticipant[] $participant
+     * @return $this
      */
     public function addParticipant($participant)
     {
         $this->participant[] = $participant;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->reason) $json['reason'] = $this->reason->jsonSerialize();
+        if (null !== $this->priority) $json['priority'] = $this->priority->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->start) $json['start'] = $this->start->jsonSerialize();
+        if (null !== $this->end) $json['end'] = $this->end->jsonSerialize();
+        if (null !== $this->minutesDuration) $json['minutesDuration'] = $this->minutesDuration->jsonSerialize();
+        if (0 < count($this->slot)) {
+            $json['slot'] = array();
+            foreach($this->slot as $slot) {
+                $json['slot'][] = $slot->jsonSerialize();
+            }
+        }
+        if (null !== $this->comment) $json['comment'] = $this->comment->jsonSerialize();
+        if (0 < count($this->participant)) {
+            $json['participant'] = array();
+            foreach($this->participant as $participant) {
+                $json['participant'][] = $participant->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Appointment xmlns="http://hl7.org/fhir"></Appointment>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->reason) $this->reason->xmlSerialize(true, $sxe->addChild('reason'));
+        if (null !== $this->priority) $this->priority->xmlSerialize(true, $sxe->addChild('priority'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->start) $this->start->xmlSerialize(true, $sxe->addChild('start'));
+        if (null !== $this->end) $this->end->xmlSerialize(true, $sxe->addChild('end'));
+        if (null !== $this->minutesDuration) $this->minutesDuration->xmlSerialize(true, $sxe->addChild('minutesDuration'));
+        if (0 < count($this->slot)) {
+            foreach($this->slot as $slot) {
+                $slot->xmlSerialize(true, $sxe->addChild('slot'));
+            }
+        }
+        if (null !== $this->comment) $this->comment->xmlSerialize(true, $sxe->addChild('comment'));
+        if (0 < count($this->participant)) {
+            foreach($this->participant as $participant) {
+                $participant->xmlSerialize(true, $sxe->addChild('participant'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

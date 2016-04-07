@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A resource that includes narrative, extensions, and contained resources.
  */
-class FHIRDomainResource extends FHIRResource
+class FHIRDomainResource extends FHIRResource implements JsonSerializable
 {
     /**
      * A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.
@@ -92,6 +93,11 @@ class FHIRDomainResource extends FHIRResource
     public $modifierExtension = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'DomainResource';
+
+    /**
      * A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRNarrative
      */
@@ -103,10 +109,12 @@ class FHIRDomainResource extends FHIRResource
     /**
      * A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRNarrative $text
+     * @return $this
      */
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRDomainResource extends FHIRResource
     /**
      * These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.
      * @param \PHPFHIRGenerated\FHIRResourceContainer[] $contained
+     * @return $this
      */
     public function addContained($contained)
     {
         $this->contained[] = $contained;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRDomainResource extends FHIRResource
     /**
      * May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRExtension[] $extension
+     * @return $this
      */
     public function addExtension($extension)
     {
         $this->extension[] = $extension;
+        return $this;
     }
 
     /**
@@ -157,10 +169,86 @@ class FHIRDomainResource extends FHIRResource
     /**
      * May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRExtension[] $modifierExtension
+     * @return $this
      */
     public function addModifierExtension($modifierExtension)
     {
         $this->modifierExtension[] = $modifierExtension;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->text) $json['text'] = $this->text->jsonSerialize();
+        if (0 < count($this->contained)) {
+            $json['contained'] = array();
+            foreach($this->contained as $contained) {
+                $json['contained'][] = $contained->jsonSerialize();
+            }
+        }
+        if (0 < count($this->extension)) {
+            $json['extension'] = array();
+            foreach($this->extension as $extension) {
+                $json['extension'][] = $extension->jsonSerialize();
+            }
+        }
+        if (0 < count($this->modifierExtension)) {
+            $json['modifierExtension'] = array();
+            foreach($this->modifierExtension as $modifierExtension) {
+                $json['modifierExtension'][] = $modifierExtension->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<DomainResource xmlns="http://hl7.org/fhir"></DomainResource>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->text) $this->text->xmlSerialize(true, $sxe->addChild('text'));
+        if (0 < count($this->contained)) {
+            foreach($this->contained as $contained) {
+                $contained->xmlSerialize(true, $sxe->addChild('contained'));
+            }
+        }
+        if (0 < count($this->extension)) {
+            foreach($this->extension as $extension) {
+                $extension->xmlSerialize(true, $sxe->addChild('extension'));
+            }
+        }
+        if (0 < count($this->modifierExtension)) {
+            foreach($this->modifierExtension as $modifierExtension) {
+                $modifierExtension->xmlSerialize(true, $sxe->addChild('modifierExtension'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

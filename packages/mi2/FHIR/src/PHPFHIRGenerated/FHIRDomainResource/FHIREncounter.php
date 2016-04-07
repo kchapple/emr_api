@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIREncounter extends FHIRDomainResource
+class FHIREncounter extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Identifier(s) by which this encounter is known.
@@ -183,6 +184,11 @@ class FHIREncounter extends FHIRDomainResource
     public $partOf = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Encounter';
+
+    /**
      * Identifier(s) by which this encounter is known.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -194,10 +200,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * Identifier(s) by which this encounter is known.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -212,10 +220,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * planned | arrived | in-progress | onleave | finished | cancelled.
      * @param \PHPFHIRGenerated\FHIRElement\FHIREncounterState $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -230,10 +240,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * The status history permits the encounter resource to contain the status history without needing to read through the historical versions of the resource, or even have the server store them.
      * @param \PHPFHIRGenerated\FHIRResource\FHIREncounter\FHIREncounterStatusHistory[] $statusHistory
+     * @return $this
      */
     public function addStatusHistory($statusHistory)
     {
         $this->statusHistory[] = $statusHistory;
+        return $this;
     }
 
     /**
@@ -248,10 +260,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * inpatient | outpatient | ambulatory | emergency +.
      * @param \PHPFHIRGenerated\FHIRElement\FHIREncounterClass $class
+     * @return $this
      */
     public function setClass($class)
     {
         $this->class = $class;
+        return $this;
     }
 
     /**
@@ -266,10 +280,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * Specific type of encounter (e.g. e-mail consultation, surgical day-care, skilled nursing, rehabilitation).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $type
+     * @return $this
      */
     public function addType($type)
     {
         $this->type[] = $type;
+        return $this;
     }
 
     /**
@@ -284,10 +300,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * Indicates the urgency of the encounter.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $priority
+     * @return $this
      */
     public function setPriority($priority)
     {
         $this->priority = $priority;
+        return $this;
     }
 
     /**
@@ -302,10 +320,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * The patient present at the encounter.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $patient
+     * @return $this
      */
     public function setPatient($patient)
     {
         $this->patient = $patient;
+        return $this;
     }
 
     /**
@@ -320,10 +340,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * Where a specific encounter should be classified as a part of a specific episode(s) of care this field should be used. This association can facilitate grouping of related encounters together for a specific purpose, such as government reporting, issue tracking, association via a common problem.  The association is recorded on the encounter as these are typically created after the episode of care, and grouped on entry rather than editing the episode of care to append another encounter to it (the episode of care could span years).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $episodeOfCare
+     * @return $this
      */
     public function addEpisodeOfCare($episodeOfCare)
     {
         $this->episodeOfCare[] = $episodeOfCare;
+        return $this;
     }
 
     /**
@@ -338,10 +360,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * The referral request this encounter satisfies (incoming referral).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $incomingReferral
+     * @return $this
      */
     public function addIncomingReferral($incomingReferral)
     {
         $this->incomingReferral[] = $incomingReferral;
+        return $this;
     }
 
     /**
@@ -356,10 +380,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * The list of people responsible for providing the service.
      * @param \PHPFHIRGenerated\FHIRResource\FHIREncounter\FHIREncounterParticipant[] $participant
+     * @return $this
      */
     public function addParticipant($participant)
     {
         $this->participant[] = $participant;
+        return $this;
     }
 
     /**
@@ -374,10 +400,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * The appointment that scheduled this encounter.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $appointment
+     * @return $this
      */
     public function setAppointment($appointment)
     {
         $this->appointment = $appointment;
+        return $this;
     }
 
     /**
@@ -392,10 +420,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * The start and end time of the encounter.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
     }
 
     /**
@@ -410,10 +440,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * Quantity of time the encounter lasted. This excludes the time during leaves of absence.
      * @param \PHPFHIRGenerated\FHIRDuration $length
+     * @return $this
      */
     public function setLength($length)
     {
         $this->length = $length;
+        return $this;
     }
 
     /**
@@ -428,10 +460,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * Reason the encounter takes place, expressed as a code. For admissions, this can be used for a coded admission diagnosis.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $reason
+     * @return $this
      */
     public function addReason($reason)
     {
         $this->reason[] = $reason;
+        return $this;
     }
 
     /**
@@ -446,10 +480,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * Reason the encounter takes place, as specified using information from another resource. For admissions, this is the admission diagnosis. The indication will typically be a Condition (with other resources referenced in the evidence.detail), or a Procedure.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $indication
+     * @return $this
      */
     public function addIndication($indication)
     {
         $this->indication[] = $indication;
+        return $this;
     }
 
     /**
@@ -464,10 +500,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * Details about the admission to a healthcare service.
      * @param \PHPFHIRGenerated\FHIRResource\FHIREncounter\FHIREncounterHospitalization $hospitalization
+     * @return $this
      */
     public function setHospitalization($hospitalization)
     {
         $this->hospitalization = $hospitalization;
+        return $this;
     }
 
     /**
@@ -482,10 +520,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * List of locations where  the patient has been during this encounter.
      * @param \PHPFHIRGenerated\FHIRResource\FHIREncounter\FHIREncounterLocation[] $location
+     * @return $this
      */
     public function addLocation($location)
     {
         $this->location[] = $location;
+        return $this;
     }
 
     /**
@@ -500,10 +540,12 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * An organization that is in charge of maintaining the information of this Encounter (e.g. who maintains the report or the master service catalog item, etc.). This MAY be the same as the organization on the Patient record, however it could be different. This MAY not be not the Service Delivery Location's Organization.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $serviceProvider
+     * @return $this
      */
     public function setServiceProvider($serviceProvider)
     {
         $this->serviceProvider = $serviceProvider;
+        return $this;
     }
 
     /**
@@ -518,10 +560,170 @@ class FHIREncounter extends FHIRDomainResource
     /**
      * Another Encounter of which this encounter is a part of (administratively or in time).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $partOf
+     * @return $this
      */
     public function setPartOf($partOf)
     {
         $this->partOf = $partOf;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (0 < count($this->statusHistory)) {
+            $json['statusHistory'] = array();
+            foreach($this->statusHistory as $statusHistory) {
+                $json['statusHistory'][] = $statusHistory->jsonSerialize();
+            }
+        }
+        if (null !== $this->class) $json['class'] = $this->class->jsonSerialize();
+        if (0 < count($this->type)) {
+            $json['type'] = array();
+            foreach($this->type as $type) {
+                $json['type'][] = $type->jsonSerialize();
+            }
+        }
+        if (null !== $this->priority) $json['priority'] = $this->priority->jsonSerialize();
+        if (null !== $this->patient) $json['patient'] = $this->patient->jsonSerialize();
+        if (0 < count($this->episodeOfCare)) {
+            $json['episodeOfCare'] = array();
+            foreach($this->episodeOfCare as $episodeOfCare) {
+                $json['episodeOfCare'][] = $episodeOfCare->jsonSerialize();
+            }
+        }
+        if (0 < count($this->incomingReferral)) {
+            $json['incomingReferral'] = array();
+            foreach($this->incomingReferral as $incomingReferral) {
+                $json['incomingReferral'][] = $incomingReferral->jsonSerialize();
+            }
+        }
+        if (0 < count($this->participant)) {
+            $json['participant'] = array();
+            foreach($this->participant as $participant) {
+                $json['participant'][] = $participant->jsonSerialize();
+            }
+        }
+        if (null !== $this->appointment) $json['appointment'] = $this->appointment->jsonSerialize();
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        if (null !== $this->length) $json['length'] = $this->length->jsonSerialize();
+        if (0 < count($this->reason)) {
+            $json['reason'] = array();
+            foreach($this->reason as $reason) {
+                $json['reason'][] = $reason->jsonSerialize();
+            }
+        }
+        if (0 < count($this->indication)) {
+            $json['indication'] = array();
+            foreach($this->indication as $indication) {
+                $json['indication'][] = $indication->jsonSerialize();
+            }
+        }
+        if (null !== $this->hospitalization) $json['hospitalization'] = $this->hospitalization->jsonSerialize();
+        if (0 < count($this->location)) {
+            $json['location'] = array();
+            foreach($this->location as $location) {
+                $json['location'][] = $location->jsonSerialize();
+            }
+        }
+        if (null !== $this->serviceProvider) $json['serviceProvider'] = $this->serviceProvider->jsonSerialize();
+        if (null !== $this->partOf) $json['partOf'] = $this->partOf->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Encounter xmlns="http://hl7.org/fhir"></Encounter>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (0 < count($this->statusHistory)) {
+            foreach($this->statusHistory as $statusHistory) {
+                $statusHistory->xmlSerialize(true, $sxe->addChild('statusHistory'));
+            }
+        }
+        if (null !== $this->class) $this->class->xmlSerialize(true, $sxe->addChild('class'));
+        if (0 < count($this->type)) {
+            foreach($this->type as $type) {
+                $type->xmlSerialize(true, $sxe->addChild('type'));
+            }
+        }
+        if (null !== $this->priority) $this->priority->xmlSerialize(true, $sxe->addChild('priority'));
+        if (null !== $this->patient) $this->patient->xmlSerialize(true, $sxe->addChild('patient'));
+        if (0 < count($this->episodeOfCare)) {
+            foreach($this->episodeOfCare as $episodeOfCare) {
+                $episodeOfCare->xmlSerialize(true, $sxe->addChild('episodeOfCare'));
+            }
+        }
+        if (0 < count($this->incomingReferral)) {
+            foreach($this->incomingReferral as $incomingReferral) {
+                $incomingReferral->xmlSerialize(true, $sxe->addChild('incomingReferral'));
+            }
+        }
+        if (0 < count($this->participant)) {
+            foreach($this->participant as $participant) {
+                $participant->xmlSerialize(true, $sxe->addChild('participant'));
+            }
+        }
+        if (null !== $this->appointment) $this->appointment->xmlSerialize(true, $sxe->addChild('appointment'));
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if (null !== $this->length) $this->length->xmlSerialize(true, $sxe->addChild('length'));
+        if (0 < count($this->reason)) {
+            foreach($this->reason as $reason) {
+                $reason->xmlSerialize(true, $sxe->addChild('reason'));
+            }
+        }
+        if (0 < count($this->indication)) {
+            foreach($this->indication as $indication) {
+                $indication->xmlSerialize(true, $sxe->addChild('indication'));
+            }
+        }
+        if (null !== $this->hospitalization) $this->hospitalization->xmlSerialize(true, $sxe->addChild('hospitalization'));
+        if (0 < count($this->location)) {
+            foreach($this->location as $location) {
+                $location->xmlSerialize(true, $sxe->addChild('location'));
+            }
+        }
+        if (null !== $this->serviceProvider) $this->serviceProvider->xmlSerialize(true, $sxe->addChild('serviceProvider'));
+        if (null !== $this->partOf) $this->partOf->xmlSerialize(true, $sxe->addChild('partOf'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

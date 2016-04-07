@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A manifest of a set of DICOM Service-Object Pair Instances (SOP Instances).  The referenced SOP Instances (images or other content) are for a single patient, and may be from one or more studies. The referenced SOP Instances have been selected for a purpose, such as quality assurance, conference, or consult. Reflecting that range of purposes, typical ImagingObjectSelection resources may include all SOP Instances in a study (perhaps for sharing through a Health Information Exchange); key images from multiple studies (for reference by a referring or treating physician); a multi-frame ultrasound instance ("cine" video clip) and a set of measurements taken from that instance (for inclusion in a teaching file); and so on.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRImagingObjectSelection extends FHIRDomainResource
+class FHIRImagingObjectSelection extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Instance UID of the DICOM KOS SOP Instances represented in this resource.
@@ -111,6 +112,11 @@ class FHIRImagingObjectSelection extends FHIRDomainResource
     public $study = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ImagingObjectSelection';
+
+    /**
      * Instance UID of the DICOM KOS SOP Instances represented in this resource.
      * @return \PHPFHIRGenerated\FHIRElement\FHIROid
      */
@@ -122,10 +128,12 @@ class FHIRImagingObjectSelection extends FHIRDomainResource
     /**
      * Instance UID of the DICOM KOS SOP Instances represented in this resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIROid $uid
+     * @return $this
      */
     public function setUid($uid)
     {
         $this->uid = $uid;
+        return $this;
     }
 
     /**
@@ -140,10 +148,12 @@ class FHIRImagingObjectSelection extends FHIRDomainResource
     /**
      * A patient resource reference which is the patient subject of all DICOM SOP Instances in this ImagingObjectSelection.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $patient
+     * @return $this
      */
     public function setPatient($patient)
     {
         $this->patient = $patient;
+        return $this;
     }
 
     /**
@@ -158,10 +168,12 @@ class FHIRImagingObjectSelection extends FHIRDomainResource
     /**
      * The reason for, or significance of, the selection of objects referenced in the resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $title
+     * @return $this
      */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -176,10 +188,12 @@ class FHIRImagingObjectSelection extends FHIRDomainResource
     /**
      * Text description of the DICOM SOP instances selected in the ImagingObjectSelection. This should be aligned with the content of the title element, and can provide further explanation of the SOP instances in the selection.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -194,10 +208,12 @@ class FHIRImagingObjectSelection extends FHIRDomainResource
     /**
      * Author of ImagingObjectSelection. It can be a human author or a device which made the decision of the SOP instances selected. For example, a radiologist selected a set of imaging SOP instances to attach in a diagnostic report, and a CAD application may author a selection to describe SOP instances it used to generate a detection conclusion.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $author
+     * @return $this
      */
     public function setAuthor($author)
     {
         $this->author = $author;
+        return $this;
     }
 
     /**
@@ -212,10 +228,12 @@ class FHIRImagingObjectSelection extends FHIRDomainResource
     /**
      * Date and time when the selection of the referenced instances were made. It is (typically) different from the creation date of the selection resource, and from dates associated with the referenced instances (e.g. capture time of the referenced image).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $authoringTime
+     * @return $this
      */
     public function setAuthoringTime($authoringTime)
     {
         $this->authoringTime = $authoringTime;
+        return $this;
     }
 
     /**
@@ -230,10 +248,74 @@ class FHIRImagingObjectSelection extends FHIRDomainResource
     /**
      * Study identity and locating information of the DICOM SOP instances in the selection.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRImagingObjectSelection\FHIRImagingObjectSelectionStudy[] $study
+     * @return $this
      */
     public function addStudy($study)
     {
         $this->study[] = $study;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->uid) $json['uid'] = $this->uid->jsonSerialize();
+        if (null !== $this->patient) $json['patient'] = $this->patient->jsonSerialize();
+        if (null !== $this->title) $json['title'] = $this->title->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->author) $json['author'] = $this->author->jsonSerialize();
+        if (null !== $this->authoringTime) $json['authoringTime'] = $this->authoringTime->jsonSerialize();
+        if (0 < count($this->study)) {
+            $json['study'] = array();
+            foreach($this->study as $study) {
+                $json['study'][] = $study->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ImagingObjectSelection xmlns="http://hl7.org/fhir"></ImagingObjectSelection>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->uid) $this->uid->xmlSerialize(true, $sxe->addChild('uid'));
+        if (null !== $this->patient) $this->patient->xmlSerialize(true, $sxe->addChild('patient'));
+        if (null !== $this->title) $this->title->xmlSerialize(true, $sxe->addChild('title'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->author) $this->author->xmlSerialize(true, $sxe->addChild('author'));
+        if (null !== $this->authoringTime) $this->authoringTime->xmlSerialize(true, $sxe->addChild('authoringTime'));
+        if (0 < count($this->study)) {
+            foreach($this->study as $study) {
+                $study->xmlSerialize(true, $sxe->addChild('study'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

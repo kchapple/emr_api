@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Captures constraints on each element within the resource, profile, or extension.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRElementDefinitionBinding extends FHIRElement
+class FHIRElementDefinitionBinding extends FHIRElement implements JsonSerializable
 {
     /**
      * Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.
@@ -93,6 +94,11 @@ class FHIRElementDefinitionBinding extends FHIRElement
     public $valueSetReference = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ElementDefinition.Binding';
+
+    /**
      * Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRBindingStrength
      */
@@ -104,10 +110,12 @@ class FHIRElementDefinitionBinding extends FHIRElement
     /**
      * Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBindingStrength $strength
+     * @return $this
      */
     public function setStrength($strength)
     {
         $this->strength = $strength;
+        return $this;
     }
 
     /**
@@ -122,10 +130,12 @@ class FHIRElementDefinitionBinding extends FHIRElement
     /**
      * Describes the intended use of this particular set of codes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -140,10 +150,12 @@ class FHIRElementDefinitionBinding extends FHIRElement
     /**
      * Points to the value set or external definition (e.g. implicit value set) that identifies the set of codes to be used. (choose any one of valueSet*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $valueSetUri
+     * @return $this
      */
     public function setValueSetUri($valueSetUri)
     {
         $this->valueSetUri = $valueSetUri;
+        return $this;
     }
 
     /**
@@ -158,10 +170,58 @@ class FHIRElementDefinitionBinding extends FHIRElement
     /**
      * Points to the value set or external definition (e.g. implicit value set) that identifies the set of codes to be used. (choose any one of valueSet*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $valueSetReference
+     * @return $this
      */
     public function setValueSetReference($valueSetReference)
     {
         $this->valueSetReference = $valueSetReference;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->strength) $json['strength'] = $this->strength->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->valueSetUri) $json['valueSetUri'] = $this->valueSetUri->jsonSerialize();
+        if (null !== $this->valueSetReference) $json['valueSetReference'] = $this->valueSetReference->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ElementDefinitionBinding xmlns="http://hl7.org/fhir"></ElementDefinitionBinding>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->strength) $this->strength->xmlSerialize(true, $sxe->addChild('strength'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->valueSetUri) $this->valueSetUri->xmlSerialize(true, $sxe->addChild('valueSetUri'));
+        if (null !== $this->valueSetReference) $this->valueSetReference->xmlSerialize(true, $sxe->addChild('valueSetReference'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

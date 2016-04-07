@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the underlying questions.
  */
-class FHIRQuestionnaireResponseQuestion extends FHIRBackboneElement
+class FHIRQuestionnaireResponseQuestion extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Identifies the question from the Questionnaire that corresponds to this question in the QuestionnaireResponse resource.
@@ -86,6 +87,11 @@ class FHIRQuestionnaireResponseQuestion extends FHIRBackboneElement
     public $answer = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'QuestionnaireResponse.Question';
+
+    /**
      * Identifies the question from the Questionnaire that corresponds to this question in the QuestionnaireResponse resource.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -97,10 +103,12 @@ class FHIRQuestionnaireResponseQuestion extends FHIRBackboneElement
     /**
      * Identifies the question from the Questionnaire that corresponds to this question in the QuestionnaireResponse resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $linkId
+     * @return $this
      */
     public function setLinkId($linkId)
     {
         $this->linkId = $linkId;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRQuestionnaireResponseQuestion extends FHIRBackboneElement
     /**
      * The actual question as shown to the user to prompt them for an answer.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $text
+     * @return $this
      */
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
     }
 
     /**
@@ -133,10 +143,65 @@ class FHIRQuestionnaireResponseQuestion extends FHIRBackboneElement
     /**
      * The respondent's answer(s) to the question.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRQuestionnaireResponse\FHIRQuestionnaireResponseAnswer[] $answer
+     * @return $this
      */
     public function addAnswer($answer)
     {
         $this->answer[] = $answer;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->linkId) $json['linkId'] = $this->linkId->jsonSerialize();
+        if (null !== $this->text) $json['text'] = $this->text->jsonSerialize();
+        if (0 < count($this->answer)) {
+            $json['answer'] = array();
+            foreach($this->answer as $answer) {
+                $json['answer'][] = $answer->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<QuestionnaireResponseQuestion xmlns="http://hl7.org/fhir"></QuestionnaireResponseQuestion>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->linkId) $this->linkId->xmlSerialize(true, $sxe->addChild('linkId'));
+        if (null !== $this->text) $this->text->xmlSerialize(true, $sxe->addChild('text'));
+        if (0 < count($this->answer)) {
+            foreach($this->answer as $answer) {
+                $answer->xmlSerialize(true, $sxe->addChild('answer'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

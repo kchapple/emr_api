@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A reference to a document .
  */
-class FHIRDocumentReferenceContent extends FHIRBackboneElement
+class FHIRDocumentReferenceContent extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The document or url of the document along with critical metadata to prove content has integrity.
@@ -80,6 +81,11 @@ class FHIRDocumentReferenceContent extends FHIRBackboneElement
     public $format = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'DocumentReference.Content';
+
+    /**
      * The document or url of the document along with critical metadata to prove content has integrity.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRAttachment
      */
@@ -91,10 +97,12 @@ class FHIRDocumentReferenceContent extends FHIRBackboneElement
     /**
      * The document or url of the document along with critical metadata to prove content has integrity.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAttachment $attachment
+     * @return $this
      */
     public function setAttachment($attachment)
     {
         $this->attachment = $attachment;
+        return $this;
     }
 
     /**
@@ -109,10 +117,63 @@ class FHIRDocumentReferenceContent extends FHIRBackboneElement
     /**
      * An identifier of the document encoding, structure, and template that the document conforms to beyond the base format indicated in the mimeType.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding[] $format
+     * @return $this
      */
     public function addFormat($format)
     {
         $this->format[] = $format;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->attachment) $json['attachment'] = $this->attachment->jsonSerialize();
+        if (0 < count($this->format)) {
+            $json['format'] = array();
+            foreach($this->format as $format) {
+                $json['format'][] = $format->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<DocumentReferenceContent xmlns="http://hl7.org/fhir"></DocumentReferenceContent>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->attachment) $this->attachment->xmlSerialize(true, $sxe->addChild('attachment'));
+        if (0 < count($this->format)) {
+            foreach($this->format as $format) {
+                $format->xmlSerialize(true, $sxe->addChild('format'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

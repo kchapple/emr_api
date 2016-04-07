@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A manifest that defines a set of documents.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRDocumentManifest extends FHIRDomainResource
+class FHIRDocumentManifest extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * A single identifier that uniquely identifies this manifest. Principally used to refer to the manifest in non-FHIR contexts.
@@ -141,6 +142,11 @@ class FHIRDocumentManifest extends FHIRDomainResource
     public $related = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'DocumentManifest';
+
+    /**
      * A single identifier that uniquely identifies this manifest. Principally used to refer to the manifest in non-FHIR contexts.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier
      */
@@ -152,10 +158,12 @@ class FHIRDocumentManifest extends FHIRDomainResource
     /**
      * A single identifier that uniquely identifies this manifest. Principally used to refer to the manifest in non-FHIR contexts.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $masterIdentifier
+     * @return $this
      */
     public function setMasterIdentifier($masterIdentifier)
     {
         $this->masterIdentifier = $masterIdentifier;
+        return $this;
     }
 
     /**
@@ -170,10 +178,12 @@ class FHIRDocumentManifest extends FHIRDomainResource
     /**
      * Other identifiers associated with the document manifest, including version independent  identifiers.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -188,10 +198,12 @@ class FHIRDocumentManifest extends FHIRDomainResource
     /**
      * Who or what the set of documents is about. The documents can be about a person, (patient or healthcare practitioner), a device (i.e. machine) or even a group of subjects (such as a document about a herd of farm animals, or a set of patients that share a common exposure). If the documents cross more than one subject, then more than one subject is allowed here (unusual use case).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $subject
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -206,10 +218,12 @@ class FHIRDocumentManifest extends FHIRDomainResource
     /**
      * A patient, practitioner, or organization for which this set of documents is intended.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $recipient
+     * @return $this
      */
     public function addRecipient($recipient)
     {
         $this->recipient[] = $recipient;
+        return $this;
     }
 
     /**
@@ -224,10 +238,12 @@ class FHIRDocumentManifest extends FHIRDomainResource
     /**
      * Specifies the kind of this set of documents (e.g. Patient Summary, Discharge Summary, Prescription, etc.). The type of a set of documents may be the same as one of the documents in it - especially if there is only one - but it may be wider.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -242,10 +258,12 @@ class FHIRDocumentManifest extends FHIRDomainResource
     /**
      * Identifies who is responsible for creating the manifest, and adding  documents to it.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $author
+     * @return $this
      */
     public function addAuthor($author)
     {
         $this->author[] = $author;
+        return $this;
     }
 
     /**
@@ -260,10 +278,12 @@ class FHIRDocumentManifest extends FHIRDomainResource
     /**
      * When the document manifest was created for submission to the server (not necessarily the same thing as the actual resource last modified time, since it may be modified, replicated, etc.).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $created
+     * @return $this
      */
     public function setCreated($created)
     {
         $this->created = $created;
+        return $this;
     }
 
     /**
@@ -278,10 +298,12 @@ class FHIRDocumentManifest extends FHIRDomainResource
     /**
      * Identifies the source system, application, or software that produced the document manifest.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $source
+     * @return $this
      */
     public function setSource($source)
     {
         $this->source = $source;
+        return $this;
     }
 
     /**
@@ -296,10 +318,12 @@ class FHIRDocumentManifest extends FHIRDomainResource
     /**
      * The status of this document manifest.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -314,10 +338,12 @@ class FHIRDocumentManifest extends FHIRDomainResource
     /**
      * Human-readable description of the source document. This is sometimes known as the "title".
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -332,10 +358,12 @@ class FHIRDocumentManifest extends FHIRDomainResource
     /**
      * The list of Documents included in the manifest.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRDocumentManifest\FHIRDocumentManifestContent[] $content
+     * @return $this
      */
     public function addContent($content)
     {
         $this->content[] = $content;
+        return $this;
     }
 
     /**
@@ -350,10 +378,120 @@ class FHIRDocumentManifest extends FHIRDomainResource
     /**
      * Related identifiers or resources associated with the DocumentManifest.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRDocumentManifest\FHIRDocumentManifestRelated[] $related
+     * @return $this
      */
     public function addRelated($related)
     {
         $this->related[] = $related;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->masterIdentifier) $json['masterIdentifier'] = $this->masterIdentifier->jsonSerialize();
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->subject) $json['subject'] = $this->subject->jsonSerialize();
+        if (0 < count($this->recipient)) {
+            $json['recipient'] = array();
+            foreach($this->recipient as $recipient) {
+                $json['recipient'][] = $recipient->jsonSerialize();
+            }
+        }
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (0 < count($this->author)) {
+            $json['author'] = array();
+            foreach($this->author as $author) {
+                $json['author'][] = $author->jsonSerialize();
+            }
+        }
+        if (null !== $this->created) $json['created'] = $this->created->jsonSerialize();
+        if (null !== $this->source) $json['source'] = $this->source->jsonSerialize();
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (0 < count($this->content)) {
+            $json['content'] = array();
+            foreach($this->content as $content) {
+                $json['content'][] = $content->jsonSerialize();
+            }
+        }
+        if (0 < count($this->related)) {
+            $json['related'] = array();
+            foreach($this->related as $related) {
+                $json['related'][] = $related->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<DocumentManifest xmlns="http://hl7.org/fhir"></DocumentManifest>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->masterIdentifier) $this->masterIdentifier->xmlSerialize(true, $sxe->addChild('masterIdentifier'));
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->subject) $this->subject->xmlSerialize(true, $sxe->addChild('subject'));
+        if (0 < count($this->recipient)) {
+            foreach($this->recipient as $recipient) {
+                $recipient->xmlSerialize(true, $sxe->addChild('recipient'));
+            }
+        }
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (0 < count($this->author)) {
+            foreach($this->author as $author) {
+                $author->xmlSerialize(true, $sxe->addChild('author'));
+            }
+        }
+        if (null !== $this->created) $this->created->xmlSerialize(true, $sxe->addChild('created'));
+        if (null !== $this->source) $this->source->xmlSerialize(true, $sxe->addChild('source'));
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (0 < count($this->content)) {
+            foreach($this->content as $content) {
+                $content->xmlSerialize(true, $sxe->addChild('content'));
+            }
+        }
+        if (0 < count($this->related)) {
+            foreach($this->related as $related) {
+                $related->xmlSerialize(true, $sxe->addChild('related'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

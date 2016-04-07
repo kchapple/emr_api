@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A set of healthcare-related information that is assembled together into a single logical document that provides a single coherent statement of meaning, establishes its own context and that has clinical attestation with regard to who is making the statement. While a Composition defines the structure, it does not actually contain the content: rather the full content of a document is contained in a Bundle, of which the Composition is the first resource contained.
  */
-class FHIRCompositionAttester extends FHIRBackboneElement
+class FHIRCompositionAttester extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The type of attestation the authenticator offers.
@@ -86,6 +87,11 @@ class FHIRCompositionAttester extends FHIRBackboneElement
     public $party = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Composition.Attester';
+
+    /**
      * The type of attestation the authenticator offers.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCompositionAttestationMode[]
      */
@@ -97,10 +103,12 @@ class FHIRCompositionAttester extends FHIRBackboneElement
     /**
      * The type of attestation the authenticator offers.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCompositionAttestationMode[] $mode
+     * @return $this
      */
     public function addMode($mode)
     {
         $this->mode[] = $mode;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRCompositionAttester extends FHIRBackboneElement
     /**
      * When composition was attested by the party.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $time
+     * @return $this
      */
     public function setTime($time)
     {
         $this->time = $time;
+        return $this;
     }
 
     /**
@@ -133,10 +143,65 @@ class FHIRCompositionAttester extends FHIRBackboneElement
     /**
      * Who attested the composition in the specified way.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $party
+     * @return $this
      */
     public function setParty($party)
     {
         $this->party = $party;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->mode)) {
+            $json['mode'] = array();
+            foreach($this->mode as $mode) {
+                $json['mode'][] = $mode->jsonSerialize();
+            }
+        }
+        if (null !== $this->time) $json['time'] = $this->time->jsonSerialize();
+        if (null !== $this->party) $json['party'] = $this->party->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<CompositionAttester xmlns="http://hl7.org/fhir"></CompositionAttester>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->mode)) {
+            foreach($this->mode as $mode) {
+                $mode->xmlSerialize(true, $sxe->addChild('mode'));
+            }
+        }
+        if (null !== $this->time) $this->time->xmlSerialize(true, $sxe->addChild('time'));
+        if (null !== $this->party) $this->party->xmlSerialize(true, $sxe->addChild('party'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

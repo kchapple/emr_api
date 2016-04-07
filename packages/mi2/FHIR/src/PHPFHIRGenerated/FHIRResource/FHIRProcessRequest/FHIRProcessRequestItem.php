@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,17 +61,23 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * This resource provides the target, request and response, and action details for an action to be performed by the target on or about existing resources.
  */
-class FHIRProcessRequestItem extends FHIRBackboneElement
+class FHIRProcessRequestItem extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A service line number.
      * @var \PHPFHIRGenerated\FHIRElement\FHIRInteger
      */
     public $sequenceLinkId = null;
+
+    /**
+     * @var string
+     */
+    private $_fhirElementName = 'ProcessRequest.Item';
 
     /**
      * A service line number.
@@ -85,10 +91,52 @@ class FHIRProcessRequestItem extends FHIRBackboneElement
     /**
      * A service line number.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInteger $sequenceLinkId
+     * @return $this
      */
     public function setSequenceLinkId($sequenceLinkId)
     {
         $this->sequenceLinkId = $sequenceLinkId;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->sequenceLinkId) $json['sequenceLinkId'] = $this->sequenceLinkId->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ProcessRequestItem xmlns="http://hl7.org/fhir"></ProcessRequestItem>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->sequenceLinkId) $this->sequenceLinkId->xmlSerialize(true, $sxe->addChild('sequenceLinkId'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

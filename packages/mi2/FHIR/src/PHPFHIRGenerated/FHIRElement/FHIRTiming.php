@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Specifies an event that may occur multiple times. Timing schedules are used to record when things are expected or requested to occur. The most common usage is in dosage instructions for medications. They are also used when planning care of various kinds.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRTiming extends FHIRElement
+class FHIRTiming extends FHIRElement implements JsonSerializable
 {
     /**
      * Identifies specific times when the event occurs.
@@ -87,6 +88,11 @@ class FHIRTiming extends FHIRElement
     public $code = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Timing';
+
+    /**
      * Identifies specific times when the event occurs.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRDateTime[]
      */
@@ -98,10 +104,12 @@ class FHIRTiming extends FHIRElement
     /**
      * Identifies specific times when the event occurs.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime[] $event
+     * @return $this
      */
     public function addEvent($event)
     {
         $this->event[] = $event;
+        return $this;
     }
 
     /**
@@ -116,10 +124,12 @@ class FHIRTiming extends FHIRElement
     /**
      * A set of rules that describe when the event should occur.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRTiming\FHIRTimingRepeat $repeat
+     * @return $this
      */
     public function setRepeat($repeat)
     {
         $this->repeat = $repeat;
+        return $this;
     }
 
     /**
@@ -134,10 +144,65 @@ class FHIRTiming extends FHIRElement
     /**
      * A code for the timing pattern. Some codes such as BID are ubiquitous, but many institutions define their own additional codes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->event)) {
+            $json['event'] = array();
+            foreach($this->event as $event) {
+                $json['event'][] = $event->jsonSerialize();
+            }
+        }
+        if (null !== $this->repeat) $json['repeat'] = $this->repeat->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Timing xmlns="http://hl7.org/fhir"></Timing>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->event)) {
+            foreach($this->event as $event) {
+                $event->xmlSerialize(true, $sxe->addChild('event'));
+            }
+        }
+        if (null !== $this->repeat) $this->repeat->xmlSerialize(true, $sxe->addChild('repeat'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

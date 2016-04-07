@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * An assessment of the likely outcome(s) for a patient or other subject as well as the likelihood of each outcome.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRRiskAssessment extends FHIRDomainResource
+class FHIRRiskAssessment extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * The patient or group the risk assessment applies to.
@@ -129,6 +130,11 @@ class FHIRRiskAssessment extends FHIRDomainResource
     public $mitigation = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'RiskAssessment';
+
+    /**
      * The patient or group the risk assessment applies to.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRReference
      */
@@ -140,10 +146,12 @@ class FHIRRiskAssessment extends FHIRDomainResource
     /**
      * The patient or group the risk assessment applies to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $subject
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -158,10 +166,12 @@ class FHIRRiskAssessment extends FHIRDomainResource
     /**
      * The date (and possibly time) the risk assessment was performed.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $date
+     * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -176,10 +186,12 @@ class FHIRRiskAssessment extends FHIRDomainResource
     /**
      * For assessments or prognosis specific to a particular condition, indicates the condition being assessed.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $condition
+     * @return $this
      */
     public function setCondition($condition)
     {
         $this->condition = $condition;
+        return $this;
     }
 
     /**
@@ -194,10 +206,12 @@ class FHIRRiskAssessment extends FHIRDomainResource
     /**
      * The encounter where the assessment was performed.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $encounter
+     * @return $this
      */
     public function setEncounter($encounter)
     {
         $this->encounter = $encounter;
+        return $this;
     }
 
     /**
@@ -212,10 +226,12 @@ class FHIRRiskAssessment extends FHIRDomainResource
     /**
      * The provider or software application that performed the assessment.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $performer
+     * @return $this
      */
     public function setPerformer($performer)
     {
         $this->performer = $performer;
+        return $this;
     }
 
     /**
@@ -230,10 +246,12 @@ class FHIRRiskAssessment extends FHIRDomainResource
     /**
      * Business identifier assigned to the risk assessment.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $identifier
+     * @return $this
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -248,10 +266,12 @@ class FHIRRiskAssessment extends FHIRDomainResource
     /**
      * The algorithm, process or mechanism used to evaluate the risk.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $method
+     * @return $this
      */
     public function setMethod($method)
     {
         $this->method = $method;
+        return $this;
     }
 
     /**
@@ -266,10 +286,12 @@ class FHIRRiskAssessment extends FHIRDomainResource
     /**
      * Indicates the source data considered as part of the assessment (FamilyHistory, Observations, Procedures, Conditions, etc.).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $basis
+     * @return $this
      */
     public function addBasis($basis)
     {
         $this->basis[] = $basis;
+        return $this;
     }
 
     /**
@@ -284,10 +306,12 @@ class FHIRRiskAssessment extends FHIRDomainResource
     /**
      * Describes the expected outcome for the subject.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRRiskAssessment\FHIRRiskAssessmentPrediction[] $prediction
+     * @return $this
      */
     public function addPrediction($prediction)
     {
         $this->prediction[] = $prediction;
+        return $this;
     }
 
     /**
@@ -302,10 +326,89 @@ class FHIRRiskAssessment extends FHIRDomainResource
     /**
      * A description of the steps that might be taken to reduce the identified risk(s).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $mitigation
+     * @return $this
      */
     public function setMitigation($mitigation)
     {
         $this->mitigation = $mitigation;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->subject) $json['subject'] = $this->subject->jsonSerialize();
+        if (null !== $this->date) $json['date'] = $this->date->jsonSerialize();
+        if (null !== $this->condition) $json['condition'] = $this->condition->jsonSerialize();
+        if (null !== $this->encounter) $json['encounter'] = $this->encounter->jsonSerialize();
+        if (null !== $this->performer) $json['performer'] = $this->performer->jsonSerialize();
+        if (null !== $this->identifier) $json['identifier'] = $this->identifier->jsonSerialize();
+        if (null !== $this->method) $json['method'] = $this->method->jsonSerialize();
+        if (0 < count($this->basis)) {
+            $json['basis'] = array();
+            foreach($this->basis as $basis) {
+                $json['basis'][] = $basis->jsonSerialize();
+            }
+        }
+        if (0 < count($this->prediction)) {
+            $json['prediction'] = array();
+            foreach($this->prediction as $prediction) {
+                $json['prediction'][] = $prediction->jsonSerialize();
+            }
+        }
+        if (null !== $this->mitigation) $json['mitigation'] = $this->mitigation->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<RiskAssessment xmlns="http://hl7.org/fhir"></RiskAssessment>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->subject) $this->subject->xmlSerialize(true, $sxe->addChild('subject'));
+        if (null !== $this->date) $this->date->xmlSerialize(true, $sxe->addChild('date'));
+        if (null !== $this->condition) $this->condition->xmlSerialize(true, $sxe->addChild('condition'));
+        if (null !== $this->encounter) $this->encounter->xmlSerialize(true, $sxe->addChild('encounter'));
+        if (null !== $this->performer) $this->performer->xmlSerialize(true, $sxe->addChild('performer'));
+        if (null !== $this->identifier) $this->identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+        if (null !== $this->method) $this->method->xmlSerialize(true, $sxe->addChild('method'));
+        if (0 < count($this->basis)) {
+            foreach($this->basis as $basis) {
+                $basis->xmlSerialize(true, $sxe->addChild('basis'));
+            }
+        }
+        if (0 < count($this->prediction)) {
+            foreach($this->prediction as $prediction) {
+                $prediction->xmlSerialize(true, $sxe->addChild('prediction'));
+            }
+        }
+        if (null !== $this->mitigation) $this->mitigation->xmlSerialize(true, $sxe->addChild('mitigation'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

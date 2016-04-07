@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * The subscription resource is used to define a push based subscription from a server to another system. Once a subscription is registered with the server, the server checks every resource that is created or updated, and if the resource matches the given criteria, it sends a message on the defined "channel" so that another system is able to take an appropriate action.
  */
-class FHIRSubscriptionChannel extends FHIRBackboneElement
+class FHIRSubscriptionChannel extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The type of channel to send notifications on.
@@ -92,6 +93,11 @@ class FHIRSubscriptionChannel extends FHIRBackboneElement
     public $header = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Subscription.Channel';
+
+    /**
      * The type of channel to send notifications on.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRSubscriptionChannelType
      */
@@ -103,10 +109,12 @@ class FHIRSubscriptionChannel extends FHIRBackboneElement
     /**
      * The type of channel to send notifications on.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRSubscriptionChannelType $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRSubscriptionChannel extends FHIRBackboneElement
     /**
      * The uri that describes the actual end-point to send messages to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $endpoint
+     * @return $this
      */
     public function setEndpoint($endpoint)
     {
         $this->endpoint = $endpoint;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRSubscriptionChannel extends FHIRBackboneElement
     /**
      * The mime type to send the payload in - either application/xml+fhir, or application/json+fhir. If the mime type is blank, then there is no payload in the notification, just a notification.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $payload
+     * @return $this
      */
     public function setPayload($payload)
     {
         $this->payload = $payload;
+        return $this;
     }
 
     /**
@@ -157,10 +169,58 @@ class FHIRSubscriptionChannel extends FHIRBackboneElement
     /**
      * Additional headers / information to send as part of the notification.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $header
+     * @return $this
      */
     public function setHeader($header)
     {
         $this->header = $header;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->endpoint) $json['endpoint'] = $this->endpoint->jsonSerialize();
+        if (null !== $this->payload) $json['payload'] = $this->payload->jsonSerialize();
+        if (null !== $this->header) $json['header'] = $this->header->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<SubscriptionChannel xmlns="http://hl7.org/fhir"></SubscriptionChannel>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->endpoint) $this->endpoint->xmlSerialize(true, $sxe->addChild('endpoint'));
+        if (null !== $this->payload) $this->payload->xmlSerialize(true, $sxe->addChild('payload'));
+        if (null !== $this->header) $this->header->xmlSerialize(true, $sxe->addChild('header'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

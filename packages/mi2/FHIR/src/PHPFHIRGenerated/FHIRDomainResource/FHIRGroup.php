@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Represents a defined collection of entities that may be discussed or acted upon collectively but which are not expected to act collectively and are not formally or legally recognized; i.e. a collection of entities that isn't an Organization.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRGroup extends FHIRDomainResource
+class FHIRGroup extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * A unique business identifier for this group.
@@ -117,6 +118,11 @@ class FHIRGroup extends FHIRDomainResource
     public $member = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Group';
+
+    /**
      * A unique business identifier for this group.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -128,10 +134,12 @@ class FHIRGroup extends FHIRDomainResource
     /**
      * A unique business identifier for this group.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -146,10 +154,12 @@ class FHIRGroup extends FHIRDomainResource
     /**
      * Identifies the broad classification of the kind of resources the group includes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRGroupType $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -164,10 +174,12 @@ class FHIRGroup extends FHIRDomainResource
     /**
      * If true, indicates that the resource refers to a specific group of real individuals.  If false, the group defines a set of intended individuals.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $actual
+     * @return $this
      */
     public function setActual($actual)
     {
         $this->actual = $actual;
+        return $this;
     }
 
     /**
@@ -182,10 +194,12 @@ class FHIRGroup extends FHIRDomainResource
     /**
      * Provides a specific type of resource the group includes; e.g. "cow", "syringe", etc.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -200,10 +214,12 @@ class FHIRGroup extends FHIRDomainResource
     /**
      * A label assigned to the group for human identification and communication.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -218,10 +234,12 @@ class FHIRGroup extends FHIRDomainResource
     /**
      * A count of the number of resource instances that are part of the group.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUnsignedInt $quantity
+     * @return $this
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+        return $this;
     }
 
     /**
@@ -236,10 +254,12 @@ class FHIRGroup extends FHIRDomainResource
     /**
      * Identifies the traits shared by members of the group.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRGroup\FHIRGroupCharacteristic[] $characteristic
+     * @return $this
      */
     public function addCharacteristic($characteristic)
     {
         $this->characteristic[] = $characteristic;
+        return $this;
     }
 
     /**
@@ -254,10 +274,94 @@ class FHIRGroup extends FHIRDomainResource
     /**
      * Identifies the resource instances that are members of the group.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRGroup\FHIRGroupMember[] $member
+     * @return $this
      */
     public function addMember($member)
     {
         $this->member[] = $member;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->actual) $json['actual'] = $this->actual->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->quantity) $json['quantity'] = $this->quantity->jsonSerialize();
+        if (0 < count($this->characteristic)) {
+            $json['characteristic'] = array();
+            foreach($this->characteristic as $characteristic) {
+                $json['characteristic'][] = $characteristic->jsonSerialize();
+            }
+        }
+        if (0 < count($this->member)) {
+            $json['member'] = array();
+            foreach($this->member as $member) {
+                $json['member'][] = $member->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Group xmlns="http://hl7.org/fhir"></Group>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->actual) $this->actual->xmlSerialize(true, $sxe->addChild('actual'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->quantity) $this->quantity->xmlSerialize(true, $sxe->addChild('quantity'));
+        if (0 < count($this->characteristic)) {
+            foreach($this->characteristic as $characteristic) {
+                $characteristic->xmlSerialize(true, $sxe->addChild('characteristic'));
+            }
+        }
+        if (0 < count($this->member)) {
+            foreach($this->member as $member) {
+                $member->xmlSerialize(true, $sxe->addChild('member'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

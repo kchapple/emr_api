@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * The header for a message exchange that is either requesting or responding to an action.  The reference(s) that are the subject of the action as well as other information related to the action are typically transmitted in a bundle in which the MessageHeader resource instance is the first resource in the bundle.
  */
-class FHIRMessageHeaderDestination extends FHIRBackboneElement
+class FHIRMessageHeaderDestination extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Human-readable name for the target system.
@@ -86,6 +87,11 @@ class FHIRMessageHeaderDestination extends FHIRBackboneElement
     public $endpoint = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'MessageHeader.Destination';
+
+    /**
      * Human-readable name for the target system.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -97,10 +103,12 @@ class FHIRMessageHeaderDestination extends FHIRBackboneElement
     /**
      * Human-readable name for the target system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRMessageHeaderDestination extends FHIRBackboneElement
     /**
      * Identifies the target end system in situations where the initial message transmission is to an intermediary system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $target
+     * @return $this
      */
     public function setTarget($target)
     {
         $this->target = $target;
+        return $this;
     }
 
     /**
@@ -133,10 +143,56 @@ class FHIRMessageHeaderDestination extends FHIRBackboneElement
     /**
      * Indicates where the message should be routed to.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $endpoint
+     * @return $this
      */
     public function setEndpoint($endpoint)
     {
         $this->endpoint = $endpoint;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (null !== $this->target) $json['target'] = $this->target->jsonSerialize();
+        if (null !== $this->endpoint) $json['endpoint'] = $this->endpoint->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<MessageHeaderDestination xmlns="http://hl7.org/fhir"></MessageHeaderDestination>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (null !== $this->target) $this->target->xmlSerialize(true, $sxe->addChild('target'));
+        if (null !== $this->endpoint) $this->endpoint->xmlSerialize(true, $sxe->addChild('endpoint'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

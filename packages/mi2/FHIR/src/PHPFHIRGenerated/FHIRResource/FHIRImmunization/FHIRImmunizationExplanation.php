@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Describes the event of a patient being administered a vaccination or a record of a vaccination as reported by a patient, a clinician or another party and may include vaccine reaction information and what vaccination protocol was followed.
  */
-class FHIRImmunizationExplanation extends FHIRBackboneElement
+class FHIRImmunizationExplanation extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Reasons why a vaccine was administered.
@@ -80,6 +81,11 @@ class FHIRImmunizationExplanation extends FHIRBackboneElement
     public $reasonNotGiven = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Immunization.Explanation';
+
+    /**
      * Reasons why a vaccine was administered.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[]
      */
@@ -91,10 +97,12 @@ class FHIRImmunizationExplanation extends FHIRBackboneElement
     /**
      * Reasons why a vaccine was administered.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $reason
+     * @return $this
      */
     public function addReason($reason)
     {
         $this->reason[] = $reason;
+        return $this;
     }
 
     /**
@@ -109,10 +117,72 @@ class FHIRImmunizationExplanation extends FHIRBackboneElement
     /**
      * Reason why a vaccine was not administered.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $reasonNotGiven
+     * @return $this
      */
     public function addReasonNotGiven($reasonNotGiven)
     {
         $this->reasonNotGiven[] = $reasonNotGiven;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->reason)) {
+            $json['reason'] = array();
+            foreach($this->reason as $reason) {
+                $json['reason'][] = $reason->jsonSerialize();
+            }
+        }
+        if (0 < count($this->reasonNotGiven)) {
+            $json['reasonNotGiven'] = array();
+            foreach($this->reasonNotGiven as $reasonNotGiven) {
+                $json['reasonNotGiven'][] = $reasonNotGiven->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ImmunizationExplanation xmlns="http://hl7.org/fhir"></ImmunizationExplanation>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->reason)) {
+            foreach($this->reason as $reason) {
+                $reason->xmlSerialize(true, $sxe->addChild('reason'));
+            }
+        }
+        if (0 < count($this->reasonNotGiven)) {
+            foreach($this->reasonNotGiven as $reasonNotGiven) {
+                $reasonNotGiven->xmlSerialize(true, $sxe->addChild('reasonNotGiven'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

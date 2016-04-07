@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A record of an event made for purposes of maintaining a security log. Typical uses include detection of intrusion attempts and monitoring for inappropriate usage.
  */
-class FHIRAuditEventSource extends FHIRBackboneElement
+class FHIRAuditEventSource extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * Logical source location within the healthcare enterprise network.  For example, a hospital or other provider location within a multi-entity provider group.
@@ -86,6 +87,11 @@ class FHIRAuditEventSource extends FHIRBackboneElement
     public $type = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'AuditEvent.Source';
+
+    /**
      * Logical source location within the healthcare enterprise network.  For example, a hospital or other provider location within a multi-entity provider group.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -97,10 +103,12 @@ class FHIRAuditEventSource extends FHIRBackboneElement
     /**
      * Logical source location within the healthcare enterprise network.  For example, a hospital or other provider location within a multi-entity provider group.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $site
+     * @return $this
      */
     public function setSite($site)
     {
         $this->site = $site;
+        return $this;
     }
 
     /**
@@ -115,10 +123,12 @@ class FHIRAuditEventSource extends FHIRBackboneElement
     /**
      * Identifier of the source where the event was detected.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier $identifier
+     * @return $this
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -133,10 +143,65 @@ class FHIRAuditEventSource extends FHIRBackboneElement
     /**
      * Code specifying the type of source where event originated.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding[] $type
+     * @return $this
      */
     public function addType($type)
     {
         $this->type[] = $type;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->site) $json['site'] = $this->site->jsonSerialize();
+        if (null !== $this->identifier) $json['identifier'] = $this->identifier->jsonSerialize();
+        if (0 < count($this->type)) {
+            $json['type'] = array();
+            foreach($this->type as $type) {
+                $json['type'][] = $type->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<AuditEventSource xmlns="http://hl7.org/fhir"></AuditEventSource>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->site) $this->site->xmlSerialize(true, $sxe->addChild('site'));
+        if (null !== $this->identifier) $this->identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+        if (0 < count($this->type)) {
+            foreach($this->type as $type) {
+                $type->xmlSerialize(true, $sxe->addChild('type'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

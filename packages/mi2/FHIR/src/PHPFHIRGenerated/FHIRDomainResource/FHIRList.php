@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A set of information summarized from a list of other resources.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRList extends FHIRDomainResource
+class FHIRList extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Identifier for the List assigned for business purposes outside the context of FHIR.
@@ -147,6 +148,11 @@ class FHIRList extends FHIRDomainResource
     public $emptyReason = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'List';
+
+    /**
      * Identifier for the List assigned for business purposes outside the context of FHIR.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -158,10 +164,12 @@ class FHIRList extends FHIRDomainResource
     /**
      * Identifier for the List assigned for business purposes outside the context of FHIR.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -176,10 +184,12 @@ class FHIRList extends FHIRDomainResource
     /**
      * A label for the list assigned by the author.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $title
+     * @return $this
      */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -194,10 +204,12 @@ class FHIRList extends FHIRDomainResource
     /**
      * This code defines the purpose of the list - why it was created.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -212,10 +224,12 @@ class FHIRList extends FHIRDomainResource
     /**
      * The common subject (or patient) of the resources that are in the list, if there is one.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $subject
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -230,10 +244,12 @@ class FHIRList extends FHIRDomainResource
     /**
      * The entity responsible for deciding what the contents of the list were. Where the list was created by a human, this is the same as the author of the list.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $source
+     * @return $this
      */
     public function setSource($source)
     {
         $this->source = $source;
+        return $this;
     }
 
     /**
@@ -248,10 +264,12 @@ class FHIRList extends FHIRDomainResource
     /**
      * The encounter that is the context in which this list was created.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $encounter
+     * @return $this
      */
     public function setEncounter($encounter)
     {
         $this->encounter = $encounter;
+        return $this;
     }
 
     /**
@@ -266,10 +284,12 @@ class FHIRList extends FHIRDomainResource
     /**
      * Indicates the current state of this list.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRListStatus $status
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -284,10 +304,12 @@ class FHIRList extends FHIRDomainResource
     /**
      * The date that the list was prepared.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $date
+     * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -302,10 +324,12 @@ class FHIRList extends FHIRDomainResource
     /**
      * What order applies to the items in the list.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $orderedBy
+     * @return $this
      */
     public function setOrderedBy($orderedBy)
     {
         $this->orderedBy = $orderedBy;
+        return $this;
     }
 
     /**
@@ -320,10 +344,12 @@ class FHIRList extends FHIRDomainResource
     /**
      * How this list was prepared - whether it is a working list that is suitable for being maintained on an ongoing basis, or if it represents a snapshot of a list of items from another source, or whether it is a prepared list where items may be marked as added, modified or deleted.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRListMode $mode
+     * @return $this
      */
     public function setMode($mode)
     {
         $this->mode = $mode;
+        return $this;
     }
 
     /**
@@ -338,10 +364,12 @@ class FHIRList extends FHIRDomainResource
     /**
      * Comments that apply to the overall list.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $note
+     * @return $this
      */
     public function setNote($note)
     {
         $this->note = $note;
+        return $this;
     }
 
     /**
@@ -356,10 +384,12 @@ class FHIRList extends FHIRDomainResource
     /**
      * Entries in this list.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRList\FHIRListEntry[] $entry
+     * @return $this
      */
     public function addEntry($entry)
     {
         $this->entry[] = $entry;
+        return $this;
     }
 
     /**
@@ -374,10 +404,95 @@ class FHIRList extends FHIRDomainResource
     /**
      * If the list is empty, why the list is empty.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $emptyReason
+     * @return $this
      */
     public function setEmptyReason($emptyReason)
     {
         $this->emptyReason = $emptyReason;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->title) $json['title'] = $this->title->jsonSerialize();
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->subject) $json['subject'] = $this->subject->jsonSerialize();
+        if (null !== $this->source) $json['source'] = $this->source->jsonSerialize();
+        if (null !== $this->encounter) $json['encounter'] = $this->encounter->jsonSerialize();
+        if (null !== $this->status) $json['status'] = $this->status->jsonSerialize();
+        if (null !== $this->date) $json['date'] = $this->date->jsonSerialize();
+        if (null !== $this->orderedBy) $json['orderedBy'] = $this->orderedBy->jsonSerialize();
+        if (null !== $this->mode) $json['mode'] = $this->mode->jsonSerialize();
+        if (null !== $this->note) $json['note'] = $this->note->jsonSerialize();
+        if (0 < count($this->entry)) {
+            $json['entry'] = array();
+            foreach($this->entry as $entry) {
+                $json['entry'][] = $entry->jsonSerialize();
+            }
+        }
+        if (null !== $this->emptyReason) $json['emptyReason'] = $this->emptyReason->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<List xmlns="http://hl7.org/fhir"></List>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->title) $this->title->xmlSerialize(true, $sxe->addChild('title'));
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->subject) $this->subject->xmlSerialize(true, $sxe->addChild('subject'));
+        if (null !== $this->source) $this->source->xmlSerialize(true, $sxe->addChild('source'));
+        if (null !== $this->encounter) $this->encounter->xmlSerialize(true, $sxe->addChild('encounter'));
+        if (null !== $this->status) $this->status->xmlSerialize(true, $sxe->addChild('status'));
+        if (null !== $this->date) $this->date->xmlSerialize(true, $sxe->addChild('date'));
+        if (null !== $this->orderedBy) $this->orderedBy->xmlSerialize(true, $sxe->addChild('orderedBy'));
+        if (null !== $this->mode) $this->mode->xmlSerialize(true, $sxe->addChild('mode'));
+        if (null !== $this->note) $this->note->xmlSerialize(true, $sxe->addChild('note'));
+        if (0 < count($this->entry)) {
+            foreach($this->entry as $entry) {
+                $entry->xmlSerialize(true, $sxe->addChild('entry'));
+            }
+        }
+        if (null !== $this->emptyReason) $this->emptyReason->xmlSerialize(true, $sxe->addChild('emptyReason'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

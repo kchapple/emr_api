@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A homogeneous material with a definite composition.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRSubstance extends FHIRDomainResource
+class FHIRSubstance extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Unique identifier for the substance.
@@ -105,6 +106,11 @@ class FHIRSubstance extends FHIRDomainResource
     public $ingredient = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Substance';
+
+    /**
      * Unique identifier for the substance.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -116,10 +122,12 @@ class FHIRSubstance extends FHIRDomainResource
     /**
      * Unique identifier for the substance.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -134,10 +142,12 @@ class FHIRSubstance extends FHIRDomainResource
     /**
      * A code that classifies the general type of substance.  This is used  for searching, sorting and display purposes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $category
+     * @return $this
      */
     public function addCategory($category)
     {
         $this->category[] = $category;
+        return $this;
     }
 
     /**
@@ -152,10 +162,12 @@ class FHIRSubstance extends FHIRDomainResource
     /**
      * A code (or set of codes) that identify this substance.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $code
+     * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
@@ -170,10 +182,12 @@ class FHIRSubstance extends FHIRDomainResource
     /**
      * A description of the substance - its appearance, handling requirements, and other usage notes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -188,10 +202,12 @@ class FHIRSubstance extends FHIRDomainResource
     /**
      * Substance may be used to describe a kind of substance, or a specific package/container of the substance: an instance.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRSubstance\FHIRSubstanceInstance[] $instance
+     * @return $this
      */
     public function addInstance($instance)
     {
         $this->instance[] = $instance;
+        return $this;
     }
 
     /**
@@ -206,10 +222,99 @@ class FHIRSubstance extends FHIRDomainResource
     /**
      * A substance can be composed of other substances.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRSubstance\FHIRSubstanceIngredient[] $ingredient
+     * @return $this
      */
     public function addIngredient($ingredient)
     {
         $this->ingredient[] = $ingredient;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (0 < count($this->category)) {
+            $json['category'] = array();
+            foreach($this->category as $category) {
+                $json['category'][] = $category->jsonSerialize();
+            }
+        }
+        if (null !== $this->code) $json['code'] = $this->code->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (0 < count($this->instance)) {
+            $json['instance'] = array();
+            foreach($this->instance as $instance) {
+                $json['instance'][] = $instance->jsonSerialize();
+            }
+        }
+        if (0 < count($this->ingredient)) {
+            $json['ingredient'] = array();
+            foreach($this->ingredient as $ingredient) {
+                $json['ingredient'][] = $ingredient->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Substance xmlns="http://hl7.org/fhir"></Substance>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (0 < count($this->category)) {
+            foreach($this->category as $category) {
+                $category->xmlSerialize(true, $sxe->addChild('category'));
+            }
+        }
+        if (null !== $this->code) $this->code->xmlSerialize(true, $sxe->addChild('code'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (0 < count($this->instance)) {
+            foreach($this->instance as $instance) {
+                $instance->xmlSerialize(true, $sxe->addChild('instance'));
+            }
+        }
+        if (0 < count($this->ingredient)) {
+            foreach($this->ingredient as $ingredient) {
+                $ingredient->xmlSerialize(true, $sxe->addChild('ingredient'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

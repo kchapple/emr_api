@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action.  Includes companies, institutions, corporations, departments, community groups, healthcare practice groups, etc.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIROrganization extends FHIRDomainResource
+class FHIROrganization extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Identifier for the organization that is used to identify the organization across multiple disparate systems.
@@ -117,6 +118,11 @@ class FHIROrganization extends FHIRDomainResource
     public $contact = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Organization';
+
+    /**
      * Identifier for the organization that is used to identify the organization across multiple disparate systems.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -128,10 +134,12 @@ class FHIROrganization extends FHIRDomainResource
     /**
      * Identifier for the organization that is used to identify the organization across multiple disparate systems.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -146,10 +154,12 @@ class FHIROrganization extends FHIRDomainResource
     /**
      * Whether the organization's record is still in active use.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $active
+     * @return $this
      */
     public function setActive($active)
     {
         $this->active = $active;
+        return $this;
     }
 
     /**
@@ -164,10 +174,12 @@ class FHIROrganization extends FHIRDomainResource
     /**
      * The kind of organization that this is.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -182,10 +194,12 @@ class FHIROrganization extends FHIRDomainResource
     /**
      * A name associated with the organization.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -200,10 +214,12 @@ class FHIROrganization extends FHIRDomainResource
     /**
      * A contact detail for the organization.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRContactPoint[] $telecom
+     * @return $this
      */
     public function addTelecom($telecom)
     {
         $this->telecom[] = $telecom;
+        return $this;
     }
 
     /**
@@ -218,10 +234,12 @@ class FHIROrganization extends FHIRDomainResource
     /**
      * An address for the organization.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAddress[] $address
+     * @return $this
      */
     public function addAddress($address)
     {
         $this->address[] = $address;
+        return $this;
     }
 
     /**
@@ -236,10 +254,12 @@ class FHIROrganization extends FHIRDomainResource
     /**
      * The organization of which this organization forms a part.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $partOf
+     * @return $this
      */
     public function setPartOf($partOf)
     {
         $this->partOf = $partOf;
+        return $this;
     }
 
     /**
@@ -254,10 +274,103 @@ class FHIROrganization extends FHIRDomainResource
     /**
      * Contact for the organization for a certain purpose.
      * @param \PHPFHIRGenerated\FHIRResource\FHIROrganization\FHIROrganizationContact[] $contact
+     * @return $this
      */
     public function addContact($contact)
     {
         $this->contact[] = $contact;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->active) $json['active'] = $this->active->jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (0 < count($this->telecom)) {
+            $json['telecom'] = array();
+            foreach($this->telecom as $telecom) {
+                $json['telecom'][] = $telecom->jsonSerialize();
+            }
+        }
+        if (0 < count($this->address)) {
+            $json['address'] = array();
+            foreach($this->address as $address) {
+                $json['address'][] = $address->jsonSerialize();
+            }
+        }
+        if (null !== $this->partOf) $json['partOf'] = $this->partOf->jsonSerialize();
+        if (0 < count($this->contact)) {
+            $json['contact'] = array();
+            foreach($this->contact as $contact) {
+                $json['contact'][] = $contact->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Organization xmlns="http://hl7.org/fhir"></Organization>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->active) $this->active->xmlSerialize(true, $sxe->addChild('active'));
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (0 < count($this->telecom)) {
+            foreach($this->telecom as $telecom) {
+                $telecom->xmlSerialize(true, $sxe->addChild('telecom'));
+            }
+        }
+        if (0 < count($this->address)) {
+            foreach($this->address as $address) {
+                $address->xmlSerialize(true, $sxe->addChild('address'));
+            }
+        }
+        if (null !== $this->partOf) $this->partOf->xmlSerialize(true, $sxe->addChild('partOf'));
+        if (0 < count($this->contact)) {
+            foreach($this->contact as $contact) {
+                $contact->xmlSerialize(true, $sxe->addChild('contact'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

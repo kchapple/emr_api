@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A set of information summarized from a list of other resources.
  */
-class FHIRListEntry extends FHIRBackboneElement
+class FHIRListEntry extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The flag allows the system constructing the list to indicate the role and significance of the item in the list.
@@ -92,6 +93,11 @@ class FHIRListEntry extends FHIRBackboneElement
     public $item = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'List.Entry';
+
+    /**
      * The flag allows the system constructing the list to indicate the role and significance of the item in the list.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -103,10 +109,12 @@ class FHIRListEntry extends FHIRBackboneElement
     /**
      * The flag allows the system constructing the list to indicate the role and significance of the item in the list.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $flag
+     * @return $this
      */
     public function setFlag($flag)
     {
         $this->flag = $flag;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRListEntry extends FHIRBackboneElement
     /**
      * True if this item is marked as deleted in the list.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $deleted
+     * @return $this
      */
     public function setDeleted($deleted)
     {
         $this->deleted = $deleted;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRListEntry extends FHIRBackboneElement
     /**
      * When this item was added to the list.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $date
+     * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -157,10 +169,58 @@ class FHIRListEntry extends FHIRBackboneElement
     /**
      * A reference to the actual resource from which data was derived.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $item
+     * @return $this
      */
     public function setItem($item)
     {
         $this->item = $item;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->flag) $json['flag'] = $this->flag->jsonSerialize();
+        if (null !== $this->deleted) $json['deleted'] = $this->deleted->jsonSerialize();
+        if (null !== $this->date) $json['date'] = $this->date->jsonSerialize();
+        if (null !== $this->item) $json['item'] = $this->item->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ListEntry xmlns="http://hl7.org/fhir"></ListEntry>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->flag) $this->flag->xmlSerialize(true, $sxe->addChild('flag'));
+        if (null !== $this->deleted) $this->deleted->xmlSerialize(true, $sxe->addChild('deleted'));
+        if (null !== $this->date) $this->date->xmlSerialize(true, $sxe->addChild('date'));
+        if (null !== $this->item) $this->item->xmlSerialize(true, $sxe->addChild('item'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Representation of the content produced in a DICOM imaging study. A study comprises a set of series, each of which includes a set of Service-Object Pair Instances (SOP Instances - images or other data) acquired or produced in a common context.  A series is of only one modality (e.g. X-ray, CT, MR, ultrasound), but a study may have multiple series of different modalities.
  */
-class FHIRImagingStudySeries extends FHIRBackboneElement
+class FHIRImagingStudySeries extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The Numeric identifier of this series in the study.
@@ -134,6 +135,11 @@ class FHIRImagingStudySeries extends FHIRBackboneElement
     public $instance = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ImagingStudy.Series';
+
+    /**
      * The Numeric identifier of this series in the study.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRUnsignedInt
      */
@@ -145,10 +151,12 @@ class FHIRImagingStudySeries extends FHIRBackboneElement
     /**
      * The Numeric identifier of this series in the study.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUnsignedInt $number
+     * @return $this
      */
     public function setNumber($number)
     {
         $this->number = $number;
+        return $this;
     }
 
     /**
@@ -163,10 +171,12 @@ class FHIRImagingStudySeries extends FHIRBackboneElement
     /**
      * The modality of this series sequence.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $modality
+     * @return $this
      */
     public function setModality($modality)
     {
         $this->modality = $modality;
+        return $this;
     }
 
     /**
@@ -181,10 +191,12 @@ class FHIRImagingStudySeries extends FHIRBackboneElement
     /**
      * Formal identifier for this series.
      * @param \PHPFHIRGenerated\FHIRElement\FHIROid $uid
+     * @return $this
      */
     public function setUid($uid)
     {
         $this->uid = $uid;
+        return $this;
     }
 
     /**
@@ -199,10 +211,12 @@ class FHIRImagingStudySeries extends FHIRBackboneElement
     /**
      * A description of the series.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -217,10 +231,12 @@ class FHIRImagingStudySeries extends FHIRBackboneElement
     /**
      * Number of SOP Instances in Series.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUnsignedInt $numberOfInstances
+     * @return $this
      */
     public function setNumberOfInstances($numberOfInstances)
     {
         $this->numberOfInstances = $numberOfInstances;
+        return $this;
     }
 
     /**
@@ -235,10 +251,12 @@ class FHIRImagingStudySeries extends FHIRBackboneElement
     /**
      * Availability of series (online, offline or nearline).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInstanceAvailability $availability
+     * @return $this
      */
     public function setAvailability($availability)
     {
         $this->availability = $availability;
+        return $this;
     }
 
     /**
@@ -253,10 +271,12 @@ class FHIRImagingStudySeries extends FHIRBackboneElement
     /**
      * URI/URL specifying the location of the referenced series using WADO-RS.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $url
+     * @return $this
      */
     public function setUrl($url)
     {
         $this->url = $url;
+        return $this;
     }
 
     /**
@@ -271,10 +291,12 @@ class FHIRImagingStudySeries extends FHIRBackboneElement
     /**
      * Body part examined. See  DICOM Part 16 Annex L for the mapping from DICOM to Snomed CT.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $bodySite
+     * @return $this
      */
     public function setBodySite($bodySite)
     {
         $this->bodySite = $bodySite;
+        return $this;
     }
 
     /**
@@ -289,10 +311,12 @@ class FHIRImagingStudySeries extends FHIRBackboneElement
     /**
      * Laterality if body site is paired anatomic structure and laterality is not pre-coordinated in body site code.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding $laterality
+     * @return $this
      */
     public function setLaterality($laterality)
     {
         $this->laterality = $laterality;
+        return $this;
     }
 
     /**
@@ -307,10 +331,12 @@ class FHIRImagingStudySeries extends FHIRBackboneElement
     /**
      * The date and time the series was started.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $started
+     * @return $this
      */
     public function setStarted($started)
     {
         $this->started = $started;
+        return $this;
     }
 
     /**
@@ -325,10 +351,81 @@ class FHIRImagingStudySeries extends FHIRBackboneElement
     /**
      * A single SOP Instance within the series, e.g. an image, or presentation state.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRImagingStudy\FHIRImagingStudyInstance[] $instance
+     * @return $this
      */
     public function addInstance($instance)
     {
         $this->instance[] = $instance;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->number) $json['number'] = $this->number->jsonSerialize();
+        if (null !== $this->modality) $json['modality'] = $this->modality->jsonSerialize();
+        if (null !== $this->uid) $json['uid'] = $this->uid->jsonSerialize();
+        if (null !== $this->description) $json['description'] = $this->description->jsonSerialize();
+        if (null !== $this->numberOfInstances) $json['numberOfInstances'] = $this->numberOfInstances->jsonSerialize();
+        if (null !== $this->availability) $json['availability'] = $this->availability->jsonSerialize();
+        if (null !== $this->url) $json['url'] = $this->url->jsonSerialize();
+        if (null !== $this->bodySite) $json['bodySite'] = $this->bodySite->jsonSerialize();
+        if (null !== $this->laterality) $json['laterality'] = $this->laterality->jsonSerialize();
+        if (null !== $this->started) $json['started'] = $this->started->jsonSerialize();
+        if (0 < count($this->instance)) {
+            $json['instance'] = array();
+            foreach($this->instance as $instance) {
+                $json['instance'][] = $instance->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ImagingStudySeries xmlns="http://hl7.org/fhir"></ImagingStudySeries>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->number) $this->number->xmlSerialize(true, $sxe->addChild('number'));
+        if (null !== $this->modality) $this->modality->xmlSerialize(true, $sxe->addChild('modality'));
+        if (null !== $this->uid) $this->uid->xmlSerialize(true, $sxe->addChild('uid'));
+        if (null !== $this->description) $this->description->xmlSerialize(true, $sxe->addChild('description'));
+        if (null !== $this->numberOfInstances) $this->numberOfInstances->xmlSerialize(true, $sxe->addChild('numberOfInstances'));
+        if (null !== $this->availability) $this->availability->xmlSerialize(true, $sxe->addChild('availability'));
+        if (null !== $this->url) $this->url->xmlSerialize(true, $sxe->addChild('url'));
+        if (null !== $this->bodySite) $this->bodySite->xmlSerialize(true, $sxe->addChild('bodySite'));
+        if (null !== $this->laterality) $this->laterality->xmlSerialize(true, $sxe->addChild('laterality'));
+        if (null !== $this->started) $this->started->xmlSerialize(true, $sxe->addChild('started'));
+        if (0 < count($this->instance)) {
+            foreach($this->instance as $instance) {
+                $instance->xmlSerialize(true, $sxe->addChild('instance'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

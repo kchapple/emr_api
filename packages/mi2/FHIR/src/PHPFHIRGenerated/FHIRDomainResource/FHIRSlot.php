@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A slot of time on a schedule that may be available for booking appointments.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRSlot extends FHIRDomainResource
+class FHIRSlot extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * External Ids for this item.
@@ -117,6 +118,11 @@ class FHIRSlot extends FHIRDomainResource
     public $comment = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Slot';
+
+    /**
      * External Ids for this item.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[]
      */
@@ -128,10 +134,12 @@ class FHIRSlot extends FHIRDomainResource
     /**
      * External Ids for this item.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRIdentifier[] $identifier
+     * @return $this
      */
     public function addIdentifier($identifier)
     {
         $this->identifier[] = $identifier;
+        return $this;
     }
 
     /**
@@ -146,10 +154,12 @@ class FHIRSlot extends FHIRDomainResource
     /**
      * The type of appointments that can be booked into this slot (ideally this would be an identifiable service - which is at a location, rather than the location itself). If provided then this overrides the value provided on the availability resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -164,10 +174,12 @@ class FHIRSlot extends FHIRDomainResource
     /**
      * The schedule resource that this slot defines an interval of status information.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $schedule
+     * @return $this
      */
     public function setSchedule($schedule)
     {
         $this->schedule = $schedule;
+        return $this;
     }
 
     /**
@@ -182,10 +194,12 @@ class FHIRSlot extends FHIRDomainResource
     /**
      * busy | free | busy-unavailable | busy-tentative.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRSlotStatus $freeBusyType
+     * @return $this
      */
     public function setFreeBusyType($freeBusyType)
     {
         $this->freeBusyType = $freeBusyType;
+        return $this;
     }
 
     /**
@@ -200,10 +214,12 @@ class FHIRSlot extends FHIRDomainResource
     /**
      * Date/Time that the slot is to begin.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInstant $start
+     * @return $this
      */
     public function setStart($start)
     {
         $this->start = $start;
+        return $this;
     }
 
     /**
@@ -218,10 +234,12 @@ class FHIRSlot extends FHIRDomainResource
     /**
      * Date/Time that the slot is to conclude.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInstant $end
+     * @return $this
      */
     public function setEnd($end)
     {
         $this->end = $end;
+        return $this;
     }
 
     /**
@@ -236,10 +254,12 @@ class FHIRSlot extends FHIRDomainResource
     /**
      * This slot has already been overbooked, appointments are unlikely to be accepted for this time.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $overbooked
+     * @return $this
      */
     public function setOverbooked($overbooked)
     {
         $this->overbooked = $overbooked;
+        return $this;
     }
 
     /**
@@ -254,10 +274,76 @@ class FHIRSlot extends FHIRDomainResource
     /**
      * Comments on the slot to describe any extended information. Such as custom constraints on the slot.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $comment
+     * @return $this
      */
     public function setComment($comment)
     {
         $this->comment = $comment;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (0 < count($this->identifier)) {
+            $json['identifier'] = array();
+            foreach($this->identifier as $identifier) {
+                $json['identifier'][] = $identifier->jsonSerialize();
+            }
+        }
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->schedule) $json['schedule'] = $this->schedule->jsonSerialize();
+        if (null !== $this->freeBusyType) $json['freeBusyType'] = $this->freeBusyType->jsonSerialize();
+        if (null !== $this->start) $json['start'] = $this->start->jsonSerialize();
+        if (null !== $this->end) $json['end'] = $this->end->jsonSerialize();
+        if (null !== $this->overbooked) $json['overbooked'] = $this->overbooked->jsonSerialize();
+        if (null !== $this->comment) $json['comment'] = $this->comment->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Slot xmlns="http://hl7.org/fhir"></Slot>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->identifier)) {
+            foreach($this->identifier as $identifier) {
+                $identifier->xmlSerialize(true, $sxe->addChild('identifier'));
+            }
+        }
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->schedule) $this->schedule->xmlSerialize(true, $sxe->addChild('schedule'));
+        if (null !== $this->freeBusyType) $this->freeBusyType->xmlSerialize(true, $sxe->addChild('freeBusyType'));
+        if (null !== $this->start) $this->start->xmlSerialize(true, $sxe->addChild('start'));
+        if (null !== $this->end) $this->end->xmlSerialize(true, $sxe->addChild('end'));
+        if (null !== $this->overbooked) $this->overbooked->xmlSerialize(true, $sxe->addChild('overbooked'));
+        if (null !== $this->comment) $this->comment->xmlSerialize(true, $sxe->addChild('comment'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A  text note which also  contains information about who made the statement and when.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRAnnotation extends FHIRElement
+class FHIRAnnotation extends FHIRElement implements JsonSerializable
 {
     /**
      * The individual responsible for making the annotation. (choose any one of author*, but only one)
@@ -93,6 +94,11 @@ class FHIRAnnotation extends FHIRElement
     public $text = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Annotation';
+
+    /**
      * The individual responsible for making the annotation. (choose any one of author*, but only one)
      * @return \PHPFHIRGenerated\FHIRElement\FHIRReference
      */
@@ -104,10 +110,12 @@ class FHIRAnnotation extends FHIRElement
     /**
      * The individual responsible for making the annotation. (choose any one of author*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $authorReference
+     * @return $this
      */
     public function setAuthorReference($authorReference)
     {
         $this->authorReference = $authorReference;
+        return $this;
     }
 
     /**
@@ -122,10 +130,12 @@ class FHIRAnnotation extends FHIRElement
     /**
      * The individual responsible for making the annotation. (choose any one of author*, but only one)
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $authorString
+     * @return $this
      */
     public function setAuthorString($authorString)
     {
         $this->authorString = $authorString;
+        return $this;
     }
 
     /**
@@ -140,10 +150,12 @@ class FHIRAnnotation extends FHIRElement
     /**
      * Indicates when this particular annotation was made.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRDateTime $time
+     * @return $this
      */
     public function setTime($time)
     {
         $this->time = $time;
+        return $this;
     }
 
     /**
@@ -158,10 +170,58 @@ class FHIRAnnotation extends FHIRElement
     /**
      * The text of the annotation.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $text
+     * @return $this
      */
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->authorReference) $json['authorReference'] = $this->authorReference->jsonSerialize();
+        if (null !== $this->authorString) $json['authorString'] = $this->authorString->jsonSerialize();
+        if (null !== $this->time) $json['time'] = $this->time->jsonSerialize();
+        if (null !== $this->text) $json['text'] = $this->text->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Annotation xmlns="http://hl7.org/fhir"></Annotation>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->authorReference) $this->authorReference->xmlSerialize(true, $sxe->addChild('authorReference'));
+        if (null !== $this->authorString) $this->authorString->xmlSerialize(true, $sxe->addChild('authorString'));
+        if (null !== $this->time) $this->time->xmlSerialize(true, $sxe->addChild('time'));
+        if (null !== $this->text) $this->text->xmlSerialize(true, $sxe->addChild('text'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

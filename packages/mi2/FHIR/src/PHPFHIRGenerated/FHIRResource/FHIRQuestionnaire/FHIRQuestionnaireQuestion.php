@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A structured set of questions intended to guide the collection of answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the underlying questions.
  */
-class FHIRQuestionnaireQuestion extends FHIRBackboneElement
+class FHIRQuestionnaireQuestion extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * An identifier that is unique within the questionnaire allowing linkage to the equivalent group in a [[[QuestionnaireResponse]]] resource.
@@ -122,6 +123,11 @@ class FHIRQuestionnaireQuestion extends FHIRBackboneElement
     public $group = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Questionnaire.Question';
+
+    /**
      * An identifier that is unique within the questionnaire allowing linkage to the equivalent group in a [[[QuestionnaireResponse]]] resource.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRString
      */
@@ -133,10 +139,12 @@ class FHIRQuestionnaireQuestion extends FHIRBackboneElement
     /**
      * An identifier that is unique within the questionnaire allowing linkage to the equivalent group in a [[[QuestionnaireResponse]]] resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $linkId
+     * @return $this
      */
     public function setLinkId($linkId)
     {
         $this->linkId = $linkId;
+        return $this;
     }
 
     /**
@@ -151,10 +159,12 @@ class FHIRQuestionnaireQuestion extends FHIRBackboneElement
     /**
      * Identifies a how this question is known in a particular terminology such as LOINC.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding[] $concept
+     * @return $this
      */
     public function addConcept($concept)
     {
         $this->concept[] = $concept;
+        return $this;
     }
 
     /**
@@ -169,10 +179,12 @@ class FHIRQuestionnaireQuestion extends FHIRBackboneElement
     /**
      * The actual question as shown to the user to prompt them for an answer.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $text
+     * @return $this
      */
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
     }
 
     /**
@@ -187,10 +199,12 @@ class FHIRQuestionnaireQuestion extends FHIRBackboneElement
     /**
      * The expected format of the answer, e.g. the type of input (string, integer) or whether a (multiple) choice is expected.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAnswerFormat $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -205,10 +219,12 @@ class FHIRQuestionnaireQuestion extends FHIRBackboneElement
     /**
      * If true, indicates that the question must be answered and have required groups within it also present.  If false, the question and any contained groups may be skipped when answering the questionnaire.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $required
+     * @return $this
      */
     public function setRequired($required)
     {
         $this->required = $required;
+        return $this;
     }
 
     /**
@@ -223,10 +239,12 @@ class FHIRQuestionnaireQuestion extends FHIRBackboneElement
     /**
      * If true, the question may have more than one answer.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $repeats
+     * @return $this
      */
     public function setRepeats($repeats)
     {
         $this->repeats = $repeats;
+        return $this;
     }
 
     /**
@@ -241,10 +259,12 @@ class FHIRQuestionnaireQuestion extends FHIRBackboneElement
     /**
      * Reference to a value set containing a list of codes representing permitted answers for the question.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $options
+     * @return $this
      */
     public function setOptions($options)
     {
         $this->options = $options;
+        return $this;
     }
 
     /**
@@ -259,10 +279,12 @@ class FHIRQuestionnaireQuestion extends FHIRBackboneElement
     /**
      * For a "choice" question, identifies one of the permitted answers for the question.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCoding[] $option
+     * @return $this
      */
     public function addOption($option)
     {
         $this->option[] = $option;
+        return $this;
     }
 
     /**
@@ -277,10 +299,95 @@ class FHIRQuestionnaireQuestion extends FHIRBackboneElement
     /**
      * Nested group, containing nested question for this question. The order of groups within the question is relevant.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRQuestionnaire\FHIRQuestionnaireGroup[] $group
+     * @return $this
      */
     public function addGroup($group)
     {
         $this->group[] = $group;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->linkId) $json['linkId'] = $this->linkId->jsonSerialize();
+        if (0 < count($this->concept)) {
+            $json['concept'] = array();
+            foreach($this->concept as $concept) {
+                $json['concept'][] = $concept->jsonSerialize();
+            }
+        }
+        if (null !== $this->text) $json['text'] = $this->text->jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->required) $json['required'] = $this->required->jsonSerialize();
+        if (null !== $this->repeats) $json['repeats'] = $this->repeats->jsonSerialize();
+        if (null !== $this->options) $json['options'] = $this->options->jsonSerialize();
+        if (0 < count($this->option)) {
+            $json['option'] = array();
+            foreach($this->option as $option) {
+                $json['option'][] = $option->jsonSerialize();
+            }
+        }
+        if (0 < count($this->group)) {
+            $json['group'] = array();
+            foreach($this->group as $group) {
+                $json['group'][] = $group->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<QuestionnaireQuestion xmlns="http://hl7.org/fhir"></QuestionnaireQuestion>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->linkId) $this->linkId->xmlSerialize(true, $sxe->addChild('linkId'));
+        if (0 < count($this->concept)) {
+            foreach($this->concept as $concept) {
+                $concept->xmlSerialize(true, $sxe->addChild('concept'));
+            }
+        }
+        if (null !== $this->text) $this->text->xmlSerialize(true, $sxe->addChild('text'));
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->required) $this->required->xmlSerialize(true, $sxe->addChild('required'));
+        if (null !== $this->repeats) $this->repeats->xmlSerialize(true, $sxe->addChild('repeats'));
+        if (null !== $this->options) $this->options->xmlSerialize(true, $sxe->addChild('options'));
+        if (0 < count($this->option)) {
+            foreach($this->option as $option) {
+                $option->xmlSerialize(true, $sxe->addChild('option'));
+            }
+        }
+        if (0 < count($this->group)) {
+            foreach($this->group as $group) {
+                $group->xmlSerialize(true, $sxe->addChild('group'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

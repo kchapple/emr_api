@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A relationship of two Quantity values - expressed as a numerator and a denominator.
  * If the element is present, it must have a value for at least one of the defined elements, an @id referenced from the Narrative, or extensions
  */
-class FHIRRatio extends FHIRElement
+class FHIRRatio extends FHIRElement implements JsonSerializable
 {
     /**
      * The value of the numerator.
@@ -81,6 +82,11 @@ class FHIRRatio extends FHIRElement
     public $denominator = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Ratio';
+
+    /**
      * The value of the numerator.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRQuantity
      */
@@ -92,10 +98,12 @@ class FHIRRatio extends FHIRElement
     /**
      * The value of the numerator.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRQuantity $numerator
+     * @return $this
      */
     public function setNumerator($numerator)
     {
         $this->numerator = $numerator;
+        return $this;
     }
 
     /**
@@ -110,10 +118,54 @@ class FHIRRatio extends FHIRElement
     /**
      * The value of the denominator.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRQuantity $denominator
+     * @return $this
      */
     public function setDenominator($denominator)
     {
         $this->denominator = $denominator;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->numerator) $json['numerator'] = $this->numerator->jsonSerialize();
+        if (null !== $this->denominator) $json['denominator'] = $this->denominator->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<Ratio xmlns="http://hl7.org/fhir"></Ratio>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->numerator) $this->numerator->xmlSerialize(true, $sxe->addChild('numerator'));
+        if (null !== $this->denominator) $this->denominator->xmlSerialize(true, $sxe->addChild('denominator'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

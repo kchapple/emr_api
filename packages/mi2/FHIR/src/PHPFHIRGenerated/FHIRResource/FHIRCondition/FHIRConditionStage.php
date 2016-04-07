@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Use to record detailed information about conditions, problems or diagnoses recognized by a clinician. There are many uses including: recording a diagnosis during an encounter; populating a problem list or a summary statement, such as a discharge summary.
  */
-class FHIRConditionStage extends FHIRBackboneElement
+class FHIRConditionStage extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A simple summary of the stage such as "Stage 3". The determination of the stage is disease-specific.
@@ -80,6 +81,11 @@ class FHIRConditionStage extends FHIRBackboneElement
     public $assessment = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Condition.Stage';
+
+    /**
      * A simple summary of the stage such as "Stage 3". The determination of the stage is disease-specific.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept
      */
@@ -91,10 +97,12 @@ class FHIRConditionStage extends FHIRBackboneElement
     /**
      * A simple summary of the stage such as "Stage 3". The determination of the stage is disease-specific.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept $summary
+     * @return $this
      */
     public function setSummary($summary)
     {
         $this->summary = $summary;
+        return $this;
     }
 
     /**
@@ -109,10 +117,63 @@ class FHIRConditionStage extends FHIRBackboneElement
     /**
      * Reference to a formal record of the evidence on which the staging assessment is based.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference[] $assessment
+     * @return $this
      */
     public function addAssessment($assessment)
     {
         $this->assessment[] = $assessment;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->summary) $json['summary'] = $this->summary->jsonSerialize();
+        if (0 < count($this->assessment)) {
+            $json['assessment'] = array();
+            foreach($this->assessment as $assessment) {
+                $json['assessment'][] = $assessment->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ConditionStage xmlns="http://hl7.org/fhir"></ConditionStage>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->summary) $this->summary->xmlSerialize(true, $sxe->addChild('summary'));
+        if (0 < count($this->assessment)) {
+            foreach($this->assessment as $assessment) {
+                $assessment->xmlSerialize(true, $sxe->addChild('assessment'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

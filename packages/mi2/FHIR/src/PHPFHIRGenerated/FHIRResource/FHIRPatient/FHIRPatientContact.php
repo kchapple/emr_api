@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Demographics and other administrative information about an individual or animal receiving care or other health-related services.
  */
-class FHIRPatientContact extends FHIRBackboneElement
+class FHIRPatientContact extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The nature of the relationship between the patient and the contact person.
@@ -110,6 +111,11 @@ class FHIRPatientContact extends FHIRBackboneElement
     public $period = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Patient.Contact';
+
+    /**
      * The nature of the relationship between the patient and the contact person.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[]
      */
@@ -121,10 +127,12 @@ class FHIRPatientContact extends FHIRBackboneElement
     /**
      * The nature of the relationship between the patient and the contact person.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCodeableConcept[] $relationship
+     * @return $this
      */
     public function addRelationship($relationship)
     {
         $this->relationship[] = $relationship;
+        return $this;
     }
 
     /**
@@ -139,10 +147,12 @@ class FHIRPatientContact extends FHIRBackboneElement
     /**
      * A name associated with the contact person.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRHumanName $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -157,10 +167,12 @@ class FHIRPatientContact extends FHIRBackboneElement
     /**
      * A contact detail for the person, e.g. a telephone number or an email address.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRContactPoint[] $telecom
+     * @return $this
      */
     public function addTelecom($telecom)
     {
         $this->telecom[] = $telecom;
+        return $this;
     }
 
     /**
@@ -175,10 +187,12 @@ class FHIRPatientContact extends FHIRBackboneElement
     /**
      * Address for the contact person.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRAddress $address
+     * @return $this
      */
     public function setAddress($address)
     {
         $this->address = $address;
+        return $this;
     }
 
     /**
@@ -193,10 +207,12 @@ class FHIRPatientContact extends FHIRBackboneElement
     /**
      * Administrative Gender - the gender that the contact person is considered to have for administration and record keeping purposes.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRCode $gender
+     * @return $this
      */
     public function setGender($gender)
     {
         $this->gender = $gender;
+        return $this;
     }
 
     /**
@@ -211,10 +227,12 @@ class FHIRPatientContact extends FHIRBackboneElement
     /**
      * Organization on behalf of which the contact is acting or for which the contact is working.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $organization
+     * @return $this
      */
     public function setOrganization($organization)
     {
         $this->organization = $organization;
+        return $this;
     }
 
     /**
@@ -229,10 +247,82 @@ class FHIRPatientContact extends FHIRBackboneElement
     /**
      * The period during which this contact person or organization is valid to be contacted relating to this patient.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRPeriod $period
+     * @return $this
      */
     public function setPeriod($period)
     {
         $this->period = $period;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (0 < count($this->relationship)) {
+            $json['relationship'] = array();
+            foreach($this->relationship as $relationship) {
+                $json['relationship'][] = $relationship->jsonSerialize();
+            }
+        }
+        if (null !== $this->name) $json['name'] = $this->name->jsonSerialize();
+        if (0 < count($this->telecom)) {
+            $json['telecom'] = array();
+            foreach($this->telecom as $telecom) {
+                $json['telecom'][] = $telecom->jsonSerialize();
+            }
+        }
+        if (null !== $this->address) $json['address'] = $this->address->jsonSerialize();
+        if (null !== $this->gender) $json['gender'] = $this->gender->jsonSerialize();
+        if (null !== $this->organization) $json['organization'] = $this->organization->jsonSerialize();
+        if (null !== $this->period) $json['period'] = $this->period->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<PatientContact xmlns="http://hl7.org/fhir"></PatientContact>');
+        parent::xmlSerialize(true, $sxe);
+        if (0 < count($this->relationship)) {
+            foreach($this->relationship as $relationship) {
+                $relationship->xmlSerialize(true, $sxe->addChild('relationship'));
+            }
+        }
+        if (null !== $this->name) $this->name->xmlSerialize(true, $sxe->addChild('name'));
+        if (0 < count($this->telecom)) {
+            foreach($this->telecom as $telecom) {
+                $telecom->xmlSerialize(true, $sxe->addChild('telecom'));
+            }
+        }
+        if (null !== $this->address) $this->address->xmlSerialize(true, $sxe->addChild('address'));
+        if (null !== $this->gender) $this->gender->xmlSerialize(true, $sxe->addChild('gender'));
+        if (null !== $this->organization) $this->organization->xmlSerialize(true, $sxe->addChild('organization'));
+        if (null !== $this->period) $this->period->xmlSerialize(true, $sxe->addChild('period'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

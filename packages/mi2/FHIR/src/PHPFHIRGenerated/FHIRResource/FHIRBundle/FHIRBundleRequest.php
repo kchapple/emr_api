@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A container for a collection of resources.
  */
-class FHIRBundleRequest extends FHIRBackboneElement
+class FHIRBundleRequest extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * The HTTP verb for this entry in either a update history, or a transaction/ transaction response.
@@ -104,6 +105,11 @@ class FHIRBundleRequest extends FHIRBackboneElement
     public $ifNoneExist = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Bundle.Request';
+
+    /**
      * The HTTP verb for this entry in either a update history, or a transaction/ transaction response.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRHTTPVerb
      */
@@ -115,10 +121,12 @@ class FHIRBundleRequest extends FHIRBackboneElement
     /**
      * The HTTP verb for this entry in either a update history, or a transaction/ transaction response.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRHTTPVerb $method
+     * @return $this
      */
     public function setMethod($method)
     {
         $this->method = $method;
+        return $this;
     }
 
     /**
@@ -133,10 +141,12 @@ class FHIRBundleRequest extends FHIRBackboneElement
     /**
      * The URL for this entry, relative to the root (the address to which the request is posted).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $url
+     * @return $this
      */
     public function setUrl($url)
     {
         $this->url = $url;
+        return $this;
     }
 
     /**
@@ -151,10 +161,12 @@ class FHIRBundleRequest extends FHIRBackboneElement
     /**
      * If the ETag values match, return a 304 Not modified status. See the API documentation for ["Conditional Read"](http.html#cread).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $ifNoneMatch
+     * @return $this
      */
     public function setIfNoneMatch($ifNoneMatch)
     {
         $this->ifNoneMatch = $ifNoneMatch;
+        return $this;
     }
 
     /**
@@ -169,10 +181,12 @@ class FHIRBundleRequest extends FHIRBackboneElement
     /**
      * Only perform the operation if the last updated date matches. See the API documentation for ["Conditional Read"](http.html#cread).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRInstant $ifModifiedSince
+     * @return $this
      */
     public function setIfModifiedSince($ifModifiedSince)
     {
         $this->ifModifiedSince = $ifModifiedSince;
+        return $this;
     }
 
     /**
@@ -187,10 +201,12 @@ class FHIRBundleRequest extends FHIRBackboneElement
     /**
      * Only perform the operation if the Etag value matches. For more information, see the API section ["Managing Resource Contention"](http.html#concurrency).
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $ifMatch
+     * @return $this
      */
     public function setIfMatch($ifMatch)
     {
         $this->ifMatch = $ifMatch;
+        return $this;
     }
 
     /**
@@ -205,10 +221,62 @@ class FHIRBundleRequest extends FHIRBackboneElement
     /**
      * Instruct the server not to perform the create if a specified resource already exists. For further information, see the API documentation for ["Conditional Create"](http.html#ccreate). This is just the query portion of the URL - what follows the "?" (not including the "?").
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $ifNoneExist
+     * @return $this
      */
     public function setIfNoneExist($ifNoneExist)
     {
         $this->ifNoneExist = $ifNoneExist;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->method) $json['method'] = $this->method->jsonSerialize();
+        if (null !== $this->url) $json['url'] = $this->url->jsonSerialize();
+        if (null !== $this->ifNoneMatch) $json['ifNoneMatch'] = $this->ifNoneMatch->jsonSerialize();
+        if (null !== $this->ifModifiedSince) $json['ifModifiedSince'] = $this->ifModifiedSince->jsonSerialize();
+        if (null !== $this->ifMatch) $json['ifMatch'] = $this->ifMatch->jsonSerialize();
+        if (null !== $this->ifNoneExist) $json['ifNoneExist'] = $this->ifNoneExist->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<BundleRequest xmlns="http://hl7.org/fhir"></BundleRequest>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->method) $this->method->xmlSerialize(true, $sxe->addChild('method'));
+        if (null !== $this->url) $this->url->xmlSerialize(true, $sxe->addChild('url'));
+        if (null !== $this->ifNoneMatch) $this->ifNoneMatch->xmlSerialize(true, $sxe->addChild('ifNoneMatch'));
+        if (null !== $this->ifModifiedSince) $this->ifModifiedSince->xmlSerialize(true, $sxe->addChild('ifModifiedSince'));
+        if (null !== $this->ifMatch) $this->ifMatch->xmlSerialize(true, $sxe->addChild('ifMatch'));
+        if (null !== $this->ifNoneExist) $this->ifNoneExist->xmlSerialize(true, $sxe->addChild('ifNoneExist'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

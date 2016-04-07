@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * Measurements and simple assertions made about a patient, device or other subject.
  */
-class FHIRObservationRelated extends FHIRBackboneElement
+class FHIRObservationRelated extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * A code specifying the kind of relationship that exists with the target resource.
@@ -80,6 +81,11 @@ class FHIRObservationRelated extends FHIRBackboneElement
     public $target = null;
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'Observation.Related';
+
+    /**
      * A code specifying the kind of relationship that exists with the target resource.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRObservationRelationshipType
      */
@@ -91,10 +97,12 @@ class FHIRObservationRelated extends FHIRBackboneElement
     /**
      * A code specifying the kind of relationship that exists with the target resource.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRObservationRelationshipType $type
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -109,10 +117,54 @@ class FHIRObservationRelated extends FHIRBackboneElement
     /**
      * A reference to the observation or [[[QuestionnaireResponse]]] resource that is related to this observation.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRReference $target
+     * @return $this
      */
     public function setTarget($target)
     {
         $this->target = $target;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->type) $json['type'] = $this->type->jsonSerialize();
+        if (null !== $this->target) $json['target'] = $this->target->jsonSerialize();
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ObservationRelated xmlns="http://hl7.org/fhir"></ObservationRelated>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->type) $this->type->xmlSerialize(true, $sxe->addChild('type'));
+        if (null !== $this->target) $this->target->xmlSerialize(true, $sxe->addChild('target'));
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,18 +61,24 @@
  */
 
 use PHPFHIRGenerated\FHIRElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A string that may contain markdown syntax for optional processing by a mark down presentation engine
  * Systems are not required to have markdown support, and there is considerable variation in markdown syntax, so the text should be readable without markdown processing. The preferred markdown syntax is described here: http://daringfireball.net/projects/markdown/syntax (and tests here: http://daringfireball.net/projects/downloads/MarkdownTest_1.0.zip)
  * If the element is present, it must have either a @value, an @id referenced from the Narrative, or extensions
  */
-class FHIRMarkdown extends FHIRElement
+class FHIRMarkdown extends FHIRElement implements JsonSerializable
 {
     /**
      * @var string
      */
     public $value = null;
+
+    /**
+     * @var string
+     */
+    private $_fhirElementName = 'markdown';
 
     /**
      * @return string
@@ -84,10 +90,49 @@ class FHIRMarkdown extends FHIRElement
 
     /**
      * @param string $value
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
+     * @return string|int|float|bool|null
+     */
+    public function jsonSerialize()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<markdown xmlns="http://hl7.org/fhir"></markdown>');
+        $sxe->addAttribute('value', $this->value);
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

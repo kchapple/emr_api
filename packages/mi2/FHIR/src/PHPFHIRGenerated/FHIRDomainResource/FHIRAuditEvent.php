@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,12 +61,13 @@
  */
 
 use PHPFHIRGenerated\FHIRResource\FHIRDomainResource;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A record of an event made for purposes of maintaining a security log. Typical uses include detection of intrusion attempts and monitoring for inappropriate usage.
  * If the element is present, it must have either a @value, an @id, or extensions
  */
-class FHIRAuditEvent extends FHIRDomainResource
+class FHIRAuditEvent extends FHIRDomainResource implements JsonSerializable
 {
     /**
      * Identifies the name, action type, time, and disposition of the audited event.
@@ -93,6 +94,11 @@ class FHIRAuditEvent extends FHIRDomainResource
     public $object = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'AuditEvent';
+
+    /**
      * Identifies the name, action type, time, and disposition of the audited event.
      * @return \PHPFHIRGenerated\FHIRResource\FHIRAuditEvent\FHIRAuditEventEvent
      */
@@ -104,10 +110,12 @@ class FHIRAuditEvent extends FHIRDomainResource
     /**
      * Identifies the name, action type, time, and disposition of the audited event.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRAuditEvent\FHIRAuditEventEvent $event
+     * @return $this
      */
     public function setEvent($event)
     {
         $this->event = $event;
+        return $this;
     }
 
     /**
@@ -122,10 +130,12 @@ class FHIRAuditEvent extends FHIRDomainResource
     /**
      * A person, a hardware device or software process.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRAuditEvent\FHIRAuditEventParticipant[] $participant
+     * @return $this
      */
     public function addParticipant($participant)
     {
         $this->participant[] = $participant;
+        return $this;
     }
 
     /**
@@ -140,10 +150,12 @@ class FHIRAuditEvent extends FHIRDomainResource
     /**
      * Application systems and processes.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRAuditEvent\FHIRAuditEventSource $source
+     * @return $this
      */
     public function setSource($source)
     {
         $this->source = $source;
+        return $this;
     }
 
     /**
@@ -158,10 +170,77 @@ class FHIRAuditEvent extends FHIRDomainResource
     /**
      * Specific instances of data or objects that have been accessed.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRAuditEvent\FHIRAuditEventObject[] $object
+     * @return $this
      */
     public function addObject($object)
     {
         $this->object[] = $object;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = $this->_fhirElementName;
+        if (null !== $this->event) $json['event'] = $this->event->jsonSerialize();
+        if (0 < count($this->participant)) {
+            $json['participant'] = array();
+            foreach($this->participant as $participant) {
+                $json['participant'][] = $participant->jsonSerialize();
+            }
+        }
+        if (null !== $this->source) $json['source'] = $this->source->jsonSerialize();
+        if (0 < count($this->object)) {
+            $json['object'] = array();
+            foreach($this->object as $object) {
+                $json['object'][] = $object->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<AuditEvent xmlns="http://hl7.org/fhir"></AuditEvent>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->event) $this->event->xmlSerialize(true, $sxe->addChild('event'));
+        if (0 < count($this->participant)) {
+            foreach($this->participant as $participant) {
+                $participant->xmlSerialize(true, $sxe->addChild('participant'));
+            }
+        }
+        if (null !== $this->source) $this->source->xmlSerialize(true, $sxe->addChild('source'));
+        if (0 < count($this->object)) {
+            foreach($this->object as $object) {
+                $object->xmlSerialize(true, $sxe->addChild('object'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 

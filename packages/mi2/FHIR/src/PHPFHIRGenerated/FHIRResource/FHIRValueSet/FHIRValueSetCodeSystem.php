@@ -4,7 +4,7 @@
  * This class was generated with the PHPFHIR library (https://github.com/dcarbone/php-fhir) using
  * class definitions from HL7 FHIR (https://www.hl7.org/fhir/)
  * 
- * Class creation date: February 22nd, 2016
+ * Class creation date: April 7th, 2016
  * 
  * PHPFHIR Copyright:
  * 
@@ -61,11 +61,12 @@
  */
 
 use PHPFHIRGenerated\FHIRElement\FHIRBackboneElement;
+use PHPFHIRGenerated\JsonSerializable;
 
 /**
  * A value set specifies a set of codes drawn from one or more code systems.
  */
-class FHIRValueSetCodeSystem extends FHIRBackboneElement
+class FHIRValueSetCodeSystem extends FHIRBackboneElement implements JsonSerializable
 {
     /**
      * An absolute URI that is used to reference this code system, including in [Coding]{datatypes.html#Coding}.system.
@@ -92,6 +93,11 @@ class FHIRValueSetCodeSystem extends FHIRBackboneElement
     public $concept = array();
 
     /**
+     * @var string
+     */
+    private $_fhirElementName = 'ValueSet.CodeSystem';
+
+    /**
      * An absolute URI that is used to reference this code system, including in [Coding]{datatypes.html#Coding}.system.
      * @return \PHPFHIRGenerated\FHIRElement\FHIRUri
      */
@@ -103,10 +109,12 @@ class FHIRValueSetCodeSystem extends FHIRBackboneElement
     /**
      * An absolute URI that is used to reference this code system, including in [Coding]{datatypes.html#Coding}.system.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRUri $system
+     * @return $this
      */
     public function setSystem($system)
     {
         $this->system = $system;
+        return $this;
     }
 
     /**
@@ -121,10 +129,12 @@ class FHIRValueSetCodeSystem extends FHIRBackboneElement
     /**
      * The version of this code system that defines the codes. Note that the version is optional because a well maintained code system does not suffer from versioning, and therefore the version does not need to be maintained. However many code systems are not well maintained, and the version needs to be defined and tracked.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRString $version
+     * @return $this
      */
     public function setVersion($version)
     {
         $this->version = $version;
+        return $this;
     }
 
     /**
@@ -139,10 +149,12 @@ class FHIRValueSetCodeSystem extends FHIRBackboneElement
     /**
      * If code comparison is case sensitive when codes within this system are compared to each other.
      * @param \PHPFHIRGenerated\FHIRElement\FHIRBoolean $caseSensitive
+     * @return $this
      */
     public function setCaseSensitive($caseSensitive)
     {
         $this->caseSensitive = $caseSensitive;
+        return $this;
     }
 
     /**
@@ -157,10 +169,67 @@ class FHIRValueSetCodeSystem extends FHIRBackboneElement
     /**
      * Concepts that are in the code system. The concept definitions are inherently hierarchical, but the definitions must be consulted to determine what the meaning of the hierarchical relationships are.
      * @param \PHPFHIRGenerated\FHIRResource\FHIRValueSet\FHIRValueSetConcept[] $concept
+     * @return $this
      */
     public function addConcept($concept)
     {
         $this->concept[] = $concept;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_fhirElementName()
+    {
+        return $this->_fhirElementName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get_fhirElementName();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $json = parent::jsonSerialize();
+        if (null !== $this->system) $json['system'] = $this->system->jsonSerialize();
+        if (null !== $this->version) $json['version'] = $this->version->jsonSerialize();
+        if (null !== $this->caseSensitive) $json['caseSensitive'] = $this->caseSensitive->jsonSerialize();
+        if (0 < count($this->concept)) {
+            $json['concept'] = array();
+            foreach($this->concept as $concept) {
+                $json['concept'][] = $concept->jsonSerialize();
+            }
+        }
+        return $json;
+    }
+
+    /**
+     * @param boolean $returnSXE
+     * @param \SimpleXMLElement $sxe
+     * @return string|\SimpleXMLElement
+     */
+    public function xmlSerialize($returnSXE = false, $sxe = null)
+    {
+        if (null === $sxe) $sxe = new \SimpleXMLElement('<ValueSetCodeSystem xmlns="http://hl7.org/fhir"></ValueSetCodeSystem>');
+        parent::xmlSerialize(true, $sxe);
+        if (null !== $this->system) $this->system->xmlSerialize(true, $sxe->addChild('system'));
+        if (null !== $this->version) $this->version->xmlSerialize(true, $sxe->addChild('version'));
+        if (null !== $this->caseSensitive) $this->caseSensitive->xmlSerialize(true, $sxe->addChild('caseSensitive'));
+        if (0 < count($this->concept)) {
+            foreach($this->concept as $concept) {
+                $concept->xmlSerialize(true, $sxe->addChild('concept'));
+            }
+        }
+        if ($returnSXE) return $sxe;
+        return $sxe->saveXML();
     }
 
 
