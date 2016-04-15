@@ -5,7 +5,7 @@ namespace Mi2\Emr\OpenEMR\Finders;
 use Mi2\Emr\Contracts\PatientFinderInterface;
 use Mi2\Emr\OpenEMR\Eloquent\PatientData as Patient;
 
-class PatientFinder implements PatientFinderInterface
+class PatientFinder extends AbstractFinder implements PatientFinderInterface
 {
     public function byLastName( $lastName )
     {

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Mi2\Emr\Contracts\PatientFinderInterface;
 use Mi2\Emr\Contracts\PatientInterface;
 use Mi2\Emr\Contracts\PatientRepositoryInterface;
-use Mi2\Emr\OpenEMR\Eloquent\PatientData;
+use Mi2\Emr\OpenEMR\Eloquent\PatientData as Patient;
 
 class PatientRepository extends AbstractRepository implements PatientRepositoryInterface
 {
@@ -51,6 +51,11 @@ class PatientRepository extends AbstractRepository implements PatientRepositoryI
     public function delete( $id )
     {
 
+    }
+
+    public function fetchAll()
+    {
+        return Patient::all();
     }
 
     public function get( $id )

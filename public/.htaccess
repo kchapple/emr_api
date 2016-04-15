@@ -5,6 +5,9 @@
 
     RewriteEngine On
 
+    # Exclude fhir-starter
+    RewriteRule ^(fhir-starter) - [L]
+
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)/$ /$1 [L,R=301]
