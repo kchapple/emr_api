@@ -41,7 +41,7 @@ class AbstractController extends Controller
         $data = $request->getContent();
         $interface = $this->adapter->toInterface( $data );
         $response = $this->repository->create( $interface );
-        return $response;
+        return $this->adapter->toOutput( $response );
     }
 
     /**

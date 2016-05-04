@@ -53,6 +53,10 @@ class FHIRPatientAdapter implements PatientAdapterInterface
         $name->addFamily( $familyName->setValue( $patient->getLastName() ) );
         $fhirPatient->addName( $name );
 
+        $gender = new FHIRCode();
+        $gender->setValue( $patient->getGender() );
+        $fhirPatient->setGender( $gender );
+
         // TODO provide other data to FHIR models
         return $fhirPatient;
     }
@@ -95,6 +99,8 @@ class FHIRPatientAdapter implements PatientAdapterInterface
             $givenName = $humanName[0]->getGiven();
             $fname = $givenName[0]->getValue();
             $patientInterface->setFirstName( $fname );
+            $gender = $fhirPatient->getGender();
+            $patientInterface->setGender( $gender->getValue() );
         }
         return $patientInterface;
     }

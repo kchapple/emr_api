@@ -35,11 +35,13 @@ class PatientRepository extends AbstractRepository implements PatientRepositoryI
                     ->orderBy('pid', 'desc')
                     ->take(1)->toSql();
 
-                $patientInterface->setAttribute( 'pid',  DB::raw("($subquery)") );
+                $pid = DB::raw("($subquery)");
+
+                $patientInterface->setAttribute( 'pid', $pid  );
             }
 
             $patientInterface->save();
-
+            $patientInterface = $this->get( $patientInterface->id );
         }
 
         return $patientInterface;
