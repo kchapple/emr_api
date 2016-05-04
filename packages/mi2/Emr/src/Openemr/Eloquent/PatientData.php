@@ -23,9 +23,21 @@ class PatientData extends Model implements PatientInterface
         return $this->fname;
     }
 
+    public function setFirstName( $firstName )
+    {
+        $this->fname = $firstName;
+        return $this;
+    }
+
     public function getLastName()
     {
         return $this->lname;
+    }
+
+    public function setLastName( $lastName )
+    {
+        $this->lname = $lastName;
+        return $this;
     }
 
     public function getDOB()

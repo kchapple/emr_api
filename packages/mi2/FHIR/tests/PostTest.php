@@ -7,9 +7,9 @@ class PatientRepositoryTest extends TestCase
         public function testJsonPost()
         {
             $path = __DIR__."/data";
-            $data = file_get_contents( "$path/everywoman.json");
+            $data = file_get_contents( "$path/everywoman_create.json");
             $response = $this->call( 'POST',
-                '/fhir/patient',
+                '/fhir/Patient',
                 [],
                 [],
                 [],

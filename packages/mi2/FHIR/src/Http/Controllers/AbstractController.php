@@ -40,8 +40,8 @@ class AbstractController extends Controller
     {
         $data = $request->getContent();
         $interface = $this->adapter->toInterface( $data );
-        $this->repository->create( $interface );
-        // TODO return response code
+        $response = $this->repository->create( $interface );
+        return $response;
     }
 
     /**
@@ -52,7 +52,7 @@ class AbstractController extends Controller
      */
     public function show($id)
     {
-        return $this->adapter->toOutput( $this->repository->find()->byId( $id ) );
+        return $this->adapter->toOutput( $this->repository->find()->byPid( $id ) );
     }
 
     /**

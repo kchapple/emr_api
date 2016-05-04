@@ -24,13 +24,13 @@ class PatientRepository extends AbstractRepository implements PatientRepositoryI
 
     public function create( PatientInterface $patientInterface )
     {
-        if ( $patientInterface instanceof PatientData ) {
+        if ( is_a( $patientInterface, '\Mi2\Emr\OpenEMR\Eloquent\PatientData' ) ) {
 
             if ( !$patientInterface->getId() ) {
                 // If a pid is not provided, we have to increment the pid in SQL
                 // because though it's not the primary key, it must be unique.
                 // This subquery increments the pid from the max in the table
-                $subquery = DB::table((new PatientData)->getTable() . ' as PD')
+                $subquery = DB::table((new Patient)->getTable() . ' as PD')
                     ->selectRaw('pid + 1 as new_pid')
                     ->orderBy('pid', 'desc')
                     ->take(1)->toSql();
@@ -41,6 +41,8 @@ class PatientRepository extends AbstractRepository implements PatientRepositoryI
             $patientInterface->save();
 
         }
+
+        return $patientInterface;
     }
 
     public function update( $id, array $data )

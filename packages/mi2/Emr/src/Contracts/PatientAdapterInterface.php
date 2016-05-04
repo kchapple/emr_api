@@ -14,6 +14,6 @@ interface PatientAdapterInterface
 
     public function toOutput( PatientInterface $patient );
 
-    public function toPatientInterface( $data );
+    public function toInterface( $data );
 
 }
