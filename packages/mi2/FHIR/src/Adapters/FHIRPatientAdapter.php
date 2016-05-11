@@ -32,59 +32,6 @@ class FHIRPatientAdapter implements PatientAdapterInterface
     }
 
     /**
-     * @param PatientInterface $patient
-     * @return FHIRPatient
-     */
-    public function interfaceToModel( PatientInterface $patient )
-    {
-        $fhirPatient = new FHIRPatient();
-
-        $identifier = new FHIRIdentifier();
-        $use = new FHIRIdentifierUse();
-        $use->setValue( "usual" );
-        $identifier->setUse( $use );
-        $value = new FHIRString();
-        $value->setValue( $patient->getId() );
-        $identifier->setValue( $value );
-        $fhirPatient->addIdentifier( $identifier );
-
-        $dob = new FHIRDate();
-        $dob->setValue( $patient->getDOB() );
-        $fhirPatient->setBirthDate( $dob );
-
-        $name = new FHIRHumanName();
-        $nameUse = new FHIRNameUse();
-        $nameUse->setValue( "usual" );
-        $name->setUse( $nameUse );
-        $givenName = new FHIRString();
-        $name->addGiven( $givenName->setValue( $patient->getFirstName() ) );
-        $familyName = new FHIRString();
-        $name->addFamily( $familyName->setValue( $patient->getLastName() ) );
-        $fhirPatient->addName( $name );
-
-        $gender = new FHIRCode();
-        $gender->setValue( $patient->getGender() );
-        $fhirPatient->setGender( $gender );
-
-        $phone = new FHIRContactPoint();
-        $use = new FHIRContactPointUse();
-        $use->setValue( 'primary' );
-        $phone->setUse( $use );
-        $system = new FHIRContactPointSystem();
-        $system->setValue( 'phone' );
-        $phone->setSystem( $system );
-        $phoneNumber = new FHIRString();
-        $phoneNumber->setValue( $patient->getPrimaryPhone() );
-        $phone->setValue( $phoneNumber );
-        $fhirPatient->addTelecom( $phone );
-
-        // TODO provide other data to FHIR models
-        //
-
-        return $fhirPatient;
-    }
-
-    /**
      * @param $id ID identifying resource
      * @return string
      *
@@ -177,8 +124,116 @@ class FHIRPatientAdapter implements PatientAdapterInterface
             $phoneNumbers = $fhirPatient->getTelecom();
             $primaryPhone = $phoneNumbers[0]->getValue();
             $patientInterface->setPrimaryPhone( $primaryPhone );
+
+            $extensions = $fhirPatient->getExtension();
+            foreach ( $extensions as $extension ) {
+               $url = $extension->getUrl();
+               switch ( $url ) {
+                   case "https://fhirdev.ttdnow.com/extension/contracts":
+                       $x2s = $extension->getExtension();
+                       foreach ( $x2s as $x2 ) {
+                           $url2 = $x2->getUrl();
+                           switch ( $url2 ) {
+                               case "#terms-of-service":
+                                   break;
+                               case "#allow-sms" :
+                                   $allowSms = $x2->getValueBoolean();
+                                   $allowSms = ( $allowSms->getValue() == 1 ) ? 'YES' : 'NO';
+                                   $patientInterface->setAllowSms( $allowSms );
+                                   break;
+                           }
+                       }
+                       break;
+               }
+            }
+
+            $photos = $fhirPatient->getPhoto();
+            $photo = $photos[0];
+            $formatCode = $photo->getContentType();
+            $mimetype = $formatCode->getValue();
+            $ext = "";
+            switch ( $mimetype ) {
+                case "image/jpeg":
+                    $ext = "jpg";
+                    break;
+                default:
+                    $ext = "jepg";
+                    break;
+            }
+            $base64Binary = $photo->getData();
+            $photo = new \stdClass();
+            $photo->base64Data = $base64Binary->getValue();
+            $photo->filename = rand().".".$ext;
+            $patientInterface->setPhoto( $photo );
         }
 
         return $patientInterface;
+    }
+
+    /**
+     * @param PatientInterface $patient
+     * @return FHIRPatient
+     */
+    public function interfaceToModel( PatientInterface $patient )
+    {
+        $fhirPatient = new FHIRPatient();
+
+        $identifier = new FHIRIdentifier();
+        $use = new FHIRIdentifierUse();
+        $use->setValue( "usual" );
+        $identifier->setUse( $use );
+        $value = new FHIRString();
+        $value->setValue( $patient->getId() );
+        $identifier->setValue( $value );
+        $fhirPatient->addIdentifier( $identifier );
+
+        $dob = new FHIRDate();
+        $dob->setValue( $patient->getDOB() );
+        $fhirPatient->setBirthDate( $dob );
+
+        $name = new FHIRHumanName();
+        $nameUse = new FHIRNameUse();
+        $nameUse->setValue( "usual" );
+        $name->setUse( $nameUse );
+        $givenName = new FHIRString();
+        $name->addGiven( $givenName->setValue( $patient->getFirstName() ) );
+        $familyName = new FHIRString();
+        $name->addFamily( $familyName->setValue( $patient->getLastName() ) );
+        $fhirPatient->addName( $name );
+
+        $gender = new FHIRCode();
+        $gender->setValue( $patient->getGender() );
+        $fhirPatient->setGender( $gender );
+
+        $phone = new FHIRContactPoint();
+        $use = new FHIRContactPointUse();
+        $use->setValue( 'primary' );
+        $phone->setUse( $use );
+        $system = new FHIRContactPointSystem();
+        $system->setValue( 'phone' );
+        $phone->setSystem( $system );
+        $phoneNumber = new FHIRString();
+        $phoneNumber->setValue( $patient->getPrimaryPhone() );
+        $phone->setValue( $phoneNumber );
+        $fhirPatient->addTelecom( $phone );
+
+        $email = new FHIRContactPoint();
+        $use = new FHIRContactPointUse();
+        $use->setValue( 'primary' );
+        $email->setUse( $use );
+        $system = new FHIRContactPointSystem();
+        $system->setValue( 'email' );
+        $email->setSystem( $system );
+        $emailAddress = new FHIRString();
+        $emailAddress->setValue( $patient->getEmailAddress() );
+        $email->setValue( $emailAddress );
+        $fhirPatient->addTelecom( $email );
+
+
+
+        // TODO provide other data to FHIR models
+        //
+
+        return $fhirPatient;
     }
 }

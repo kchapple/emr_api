@@ -25,6 +25,7 @@ class PatientRepository extends AbstractRepository implements PatientRepositoryI
     public function create( PatientInterface $patientInterface )
     {
         if ( is_a( $patientInterface, '\Mi2\Emr\OpenEMR\Eloquent\PatientData' ) ) {
+            $photo = $patientInterface->getPhoto();
 
             if ( !$patientInterface->getId() ) {
                 // If a pid is not provided, we have to increment the pid in SQL
@@ -36,12 +37,18 @@ class PatientRepository extends AbstractRepository implements PatientRepositoryI
                     ->take(1)->toSql();
 
                 $pid = DB::raw("($subquery)");
-
                 $patientInterface->setAttribute( 'pid', $pid  );
             }
 
             $patientInterface->save();
             $patientInterface = $this->get( $patientInterface->id );
+
+            $docpath = "/Users/kchapple/Dev/www/openemr_github/sites/default/documents";
+            mkdir( $docpath."/".$patientInterface->getPid() );
+            $filepath = $docpath."/".$patientInterface->getPid()."/".$photo->filename;
+            $ifp = fopen( $filepath, "wb");
+            fwrite($ifp, base64_decode( $photo->base64Data ) );
+            fclose($ifp);
         }
 
         return $patientInterface;

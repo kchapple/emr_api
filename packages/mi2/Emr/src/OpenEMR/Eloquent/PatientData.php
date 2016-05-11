@@ -13,6 +13,20 @@ class PatientData extends Model implements PatientInterface
 
     public $timestamps = false;
 
+    protected  $photo = null;
+
+    public function getPid()
+    {
+        return $this->pid;
+    }
+
+    public function setPid( $pid )
+    {
+        $this->pid = $pid;
+        return $this;
+    }
+
+
     public function getId()
     {
         return $this->id;
@@ -76,6 +90,39 @@ class PatientData extends Model implements PatientInterface
     public function setPrimaryPhone( $phone )
     {
         $this->phone_home = $phone;
+        return $this;
+    }
+
+    public function getAllowSms()
+    {
+        return $this->hippa_allowsms;
+    }
+
+    public function setAllowSms( $allowSms )
+    {
+        $this->hipaa_allowsms = $allowSms;
+        return $this;
+    }
+
+    public function getEmailAddress()
+    {
+        return $this->email;
+    }
+
+    public function setEmailAddress( $emailAddress )
+    {
+        $this->email = $emailAddress;
+        return $this;
+    }
+
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto( $photo )
+    {
+        $this->photo = $photo;
         return $this;
     }
 }

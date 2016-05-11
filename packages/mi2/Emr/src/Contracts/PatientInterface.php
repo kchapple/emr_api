@@ -14,5 +14,12 @@ interface PatientInterface extends BaseInterface
     public function setGender( $gender );
     public function getPrimaryPhone();
     public function setPrimaryPhone( $phone );
+    public function getAllowSms();
+    public function setAllowSms( $allowSms );
+    public function getEmailAddress();
+    public function setEmailAddress( $emailAddress );
+
+    public function getPhoto();
+    public function setPhoto( $photo );
 
 }
