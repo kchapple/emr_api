@@ -2,10 +2,8 @@
 
 namespace Mi2\Emr\Contracts;
 
-interface PatientInterface
+interface PatientInterface extends BaseInterface
 {
-    public function getId();
-    public function setId( $id );
     public function getFirstName();
     public function setFirstName( $firstName );
     public function getLastName();
@@ -14,5 +12,7 @@ interface PatientInterface
     public function setDOB( $DOB );
     public function getGender();
     public function setGender( $gender );
+    public function getPrimaryPhone();
+    public function setPrimaryPhone( $phone );
 
 }

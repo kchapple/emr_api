@@ -15,12 +15,12 @@ class PatientData extends Model implements PatientInterface
 
     public function getId()
     {
-        return $this->pid;
+        return $this->id;
     }
 
     public function setId( $id )
     {
-        $this->pid = $id;
+        $this->id = $id;
         return $this;
     }
 
@@ -65,6 +65,17 @@ class PatientData extends Model implements PatientInterface
     public function setGender( $gender )
     {
         $this->sex = $gender;
+        return $this;
+    }
+
+    public function getPrimaryPhone()
+    {
+        return $this->phone_home;
+    }
+
+    public function setPrimaryPhone( $phone )
+    {
+        $this->phone_home = $phone;
         return $this;
     }
 }

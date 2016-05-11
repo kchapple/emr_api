@@ -21,4 +21,13 @@ class PatientFinder extends AbstractFinder implements PatientFinderInterface
             //Do stuff if it doesn't exist.
         }
     }
+
+    public function byId( $id )
+    {
+        try {
+            return Patient::find($id);
+        } catch ( ErrorException $e ) {
+            //Do stuff if it doesn't exist.
+        }
+    }
 }

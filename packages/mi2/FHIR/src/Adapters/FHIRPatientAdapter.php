@@ -2,12 +2,17 @@
 
 namespace Mi2\FHIR\Adapters;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Mi2\Emr\Contracts\PatientAdapterInterface;
 use Mi2\Emr\Contracts\PatientInterface;
 
+use Mi2\Emr\Contracts\PatientRepositoryInterface;
 use PHPFHIRGenerated\FHIRDomainResource\FHIRPatient;
 use PHPFHIRGenerated\FHIRElement\FHIRCode;
+use PHPFHIRGenerated\FHIRElement\FHIRContactPoint;
+use PHPFHIRGenerated\FHIRElement\FHIRContactPointSystem;
+use PHPFHIRGenerated\FHIRElement\FHIRContactPointUse;
 use PHPFHIRGenerated\FHIRElement\FHIRDate;
 use PHPFHIRGenerated\FHIRElement\FHIRIdentifier;
 use PHPFHIRGenerated\FHIRElement\FHIRIdentifierUse;
@@ -19,14 +24,18 @@ use ArrayAccess;
 
 class FHIRPatientAdapter implements PatientAdapterInterface
 {
+    protected $repository = null;
+
+    public function __construct( PatientRepositoryInterface $repositoryInterface )
+    {
+        $this->repository = $repositoryInterface;
+    }
+
     /**
      * @param PatientInterface $patient
-     * @return string
-     *
-     * Takes a PatientInterface and returns a FHIR JSON or XML string
-     * in response
+     * @return FHIRPatient
      */
-    public function toOutput( PatientInterface $patient )
+    public function interfaceToModel( PatientInterface $patient )
     {
         $fhirPatient = new FHIRPatient();
 
@@ -57,20 +66,71 @@ class FHIRPatientAdapter implements PatientAdapterInterface
         $gender->setValue( $patient->getGender() );
         $fhirPatient->setGender( $gender );
 
+        $phone = new FHIRContactPoint();
+        $use = new FHIRContactPointUse();
+        $use->setValue( 'primary' );
+        $phone->setUse( $use );
+        $system = new FHIRContactPointSystem();
+        $system->setValue( 'phone' );
+        $phone->setSystem( $system );
+        $phoneNumber = new FHIRString();
+        $phoneNumber->setValue( $patient->getPrimaryPhone() );
+        $phone->setValue( $phoneNumber );
+        $fhirPatient->addTelecom( $phone );
+
         // TODO provide other data to FHIR models
+        //
+
         return $fhirPatient;
+    }
+
+    /**
+     * @param $id ID identifying resource
+     * @return string
+     *
+     * Takes a resource ID and returns a FHIR JSON or XML string
+     * in response
+     */
+    public function retrieve( $id )
+    {
+        $patientInterface = $this->repository->find()->byPid( $id );
+        return $this->interfaceToModel( $patientInterface );
+    }
+
+    /**
+     * @param Request $request
+     * @return FHIRPatient
+     */
+    public function store( Request $request )
+    {
+        // TODO add validation
+        $data = $request->getContent();
+        $interface = $this->jsonToInterface( $data );
+        $storedInterface = $this->storeInterface( $interface );
+        return $this->interfaceToModel( $storedInterface );
+    }
+
+    /**
+     * @param PatientInterface $patientInterface
+     * @return PatientInterface
+     */
+    public function storeInterface( PatientInterface $patientInterface )
+    {
+        $patientInterface = $this->repository->create( $patientInterface );
+        return $patientInterface;
     }
 
     /**
      * @param ArrayAccess $collection
      * @return array
      */
-    public function collectionToOutput( ArrayAccess $collection )
+    public function collectionToOutput()
     {
+        $collection = $this->repository->fetchAll();
         $output = array();
-        foreach ( $collection as $element ) {
-            if ( $element instanceof PatientInterface ) {
-                $fhirPatient = $this->toOutput( $element );
+        foreach ( $collection as $patient ) {
+            if ( $patient instanceof PatientInterface ) {
+                $fhirPatient = $this->interfaceToOutput( $patient );
                 $output[]= $fhirPatient;
             }
         }
@@ -84,24 +144,41 @@ class FHIRPatientAdapter implements PatientAdapterInterface
      *
      * Takes a FHIR post string and returns a PatientInterface
      */
-    public function toInterface( $data )
+    public function jsonToInterface( $data )
     {
         $parser = new \PHPFHIRGenerated\PHPFHIRResponseParser();
         $fhirPatient = $parser->parse( $data );
-        $patientInterface = App::make( 'Mi2\Emr\Contracts\PatientInterface' );
-        if ( $patientInterface instanceof PatientInterface ) {
+        if ( is_a( $fhirPatient, 'FHIRPatient' ) ) {
+            return $this->modelToInterface( $fhirPatient );
+        } else {
+            // Error, the Resource does not match, expecting a Patient,
+            // // but got something else.
+        }
+
+
+    }
+
+    public function modelToInterface( FHIRPatient $fhirPatient )
+    {
+        $patientInterface = App::make('Mi2\Emr\Contracts\PatientInterface');
+        if ($patientInterface instanceof PatientInterface) {
             $birthDate = $fhirPatient->getBirthDate()->getValue();
-            $patientInterface->setDOB( $birthDate );
+            $patientInterface->setDOB($birthDate);
             $humanName = $fhirPatient->getName();
             $familyName = $humanName[0]->getFamily();
             $lname = $familyName[0]->getValue();
-            $patientInterface->setLastName( $lname );
+            $patientInterface->setLastName($lname);
             $givenName = $humanName[0]->getGiven();
             $fname = $givenName[0]->getValue();
-            $patientInterface->setFirstName( $fname );
+            $patientInterface->setFirstName($fname);
             $gender = $fhirPatient->getGender();
-            $patientInterface->setGender( $gender->getValue() );
+            $patientInterface->setGender($gender->getValue());
+
+            $phoneNumbers = $fhirPatient->getTelecom();
+            $primaryPhone = $phoneNumbers[0]->getValue();
+            $patientInterface->setPrimaryPhone( $primaryPhone );
         }
+
         return $patientInterface;
     }
 }

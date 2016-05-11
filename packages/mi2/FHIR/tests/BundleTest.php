@@ -2,14 +2,15 @@
 
 use Illuminate\Http\Response;
 
-class PatientRepositoryTest extends TestCase
+class BundleTest extends TestCase
 {
         public function testJsonPost()
         {
+            // Post a bundle to the base-url, meaning /
             $path = __DIR__."/data";
-            $data = file_get_contents( "$path/everywoman_simple_create.json");
+            $data = file_get_contents( "$path/bundle.json");
             $response = $this->call( 'POST',
-                '/fhir/Patient',
+                '/fhir/',
                 [],
                 [],
                 [],

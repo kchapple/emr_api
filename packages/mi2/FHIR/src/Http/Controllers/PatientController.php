@@ -11,9 +11,8 @@ use Mi2\Emr\Contracts\PatientRepositoryInterface;
 
 class PatientController extends AbstractController
 {
-    public function __construct( PatientRepositoryInterface $patientRepository, PatientAdapterInterface $patientAdapter )
+    public function __construct( PatientAdapterInterface $patientAdapter )
     {
-        $this->repository = $patientRepository;
         $this->adapter = $patientAdapter;
     }
 }

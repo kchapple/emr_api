@@ -1,6 +1,7 @@
 <?php
 
 namespace Mi2\Emr\Contracts;
+use PHPFHIRGenerated\FHIRDomainResource\FHIRPatient;
 
 /**
  * Interface PatientAdapterInterface
@@ -9,11 +10,10 @@ namespace Mi2\Emr\Contracts;
  * Take PatientInterface and output something
  *
  */
-interface PatientAdapterInterface
+interface PatientAdapterInterface extends BaseAdapterInterface
 {
-
-    public function toOutput( PatientInterface $patient );
-
-    public function toInterface( $data );
-
+    public function modelToInterface( FHIRPatient $patient );
+    public function jsonToInterface( $data );
+    public function storeInterface( PatientInterface $interface );
+    public function interfaceToModel( PatientInterface $interface );
 }

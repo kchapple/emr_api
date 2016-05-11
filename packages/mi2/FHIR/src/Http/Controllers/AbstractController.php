@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class AbstractController extends Controller
 {
-    protected $repository = null;
     protected $adapter = null;
 
     /**
@@ -18,7 +17,7 @@ class AbstractController extends Controller
      */
     public function index()
     {
-        return $this->adapter->collectionToOutput( $this->repository->fetchAll() );
+        return $this->adapter->collectionToOutput();
     }
 
     /**
@@ -38,10 +37,7 @@ class AbstractController extends Controller
      */
     public function store( Request $request )
     {
-        $data = $request->getContent();
-        $interface = $this->adapter->toInterface( $data );
-        $response = $this->repository->create( $interface );
-        return $this->adapter->toOutput( $response );
+        return $this->adapter->store( $request );
     }
 
     /**
@@ -52,7 +48,7 @@ class AbstractController extends Controller
      */
     public function show($id)
     {
-        return $this->adapter->toOutput( $this->repository->find()->byPid( $id ) );
+        return $this->adapter->retrieve( $id );
     }
 
     /**
