@@ -32,6 +32,11 @@ class Plugin extends PluginBase
             return new \Mi2\Emr\OpenEMR\Eloquent\PatientData();
         });
 
+        $this->app->bind('Mi2\Emr\Contracts\DocumentRepositoryInterface', 'Mi2\Emr\OpenEMR\Repositories\DocumentRepository');
+        $this->app->bind('Mi2\Emr\Contracts\DocumentInterface', 'Mi2\Emr\OpenEMR\Eloquent\Document', function( $app ) {
+            return new \Mi2\Emr\OpenEMR\Eloquent\Document();
+        });
+
         $this->app->bind('Mi2\Emr\Contracts\AuditEventRepositoryInterface', 'Mi2\Emr\OpenEMR\Repositories\AuditEventRepository');
         $this->app->bind('Mi2\Emr\Contracts\AuditEventInterface', 'Mi2\Emr\OpenEMR\Eloquent\AuditEvent', function( $app ) {
             return new \Mi2\Emr\OpenEMR\Eloquent\AuditEvent();

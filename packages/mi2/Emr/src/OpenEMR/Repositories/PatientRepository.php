@@ -9,10 +9,12 @@
 namespace Mi2\Emr\OpenEMR\Repositories;
 
 use App\System\AbstractRepository;
+use Mi2\Emr\Contracts\DocumentRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Mi2\Emr\Contracts\PatientFinderInterface;
 use Mi2\Emr\Contracts\PatientInterface;
 use Mi2\Emr\Contracts\PatientRepositoryInterface;
+use Illuminate\Support\Facades\App;
 use Mi2\Emr\OpenEMR\Eloquent\PatientData as Patient;
 
 class PatientRepository extends AbstractRepository implements PatientRepositoryInterface
@@ -38,6 +40,7 @@ class PatientRepository extends AbstractRepository implements PatientRepositoryI
 
                 $pid = DB::raw("($subquery)");
                 $patientInterface->setAttribute( 'pid', $pid  );
+                $patientInterface->setAttribute( 'pubpid', $pid  );
             }
 
             $patientInterface->save();
@@ -49,6 +52,15 @@ class PatientRepository extends AbstractRepository implements PatientRepositoryI
             $ifp = fopen( $filepath, "wb");
             fwrite($ifp, base64_decode( $photo->base64Data ) );
             fclose($ifp);
+
+            $documentRepo = App::make( 'Mi2\Emr\Contracts\DocumentRepositoryInterface' );
+            $photo->setType( 'file_url' );
+            $photo->setUrl( $filepath );
+            $photo->setDate( date('Y-m-d') );
+            $photo->setForeignId( $patientInterface->getPid() );
+            $photo->addCategory( 10 ); // 10 === 'Patient Photograph'
+
+            $documentRepo->create( $photo );
         }
 
         return $patientInterface;

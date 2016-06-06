@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Mi2\Emr\Contracts\PatientAdapterInterface;
 use Mi2\Emr\Contracts\PatientInterface;
+use Mi2\Emr\Contracts\DocumentInterface;
 
 use Mi2\Emr\Contracts\PatientRepositoryInterface;
 use PHPFHIRGenerated\FHIRDomainResource\FHIRPatient;
@@ -161,7 +162,8 @@ class FHIRPatientAdapter implements PatientAdapterInterface
                     break;
             }
             $base64Binary = $photo->getData();
-            $photo = new \stdClass();
+            $photo = App::make( 'Mi2\Emr\Contracts\DocumentInterface' );
+            $photo->setMimetype( $mimetype );
             $photo->base64Data = $base64Binary->getValue();
             $photo->filename = rand().".".$ext;
             $patientInterface->setPhoto( $photo );

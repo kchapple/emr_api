@@ -4,6 +4,8 @@ namespace Mi2\Emr\Contracts;
 
 interface PatientInterface extends BaseInterface
 {
+    public function getPid();
+    public function setPid( $pid );
     public function getFirstName();
     public function setFirstName( $firstName );
     public function getLastName();

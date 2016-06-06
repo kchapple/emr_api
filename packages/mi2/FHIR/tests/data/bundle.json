@@ -7,7 +7,7 @@
   "type": "transaction",
   "entry": [
     {
-      "fullUrl": "urn:uuid:61ebe359-bfdc-4613-8bf2-c5e300945f0a",
+      "fullUrl": "https://fhirdev.ttdnow.com/fhir/Patient/1",
       "resource": {
         "resourceType": "Patient",
         "name": [
@@ -72,20 +72,15 @@
         },
         "event": {
           "type": {
-            "system": "http://nema.org/dicom/dicm",
-            "code": "regProfile",
-            "display": "User Quick Signup"
+            "code": "regProfile"
           },
           "subtype": [
             {
-              "system": "http://nema.org/dicom/dicm",
-              "code": "110122",
-              "display": "Login"
+              "code": "quickSignup"
             }
           ],
           "action": "E",
-          "dateTime": "2015-05-05T23:41:23Z",
-          "outcome": "0"
+          "dateTime": "2015-05-05T23:41:23Z"
         },
         "participant": [
           {
@@ -98,6 +93,7 @@
             "network": {
               "address": "123.55.55.1",
               "type": "2"
+
             }
           }
         ],
