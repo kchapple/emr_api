@@ -41,6 +41,12 @@ class Plugin extends PluginBase
         $this->app->bind('Mi2\Emr\Contracts\AuditEventInterface', 'Mi2\Emr\OpenEMR\Eloquent\AuditEvent', function( $app ) {
             return new \Mi2\Emr\OpenEMR\Eloquent\AuditEvent();
         });
+
+        // This will load routes file at vendor/[vendor]/[package]/src/Http/routes.php
+        // and prepend it with Foo\Http\Controllers namespace
+        $this->app['router']->group(['namespace' => 'Mi2\Emr\Http\Controllers'], function () {
+            require __DIR__.'/Http/routes.php';
+        });
     }
 
 }

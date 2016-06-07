@@ -3,6 +3,7 @@
 namespace Mi2\Emr\OpenEMR\Finders;
 
 use Mi2\Emr\Contracts\PatientFinderInterface;
+use Mi2\Emr\OpenEMR\Eloquent\Document;
 use Mi2\Emr\OpenEMR\Eloquent\PatientData as Patient;
 
 class PatientFinder extends AbstractFinder implements PatientFinderInterface
@@ -16,7 +17,8 @@ class PatientFinder extends AbstractFinder implements PatientFinderInterface
     public function byPid( $pid )
     {
         try {
-            return Patient::where('pid', $pid)->firstOrFail();
+            $patient = Patient::where('pid', $pid)->firstOrFail();
+            return $patient;
         } catch ( ErrorException $e ) {
             //Do stuff if it doesn't exist.
         }

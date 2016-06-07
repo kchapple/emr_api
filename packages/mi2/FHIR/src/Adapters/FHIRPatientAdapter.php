@@ -9,8 +9,10 @@ use Mi2\Emr\Contracts\PatientInterface;
 use Mi2\Emr\Contracts\DocumentInterface;
 
 use Mi2\Emr\Contracts\PatientRepositoryInterface;
+use Mi2\Emr\OpenEMR\Criteria\PatientByPid;
 use PHPFHIRGenerated\FHIRDomainResource\FHIRPatient;
 use PHPFHIRGenerated\FHIRElement\FHIRCode;
+use \PHPFHIRGenerated\FHIRElement\FHIRAttachment;
 use PHPFHIRGenerated\FHIRElement\FHIRContactPoint;
 use PHPFHIRGenerated\FHIRElement\FHIRContactPointSystem;
 use PHPFHIRGenerated\FHIRElement\FHIRContactPointUse;
@@ -20,6 +22,7 @@ use PHPFHIRGenerated\FHIRElement\FHIRIdentifierUse;
 use PHPFHIRGenerated\FHIRElement\FHIRNameUse;
 use PHPFHIRGenerated\FHIRElement\FHIRHumanName;
 use PHPFHIRGenerated\FHIRElement\FHIRString;
+use PHPFHIRGenerated\FHIRElement\FHIRUri;
 use PHPFHIRGenerated\PHPFHIRResponseParser;
 use ArrayAccess;
 
@@ -41,7 +44,7 @@ class FHIRPatientAdapter implements PatientAdapterInterface
      */
     public function retrieve( $id )
     {
-        $patientInterface = $this->repository->find()->byPid( $id );
+        $patientInterface = $this->repository->find( new PatientByPid( array( 'pid' => $id) ) );
         return $this->interfaceToModel( $patientInterface );
     }
 
@@ -232,7 +235,16 @@ class FHIRPatientAdapter implements PatientAdapterInterface
         $fhirPatient->addTelecom( $email );
 
 
-
+        if ( $patient->getPhoto() ) {
+            $photo = new FHIRAttachment();
+            $contentType = new FHIRCode();
+            $contentType->setValue( $patient->getPhoto()->getMimetype() );
+            $photo->setContentType( $contentType );
+            $photoUrl = new FHIRUri();
+            $photoUrl->setValue( $patient->getPhoto()->getPublicUrl() );
+            $photo->setUrl( $photoUrl );
+            $fhirPatient->addPhoto( $photo );
+        }
         // TODO provide other data to FHIR models
         //
 

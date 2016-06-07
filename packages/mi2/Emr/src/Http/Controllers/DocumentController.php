@@ -5,7 +5,7 @@ namespace Mi2\Emr\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Mi2\Emr\OpenEMR\Eloquent\Document;
+use Mi2\Emr\OpenEMR\Repositories\DocumentRepository;
 
 class DocumentController extends Controller
 {
@@ -45,7 +45,9 @@ class DocumentController extends Controller
      */
     public function show($id)
     {
-        
+        $documentRepository = new DocumentRepository();
+        $file = $documentRepository->getFile( $id );
+        return response( $file, 200 )->header( 'Content-Type', 'image/jpeg' );
     }
 
     /**

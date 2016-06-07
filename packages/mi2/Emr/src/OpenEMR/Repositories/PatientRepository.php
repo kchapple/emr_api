@@ -15,6 +15,7 @@ use Mi2\Emr\Contracts\PatientFinderInterface;
 use Mi2\Emr\Contracts\PatientInterface;
 use Mi2\Emr\Contracts\PatientRepositoryInterface;
 use Illuminate\Support\Facades\App;
+use Mi2\Emr\OpenEMR\Criteria\DocumentByPid;
 use Mi2\Emr\OpenEMR\Eloquent\PatientData as Patient;
 
 class PatientRepository extends AbstractRepository implements PatientRepositoryInterface
@@ -55,7 +56,7 @@ class PatientRepository extends AbstractRepository implements PatientRepositoryI
 
             $documentRepo = App::make( 'Mi2\Emr\Contracts\DocumentRepositoryInterface' );
             $photo->setType( 'file_url' );
-            $photo->setUrl( $filepath );
+            $photo->setUrl( "file://$filepath" );
             $photo->setDate( date('Y-m-d') );
             $photo->setForeignId( $patientInterface->getPid() );
             $photo->addCategory( 10 ); // 10 === 'Patient Photograph'
@@ -64,6 +65,23 @@ class PatientRepository extends AbstractRepository implements PatientRepositoryI
         }
 
         return $patientInterface;
+    }
+
+    public function onAfterFind( $entity )
+    {
+        $documentRepository = new DocumentRepository();
+        $documents = $documentRepository->find( new DocumentByPid( array( 'pid' => $entity->getPid(), 'category' => '10' ) ) );
+        $photo = null;
+        foreach ( $documents as $d ) {
+            foreach ( $d->categories as $category ) {
+                if ( $category->id == '10' ) {
+                    $photo = $d;
+                    break;
+                }
+            }
+        }
+        $entity->setPhoto( $photo );
+        return $entity;
     }
 
     public function update( $id, array $data )

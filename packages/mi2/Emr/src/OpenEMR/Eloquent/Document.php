@@ -4,13 +4,14 @@ namespace Mi2\Emr\OpenEMR\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
 use Mi2\Emr\Contracts\DocumentInterface;
+use Mi2\Emr\OpenEMR\Eloquent\Category;
 
 class Document extends Model implements DocumentInterface
 {
     public $base64Data = null;
     public $filename = null;
 
-    protected $categories = array();
+    //protected $categories = array();
 
     protected $table = 'documents';
     protected $primaryKey = 'id';
@@ -27,11 +28,15 @@ class Document extends Model implements DocumentInterface
         return $this;
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany( 'Mi2\Emr\OpenEMR\Eloquent\Category', 'categories_to_documents', 'document_id', 'category_id' );
+    }
+
     public function addCategory( $categoryId )
     {
         $this->categories[]= $categoryId;
     }
-
     public function getCategories()
     {
         return $this->categories;
@@ -45,6 +50,11 @@ class Document extends Model implements DocumentInterface
     {
         $this->type = $type;
         return $this;
+    }
+
+    public function getPublicUrl()
+    {
+        return "document/{$this->getId()}";
     }
 
     public function getUrl()

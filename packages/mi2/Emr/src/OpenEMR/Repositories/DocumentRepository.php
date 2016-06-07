@@ -12,6 +12,8 @@ use App\System\AbstractRepository;
 use Illuminate\Support\Facades\DB;
 use Mi2\Emr\Contracts\DocumentRepositoryInterface;
 use Mi2\Emr\Contracts\DocumentInterface;
+use Mi2\Emr\OpenEMR\Eloquent\Document;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentRepository extends AbstractRepository implements DocumentRepositoryInterface
 {
@@ -43,7 +45,16 @@ class DocumentRepository extends AbstractRepository implements DocumentRepositor
 
     public function get( $id )
     {
-        return Document::find( $id );
+        $document = Document::find( $id );
+        return $document;
+    }
+
+    public function getFile( $id )
+    {
+        $document = $this->get( $id );
+        $url = $document->getUrl();
+        $file = file_get_contents( $url );
+        return $file;
     }
 
 }
